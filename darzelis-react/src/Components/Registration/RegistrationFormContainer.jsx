@@ -10,38 +10,39 @@ export default class RegistrationFormContainer extends Component {
       firstname: '',
       lastname: '',
       email: '',
-      successfullyRegister: false,
+      role: '',
+      // id: 0,
+      // successfullyRegister: false,
     };
   }
 
-  //   handleChange = (event) => {
-  //     this.setState({
-  //       [event.target.title]: event.target.value,
-  //     });
-  //   };
-
   handleChange = (event) => {
+    
     const target = event.target;
     const value = target.value;
     const id = target.id; // iš input tag'o gaunam būsenos objekto raktą reikšmei nustatyti
     this.setState({
       [id]: value,
     });
+    console.log(this.state);
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const outputUser = {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      email: this.state.email,
-      successfullyRegister: true,
-    };
+    console.log(this.state);
+    // const outputUser = {
+    //   email: this.state.email,
+    //   firstname: this.state.firstname,
+    //   id: this.state.id,
+    //   lastname: this.state.lastname,
+    //   role: this.state.role,
+    //   // successfullyRegister: true,
+    // };
 
     axios
-      .post(API + '/api/signup', outputUser)
+      .post(API + '/api/users', this.state)
       .then((response) => {
-        this.props.history.push('/papostina_i_adminopsl_vartotoju_sarasa');
+        this.props.history.push('/admin/userslist');
       })
       .catch((error) => {
         console.log(error);
@@ -70,7 +71,9 @@ export default class RegistrationFormContainer extends Component {
           firstname={this.state.firstname}
           lastname={this.state.lastname}
           email={this.state.email}
-          successfullyRegister={this.state.successfullyRegister}
+          role={this.state.role}
+          {...this.state}
+          // successfullyRegister={this.state.successfullyRegister}
         />
       </div>
     );
