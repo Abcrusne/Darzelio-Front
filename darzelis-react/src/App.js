@@ -1,6 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import RegistrationFormContainer from './Components/Registration/RegistrationFormContainer';
 import RegistrationSuccessPresentation from './Components/Registration/RegistrationSuccessPresentation';
 
@@ -11,7 +10,7 @@ function App() {
         <Switch>
           <Route
             exact
-            path="/registracija"
+            path="/admin/registracija"
             component={RegistrationFormContainer}
           />
           <Route

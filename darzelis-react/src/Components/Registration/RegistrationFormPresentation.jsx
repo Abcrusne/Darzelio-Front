@@ -10,14 +10,23 @@ function RegistrationFormPresentation({
   email,
   role,
   password,
-  confirmPassword,
+  // emailError,
+  // confirmPassword,
+  // error,
   ...otherProps
 }) {
+  // if (error){
+  //   return <div>Error: {error.message} Toks el.paštas jau egzistuoja.</div>;
+  // } else {
   return (
-    <form className="col-lg-12 offset-lg-4 " onSubmit={handleSubmit}>
+    <form
+      className="col-lg-12 offset-lg-4 needs-validation"
+      noValidate
+      onSubmit={handleSubmit}
+    >
       <div className="form-group">
         <label className="col-sm-2 control-label">
-          <b>Jūsų vardas</b>
+          <b>Vartotojo vardas</b>
         </label>
         <div className="col-sm-3">
           <input
@@ -26,14 +35,16 @@ function RegistrationFormPresentation({
             id="firstname"
             placeholder="Vardas"
             value={firstname}
-            onChange={(e) => handleChange(e)}
+            onChange={handleChange}
             required
           />
+          <div className="invalid-feedback">Įrašykite vardą.</div>
+          <div className="valid-feedback"></div>
         </div>
       </div>
       <div className="form-group">
         <label className="col-sm-2 control-label">
-          <b>Jūsų pavardė</b>
+          <b>Vartotojo pavardė</b>
         </label>
         <div className="col-sm-3">
           <input
@@ -45,22 +56,27 @@ function RegistrationFormPresentation({
             onChange={handleChange}
             required
           />
+          <div className="invalid-feedback">Įrašykite pavardę.</div>
+          <div className="valid-feedback"></div>
         </div>
       </div>
       <div className="form-group">
-        <label className="col-sm-2 control-label">
-          <b>Jūsų el.paštas</b>
+        <label className="col-sm-2 control-label" htmlFor="email">
+          <b>Vartotojo el.paštas</b>
         </label>
         <div className="col-sm-3">
           <input
             type="email"
-            className="form-control"
+            className=" email form-control"
             id="email"
-            placeholder="Email"
+            placeholder="el.paštas"
             value={email}
             onChange={handleChange}
             required
           />
+          <div className="invalid-feedback">Įrašykite el.paštą.</div>
+          <div className="valid-feedback"></div>
+          {/* {emailError ? { emailError } : null} */}
         </div>
       </div>
       {/* <div className="form-group">
@@ -97,7 +113,7 @@ function RegistrationFormPresentation({
       </div> */}
       <div className="form-group">
         <label className="col-sm-2 control-label">
-          <b>Pasirinkite rolę</b>
+          <b>Parinkite vartotojo rolę</b>
         </label>
         <div className="col-sm-3">
           <select
@@ -113,24 +129,20 @@ function RegistrationFormPresentation({
             <option value="PARENT">Tėvas/globėjas</option>
             <option value="KINDERGARTEN">Švietimo specialistas</option>
           </select>
+          <div className="invalid-feedback">Pasirinkite rolę.</div>
+          <div className="valid-feedback"></div>
         </div>
       </div>
       <div className="form-group">
-        <Link to={'/'} className="btn btn-default">
+        <Link to={'/admin'} className="btn btn-default">
           Grįžti į pradinį puslapį
         </Link>
         <button type="submit" className="btn btn-success">
           Registruotis
         </button>
       </div>
-      {/* <div>
-        <h1>
-          {successfullyRegister ? (
-            <RegistrationSuccessPresentation />
-          ) : null}
-        </h1>
-      </div> */}
     </form>
   );
 }
+// }
 export default RegistrationFormPresentation;
