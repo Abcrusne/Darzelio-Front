@@ -1,13 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import RegistrationSuccessPresentation from './RegistrationSuccessPresentation';
+//import RegistrationSuccessPresentation from './RegistrationSuccessPresentation';
 
-const RegistrationFormPresentation = (props) => {
+function RegistrationFormPresentation({
+  handleChange,
+  handleSubmit,
+  firstname,
+  lastname,
+  email,
+  role,
+  password,
+  // emailError,
+  // confirmPassword,
+  // error,
+  ...otherProps
+}) {
+  // if (error){
+  //   return <div>Error: {error.message} Toks el.paštas jau egzistuoja.</div>;
+  // } else {
   return (
-    <form className="col-lg-12 offset-lg-4 " onSubmit={props.handleSubmit}>
+    <form
+      className="col-lg-12 offset-lg-4 needs-validation"
+      noValidate
+      onSubmit={handleSubmit}
+    >
       <div className="form-group">
         <label className="col-sm-2 control-label">
-          <b>Jūsų vardas</b>
+          <b>Vartotojo vardas</b>
         </label>
         <div className="col-sm-3">
           <input
@@ -15,15 +34,17 @@ const RegistrationFormPresentation = (props) => {
             className="form-control"
             id="firstname"
             placeholder="Vardas"
-            value={props.firstname}
-            onChange={props.handleChange}
+            value={firstname}
+            onChange={handleChange}
             required
           />
+          <div className="invalid-feedback">Įrašykite vardą.</div>
+          <div className="valid-feedback"></div>
         </div>
       </div>
       <div className="form-group">
         <label className="col-sm-2 control-label">
-          <b>Jūsų pavardė</b>
+          <b>Vartotojo pavardė</b>
         </label>
         <div className="col-sm-3">
           <input
@@ -31,42 +52,97 @@ const RegistrationFormPresentation = (props) => {
             className="form-control"
             id="lastname"
             placeholder="Pavardė"
-            value={props.lastname}
-            onChange={props.handleChange}
+            value={lastname}
+            onChange={handleChange}
+            required
           />
+          <div className="invalid-feedback">Įrašykite pavardę.</div>
+          <div className="valid-feedback"></div>
         </div>
       </div>
       <div className="form-group">
-        <label className="col-sm-2 control-label">
-          <b>Jūsų el.paštas</b>
+        <label className="col-sm-2 control-label" htmlFor="email">
+          <b>Vartotojo el.paštas</b>
         </label>
         <div className="col-sm-3">
           <input
             type="email"
-            className="form-control"
+            className=" email form-control"
             id="email"
-            placeholder="Email"
-            value={props.email}
-            onChange={props.handleChange}
+            placeholder="el.paštas"
+            value={email}
+            onChange={handleChange}
+            required
           />
+          <div className="invalid-feedback">Įrašykite el.paštą.</div>
+          <div className="valid-feedback"></div>
+          {/* {emailError ? { emailError } : null} */}
+        </div>
+      </div>
+      {/* <div className="form-group">
+        <label className="col-sm-2 control-label">
+          <b>Slaptažodis</b>
+        </label>
+        <div className="col-sm-3">
+          <input
+            type="password"
+            className="form-control"
+            id="password"
+            placeholder="Password"
+            value={password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+      </div> */}
+      {/* <div className="form-group">
+        <label className="col-sm-2 control-label">
+          <b>Patvirtinkite slaptažodį</b>
+        </label>
+        <div className="col-sm-3">
+          <input
+            type="password"
+            className="form-control"
+            id="confirmPassword"
+            placeholder="Confirm password"
+            value={confirmPassword}
+            onChange={handleChange}
+            required
+          />
+        </div>
+      </div> */}
+      <div className="form-group">
+        <label className="col-sm-2 control-label">
+          <b>Parinkite vartotojo rolę</b>
+        </label>
+        <div className="col-sm-3">
+          <select
+            type="text"
+            className="form-control"
+            id="role"
+            placeholder="Role"
+            value={role}
+            onChange={handleChange}
+            required
+          >
+            <option value=""></option>
+            <option value="PARENT">Tėvas/globėjas</option>
+            <option value="KINDERGARTEN">Švietimo specialistas</option>
+          </select>
+          <div className="invalid-feedback">Pasirinkite rolę.</div>
+          <div className="valid-feedback"></div>
         </div>
       </div>
       <div className="form-group">
-        <Link to={'/'} className="btn btn-default">
+        <Link to={'/admin'} className="btn btn-default">
           Grįžti į pradinį puslapį
         </Link>
         <button type="submit" className="btn btn-success">
           Registruotis
         </button>
       </div>
-      <div>
-        <h1>
-          {props.successfullyRegister ? (
-            <RegistrationSuccessPresentation />
-          ) : null}
-        </h1>
-      </div>
     </form>
   );
-};
+}
+// }
 export default RegistrationFormPresentation;

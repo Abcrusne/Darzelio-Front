@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import RegistrationFormPresentation from './RegistrationFormPresentation';
+import ReactJoiValidations from 'react-joi-validation';
+import Joi from 'joi-browser';
+
+ReactJoiValidations.setJoi(Joi);
+
+
 
 export default class RegistrationFormContainer extends Component {
   constructor(props) {
@@ -10,15 +16,48 @@ export default class RegistrationFormContainer extends Component {
       firstname: '',
       lastname: '',
       email: '',
-      successfullyRegister: false,
+      role: '',
+      password: '',
+      // emailError: '',
+      // error: null
+      // confirmPassword: '',
+      // id: 0,
     };
   }
-
-  //   handleChange = (event) => {
-  //     this.setState({
-  //       [event.target.title]: event.target.value,
-  //     });
-  //   };
+ schema = {
+    firstname: Joi.string()
+      .trim()
+      .min(2)
+      .max(30)
+      .alphanum()
+     .required(),
+  
+    lastname: Joi.string()
+      .min(2)
+      .max(50)
+      .alphanum()
+      .required(),
+  
+    email: Joi.string()
+      .email({ minDomainAtoms: 2 })
+      .required(),
+  };
+  
+validate = () => {
+  const result = Joi.validate(this.state.firstname, this.state.lastname,this.state.email, this.schema)
+  console.log(result);
+}
+  // validate = () => {
+  //   let emailError = '';
+  //   if (!this.state.email.includes("@") && !this.state.email.includes(".")){
+  //     emailError="Toks email netinkamas"
+  //   }
+  //   if (emailError){
+  //     this.setState({emailError});
+  //     return false;
+  //   }
+  //   return true;
+  // };
 
   handleChange = (event) => {
     const target = event.target;
@@ -31,34 +70,44 @@ export default class RegistrationFormContainer extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const outputUser = {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      email: this.state.email,
-      successfullyRegister: true,
-    };
+    this.validate();
+    event.target.className += ' was-validated';
+    //sitos dalies prireiks kai pats tevas gales keisti
+    // if (this.state.password !== this.state.confirmPassword) {
+    //   alert('Slaptažodžiai nesutampa!');
+    // } else {
+    //console.log(this.state);
+    // if(this.state.error){
+    //   alert ("egzistuoja toks el pastas")
+    // }
+    // else{
 
+    const outputUser = {
+      email: this.state.email,
+      firstname: this.state.firstname,
+      id: this.state.id,
+      lastname: this.state.lastname,
+      role: this.state.role,
+      password: this.state.firstname,
+      // confirmPassword: this.state.confirmPassword,
+    };
+    // const isValid = this.validate();
+    // if (isValid) {
+    // }
     axios
-      .post(API + '/api/signup', outputUser)
+      .post(API + '/api/users', outputUser)
       .then((response) => {
-        this.props.history.push('/papostina_i_adminopsl_vartotoju_sarasa');
+        console.log(response);
+        this.props.history.push('/admin/sekminga');
       })
+
       .catch((error) => {
+        if (error.response.status === 405) {
+          alert('Toks el.paštas jau egzistuoja!');
+        }
         console.log(error);
+        // this.setState({error});
       });
-    // const registUser = async () => {
-    //   try {
-    //     const response = await axios
-    //       .post(API + '/api/vartotojai', outputUser)
-    //       .then((response) => {
-    //         this.props.history.push('/papostina_i_adminopsl_vartotoju_sarasa');
-    //         console.log(response.data);
-    //       });
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    //   registUser();
-    // };
   };
 
   render() {
@@ -70,7 +119,12 @@ export default class RegistrationFormContainer extends Component {
           firstname={this.state.firstname}
           lastname={this.state.lastname}
           email={this.state.email}
-          successfullyRegister={this.state.successfullyRegister}
+          role={this.state.role}
+          password={this.state.password}
+          // emailError={this.emailError}
+          // confirmPassword={this.state.confirmPassword}
+          // error={this.state.error}
+          {...this.state}
         />
       </div>
     );
