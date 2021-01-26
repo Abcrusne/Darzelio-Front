@@ -10,7 +10,7 @@ export default class RegistrationSuccessPresentation extends Component {
           {/* <h5>
               Jūsų nurodytu el.paštu išsiųsti prisijungimo duomenys
               </h5> */}
-          {/* <Link to={'/'} className="btn btn-default">
+          {/* <Link to={'/admin'} className="btn btn-default">
             Grįžti į pradinį puslapį
           </Link> */}
         </div>

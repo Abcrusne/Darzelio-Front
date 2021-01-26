@@ -2,14 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 //import RegistrationSuccessPresentation from './RegistrationSuccessPresentation';
 
-function RegistrationFormPresentation( {handleChange,
+function RegistrationFormPresentation({
+  handleChange,
   handleSubmit,
   firstname,
   lastname,
   email,
   role,
- ...otherProps})
-   {
+  password,
+  confirmPassword,
+  ...otherProps
+}) {
   return (
     <form className="col-lg-12 offset-lg-4 " onSubmit={handleSubmit}>
       <div className="form-group">
@@ -40,6 +43,7 @@ function RegistrationFormPresentation( {handleChange,
             placeholder="Pavardė"
             value={lastname}
             onChange={handleChange}
+            required
           />
         </div>
       </div>
@@ -55,9 +59,42 @@ function RegistrationFormPresentation( {handleChange,
             placeholder="Email"
             value={email}
             onChange={handleChange}
+            required
           />
         </div>
       </div>
+      {/* <div className="form-group">
+        <label className="col-sm-2 control-label">
+          <b>Slaptažodis</b>
+        </label>
+        <div className="col-sm-3">
+          <input
+            type="password"
+            className="form-control"
+            id="password"
+            placeholder="Password"
+            value={password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+      </div> */}
+      {/* <div className="form-group">
+        <label className="col-sm-2 control-label">
+          <b>Patvirtinkite slaptažodį</b>
+        </label>
+        <div className="col-sm-3">
+          <input
+            type="password"
+            className="form-control"
+            id="confirmPassword"
+            placeholder="Confirm password"
+            value={confirmPassword}
+            onChange={handleChange}
+            required
+          />
+        </div>
+      </div> */}
       <div className="form-group">
         <label className="col-sm-2 control-label">
           <b>Pasirinkite rolę</b>
@@ -70,6 +107,7 @@ function RegistrationFormPresentation( {handleChange,
             placeholder="Role"
             value={role}
             onChange={handleChange}
+            required
           >
             <option value=""></option>
             <option value="PARENT">Tėvas/globėjas</option>
@@ -94,5 +132,5 @@ function RegistrationFormPresentation( {handleChange,
       </div> */}
     </form>
   );
-};
+}
 export default RegistrationFormPresentation;

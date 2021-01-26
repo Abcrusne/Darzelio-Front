@@ -1,7 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
-import RegistrationFormContainer from "./Components/Registration/RegistrationFormContainer"
+import RegistrationFormContainer from './Components/Registration/RegistrationFormContainer';
+import RegistrationSuccessPresentation from './Components/Registration/RegistrationSuccessPresentation';
 
 function App() {
   return (
@@ -12,6 +13,11 @@ function App() {
             exact
             path="/registracija"
             component={RegistrationFormContainer}
+          />
+          <Route
+            exact
+            path="/admin/sekminga"
+            component={RegistrationSuccessPresentation}
           />
         </Switch>
       </BrowserRouter>
