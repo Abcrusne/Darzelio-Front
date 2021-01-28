@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import validator from 'validator';
+import { Textbox } from 'react-inputs-validation';
+import 'react-inputs-validation/lib/react-inputs-validation.min.css';
 //import RegistrationSuccessPresentation from './RegistrationSuccessPresentation';
 
 function RegistrationFormPresentation({
@@ -10,6 +13,7 @@ function RegistrationFormPresentation({
   email,
   role,
   password,
+  errors,
   // emailError,
   // confirmPassword,
   // error,
@@ -19,11 +23,7 @@ function RegistrationFormPresentation({
   //   return <div>Error: {error.message} Toks el.paštas jau egzistuoja.</div>;
   // } else {
   return (
-    <form
-      className="col-lg-12 offset-lg-4 needs-validation"
-      noValidate
-      onSubmit={handleSubmit}
-    >
+    <form className="col-lg-12 offset-lg-4 " onSubmit={handleSubmit}>
       <div className="form-group">
         <label className="col-sm-2 control-label">
           <b>Vartotojo vardas</b>
@@ -36,10 +36,11 @@ function RegistrationFormPresentation({
             placeholder="Vardas"
             value={firstname}
             onChange={handleChange}
-            required
+            // required
           />
-          <div className="invalid-feedback">Įrašykite vardą.</div>
-          <div className="valid-feedback"></div>
+          <div> {errors['name']}</div>
+          {/* <div className="invalid-feedback">Įrašykite vardą.</div>
+          <div className="valid-feedback"></div> */}
         </div>
       </div>
       <div className="form-group">
@@ -56,8 +57,8 @@ function RegistrationFormPresentation({
             onChange={handleChange}
             required
           />
-          <div className="invalid-feedback">Įrašykite pavardę.</div>
-          <div className="valid-feedback"></div>
+          {/* <div className="invalid-feedback">Įrašykite pavardę.</div>
+          <div className="valid-feedback"></div> */}
         </div>
       </div>
       <div className="form-group">
@@ -74,8 +75,8 @@ function RegistrationFormPresentation({
             onChange={handleChange}
             required
           />
-          <div className="invalid-feedback">Įrašykite el.paštą.</div>
-          <div className="valid-feedback"></div>
+          {/* <div className="invalid-feedback">Įrašykite el.paštą.</div>
+          <div className="valid-feedback"></div> */}
           {/* {emailError ? { emailError } : null} */}
         </div>
       </div>
@@ -129,8 +130,8 @@ function RegistrationFormPresentation({
             <option value="PARENT">Tėvas/globėjas</option>
             <option value="KINDERGARTEN">Švietimo specialistas</option>
           </select>
-          <div className="invalid-feedback">Pasirinkite rolę.</div>
-          <div className="valid-feedback"></div>
+          {/* <div className="invalid-feedback">Pasirinkite rolę.</div>
+          <div className="valid-feedback"></div> */}
         </div>
       </div>
       <div className="form-group">

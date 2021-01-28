@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
-import RegistrationFormPresentation from './RegistrationFormPresentation';
-import ReactJoiValidations from 'react-joi-validation';
-import Joi from 'joi-browser';
-
-ReactJoiValidations.setJoi(Joi);
-
-
+import '../../Style/style.css';
 
 export default class RegistrationFormContainer extends Component {
   constructor(props) {
@@ -18,69 +12,59 @@ export default class RegistrationFormContainer extends Component {
       email: '',
       role: '',
       password: '',
-      // emailError: '',
-      // error: null
-      // confirmPassword: '',
-      // id: 0,
+      errors: {
+        firstname: '',
+        lastname: '',
+        email: '',
+        role: '',
+      },
     };
   }
- schema = {
-    firstname: Joi.string()
-      .trim()
-      .min(2)
-      .max(30)
-      .alphanum()
-     .required(),
-  
-    lastname: Joi.string()
-      .min(2)
-      .max(50)
-      .alphanum()
-      .required(),
-  
-    email: Joi.string()
-      .email({ minDomainAtoms: 2 })
-      .required(),
-  };
-  
-validate = () => {
-  const result = Joi.validate(this.state.firstname, this.state.lastname,this.state.email, this.schema)
-  console.log(result);
-}
-  // validate = () => {
-  //   let emailError = '';
-  //   if (!this.state.email.includes("@") && !this.state.email.includes(".")){
-  //     emailError="Toks email netinkamas"
-  //   }
-  //   if (emailError){
-  //     this.setState({emailError});
-  //     return false;
-  //   }
-  //   return true;
-  // };
-
+  // componentDidCatch(error, errorInfo){
+  //   logErrorToMyService(error,errorInfo);
+  // }
   handleChange = (event) => {
-    const target = event.target;
-    const value = target.value;
-    const id = target.id; // iš input tag'o gaunam būsenos objekto raktą reikšmei nustatyti
-    this.setState({
-      [id]: value,
+    event.preventDefault();
+
+    const validEmailRegex = RegExp(
+      /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+    );
+    const { name, value } = event.target;
+    let errors = this.state.errors;
+    let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ]+$/;
+    switch (name) {
+      case 'firstname':
+        errors.firstname =
+          !value.match(letters) || value.length < 2
+            ? 'Vardas turi būti iš raidžių ir ilgesnis nei 1 raidė!'
+            : '';
+        break;
+      case 'role':
+        errors.role = !value || value.length === 0 ? 'Pasirinkite rolę!' : '';
+        break;
+
+      case 'email':
+        errors.email = validEmailRegex.test(value)
+          ? ''
+          : 'El.paštas netinkamas!';
+        break;
+      case 'lastname':
+        errors.lastname =
+          !value.match(letters) || value.length < 2
+            ? 'Pavardė turi būti iš raidžių ir ilgesnė nei 1 raidė!'
+            : '';
+        break;
+      default:
+        break;
+    }
+
+    this.setState({ errors, [name]: value }, () => {
+      console.log(errors);
     });
   };
-
   handleSubmit = (event) => {
     event.preventDefault();
-    this.validate();
     event.target.className += ' was-validated';
-    //sitos dalies prireiks kai pats tevas gales keisti
-    // if (this.state.password !== this.state.confirmPassword) {
-    //   alert('Slaptažodžiai nesutampa!');
-    // } else {
-    //console.log(this.state);
-    // if(this.state.error){
-    //   alert ("egzistuoja toks el pastas")
-    // }
-    // else{
 
     const outputUser = {
       email: this.state.email,
@@ -89,43 +73,130 @@ validate = () => {
       lastname: this.state.lastname,
       role: this.state.role,
       password: this.state.firstname,
-      // confirmPassword: this.state.confirmPassword,
+      // confirmlastname: this.state.confirmlastname,
     };
-    // const isValid = this.validate();
-    // if (isValid) {
-    // }
-    axios
-      .post(API + '/api/users', outputUser)
-      .then((response) => {
-        console.log(response);
-        this.props.history.push('/admin/sekminga');
-      })
+    const validateForm = (errors) => {
+      let valid = true;
+      Object.values(errors).forEach(
+        // if we have an error string set valid to false
+        (val) => val.length > 0 && (valid = false)
+      );
+      return valid;
+    };
 
-      .catch((error) => {
-        if (error.response.status === 405) {
-          alert('Toks el.paštas jau egzistuoja!');
-        }
-        console.log(error);
-        // this.setState({error});
-      });
+    if (validateForm(this.state.errors)) {
+      axios
+        .post(API + '/api/users', outputUser)
+        .then((response) => {
+          console.log(response);
+          this.props.history.push('/admin/sekminga');
+        })
+
+        .catch((error) => {
+          if (error.response.data.message === 'Email already taken') {
+            alert('Toks el.paštas jau egzistuoja! ');
+          } else if (error.response.data.message === 'Invalid field entry') {
+            alert('Užpildykite visus laukus!');
+          }
+          // error.message
+          //Error.response.data.message
+          //error
+          console.log(error);
+          // this.setState({error});
+        });
+    } else {
+      console.error('Invalid Form');
+    }
   };
-
   render() {
+    const { errors } = this.state;
     return (
-      <div>
-        <RegistrationFormPresentation
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-          firstname={this.state.firstname}
-          lastname={this.state.lastname}
-          email={this.state.email}
-          role={this.state.role}
-          password={this.state.password}
-          // emailError={this.emailError}
-          // confirmPassword={this.state.confirmPassword}
-          // error={this.state.error}
-          {...this.state}
-        />
+      <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
+        <div className="mb-4">
+          <h3>Užregistruoti naują vartotoją</h3>
+        </div>
+        <form
+          onSubmit={this.handleSubmit}
+          noValidate
+          className="form-group needs-validation"
+        >
+          <div className="mb-3">
+            <label htmlFor="firstname" className="control-label">
+              Vardas
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              name="firstname"
+              onChange={this.handleChange}
+              noValidate
+              // required
+            />
+            {errors.firstname.length > 0 && (
+              <span className="error">{errors.firstname}</span>
+            )}
+            {/* <div className="invalid-feedback">Įrašykite vardą.</div>
+          <div className="valid-feedback"></div> */}
+          </div>
+          <div className="mb-3">
+            <label htmlFor="lastname" className="control-label">
+              Pavardė
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              name="lastname"
+              onChange={this.handleChange}
+              noValidate
+            />
+            {errors.lastname.length > 0 && (
+              <span className="error">{errors.lastname}</span>
+            )}
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email" className="control-label">
+              Email
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              name="email"
+              onChange={this.handleChange}
+              noValidate
+            />
+            {errors.email.length > 0 && (
+              <span className="error">{errors.email}</span>
+            )}
+          </div>
+          <div className="mb-3">
+            <label htmlFor="role" className="control-label">
+              Rolė
+            </label>
+            <select
+              type="role"
+              className="form-control"
+              name="role"
+              onChange={this.handleChange}
+              noValidate
+              required
+            >
+              <option value=""></option>
+              <option value="PARENT">Tėvas/globėjas</option>
+              <option value="EDU">Švietimo specialistas</option>
+            </select>
+            {errors.role.length > 0 && (
+              <span className="error">{errors.role}</span>
+            )}
+            <span className="invalid-feedback error">Pasirinkite rolę.</span>
+          </div>
+
+          <div>
+            <button type="submit" className="btn btn-success">
+              Registruoti
+            </button>
+          </div>
+          {/* {this.state.errorCount !== null ? <p className="form-status">Form is {formValid ? 'valid ✅' : 'invalid ❌'}</p> : 'Form not submitted'} */}
+        </form>
       </div>
     );
   }
