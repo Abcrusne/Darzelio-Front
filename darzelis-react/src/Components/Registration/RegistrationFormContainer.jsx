@@ -122,7 +122,7 @@ export default class RegistrationFormContainer extends Component {
         >
           <div className="mb-3">
             <label htmlFor="firstname" className="control-label">
-              Vardas
+              Vartotojo vardas*:
             </label>
             <input
               type="text"
@@ -140,7 +140,7 @@ export default class RegistrationFormContainer extends Component {
           </div>
           <div className="mb-3">
             <label htmlFor="lastname" className="control-label">
-              Pavardė
+              Vartotojo pavardė*:
             </label>
             <input
               type="text"
@@ -155,7 +155,7 @@ export default class RegistrationFormContainer extends Component {
           </div>
           <div className="mb-3">
             <label htmlFor="email" className="control-label">
-              Email
+              Vartotojo el.paštas*:
             </label>
             <input
               type="email"
@@ -170,7 +170,7 @@ export default class RegistrationFormContainer extends Component {
           </div>
           <div className="mb-3">
             <label htmlFor="role" className="control-label">
-              Rolė
+              Parinkite rolę*:
             </label>
             <select
               type="role"
@@ -189,7 +189,7 @@ export default class RegistrationFormContainer extends Component {
             )}
             <span className="invalid-feedback error">Pasirinkite rolę.</span>
           </div>
-
+          <div> * - privalomi laukai</div>
           <div>
             <button type="submit" className="btn btn-success">
               Registruoti
