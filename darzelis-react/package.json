@@ -1,5 +1,5 @@
 {
-  "homepage": "/bean-app/",
+  "homepage": "./",
   "name": "darzelis-react",
   "version": "0.1.0",
   "private": true,
