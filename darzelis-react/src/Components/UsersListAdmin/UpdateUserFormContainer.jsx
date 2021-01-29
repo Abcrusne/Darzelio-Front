@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
-import '../../Style/style.css';
+import { Link } from 'react-router-dom';
 
-export default class RegistrationFormContainer extends Component {
+export default class UpdateUserFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: '',
       firstname: '',
       lastname: '',
       email: '',
@@ -20,9 +21,45 @@ export default class RegistrationFormContainer extends Component {
       },
     };
   }
-  // componentDidCatch(error, errorInfo){
-  //   logErrorToMyService(error,errorInfo);
-  // }
+  componentDidMount() {
+    console.log('component did mount');
+    axios
+      .get(`${API}/api/users/${this.props.match.params.id}`)
+      .then((res) =>
+        this.setState({
+          id: res.data.id,
+          firstname: res.data.firstname,
+          lastname: res.data.lastname,
+          email: res.data.email,
+          role: res.data.role,
+          password: res.data.password,
+        })
+      )
+      .catch((err) => console.log(err));
+  }
+  resetPassword = (event) => {
+    event.preventDefault();
+    axios
+      .put(
+        `${API}/api/users/${this.state.id}`,
+        {
+          id: this.state.id,
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
+          email: this.state.email,
+          role: this.state.role,
+          password: this.state.firstname,
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        alert('Vartotojo slaptažodis atsatatytas į pirminį');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   handleChange = (event) => {
     event.preventDefault();
 
@@ -66,15 +103,15 @@ export default class RegistrationFormContainer extends Component {
     event.preventDefault();
     event.target.className += ' was-validated';
 
-    const outputUser = {
-      email: this.state.email,
-      firstname: this.state.firstname,
-      id: this.state.id,
-      lastname: this.state.lastname,
-      role: this.state.role,
-      password: this.state.firstname,
-      // confirmlastname: this.state.confirmlastname,
-    };
+    // const outputUser = {
+    //   email: this.state.email,
+    //   firstname: this.state.firstname,
+    //     id: this.state.id,
+    //   lastname: this.state.lastname,
+    //   role: this.state.role,
+    //     password: this.state.firstname,
+    // confirmlastname: this.state.confirmlastname,
+    // };
     const validateForm = (errors) => {
       let valid = true;
       Object.values(errors).forEach(
@@ -86,10 +123,21 @@ export default class RegistrationFormContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(API + '/api/users', outputUser)
+        .put(
+          `${API}/api/users/${this.state.id}`,
+          // outputUser)
+          {
+            id: this.state.id,
+            firstname: this.state.firstname,
+            lastname: this.state.lastname,
+            email: this.state.email,
+            role: this.state.role,
+            //password: this.state.password,
+          }
+        )
         .then((response) => {
           console.log(response);
-          this.props.history.push('/admin/sekminga');
+          this.props.history.push('/admin/vartotojai');
         })
 
         .catch((error) => {
@@ -108,12 +156,13 @@ export default class RegistrationFormContainer extends Component {
       console.error('Invalid Form');
     }
   };
+
   render() {
     const { errors } = this.state;
     return (
       <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
         <div className="mb-4">
-          <h3>Užregistruoti naują vartotoją</h3>
+          <h3>Atnaujinti vartotojo duomenis</h3>
         </div>
         <form
           onSubmit={this.handleSubmit}
@@ -130,7 +179,8 @@ export default class RegistrationFormContainer extends Component {
               name="firstname"
               onChange={this.handleChange}
               noValidate
-              required
+              value={this.state.firstname}
+              // required
             />
             {errors.firstname.length > 0 && (
               <span className="error">{errors.firstname}</span>
@@ -148,7 +198,7 @@ export default class RegistrationFormContainer extends Component {
               name="lastname"
               onChange={this.handleChange}
               noValidate
-              required
+              value={this.state.lastname}
             />
             {errors.lastname.length > 0 && (
               <span className="error">{errors.lastname}</span>
@@ -164,7 +214,7 @@ export default class RegistrationFormContainer extends Component {
               name="email"
               onChange={this.handleChange}
               noValidate
-              required
+              value={this.state.email}
             />
             {errors.email.length > 0 && (
               <span className="error">{errors.email}</span>
@@ -180,6 +230,7 @@ export default class RegistrationFormContainer extends Component {
               name="role"
               onChange={this.handleChange}
               noValidate
+              value={this.state.role}
               required
             >
               <option value=""></option>
@@ -191,10 +242,20 @@ export default class RegistrationFormContainer extends Component {
             )}
             <span className="invalid-feedback error">Pasirinkite rolę.</span>
           </div>
+
           <div> * - privalomi laukai</div>
+
           <div>
             <button type="submit" className="btn btn-success">
-              Registruoti
+              Išsaugoti
+            </button>
+
+            <button
+              type="submit"
+              className="btn btn-warning"
+              onClick={this.resetPassword}
+            >
+              Atstatyti slaptažodį į pirminį
             </button>
           </div>
           {/* {this.state.errorCount !== null ? <p className="form-status">Form is {formValid ? 'valid ✅' : 'invalid ❌'}</p> : 'Form not submitted'} */}
@@ -203,3 +264,65 @@ export default class RegistrationFormContainer extends Component {
     );
   }
 }
+
+//   componentDidMount() {
+//     axios
+//         .get(`${API}/api/users/${this.props.match.params.id}`)
+//         .then(res => this.setState({
+//             firstname: res.data.firstname,
+//             lastname: res.data.lastname,
+//             email: res.data.email,
+//             role: res.data.role,
+//         }))
+//         .catch(err => console.log(err))
+
+// }
+
+// handleChange = (event) => {
+//     const { name, value } = event.target;
+//     this.setState({ [name]: value });
+// };
+// handleSubmit = (event) => {
+//   event.preventDefault();
+
+//   axios.put(`${API}api/vartotojai/${this.state.id}`, {
+//         "firstname": this.state.firstname,
+//         "lastname": this.state.lastname,
+//         "email": this.state.email,
+//         "role": this.state.role,
+//   }).then(() => this.props.history.push('/admin/vartotojai'))
+
+// }
+// render() {
+//   if (this.state.user !== null) {
+//       const { firstname, lastname, email, role } = this.state;
+//       return (
+//           <div>
+//               <form className="container my-5" onSubmit={this.handleSubmit}>
+//                   <div className="form-group">
+//                       <label htmlFor="productfirstname">firstname</label>
+//                       <input onChange={this.handleChange} type="text" className="form-control" id="productfirstname" name="firstname" value={firstname} />
+//                   </div>
+//                   <div className="form-group">
+//                       <label htmlFor="productlastname">lastname</label>
+//                       <input onChange={this.handleChange} type="text" className="form-control" id="productlastname" name="lastname" value={lastname} />
+//                   </div>
+//                   <div className="form-group">
+//                       <label htmlFor="productemail">email</label>
+//                       <textarea onChange={this.handleChange} className="form-control" id="productemail" rows="3" name="email" value={email}></textarea>
+//                   </div>
+//                   <div className="row">
+//                       <div className="form-group col-6">
+//                           <label htmlFor="productrole">role</label>
+//                           <input onChange={this.handleChange} type="text" className="form-control" id="productrole" name="role" value={role} />
+//                       </div>
+
+//                   </div>
+//                   <button type="submit" className="btn btn-primary">Save</button>
+//               </form>
+//           </div >
+//       )
+//   } else {
+//       return (<div>Loading...</div>)
+//   }
+// }
