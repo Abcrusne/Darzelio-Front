@@ -130,7 +130,7 @@ export default class RegistrationFormContainer extends Component {
               name="firstname"
               onChange={this.handleChange}
               noValidate
-              // required
+              required
             />
             {errors.firstname.length > 0 && (
               <span className="error">{errors.firstname}</span>
@@ -148,6 +148,7 @@ export default class RegistrationFormContainer extends Component {
               name="lastname"
               onChange={this.handleChange}
               noValidate
+              required
             />
             {errors.lastname.length > 0 && (
               <span className="error">{errors.lastname}</span>
@@ -163,6 +164,7 @@ export default class RegistrationFormContainer extends Component {
               name="email"
               onChange={this.handleChange}
               noValidate
+              required
             />
             {errors.email.length > 0 && (
               <span className="error">{errors.email}</span>

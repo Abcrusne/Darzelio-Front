@@ -7,12 +7,12 @@ export default class UpdateUserFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // id: '',
+      id: '',
       firstname: '',
       lastname: '',
       email: '',
       role: '',
-      //  password: '',
+      password: '',
       errors: {
         firstname: '',
         lastname: '',
@@ -27,16 +27,38 @@ export default class UpdateUserFormContainer extends Component {
       .get(`${API}/api/users/${this.props.match.params.id}`)
       .then((res) =>
         this.setState({
+          id: res.data.id,
           firstname: res.data.firstname,
           lastname: res.data.lastname,
           email: res.data.email,
           role: res.data.role,
-          //id: res.data.id,
-          // password: res.data.password,
+          password: res.data.password,
         })
       )
       .catch((err) => console.log(err));
   }
+  resetPassword = (event) => {
+    event.preventDefault();
+    axios
+      .put(
+        `${API}/api/users/${this.state.id}`,
+        {
+          id: this.state.id,
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
+          email: this.state.email,
+          role: this.state.role,
+          password: this.state.firstname,
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        alert('Vartotojo slaptažodis atsatatytas į pirminį');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   handleChange = (event) => {
     event.preventDefault();
@@ -81,15 +103,15 @@ export default class UpdateUserFormContainer extends Component {
     event.preventDefault();
     event.target.className += ' was-validated';
 
-    const outputUser = {
-      email: this.state.email,
-      firstname: this.state.firstname,
-      //   id: this.state.id,
-      lastname: this.state.lastname,
-      role: this.state.role,
-      //   password: this.state.firstname,
-      // confirmlastname: this.state.confirmlastname,
-    };
+    // const outputUser = {
+    //   email: this.state.email,
+    //   firstname: this.state.firstname,
+    //     id: this.state.id,
+    //   lastname: this.state.lastname,
+    //   role: this.state.role,
+    //     password: this.state.firstname,
+    // confirmlastname: this.state.confirmlastname,
+    // };
     const validateForm = (errors) => {
       let valid = true;
       Object.values(errors).forEach(
@@ -101,10 +123,21 @@ export default class UpdateUserFormContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .put(`${API}/api/users/${this.state.id}`, outputUser)
+        .put(
+          `${API}/api/users/${this.state.id}`,
+          // outputUser)
+          {
+            id: this.state.id,
+            firstname: this.state.firstname,
+            lastname: this.state.lastname,
+            email: this.state.email,
+            role: this.state.role,
+            //password: this.state.password,
+          }
+        )
         .then((response) => {
           console.log(response);
-          this.props.history.push('/admin/sekminga');
+          this.props.history.push('/admin/vartotojai');
         })
 
         .catch((error) => {
@@ -209,10 +242,20 @@ export default class UpdateUserFormContainer extends Component {
             )}
             <span className="invalid-feedback error">Pasirinkite rolę.</span>
           </div>
+
           <div> * - privalomi laukai</div>
+
           <div>
             <button type="submit" className="btn btn-success">
               Išsaugoti
+            </button>
+
+            <button
+              type="submit"
+              className="btn btn-warning"
+              onClick={this.resetPassword}
+            >
+              Atstatyti slaptažodį į pirminį
             </button>
           </div>
           {/* {this.state.errorCount !== null ? <p className="form-status">Form is {formValid ? 'valid ✅' : 'invalid ❌'}</p> : 'Form not submitted'} */}

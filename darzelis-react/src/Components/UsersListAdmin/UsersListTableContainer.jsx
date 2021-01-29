@@ -9,7 +9,7 @@ export default class UsersListTableContainer extends Component {
     super();
     this.state = {
       users: [],
-      searchQuery: '',
+      // searchQuery: '',
       // search: "",
       // newUsers: []
     };
@@ -23,6 +23,7 @@ export default class UsersListTableContainer extends Component {
       .catch((error) => console.log(error));
   };
 
+  
   //   handleSearchChange = (e) => {
   //     this.setState({ search: e.target.value });
   //     axios
@@ -30,14 +31,13 @@ export default class UsersListTableContainer extends Component {
   //         .then(res => this.setState({ newUsers: res.data }))
   //         .catch(err => console.log(err))
   // }
-  handleSearch = (e) => {
-    
+  // handleSearch = (e) => {
 
-    this.setState({ searchQuery: e.target.value });
-    axios.get(`${API}/api/users/${e.target.value}`).then((response) => {
-      this.setState({ users: response.data });
-    });
-  };
+  //   this.setState({ searchQuery: e.target.value });
+  //   axios.get(`${API}/api/users/${e.target.value}`).then((response) => {
+  //     this.setState({ users: response.data });
+  //   });
+  // };
   deleteProduct = (event) => {
     event.preventDefault();
     axios
@@ -50,18 +50,22 @@ export default class UsersListTableContainer extends Component {
       .catch((err) => console.log(err));
   };
 
-  resetPassword = (event) => {
-    event.preventDefault();
-    const outputUser = {
-      password: this.state.firstname,
-    };
-    axios
-      .put(`${API}/api/users/${this.state.id}`, outputUser)
-      .then((response) => {
-        console.log(response);
-        alert('Vartotojo slaptažodis atsatatytas į pirminį');
-      });
-  };
+  // resetPassword = (event) => {
+  //   event.preventDefault();
+  //   // const outputUser = {
+  //   //   password: this.state.firstname,
+  //   // };
+  //   axios
+  //     .put(
+  //       `${API}/api/users/${this.state.id}`,
+  //       // outputUser
+  //       { password: this.state.firstname }
+  //     )
+  //     .then((response) => {
+  //       console.log(response);
+  //       alert('Vartotojo slaptažodis atsatatytas į pirminį');
+  //     });
+  // };
 
   render() {
     return (
@@ -89,7 +93,7 @@ export default class UsersListTableContainer extends Component {
               <th scope="col">Rolė</th>
               <th scope="col">Ištrinti vartotoją</th>
               <th scope="col">Atnaujinti vartotojo duomenis</th>
-              <th scope="col">Atstatyti slaptažodį į pirminį</th>
+              {/* <th scope="col">Atstatyti slaptažodį į pirminį</th> */}
             </tr>
           </thead>
           {this.state.users.length > 0 && (
@@ -97,9 +101,9 @@ export default class UsersListTableContainer extends Component {
               <UsersListTablePresentation
                 users={this.state.users}
                 deleteProduct={this.deleteProduct}
-                resetPassword={this.resetPassword}
-                searchQuery={this.searchQuery}
-                handleSearch={this.handleSearch}
+                // resetPassword={this.resetPassword}
+                // searchQuery={this.searchQuery}
+                // handleSearch={this.handleSearch}
               />
             </tbody>
           )}
