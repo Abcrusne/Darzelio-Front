@@ -35,11 +35,11 @@ function NavigationComponent(props) {
                 Eilių tvarkymas
               </NavLink>
             </li>
-            <li className="nav-item active">
+            {/* <li className="nav-item active">
               <NavLink to="/" className="nav-link">
                 Atsijungti tiesiog redirectina į /
               </NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
       </nav>
