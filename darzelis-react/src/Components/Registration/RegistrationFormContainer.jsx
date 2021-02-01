@@ -33,12 +33,12 @@ export default class RegistrationFormContainer extends Component {
     );
     const { name, value } = event.target;
     let errors = this.state.errors;
-    let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ]+$/;
+    let letters = /^[A-ZĄČĘĖĮŠŲŪŽ]+[a-ząčęėįšųūž]+$/;
     switch (name) {
       case 'firstname':
         errors.firstname =
           !value.match(letters) || value.length < 2 || value.length === 0
-            ? 'Vardas turi būti iš raidžių ir ilgesnis nei 1 raidė!'
+            ? 'Vardas turi būti iš raidžių ir ilgesnis nei 1 raidė! Prasideda didžiaja raide, pvz: Vardenis'
             : '';
         break;
       case 'role':
@@ -49,12 +49,12 @@ export default class RegistrationFormContainer extends Component {
         errors.email =
           validEmailRegex.test(value) || value.length === 0
             ? ''
-            : 'El.paštas netinkamas!';
+            : 'El.paštas netinkamas! Formato pvz.: vardas@mail.com';
         break;
       case 'lastname':
         errors.lastname =
           !value.match(letters) || value.length < 2 || value.length === 0
-            ? 'Pavardė turi būti iš raidžių ir ilgesnė nei 1 raidė!'
+            ? 'Pavardė turi būti iš raidžių ir ilgesnė nei 1 raidė! Prasideda didžiaja raide, pvz: Pavardenis'
             : '';
         break;
       default:
@@ -122,9 +122,8 @@ export default class RegistrationFormContainer extends Component {
     const { errors } = this.state;
     return (
       <div>
-        {' '}
         <NavigationComponent />
-      <LogoutPresentation  />
+        <LogoutPresentation />
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
             <h3>Užregistruoti naują vartotoją</h3>
