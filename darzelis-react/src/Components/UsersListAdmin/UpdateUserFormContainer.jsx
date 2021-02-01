@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import LogoutPresentation from '../SysAdminLanding/LogoutPresentation';
+import NavigationComponent from '../SysAdminLanding/NavigationComponent';
 
 export default class UpdateUserFormContainer extends Component {
   constructor(props) {
@@ -40,17 +42,14 @@ export default class UpdateUserFormContainer extends Component {
   resetPassword = (event) => {
     event.preventDefault();
     axios
-      .put(
-        `${API}/api/users/${this.state.id}`,
-        {
-          id: this.state.id,
-          firstname: this.state.firstname,
-          lastname: this.state.lastname,
-          email: this.state.email,
-          role: this.state.role,
-          password: this.state.firstname,
-        }
-      )
+      .put(`${API}/api/users/${this.state.id}`, {
+        id: this.state.id,
+        firstname: this.state.firstname,
+        lastname: this.state.lastname,
+        email: this.state.email,
+        role: this.state.role,
+        password: this.state.firstname,
+      })
       .then((response) => {
         console.log(response);
         alert('Vartotojo slaptažodis atsatatytas į pirminį');
@@ -161,6 +160,8 @@ export default class UpdateUserFormContainer extends Component {
     const { errors } = this.state;
     return (
       <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
+        <NavigationComponent/>
+        <LogoutPresentation />
         <div className="mb-4">
           <h3>Atnaujinti vartotojo duomenis</h3>
         </div>
