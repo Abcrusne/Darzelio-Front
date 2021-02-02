@@ -7,14 +7,13 @@ import LandingPage from './Components/LandingPage';
 import UsersListTableContainer from './Components/UsersListAdmin/UsersListTableContainer';
 import NoMatch from './Components/NoMatch/NoMatchPresentation';
 import UpdateUserFormContainer from './Components/UsersListAdmin/UpdateUserFormContainer';
-import NavigationComponent from './Components/SysAdminLanding/NavigationComponent';
+
 import SysAdminLanding from './Components/SysAdminLanding/SysAdminLanding';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter basename={process.env.PUBLIC_URL}>
-        
         <Switch>
           <Route
             exact
@@ -36,10 +35,7 @@ function App() {
             path="/admin/vartotojai/:id"
             component={UpdateUserFormContainer}
           />
-           <Route
-            path="/admin/pradzia"
-            component={SysAdminLanding}
-          />
+          <Route path="/admin/pradzia" component={SysAdminLanding} />
           <Route path="*" component={NoMatch} />
           <Route component={NoMatch} />
         </Switch>

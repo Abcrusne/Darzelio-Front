@@ -33,12 +33,12 @@ export default class RegistrationFormContainer extends Component {
     );
     const { name, value } = event.target;
     let errors = this.state.errors;
-    let letters = /^[A-ZĄČĘĖĮŠŲŪŽ]+[a-ząčęėįšųūž]+$/;
+    let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ]+$/;
     switch (name) {
       case 'firstname':
         errors.firstname =
           !value.match(letters) || value.length < 2 || value.length === 0
-            ? 'Vardas turi būti iš raidžių ir ilgesnis nei 1 raidė! Prasideda didžiaja raide, pvz: Vardenis'
+            ? 'Vardas turi būti iš raidžių ir ilgesnis nei 1 raidė! '
             : '';
         break;
       case 'role':
@@ -54,7 +54,7 @@ export default class RegistrationFormContainer extends Component {
       case 'lastname':
         errors.lastname =
           !value.match(letters) || value.length < 2 || value.length === 0
-            ? 'Pavardė turi būti iš raidžių ir ilgesnė nei 1 raidė! Prasideda didžiaja raide, pvz: Pavardenis'
+            ? 'Pavardė turi būti iš raidžių ir ilgesnė nei 1 raidė! '
             : '';
         break;
       default:
