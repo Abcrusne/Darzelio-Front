@@ -1,6 +1,5 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {withRouter} from "react-router";
 
 const LoginFormPresentation = ({email, password, onPasswdChange, onEmailChange, onSubmit}, context) => {
 
@@ -17,13 +16,9 @@ const LoginFormPresentation = ({email, password, onPasswdChange, onEmailChange, 
                         className="form-control"
                         id="exampleInputEmail1"
                         autoComplete="username"
-                        placeholder="vardas@mail.com"
                         aria-describedby="emailHelp"
                         onChange={onEmailChange}
                         value={email}
-                        onInvalid={(e) => {
-                            e.target.setCustomValidity('įvestas netinkamas el. pašto formatas');
-                        }}
                         required/>
                 </div>
                 <div className="mb-3">
@@ -33,13 +28,8 @@ const LoginFormPresentation = ({email, password, onPasswdChange, onEmailChange, 
                         className="form-control"
                         id="exampleInputPassword1"
                         autoComplete="current-password"
-                        placeholder="********"
                         onChange={onPasswdChange}
                         value={password}
-                        // minLength="8"
-                        // onInvalid={(e) => {
-                        //     e.target.setCustomValidity('Slaptažodis turi būti ne mažiau 8 ženklų');
-                        // }}
                         required/>
                 </div>
                 {/*<div className="mb-3 form-check">*/}
@@ -53,4 +43,4 @@ const LoginFormPresentation = ({email, password, onPasswdChange, onEmailChange, 
     )
 }
 
-export default withRouter(LoginFormPresentation);
+export default LoginFormPresentation
