@@ -1,26 +1,43 @@
 import React from 'react';
-import {Switch, Route} from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import RegistrationFormContainer from './Components/Registration/RegistrationFormContainer';
+import RegistrationSuccessPresentation from './Components/Registration/RegistrationSuccessPresentation';
+import LoginFormContainer from './Components/Login/LoginFormContainer';
+import LandingPage from './Components/LandingPage';
+import UsersListTableContainer from './Components/UsersListAdmin/UsersListTableContainer';
+import NoMatch from './Components/NoMatch/NoMatchPresentation';
+import UpdateUserFormContainer from './Components/UsersListAdmin/UpdateUserFormContainer';
 
+import SysAdminLanding from './Components/SysAdminLanding/SysAdminLanding';
 
-import RegistrationFormContainer from "./Components/Registration/RegistrationFormContainer"
-import LandingPage from "./Components/LandingPage"
-import LoginSuccess from "./Components/Login/LoginSuccess";
-import PrivateRoute from "./Configuration/PrivateRoute";
-
-
-const App = () => {
-
+function App() {
   return (
     <div className="App">
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
+          <Route
+            exact
+            path="/admin/registracija"
+            component={RegistrationFormContainer}
+          />
+          <Route
+            exact
+            path="/admin/sekminga"
+            component={RegistrationSuccessPresentation}
+          />
           <Route exact path="/" component={LandingPage} />
-          <Route exact path="/registracija" component={RegistrationFormContainer} />
-          <Route path="/login" component={LandingPage} />
-          <PrivateRoute exact path="/dashboard" component={LoginSuccess} roles={"PARENT"} />
-          {/*<PrivateRoute exact path="/admin" component={AdminDashboard} />*/}
-          {/*<PrivateRoute exact path="/admin/edu" component={EduDashboard} />*/}
+          <Route
+            exact
+            path="/admin/vartotojai"
+            component={UsersListTableContainer}
+          />
+          <Route
+            path="/admin/vartotojai/:id"
+            component={UpdateUserFormContainer}
+          />
+          <Route path="/admin/pradzia" component={SysAdminLanding} />
+          <Route path="*" component={NoMatch} />
+          <Route component={NoMatch} />
         </Switch>
       </BrowserRouter>
     </div>
