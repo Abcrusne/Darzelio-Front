@@ -9,12 +9,21 @@ import NoMatch from './Components/NoMatch/NoMatchPresentation';
 import UpdateUserFormContainer from './Components/UsersListAdmin/UpdateUserFormContainer';
 
 import SysAdminLanding from './Components/SysAdminLanding/SysAdminLanding';
+import ParentRegistrationFormContainer from './Components/ParentRegistration/ParentRegistrationFormContainer';
+
+import LoginSuccess from "./Components/Login/LoginSuccess";
+import PrivateRoute from "./Configuration/PrivateRoute";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
+        <Route exact path="/" component={LandingPage} />
+        <Route path="/login" component={LandingPage} />
+        <PrivateRoute exact path="/dashboard" component={LoginSuccess} role={"PARENT"} />
+          {/*<PrivateRoute exact path="/admin" component={AdminDashboard} />*/}
+          {/*<PrivateRoute exact path="/admin/edu" component={EduDashboard} />*/}
           <Route
             exact
             path="/admin/registracija"
@@ -25,7 +34,7 @@ function App() {
             path="/admin/sekminga"
             component={RegistrationSuccessPresentation}
           />
-          <Route exact path="/" component={LandingPage} />
+        
           <Route
             exact
             path="/admin/vartotojai"
@@ -36,6 +45,10 @@ function App() {
             component={UpdateUserFormContainer}
           />
           <Route path="/admin/pradzia" component={SysAdminLanding} />
+          <Route
+            path="/tevai/registracija"
+            component={ParentRegistrationFormContainer}
+          />
           <Route path="*" component={NoMatch} />
           <Route component={NoMatch} />
         </Switch>
