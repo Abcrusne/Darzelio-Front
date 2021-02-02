@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+document.title = "Vaikų darželių informacinė sistema";
 ReactDOM.render(
   <React.StrictMode>
      <App />
