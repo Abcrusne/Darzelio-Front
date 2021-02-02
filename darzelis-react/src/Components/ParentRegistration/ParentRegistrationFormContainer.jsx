@@ -3,7 +3,6 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
 import LogoutPresentation from '../SysAdminLanding/LogoutPresentation';
-import NavigationComponent from '../SysAdminLanding/NavigationComponent';
 
 export default class ParentRegistrationFormContainer extends Component {
   constructor(props) {
@@ -27,6 +26,7 @@ export default class ParentRegistrationFormContainer extends Component {
       declaredStreet: '',
       declaredHouseNumber: '',
       declaredFlatNumber: '',
+      userId: '',
 
       errors: {
         firstname: '',
@@ -130,7 +130,70 @@ export default class ParentRegistrationFormContainer extends Component {
         .post(API + '/api/parents', outputUser)
         .then((response) => {
           console.log(response);
-          this.props.history.push('/tevai/sekminga');
+          alert('Tėvo/Globėjo registracija sėkminga');
+          this.props.history.push('/tevai/vaikoregistracija');
+        })
+
+        .catch((error) => {
+          if (error.response.data.message === 'Email already taken') {
+            alert('Toks el.paštas jau egzistuoja! ');
+          } else if (error.response.data.message === 'Invalid field entry') {
+            alert('Užpildykite visus laukus!');
+          } else if (error.response.status === 400) {
+            alert(
+              'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
+            );
+          }
+          console.log(error);
+        });
+    } else {
+      console.error('Invalid Form');
+      alert(
+        'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
+      );
+    }
+  };
+  handleAddAnotherParent = (event) => {
+    event.preventDefault();
+    // event.target.className += ' was-validated';
+
+    const outputUser = {
+      email: this.state.email,
+      firstname: this.state.firstname,
+      id: this.state.id,
+      lastname: this.state.lastname,
+      phone: this.state.phone,
+      personalCode: this.state.personalCode,
+      city: this.state.city,
+      street: this.state.street,
+      houseNumber: this.state.houseNumber,
+      flatNumber: this.state.flatNumber,
+      numberOfKids: this.state.numberOfKids,
+      studying: this.state.studying,
+      studyingInstitution: this.state.studyingInstitution,
+      hasDisability: this.state.hasDisability,
+      declaredResidenceSameAsLiving: this.state.declaredResidenceSameAsLiving,
+      declaredCity: this.state.declaredCity,
+      declaredStreet: this.state.declaredStreet,
+      declaredHouseNumber: this.state.declaredHouseNumber,
+      declaredFlatNumber: this.state.declaredFlatNumber,
+    };
+    const validateForm = (errors) => {
+      let valid = true;
+      Object.values(errors).forEach(
+        // if we have an error string set valid to false
+        (val) => val.length > 0 && (valid = false)
+      );
+      return valid;
+    };
+
+    if (validateForm(this.state.errors)) {
+      axios
+        .post(API + '/api/parents', outputUser)
+        .then((response) => {
+          console.log(response);
+          alert('Tėvo/Globėjo registracija sėkminga');
+          this.props.history.push('/tevai/registracija');
         })
 
         .catch((error) => {
@@ -162,8 +225,7 @@ export default class ParentRegistrationFormContainer extends Component {
           <div className="mb-4">
             <h3>Tėvo/Globėjo registracija</h3>
           </div>
-          <form onSubmit={this.handleSubmit} noValidate className="form-group ">
-   
+          <form noValidate className="form-group ">
             <div className="mb-3">
               <label htmlFor="firstname" className="control-label">
                 Vardas*:
@@ -365,10 +427,9 @@ export default class ParentRegistrationFormContainer extends Component {
                   noValidate
                   //required
                 />
-              
               </div>
             ) : null}
-<div className="form-check">
+            <div className="form-check">
               <input
                 className="form-check-input"
                 type="checkbox"
@@ -395,80 +456,85 @@ export default class ParentRegistrationFormContainer extends Component {
                 noValidate
                 //required
               />
-              <label htmlFor="declaredResidenceSameAsLiving" className="form-check-label">
+              <label
+                htmlFor="declaredResidenceSameAsLiving"
+                className="form-check-label"
+              >
                 Jei deklaruota gyvenamoji vieta sutampa, pažymėkite.
               </label>
             </div>
-{this.state.declaredResidenceSameAsLiving ? null : <div> 
-    <div className="mb-3">
-              <label htmlFor="street" className="control-label">
-                Gatvė*:
-              </label>
-              <input
-                type="text"
-                placeholder="Gatvė"
-                className="form-control"
-                name="street"
-                onChange={this.handleChange}
-                noValidate
-                //required
-              />
-              {/* {errors.street.length > 0 && (
+            {this.state.declaredResidenceSameAsLiving ? null : (
+              <div>
+                <div className="mb-3">
+                  <label htmlFor="street" className="control-label">
+                    Gatvė*:
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Gatvė"
+                    className="form-control"
+                    name="street"
+                    onChange={this.handleChange}
+                    noValidate
+                    //required
+                  />
+                  {/* {errors.street.length > 0 && (
                 <span className="error">{errors.street}</span>
               )} */}
-            </div>
-            <div className="mb-3">
-              <label htmlFor="city" className="control-label">
-                Miestas*:
-              </label>
-              <input
-                type="text"
-                placeholder="Miestas"
-                className="form-control"
-                name="city"
-                onChange={this.handleChange}
-                noValidate
-                //required
-              />
-              {/* {errors.city.length > 0 && (
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="city" className="control-label">
+                    Miestas*:
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Miestas"
+                    className="form-control"
+                    name="city"
+                    onChange={this.handleChange}
+                    noValidate
+                    //required
+                  />
+                  {/* {errors.city.length > 0 && (
                 <span className="error">{errors.city}</span>
               )} */}
-            </div>
-            <div className="mb-3">
-              <label htmlFor="houseNumber" className="control-label">
-                Namo Numeris*:
-              </label>
-              <input
-                type="text"
-                placeholder="Namo numeris"
-                className="form-control"
-                name="houseNumber"
-                onChange={this.handleChange}
-                noValidate
-                //required
-              />
-              {/* {errors.houseNumber.length > 0 && (
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="houseNumber" className="control-label">
+                    Namo Numeris*:
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Namo numeris"
+                    className="form-control"
+                    name="houseNumber"
+                    onChange={this.handleChange}
+                    noValidate
+                    //required
+                  />
+                  {/* {errors.houseNumber.length > 0 && (
                 <span className="error">{errors.houseNumber}</span>
               )} */}
-            </div>
-            <div className="mb-3">
-              <label htmlFor="flatNumber" className="control-label">
-                Butas:
-              </label>
-              <input
-                type="number"
-                placeholder="Butas"
-                className="form-control"
-                name="flatNumber"
-                onChange={this.handleChange}
-                noValidate
-                //required
-              />
-              {/* {errors.flatNumber.length > 0 && (
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="flatNumber" className="control-label">
+                    Butas:
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="Butas"
+                    className="form-control"
+                    name="flatNumber"
+                    onChange={this.handleChange}
+                    noValidate
+                    //required
+                  />
+                  {/* {errors.flatNumber.length > 0 && (
                 <span className="error">{errors.flatNumber}</span>
               )} */}
-            </div>
-    </div>}
+                </div>
+              </div>
+            )}
 
             {/* <div className="mb-3">
               <label htmlFor="role" className="control-label">
@@ -492,10 +558,18 @@ export default class ParentRegistrationFormContainer extends Component {
             </div> */}
             <div> * - privalomi laukai</div>
             <div>
-            <button type="submit" className="btn btn-success btn-lg btn-block">
+              <button
+                type="submit"
+                className="btn btn-success btn-lg btn-block"
+                onSubmit={this.handleAddAnotherParent}
+              >
                 Pridėti kitą tėvą
               </button>
-              <button type="submit" className="btn btn-success btn-lg btn-block">
+              <button
+                type="submit"
+                className="btn btn-success btn-lg btn-block"
+                onSubmit={this.handleSubmit}
+              >
                 Tęsti
               </button>
             </div>

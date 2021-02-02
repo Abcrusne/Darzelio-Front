@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useHistory } from 'react-router';
+import UserService from "../../Configuration/UserService";
 
 const LogoutPresentation = () => {
   
@@ -9,6 +10,7 @@ const LogoutPresentation = () => {
   const logout = (e) => {
     e.preventDefault();
     localStorage.clear();
+    UserService.deleteRole();
     history.push('/');
   };
 
