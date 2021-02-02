@@ -100,17 +100,8 @@ export default class UpdateUserFormContainer extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    event.target.className += ' was-validated';
+    // event.target.className += ' was-validated';
 
-    // const outputUser = {
-    //   email: this.state.email,
-    //   firstname: this.state.firstname,
-    //     id: this.state.id,
-    //   lastname: this.state.lastname,
-    //   role: this.state.role,
-    //     password: this.state.firstname,
-    // confirmlastname: this.state.confirmlastname,
-    // };
     const validateForm = (errors) => {
       let valid = true;
       Object.values(errors).forEach(
@@ -124,7 +115,7 @@ export default class UpdateUserFormContainer extends Component {
       axios
         .put(
           `${API}/api/users/${this.state.id}`,
-          // outputUser)
+
           {
             id: this.state.id,
             firstname: this.state.firstname,
@@ -144,15 +135,18 @@ export default class UpdateUserFormContainer extends Component {
             alert('Toks el.paštas jau egzistuoja! ');
           } else if (error.response.data.message === 'Invalid field entry') {
             alert('Užpildykite visus laukus!');
+          } else if (error.response.status === 400) {
+            alert(
+              'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
+            );
           }
-          // error.message
-          //Error.response.data.message
-          //error
           console.log(error);
-          // this.setState({error});
         });
     } else {
       console.error('Invalid Form');
+      alert(
+        'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
+      );
     }
   };
 
@@ -160,16 +154,12 @@ export default class UpdateUserFormContainer extends Component {
     const { errors } = this.state;
     return (
       <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
-        <NavigationComponent/>
+        <NavigationComponent />
         <LogoutPresentation />
         <div className="mb-4">
           <h3>Atnaujinti vartotojo duomenis</h3>
         </div>
-        <form
-          onSubmit={this.handleSubmit}
-          noValidate
-          className="form-group needs-validation"
-        >
+        <form onSubmit={this.handleSubmit} noValidate className="form-group ">
           <div className="mb-3">
             <label htmlFor="firstname" className="control-label">
               Vartotojo vardas*:
@@ -232,7 +222,7 @@ export default class UpdateUserFormContainer extends Component {
               onChange={this.handleChange}
               noValidate
               value={this.state.role}
-              required
+              // required
             >
               <option value=""></option>
               <option value="PARENT">Tėvas/globėjas</option>
@@ -241,7 +231,7 @@ export default class UpdateUserFormContainer extends Component {
             {errors.role.length > 0 && (
               <span className="error">{errors.role}</span>
             )}
-            <span className="invalid-feedback error">Pasirinkite rolę.</span>
+            {/* <span className="invalid-feedback error">Pasirinkite rolę.</span> */}
           </div>
 
           <div> * - privalomi laukai</div>
@@ -253,7 +243,7 @@ export default class UpdateUserFormContainer extends Component {
 
             <button
               type="submit"
-              className="btn btn-warning"
+              className="btn btn-warning ml-3"
               onClick={this.resetPassword}
             >
               Atstatyti slaptažodį į pirminį
@@ -265,65 +255,3 @@ export default class UpdateUserFormContainer extends Component {
     );
   }
 }
-
-//   componentDidMount() {
-//     axios
-//         .get(`${API}/api/users/${this.props.match.params.id}`)
-//         .then(res => this.setState({
-//             firstname: res.data.firstname,
-//             lastname: res.data.lastname,
-//             email: res.data.email,
-//             role: res.data.role,
-//         }))
-//         .catch(err => console.log(err))
-
-// }
-
-// handleChange = (event) => {
-//     const { name, value } = event.target;
-//     this.setState({ [name]: value });
-// };
-// handleSubmit = (event) => {
-//   event.preventDefault();
-
-//   axios.put(`${API}api/vartotojai/${this.state.id}`, {
-//         "firstname": this.state.firstname,
-//         "lastname": this.state.lastname,
-//         "email": this.state.email,
-//         "role": this.state.role,
-//   }).then(() => this.props.history.push('/admin/vartotojai'))
-
-// }
-// render() {
-//   if (this.state.user !== null) {
-//       const { firstname, lastname, email, role } = this.state;
-//       return (
-//           <div>
-//               <form className="container my-5" onSubmit={this.handleSubmit}>
-//                   <div className="form-group">
-//                       <label htmlFor="productfirstname">firstname</label>
-//                       <input onChange={this.handleChange} type="text" className="form-control" id="productfirstname" name="firstname" value={firstname} />
-//                   </div>
-//                   <div className="form-group">
-//                       <label htmlFor="productlastname">lastname</label>
-//                       <input onChange={this.handleChange} type="text" className="form-control" id="productlastname" name="lastname" value={lastname} />
-//                   </div>
-//                   <div className="form-group">
-//                       <label htmlFor="productemail">email</label>
-//                       <textarea onChange={this.handleChange} className="form-control" id="productemail" rows="3" name="email" value={email}></textarea>
-//                   </div>
-//                   <div className="row">
-//                       <div className="form-group col-6">
-//                           <label htmlFor="productrole">role</label>
-//                           <input onChange={this.handleChange} type="text" className="form-control" id="productrole" name="role" value={role} />
-//                       </div>
-
-//                   </div>
-//                   <button type="submit" className="btn btn-primary">Save</button>
-//               </form>
-//           </div >
-//       )
-//   } else {
-//       return (<div>Loading...</div>)
-//   }
-// }
