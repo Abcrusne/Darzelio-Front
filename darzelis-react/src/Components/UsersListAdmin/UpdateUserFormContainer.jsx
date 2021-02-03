@@ -52,7 +52,9 @@ export default class UpdateUserFormContainer extends Component {
       })
       .then((response) => {
         console.log(response);
-        alert('Vartotojo slaptažodis atsatatytas į pirminį');
+        alert(
+          'Vartotojo slaptažodis atsatatytas į pirminį (toks kaip vardas dabar)'
+        );
       })
       .catch((error) => {
         console.log(error);

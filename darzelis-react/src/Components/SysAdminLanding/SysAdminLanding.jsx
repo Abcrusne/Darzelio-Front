@@ -5,7 +5,7 @@ import NavigationComponent from './NavigationComponent';
 
 const SysAdminLanding = () => {
   return (
-    <div>
+    <div className="container mt-5">
       <NavigationComponent />
       <LogoutPresentation />
     </div>
