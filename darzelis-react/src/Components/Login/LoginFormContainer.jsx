@@ -39,7 +39,7 @@ class LoginFormContainer extends Component {
         UserService.setRole(response.data.role);
         this.setState({ role: response.data.role });
         this.props.history.push('/dashboard');
-        alert('prisijungta');
+        //alert('prisijungta');
       })
       .catch((error) => {
         if (error.response.status === 401) {
