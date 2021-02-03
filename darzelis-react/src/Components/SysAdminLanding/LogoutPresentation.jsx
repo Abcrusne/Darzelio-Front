@@ -9,7 +9,7 @@ const LogoutPresentation = () => {
   const logout = (e) => {
     e.preventDefault();
     localStorage.clear();
-    UserService.deleteRole();
+    // cookies.remove("user");
     history.push('/');
   };
 
