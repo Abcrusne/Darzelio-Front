@@ -4,9 +4,9 @@ import React from 'react';
 function NavigationComponent(props) {
   return (
     <div>
-      <nav className=" navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container">
-          <ul className="nav navbar-nav mr-auto ">
+      <nav className=" container-fluid py-3 navbar-light bg-light">
+        <div className="row">
+          <ul className="nav  ">
             <li className="nav-item disabled">
               <NavLink to="/admin/pradzia" className="nav-link disabled">
                 <span className="navbar-brand h1">

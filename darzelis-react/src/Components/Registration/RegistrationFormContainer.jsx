@@ -121,7 +121,7 @@ export default class RegistrationFormContainer extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div>
+      <div className="container mt-5">
         <NavigationComponent />
         <LogoutPresentation />
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">

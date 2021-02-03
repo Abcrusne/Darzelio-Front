@@ -6,7 +6,7 @@ import NavigationComponent from '../SysAdminLanding/NavigationComponent';
 export default class RegistrationSuccessPresentation extends Component {
   render() {
     return (
-      <div>
+      <div className="container mt-5">
         <NavigationComponent />
         <LogoutPresentation />
         <div className=" justify-content-center">
