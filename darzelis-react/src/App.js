@@ -11,17 +11,23 @@ import UpdateUserFormContainer from './Components/UsersListAdmin/UpdateUserFormC
 import SysAdminLanding from './Components/SysAdminLanding/SysAdminLanding';
 import ParentRegistrationFormContainer from './Components/ParentRegistration/ParentRegistrationFormContainer';
 
-import LoginSuccess from "./Components/Login/LoginSuccess";
-import PrivateRoute from "./Configuration/PrivateRoute";
+import LoginSuccess from './Components/Login/LoginSuccess';
+import PrivateRoute from './Configuration/PrivateRoute';
+import ChildrenRegistrationFormContainer from './Components/ChildrenRegistration/ChildrenRegistrationFormContainer';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/login" component={LandingPage} />
-        <PrivateRoute exact path="/dashboard" component={LoginSuccess} role={"PARENT"} />
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/login" component={LandingPage} />
+          <PrivateRoute
+            exact
+            path="/dashboard"
+            component={LoginSuccess}
+            role={'PARENT'}
+          />
           {/*<PrivateRoute exact path="/admin/pradzia" component={AdminDashboard} />*/}
           {/*<PrivateRoute exact path="/admin/edu" component={EduDashboard} />*/}
           <Route
@@ -34,7 +40,7 @@ function App() {
             path="/admin/sekminga"
             component={RegistrationSuccessPresentation}
           />
-        
+
           <Route
             exact
             path="/admin/vartotojai"
@@ -49,6 +55,11 @@ function App() {
             path="/tevai/registracija"
             component={ParentRegistrationFormContainer}
           />
+          <Route
+            path="/tevai/vaikoregistracija"
+            component={ChildrenRegistrationFormContainer}
+          />
+
           <Route path="*" component={NoMatch} />
           <Route component={NoMatch} />
         </Switch>

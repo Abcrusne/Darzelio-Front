@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import LogoutPresentation from './LogoutPresentation';
 import NavigationComponent from './NavigationComponent';

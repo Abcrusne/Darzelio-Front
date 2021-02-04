@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import LogoutPresentation from '../SysAdminLanding/LogoutPresentation';
 import NavigationComponent from '../SysAdminLanding/NavigationComponent';
 
@@ -65,7 +65,7 @@ export default class UpdateUserFormContainer extends Component {
     event.preventDefault();
 
     const validEmailRegex = RegExp(
-      /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+      /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
     );
     const { name, value } = event.target;
     let errors = this.state.errors;

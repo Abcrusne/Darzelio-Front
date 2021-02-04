@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import { API } from '../../Configuration/AppConfig';
-import axios from 'axios';
-import '../../Style/style.css';
-import LogoutPresentation from '../SysAdminLanding/LogoutPresentation';
 
-export default class ParentRegistrationFormContainer extends Component {
+export default class UpdateParentRegistrationFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,7 +47,9 @@ export default class ParentRegistrationFormContainer extends Component {
   componentDidMount() {
     console.log('component did mount');
     axios
-      .get(`${API}/api/users/${this.props.match.params.userId}/parentsdetails`)
+      .get(
+        `${API}/api/users/${this.state.userId}/parentsdetails/${this.props.match.params.id}`
+      )
       .then((res) => {
         this.setState({
           id: res.data.id,
@@ -79,7 +77,6 @@ export default class ParentRegistrationFormContainer extends Component {
       })
       .catch((err) => console.log(err));
   }
-
   handleChange = (event) => {
     // event.preventDefault();
     console.log(event.target.checked);
@@ -194,28 +191,28 @@ export default class ParentRegistrationFormContainer extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const outputUser = {
-      id: this.state.id,
-      email: this.state.email,
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      phone: this.state.phone,
-      personalCode: this.state.personalCode,
-      city: this.state.city,
-      street: this.state.street,
-      houseNumber: this.state.houseNumber,
-      flatNumber: this.state.flatNumber,
-      numberOfKids: this.state.numberOfKids,
-      studying: this.state.studying,
-      studyingInstitution: this.state.studyingInstitution,
-      hasDisability: this.state.hasDisability,
-      declaredResidenceSameAsLiving: this.state.declaredResidenceSameAsLiving,
-      declaredCity: this.state.declaredCity,
-      declaredStreet: this.state.declaredStreet,
-      declaredHouseNumber: this.state.declaredHouseNumber,
-      declaredFlatNumber: this.state.declaredFlatNumber,
-      userId: this.state.userId,
-    };
+    // const outputUser = {
+    //   id: this.state.id,
+    //   email: this.state.email,
+    //   firstname: this.state.firstname,
+    //   lastname: this.state.lastname,
+    //   phone: this.state.phone,
+    //   personalCode: this.state.personalCode,
+    //   city: this.state.city,
+    //   street: this.state.street,
+    //   houseNumber: this.state.houseNumber,
+    //   flatNumber: this.state.flatNumber,
+    //   numberOfKids: this.state.numberOfKids,
+    //   studying: this.state.studying,
+    //   studyingInstitution: this.state.studyingInstitution,
+    //   hasDisability: this.state.hasDisability,
+    //   declaredResidenceSameAsLiving: this.state.declaredResidenceSameAsLiving,
+    //   declaredCity: this.state.declaredCity,
+    //   declaredStreet: this.state.declaredStreet,
+    //   declaredHouseNumber: this.state.declaredHouseNumber,
+    //   declaredFlatNumber: this.state.declaredFlatNumber,
+    //   userId: this.state.userId,
+    // };
     const validateForm = (errors) => {
       let valid = true;
       Object.values(errors).forEach(
@@ -227,11 +224,37 @@ export default class ParentRegistrationFormContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(`${API}/api/${this.state.userId}/parentsdetails`, outputUser)
+        .put(
+          `${API}/api/${this.state.userId}/parentsdetails/${this.state.id}`,
+          {
+            id: this.state.id,
+            email: this.state.email,
+            firstname: this.state.firstname,
+            lastname: this.state.lastname,
+            phone: this.state.phone,
+            personalCode: this.state.personalCode,
+            city: this.state.city,
+            street: this.state.street,
+            houseNumber: this.state.houseNumber,
+            flatNumber: this.state.flatNumber,
+            numberOfKids: this.state.numberOfKids,
+            studying: this.state.studying,
+            studyingInstitution: this.state.studyingInstitution,
+            hasDisability: this.state.hasDisability,
+            declaredResidenceSameAsLiving: this.state
+              .declaredResidenceSameAsLiving,
+            declaredCity: this.state.declaredCity,
+            declaredStreet: this.state.declaredStreet,
+            declaredHouseNumber: this.state.declaredHouseNumber,
+            declaredFlatNumber: this.state.declaredFlatNumber,
+            userId: this.state.userId,
+          }
+          // outputUser
+        )
         .then((response) => {
           console.log(response);
-          alert('Tėvo/Globėjo registracija sėkminga');
-          this.props.history.push('/tevai/vaikoregistracija');
+          alert('Tėvo/Globėjo duomenys atnaujinti sėkmingai');
+          this.props.history.push('/tevai/sarasas');
         })
 
         .catch((error) => {
@@ -253,67 +276,7 @@ export default class ParentRegistrationFormContainer extends Component {
       );
     }
   };
-  handleAddAnotherParent = (event) => {
-    event.preventDefault();
-    const outputUser = {
-      id: this.state.id,
-      email: this.state.email,
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      phone: this.state.phone,
-      personalCode: this.state.personalCode,
-      city: this.state.city,
-      street: this.state.street,
-      houseNumber: this.state.houseNumber,
-      flatNumber: this.state.flatNumber,
-      numberOfKids: this.state.numberOfKids,
-      studying: this.state.studying,
-      studyingInstitution: this.state.studyingInstitution,
-      hasDisability: this.state.hasDisability,
-      declaredResidenceSameAsLiving: this.state.declaredResidenceSameAsLiving,
-      declaredCity: this.state.declaredCity,
-      declaredStreet: this.state.declaredStreet,
-      declaredHouseNumber: this.state.declaredHouseNumber,
-      declaredFlatNumber: this.state.declaredFlatNumber,
-      userId: this.state.userId,
-    };
-    const validateForm = (errors) => {
-      let valid = true;
-      Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
-      return valid;
-    };
-
-    if (validateForm(this.state.errors)) {
-      axios
-        .post(`${API}/api/${this.state.userId}/parentsdetails`, outputUser)
-        .then((response) => {
-          console.log(response);
-          alert('Tėvo/Globėjo registracija sėkminga');
-          this.props.history.push('/tevai/registracija');
-        })
-
-        .catch((error) => {
-          if (error.response.data.message === 'Email already taken') {
-            alert('Toks el.paštas jau egzistuoja! ');
-          } else if (error.response.data.message === 'Invalid field entry') {
-            alert('Užpildykite visus laukus!');
-          } else if (error.response.status === 400) {
-            alert(
-              'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
-            );
-          }
-          console.log(error);
-        });
-    } else {
-      console.error('Invalid Form');
-      alert(
-        'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
-      );
-    }
-  };
-
   render() {
-    console.log('this.state length: ' + this.state.length);
     const { errors } = this.state;
     return (
       <div>
@@ -561,7 +524,6 @@ export default class ParentRegistrationFormContainer extends Component {
                     name="declaredStreet"
                     onChange={this.handleChange}
                     noValidate
-                    //required
                   />
                   {errors.declaredStreet.length > 0 && (
                     <span className="error">{errors.declaredStreet}</span>
@@ -578,7 +540,6 @@ export default class ParentRegistrationFormContainer extends Component {
                     name="declaredCity"
                     onChange={this.handleChange}
                     noValidate
-                    //required
                   />
                   {errors.declaredCity.length > 0 && (
                     <span className="error">{errors.declaredCity}</span>
@@ -598,7 +559,6 @@ export default class ParentRegistrationFormContainer extends Component {
                     name="declaredHouseNumber"
                     onChange={this.handleChange}
                     noValidate
-                    //required
                   />
                   {errors.declaredHouseNumber.length > 0 && (
                     <span className="error">{errors.declaredHouseNumber}</span>
@@ -626,23 +586,12 @@ export default class ParentRegistrationFormContainer extends Component {
             )}
             <div> * - privalomi laukai</div>
             <div>
-              {/* jei sitas nesuveiks, tai push /tevai/registracija2 ir 
-              perkopijuot sita page bet per prideti kita teva */}
-              {this.state.length >= 1 ? null : (
-                <button
-                  type="submit"
-                  className="btn btn-success btn-lg btn-block"
-                  onSubmit={this.handleAddAnotherParent}
-                >
-                  Pridėti kitą tėvą
-                </button>
-              )}
               <button
                 type="submit"
                 className="btn btn-success btn-lg btn-block"
                 onSubmit={this.handleSubmit}
               >
-                Tęsti
+                Išsaugoti
               </button>
             </div>
           </form>
