@@ -7,6 +7,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // child: {
       id: '',
       firstname: '',
       lastname: '',
@@ -17,6 +18,29 @@ export default class ChildrenRegistrationFormContainer extends Component {
       houseNumber: '',
       flatNumber: '',
       userId: '',
+      // },
+
+      // secondParent: {
+      secondParent: false,
+      secondParentFirstname: '',
+      secondParentLastname: '',
+      secondParentEmail: '',
+      secondParentPhone: '',
+      secondParentPersonalCode: '',
+      secondParentCity: '',
+      secondParentStreet: '',
+      secondParentHouseNumber: '',
+      secondParentFlatNumber: '',
+      secondParentNumberOfKids: '',
+      secondParentStudying: false,
+      secondParentStudyingInstitution: '',
+      secondParentHasDisability: false,
+      secondParentDeclaredResidenceSameAsLiving: false,
+      secondParentDeclaredCity: '',
+      secondParentDeclaredStreet: '',
+      secondParentDeclaredHouseNumber: '',
+      secondParentDeclaredFlatNumber: '',
+      // },
 
       errors: {
         firstname: '',
@@ -108,7 +132,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
     event.preventDefault();
 
     const childrenInput = {
-      id: this.state.id,
+      // id: this.state.id,
       firstname: this.state.firstname,
       lastname: this.state.lastname,
       birthdate: this.state.birthdate,
@@ -118,7 +142,49 @@ export default class ChildrenRegistrationFormContainer extends Component {
       houseNumber: this.state.houseNumber,
       flatNumber: this.state.flatNumber,
       userId: this.state.userId,
+      secondParentFirstname: this.state.secondParentFirstname,
+      secondParentLastname: this.state.secondParentLastname,
+      secondParentEmail: this.state.secondParentEmail,
+      secondParentPhone: this.state.secondParentPhone,
+      secondParentPersonalCode: this.state.secondParentPersonalCode,
+      secondParentCity: this.state.secondParentCity,
+      secondParentStreet: this.state.secondParentStreet,
+      secondParentHouseNumber: this.state.secondParentHouseNumber,
+      secondParentFlatNumber: this.secondParentFlatNumber,
+      secondParentNumberOfKids: this.state.secondParentNumberOfKids,
+      secondParentStudying: this.state.secondParentStudying,
+      secondParentStudyingInstitution: this.state
+        .secondParentStudyingInstitution,
+      secondParentHasDisability: this.state.secondParentHasDisability,
+      secondParentDeclaredResidenceSameAsLiving: this.state
+        .secondParentDeclaredResidenceSameAsLiving,
+      secondParentDeclaredCity: this.state.secondParentDeclaredCity,
+      secondParentDeclaredStreet: this.state.secondParentDeclaredStreet,
+      secondParentDeclaredHouseNumber: this.state
+        .secondParentDeclaredHouseNumber,
+      secondParentDeclaredFlatNumber: this.state.secondParentDeclaredFlatNumber,
     };
+    // const secondParentInput = {
+    //   email: this.state.email,
+    //   firstname: this.state.firstname,
+    //   lastname: this.state.lastname,
+    //   phone: this.state.phone,
+    //   personalCode: this.state.personalCode,
+    //   city: this.state.city,
+    //   street: this.state.street,
+    //   houseNumber: this.state.houseNumber,
+    //   flatNumber: this.state.flatNumber,
+    //   numberOfKids: this.state.numberOfKids,
+    //   studying: this.state.studying,
+    //   studyingInstitution: this.state.studyingInstitution,
+    //   hasDisability: this.state.hasDisability,
+    //   declaredResidenceSameAsLiving: this.state.declaredResidenceSameAsLiving,
+    //   declaredCity: this.state.declaredCity,
+    //   declaredStreet: this.state.declaredStreet,
+    //   declaredHouseNumber: this.state.declaredHouseNumber,
+    //   declaredFlatNumber: this.state.declaredFlatNumber,
+    //   userId: this.state.userId,
+    // };
     const validateForm = (errors) => {
       let valid = true;
       Object.values(errors).forEach(
@@ -130,7 +196,10 @@ export default class ChildrenRegistrationFormContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(`${API}/api/${this.state.userId}/childrendetails`, childrenInput)
+        .post(
+          `${API}/api/users/${this.state.userId}/childrendetails`,
+          childrenInput
+        )
         .then((response) => {
           console.log(response);
           alert('Vaiko duomenų registracija sėkminga');
@@ -155,6 +224,13 @@ export default class ChildrenRegistrationFormContainer extends Component {
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );
     }
+    // axios
+    //   .post(`${API}/api/users/${this.state.userId}/secondparentdetails`)
+    //   .then((response) => {
+    //     console.log(response);
+    //     alert('Vaiko duomenų registracija sėkminga');
+    //     this.props.history.push('/tevai/registracijadazeliui');
+    //   });
   };
   handleAddAnotherChild = (event) => {
     event.preventDefault();
@@ -170,6 +246,27 @@ export default class ChildrenRegistrationFormContainer extends Component {
       houseNumber: this.state.houseNumber,
       flatNumber: this.state.flatNumber,
       userId: this.state.userId,
+      secondParentFirstname: this.state.secondParentFirstname,
+      secondParentLastname: this.state.secondParentLastname,
+      secondParentEmail: this.state.secondParentEmail,
+      secondParentPhone: this.state.secondParentPhone,
+      secondParentPersonalCode: this.state.secondParentPersonalCode,
+      secondParentCity: this.state.secondParentCity,
+      secondParentStreet: this.state.secondParentStreet,
+      secondParentHouseNumber: this.state.secondParentHouseNumber,
+      secondParentFlatNumber: this.secondParentFlatNumber,
+      secondParentNumberOfKids: this.state.secondParentNumberOfKids,
+      secondParentStudying: this.state.secondParentStudying,
+      secondParentStudyingInstitution: this.state
+        .secondParentStudyingInstitution,
+      secondParentHasDisability: this.state.secondParentHasDisability,
+      secondParentDeclaredResidenceSameAsLiving: this.state
+        .secondParentDeclaredResidenceSameAsLiving,
+      secondParentDeclaredCity: this.state.secondParentDeclaredCity,
+      secondParentDeclaredStreet: this.state.secondParentDeclaredStreet,
+      secondParentDeclaredHouseNumber: this.state
+        .secondParentDeclaredHouseNumber,
+      secondParentDeclaredFlatNumber: this.state.secondParentDeclaredFlatNumber,
     };
     const validateForm = (errors) => {
       let valid = true;
@@ -351,6 +448,366 @@ export default class ChildrenRegistrationFormContainer extends Component {
                 <span className="error">{errors.flatNumber}</span>
               )}
             </div>
+            <h5> Antrojojo Tėvo/Globėjo duomenys</h5>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                name="secondParent"
+                checked={this.state.secondParent}
+                onChange={this.handleChange}
+              />
+              <label htmlFor="secondParentg" className="form-check-label">
+                Pridėti antrąjį šio vaiko tėvą/globėją
+              </label>
+            </div>
+            {this.state.secondParent ? (
+              <div>
+                <div className="mb-3">
+                  <label
+                    htmlFor="secondParentFirstname"
+                    className="control-label"
+                  >
+                    Antrojo Tėvo/Globėjo Vardas*:
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Vardas"
+                    className="form-control"
+                    name="secondParentFirstname"
+                    onChange={this.handleChange}
+                    noValidate
+                  />
+                  {/* {errors.secondParentFirstname.length > 0 && (
+                <span className="error">{errors.secondParentFirstname}</span>
+              )} */}
+                </div>
+                <div className="mb-3 ">
+                  <label
+                    htmlFor="secondParentLastname"
+                    className="control-label"
+                  >
+                    Antrojo Tėvo/Globėjo Pavardė*:
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Pavardė"
+                    className="form-control"
+                    name="secondParentLastname"
+                    onChange={this.handleChange}
+                    noValidate
+                  />
+                  {/* {errors.lastname.length > 0 && (
+                <span className="error">{errors.lastname}</span>
+              )} */}
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="secondParentEmail" className="control-label">
+                    El.paštas*:
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="El.paštas"
+                    className="form-control"
+                    name="secondParentEmail"
+                    onChange={this.handleChange}
+                    noValidate
+                  />
+                  {/* {errors.secondParentEmail.length > 0 && (
+                <span className="error">{errors.secondParentEmail}</span>
+              )} */}
+                </div>
+                <div className="mb-3">
+                  <label
+                    htmlFor="secondParentEmailPhone"
+                    className="control-label"
+                  >
+                    Antrojojo Tėvo/Globėjo Tel.nr*:
+                  </label>
+                  <input
+                    type="tel"
+                    placeholder="Tel.nr"
+                    className="form-control"
+                    name="secondParentEmailPhone"
+                    onChange={this.handleChange}
+                    noValidate
+                  />
+                  {/* {errors.secondParentEmailPhone.length > 0 && (
+                <span className="error">{errors.secondParentEmailPhone}</span>
+              )} */}
+                </div>
+                <div className="mb-3">
+                  <label
+                    htmlFor="secondParentPersonalCode"
+                    className="control-label"
+                  >
+                    Antrojo Tėvo/Globėjo Asmens Kodas*:
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Asmens kodas"
+                    className="form-control"
+                    name="secondParentPersonalCode"
+                    onChange={this.handleChange}
+                    noValidate
+                  />
+                  {/* {errors.secondParentPersonalCode.length > 0 && (
+                <span className="error">{errors.secondParentPersonalCode}</span>
+              )} */}
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="secondParentStreet" className="control-label">
+                    Antrojo Tėvo/Globėjo Gatvė*:
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Gatvė"
+                    className="form-control"
+                    name="secondParentStreet"
+                    onChange={this.handleChange}
+                    noValidate
+                  />
+                  {/* {errors.secondParentStreet.length > 0 && (
+                <span className="error">{errors.secondParentStreet}</span>
+              )} */}
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="seconParentCity" className="control-label">
+                    Antrojo Tėvo/Globėjo Miestas*:
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Miestas"
+                    className="form-control"
+                    name="seconParentCity"
+                    onChange={this.handleChange}
+                    noValidate
+                  />
+                  {/* {errors.seconParentCity.length > 0 && (
+                <span className="error">{errors.seconParentCity}</span>
+              )} */}
+                </div>
+                <div className="mb-3">
+                  <label
+                    htmlFor="seconParentHouseNumber"
+                    className="control-label"
+                  >
+                    Antrojo Tėvo/Globėjo Namo Numeris*:
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Namo numeris"
+                    className="form-control"
+                    name="seconParentHouseNumber"
+                    onChange={this.handleChange}
+                    noValidate
+                  />
+                  {/* {errors.seconParentHouseNumber.length > 0 && (
+                <span className="error">{errors.seconParentHouseNumber}</span>
+              )} */}
+                </div>
+                <div className="mb-3">
+                  <label
+                    htmlFor="seconParentFlatNumber"
+                    className="control-label"
+                  >
+                    Antrojo Tėvo/Globėjo Butas*:
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    placeholder="Butas"
+                    className="form-control"
+                    name="seconParentFlatNumber"
+                    onChange={this.handleChange}
+                    noValidate
+                  />
+                  {/* {errors.seconParentFlatNumber.length > 0 && (
+                <span className="error">{errors.seconParentFlatNumber}</span>
+              )} */}
+                </div>
+                <div className="mb-3">
+                  <label
+                    htmlFor="secondParentNumberOfKids"
+                    className="control-label"
+                  >
+                    Kiek antrasis Tėvas/Globėjas turi vaikų?*
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    placeholder="Skaičius"
+                    className="form-control"
+                    name="secondParentNumberOfKids"
+                    onChange={this.handleChange}
+                    noValidate
+                  />
+                  {/* {errors.secondParentNumberOfKids.length > 0 && (
+                <span className="error">{errors.secondParentNumberOfKids}</span>
+              )} */}
+                </div>
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    name="secondParentStudying"
+                    checked={this.state.secondParentStudying}
+                    onChange={this.handleChange}
+                  />
+                  <label
+                    htmlFor="secondParentStudying"
+                    className="form-check-label"
+                  >
+                    Antrasis Tėvas/Globėjas mokosi bendrojo lavinimo mokykloje
+                  </label>
+                </div>
+
+                {this.state.secondParentStudying ? (
+                  <div className="mb-3">
+                    <label
+                      htmlFor="secondParentStudyingInstitution"
+                      className="control-label"
+                    >
+                      Mokymosi įstaigos pavadinimas*:
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Mokymosi įstaiga"
+                      className="form-control"
+                      name="secondParentStudyingInstitution"
+                      onChange={this.handleChange}
+                      noValidate
+                    />
+                    {/* {errors.secondParentStudyingInstitution.length > 0 && (
+                  <span className="error">{errors.secondParentStudyingInstitution}</span>
+                )} */}
+                  </div>
+                ) : null}
+                <div className="form-check">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    name="secondParentHasDisability"
+                    id="hasDisability"
+                    checked={this.state.secondParentHasDisability}
+                    onChange={this.handleChange}
+                    noValidate
+                  />
+                  <label
+                    htmlFor="secondParentHasDisability"
+                    className="form-check-label"
+                  >
+                    Antrasis Tėvas/Globėjas mažesnį nei 40% darbingumo lygį
+                  </label>
+                </div>
+
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    checked={
+                      this.state.secondParentDeclaredResidenceSameAsLiving
+                    }
+                    name="secondParentDeclaredResidenceSameAsLiving"
+                    id="secondParentDeclaredResidenceSameAsLiving"
+                    onChange={this.handleChange}
+                  />
+                  <label
+                    htmlFor="secondParentDeclaredResidenceSameAsLiving"
+                    className="form-check-label"
+                  >
+                    Jei deklaruota gyvenamoji vieta sutampa, pažymėkite.
+                  </label>
+                </div>
+                {this.state.secondParentDeclaredResidenceSameAsLiving ? null : (
+                  <div>
+                    <div className="mb-3">
+                      <label
+                        htmlFor="secondParentDeclaredStreet"
+                        className="control-label"
+                      >
+                        Antrojo Tėvo/Globėjo Deklaruota Gatvė*:
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Deklaruota Gatvė"
+                        className="form-control"
+                        name="secondParentDeclaredStreet"
+                        onChange={this.handleChange}
+                        noValidate
+                        //required
+                      />
+                      {/* {errors.secondParentDeclaredStreet.length > 0 && (
+                    <span className="error">{errors.secondParentDeclaredStreet}</span>
+                  )} */}
+                    </div>
+                    <div className="mb-3">
+                      <label
+                        htmlFor="secondParentDeclaredCity"
+                        className="control-label"
+                      >
+                        Antrojo Tėvo/Globėjo Deklaruotas Miestas*:
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Deklaruotas Miestas"
+                        className="form-control"
+                        name="secondParentDeclaredCity"
+                        onChange={this.handleChange}
+                        noValidate
+                        //required
+                      />
+                      {/* {errors.dsecondParentDeclaredCity.length > 0 && (
+                    <span className="error">
+                      {errors.secondParentDeclaredCity}
+                    </span>
+                  )} */}
+                    </div>
+                    <div className="mb-3">
+                      <label
+                        htmlFor="secondParentDeclaredHouseNumber"
+                        className="control-label"
+                      >
+                        Antrojo Tėvo/Globėjo Deklaruotas Namo Numeris*:
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Deklaruotas Namo Numeris"
+                        className="form-control"
+                        name="secondParentDeclaredHouseNumber"
+                        onChange={this.handleChange}
+                        noValidate
+                        //required
+                      />
+                      {/* {errors.secondParentDeclaredHouseNumber.length > 0 && (
+                    <span className="error">{errors.secondParentDeclaredHouseNumberr}</span>
+                  )} */}
+                    </div>
+                    <div className="mb-3">
+                      <label
+                        htmlFor="secondParentDeclaredFlatNumber"
+                        className="control-label"
+                      >
+                        Antrojo Tėvo/Globėjo Deklaruotas Butas:
+                      </label>
+                      <input
+                        type="number"
+                        min="0"
+                        placeholder="Deklaruotas Butas"
+                        className="form-control"
+                        name="secondParentDeclaredFlatNumber"
+                        onChange={this.handleChange}
+                        noValidate
+                        //required
+                      />
+                      {/* {errors.secondParentDeclaredFlatNumber.length > 0 && (
+                    <span className="error">{errors.secondParentDeclaredFlatNumber}</span>
+                  )} */}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : null}
 
             <div> * - privalomi laukai</div>
             <div>

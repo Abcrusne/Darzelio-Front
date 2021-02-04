@@ -8,7 +8,7 @@ export default class ParentRegistrationFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: '',
+      // id: '',
       firstname: '',
       lastname: '',
       email: '',
@@ -48,37 +48,37 @@ export default class ParentRegistrationFormContainer extends Component {
       },
     };
   }
-  componentDidMount() {
-    console.log('component did mount');
-    axios
-      .get(`${API}/api/users/${this.props.match.params.userId}/parentsdetails`)
-      .then((res) => {
-        this.setState({
-          id: res.data.id,
-          email: res.data.email,
-          firstname: res.data.firstname,
-          lastname: res.data.lastname,
-          phone: res.data.phone,
-          personalCode: res.data.personalCode,
-          city: res.data.city,
-          street: res.data.street,
-          houseNumber: res.data.houseNumber,
-          flatNumber: res.data.flatNumber,
-          numberOfKids: res.data.numberOfKids,
-          studying: res.data.studying,
-          studyingInstitution: res.data.studyingInstitution,
-          hasDisability: res.data.hasDisability,
-          declaredResidenceSameAsLiving: res.data.declaredResidenceSameAsLiving,
-          declaredCity: res.data.declaredCity,
-          declaredStreet: res.data.declaredStreet,
-          declaredHouseNumber: res.data.declaredHouseNumber,
-          declaredFlatNumber: res.data.declaredFlatNumber,
-          userId: res.data.userId,
-        });
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
-  }
+  // componentDidMount() {
+  //   console.log('component did mount');
+  //   axios
+  //     .get(`${API}/api/users/${this.props.match.params.userId}/parentsdetails`)
+  //     .then((res) => {
+  //       this.setState({
+  //         // id: res.data.id,
+  //         email: res.data.email,
+  //         firstname: res.data.firstname,
+  //         lastname: res.data.lastname,
+  //         phone: res.data.phone,
+  //         personalCode: res.data.personalCode,
+  //         city: res.data.city,
+  //         street: res.data.street,
+  //         houseNumber: res.data.houseNumber,
+  //         flatNumber: res.data.flatNumber,
+  //         numberOfKids: res.data.numberOfKids,
+  //         studying: res.data.studying,
+  //         studyingInstitution: res.data.studyingInstitution,
+  //         hasDisability: res.data.hasDisability,
+  //         declaredResidenceSameAsLiving: res.data.declaredResidenceSameAsLiving,
+  //         declaredCity: res.data.declaredCity,
+  //         declaredStreet: res.data.declaredStreet,
+  //         declaredHouseNumber: res.data.declaredHouseNumber,
+  //         declaredFlatNumber: res.data.declaredFlatNumber,
+  //         userId: res.data.userId,
+  //       });
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
 
   handleChange = (event) => {
     // event.preventDefault();
@@ -195,7 +195,7 @@ export default class ParentRegistrationFormContainer extends Component {
     event.preventDefault();
 
     const outputUser = {
-      id: this.state.id,
+      // id: this.state.id,
       email: this.state.email,
       firstname: this.state.firstname,
       lastname: this.state.lastname,
@@ -227,7 +227,10 @@ export default class ParentRegistrationFormContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(`${API}/api/${this.state.userId}/parentsdetails`, outputUser)
+        .post(
+          `${API}/api/users/${this.state.userId}/parentsdetails`,
+          outputUser
+        )
         .then((response) => {
           console.log(response);
           alert('Tėvo/Globėjo registracija sėkminga');
@@ -253,64 +256,64 @@ export default class ParentRegistrationFormContainer extends Component {
       );
     }
   };
-  handleAddAnotherParent = (event) => {
-    event.preventDefault();
-    const outputUser = {
-      id: this.state.id,
-      email: this.state.email,
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      phone: this.state.phone,
-      personalCode: this.state.personalCode,
-      city: this.state.city,
-      street: this.state.street,
-      houseNumber: this.state.houseNumber,
-      flatNumber: this.state.flatNumber,
-      numberOfKids: this.state.numberOfKids,
-      studying: this.state.studying,
-      studyingInstitution: this.state.studyingInstitution,
-      hasDisability: this.state.hasDisability,
-      declaredResidenceSameAsLiving: this.state.declaredResidenceSameAsLiving,
-      declaredCity: this.state.declaredCity,
-      declaredStreet: this.state.declaredStreet,
-      declaredHouseNumber: this.state.declaredHouseNumber,
-      declaredFlatNumber: this.state.declaredFlatNumber,
-      userId: this.state.userId,
-    };
-    const validateForm = (errors) => {
-      let valid = true;
-      Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
-      return valid;
-    };
+  // handleAddAnotherParent = (event) => {
+  //   event.preventDefault();
+  //   const outputUser = {
+  //     // id: this.state.id,
+  //     email: this.state.email,
+  //     firstname: this.state.firstname,
+  //     lastname: this.state.lastname,
+  //     phone: this.state.phone,
+  //     personalCode: this.state.personalCode,
+  //     city: this.state.city,
+  //     street: this.state.street,
+  //     houseNumber: this.state.houseNumber,
+  //     flatNumber: this.state.flatNumber,
+  //     numberOfKids: this.state.numberOfKids,
+  //     studying: this.state.studying,
+  //     studyingInstitution: this.state.studyingInstitution,
+  //     hasDisability: this.state.hasDisability,
+  //     declaredResidenceSameAsLiving: this.state.declaredResidenceSameAsLiving,
+  //     declaredCity: this.state.declaredCity,
+  //     declaredStreet: this.state.declaredStreet,
+  //     declaredHouseNumber: this.state.declaredHouseNumber,
+  //     declaredFlatNumber: this.state.declaredFlatNumber,
+  //     userId: this.state.userId,
+  //   };
+  //   const validateForm = (errors) => {
+  //     let valid = true;
+  //     Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
+  //     return valid;
+  //   };
 
-    if (validateForm(this.state.errors)) {
-      axios
-        .post(`${API}/api/${this.state.userId}/parentsdetails`, outputUser)
-        .then((response) => {
-          console.log(response);
-          alert('Tėvo/Globėjo registracija sėkminga');
-          this.props.history.push('/tevai/registracija');
-        })
+  //   if (validateForm(this.state.errors)) {
+  //     axios
+  //       .post(`${API}/api/users/${this.state.userId}/parentsdetails`, outputUser)
+  //       .then((response) => {
+  //         console.log(response);
+  //         alert('Tėvo/Globėjo registracija sėkminga');
+  //         this.props.history.push('/tevai/registracija');
+  //       })
 
-        .catch((error) => {
-          if (error.response.data.message === 'Email already taken') {
-            alert('Toks el.paštas jau egzistuoja! ');
-          } else if (error.response.data.message === 'Invalid field entry') {
-            alert('Užpildykite visus laukus!');
-          } else if (error.response.status === 400) {
-            alert(
-              'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
-            );
-          }
-          console.log(error);
-        });
-    } else {
-      console.error('Invalid Form');
-      alert(
-        'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
-      );
-    }
-  };
+  //       .catch((error) => {
+  //         if (error.response.data.message === 'Email already taken') {
+  //           alert('Toks el.paštas jau egzistuoja! ');
+  //         } else if (error.response.data.message === 'Invalid field entry') {
+  //           alert('Užpildykite visus laukus!');
+  //         } else if (error.response.status === 400) {
+  //           alert(
+  //             'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
+  //           );
+  //         }
+  //         console.log(error);
+  //       });
+  //   } else {
+  //     console.error('Invalid Form');
+  //     alert(
+  //       'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
+  //     );
+  //   }
+  // };
 
   render() {
     console.log('this.state length: ' + this.state.length);
@@ -628,7 +631,7 @@ export default class ParentRegistrationFormContainer extends Component {
             <div>
               {/* jei sitas nesuveiks, tai push /tevai/registracija2 ir 
               perkopijuot sita page bet per prideti kita teva */}
-              {this.state.length >= 1 ? null : (
+              {/* {this.state.length >= 1 ? null : (
                 <button
                   type="submit"
                   className="btn btn-success btn-lg btn-block"
@@ -636,7 +639,7 @@ export default class ParentRegistrationFormContainer extends Component {
                 >
                   Pridėti kitą tėvą
                 </button>
-              )}
+              )} */}
               <button
                 type="submit"
                 className="btn btn-success btn-lg btn-block"
