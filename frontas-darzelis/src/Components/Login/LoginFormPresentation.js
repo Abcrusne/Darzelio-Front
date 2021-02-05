@@ -20,10 +20,11 @@ const LoginFormPresentation = ({email, password, onPasswdChange, onEmailChange, 
                         placeholder="vardas@mail.com"
                         aria-describedby="emailHelp"
                         onChange={onEmailChange}
+                        // onChange={onChange}
                         value={email}
-                        onInvalid={(e) => {
-                            e.target.setCustomValidity('įvestas netinkamas el. pašto formatas');
-                        }}
+                        // onInvalid={(e) => {
+                        //     e.target.setCustomValidity('įvestas netinkamas el. pašto formatas');
+                        // }}
                         required/>
                 </div>
                 <div className="mb-3">
@@ -36,6 +37,7 @@ const LoginFormPresentation = ({email, password, onPasswdChange, onEmailChange, 
                         placeholder="********"
                         onChange={onPasswdChange}
                         value={password}
+                        // onChange={onChange}
                         // minLength="8"
                         // onInvalid={(e) => {
                         //     e.target.setCustomValidity('Slaptažodis turi būti ne mažiau 8 ženklų');

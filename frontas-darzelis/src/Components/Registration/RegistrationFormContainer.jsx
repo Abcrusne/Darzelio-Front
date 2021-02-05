@@ -32,8 +32,9 @@ export default class RegistrationFormContainer extends Component {
       /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
     );
     const { name, value } = event.target;
-    let errors = this.state.errors;
-    let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ]+$/;
+    const errors = this.state.errors;
+    const letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ]+$/;
+
     switch (name) {
       case 'firstname':
         errors.firstname =
