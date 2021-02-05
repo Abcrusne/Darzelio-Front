@@ -15,8 +15,10 @@ class LoginFormContainer extends Component {
       email: '',
       password: '',
       role: '',
+      expirationDate: '',
+    }
     };
-  }
+
 
   onEmailChange = (event) => {
     this.setState({ email: event.target.value });
@@ -38,8 +40,23 @@ class LoginFormContainer extends Component {
       .then((response) => {
         UserService.setRole(response.data.role);
         this.setState({ role: response.data.role });
-        this.props.history.push('/dashboard');
-        //alert('prisijungta');
+        const currentDate = Date.now();
+        UserService.setRoleExpiration(currentDate);
+        const currentRole = this.state.role;
+        switch (currentRole) {
+          case "[PARENT]":
+            return (this.props.history.push('/dashboard'))
+          break;
+          case "[EDU]":
+            return (this.props.history.push('/admin/edu'))
+          break;
+          case "[ADMIN]":
+            return (this.props.history.push('/admin/pradzia'))
+          break;
+          default:
+            return (alert("Neturite prisijungimo teisių."))
+          break;
+        }
       })
       .catch((error) => {
         if (error.response.status === 401) {
@@ -52,13 +69,13 @@ class LoginFormContainer extends Component {
   render() {
     return (
       <div className="container mt-5">
-        <div></div>
         <LoginFormPresentation
           email={this.state.email}
           password={this.state.password}
           onEmailChange={this.onEmailChange}
           onPasswdChange={this.onPasswdChange}
           onSubmit={this.onSubmit}
+          noValidate
         />
       </div>
     );
