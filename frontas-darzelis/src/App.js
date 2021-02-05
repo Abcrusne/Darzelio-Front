@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+//our imports
 import RegistrationFormContainer from './Components/Registration/RegistrationFormContainer';
 import RegistrationSuccessPresentation from './Components/Registration/RegistrationSuccessPresentation';
 import EduAdminLanding from "./Components/EduAdminLanding/EduAdminLanding"
@@ -7,10 +9,8 @@ import LandingPage from './Components/LandingPage';
 import UsersListTableContainer from './Components/UsersListAdmin/UsersListTableContainer';
 import NoMatch from './Components/NoMatch/NoMatchPresentation';
 import UpdateUserFormContainer from './Components/UsersListAdmin/UpdateUserFormContainer';
-
 import SysAdminLanding from './Components/SysAdminLanding/SysAdminLanding';
 import ParentRegistrationFormContainer from './Components/ParentRegistration/ParentRegistrationFormContainer';
-
 import LoginSuccess from "./Components/Login/LoginSuccess";
 import PrivateRoute from "./Configuration/PrivateRoute";
 
@@ -44,7 +44,6 @@ function App() {
             path="/admin/vartotojai/:id"
             component={UpdateUserFormContainer}
           />
-          <PrivateRoute path="/admin/pradzia" component={SysAdminLanding} role={"ADMIN"} />
           <Route
             path="/tevai/registracija"
             component={ParentRegistrationFormContainer}

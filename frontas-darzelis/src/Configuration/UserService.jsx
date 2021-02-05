@@ -17,7 +17,7 @@ const UserService = ({
     },
 
     setRoleExpiration: (currentDate) => {
-        const timeStamp = currentDate + 60 * 1000;
+        const timeStamp = currentDate + 15 * 60 * 1000;
         localStorage.setItem('role-expiration', JSON.stringify(timeStamp));
     },
 
