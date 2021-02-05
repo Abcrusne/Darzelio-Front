@@ -44,7 +44,7 @@ function App() {
             path="/admin/vartotojai/:id"
             component={UpdateUserFormContainer}
           />
-          <Route path="/admin/pradzia" component={SysAdminLanding} />
+          <PrivateRoute path="/admin/pradzia" component={SysAdminLanding} role={"ADMIN"} />
           <Route
             path="/tevai/registracija"
             component={ParentRegistrationFormContainer}
