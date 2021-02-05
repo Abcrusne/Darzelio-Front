@@ -4,9 +4,17 @@ import {withRouter} from "react-router";
 import UserService from "./UserService";
 
 const PrivateRoute = ({ component: Component, role, ...rest }) => {
+    const isAuthenticated = () => {
+        if (UserService.getRole().includes(role) && UserService.getRoleExpiration() > Date.now()) {
+            return true;
+        } else {
+            UserService.deleteRole();
+            return false
+        }
+    }
     return (
         <div>
-            {UserService.getRole().includes(role) ?
+            {isAuthenticated()  ?
                 (<Route
                 {...rest}
                 render={(props) => (
@@ -20,5 +28,4 @@ const PrivateRoute = ({ component: Component, role, ...rest }) => {
         </div>
     );
 }
-
 export default withRouter(PrivateRoute);
