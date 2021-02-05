@@ -32,6 +32,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
       secondParentHouseNumber: '',
       secondParentFlatNumber: '',
       secondParentNumberOfKids: '',
+      secondParentIsAdopted: false,
       secondParentStudying: false,
       secondParentStudyingInstitution: '',
       secondParentHasDisability: false,
@@ -51,12 +52,31 @@ export default class ChildrenRegistrationFormContainer extends Component {
         street: '',
         houseNumber: '',
         flatNumber: '',
+
+        secondParentFirstname: '',
+        secondParentLastname: '',
+        secondParentPersonalCode: '',
+        secondParentEmail: '',
+        secondParentPhone: '',
+        secondParentCity: '',
+        secondParentStreet: '',
+        secondParentHouseNumber: '',
+        secondParentFlatNumber: '',
+        secondParentNumberOfKids: '',
+        secondParentStudyingInstitution: '',
+        secondParentDeclaredCity: '',
+        secondParentDeclaredStreet: '',
+        secondParentDeclaredHouseNumber: '',
+        secondParentDeclaredFlatNumber: '',
       },
     };
   }
   handleChange = (event) => {
     // event.preventDefault();
     console.log(event.target.checked);
+    const validEmailRegex = RegExp(
+      /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
+    );
 
     const { name, value } = event.target;
     let errors = this.state.errors;
@@ -64,6 +84,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
     let date = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
 
     let validPersonalCode = /^[3|4]+[0-9]+$/;
+    let validPhone = /^[+3706]+[0-9]+$/;
     let numbers = /^[0-9]+$/;
     switch (name) {
       case 'firstname':
@@ -114,7 +135,95 @@ export default class ChildrenRegistrationFormContainer extends Component {
           ? 'Įrašykite buto numerį, pvz: 2'
           : '';
         break;
+      case 'secondParentFirstname':
+        errors.secondParentFirstname =
+          !value.match(letters) || value.length < 2 || value.length === 0
+            ? 'Vardas turi būti iš raidžių ir ilgesnis nei 1 raidė! '
+            : '';
+        break;
 
+      case 'secondParentLastname':
+        errors.secondParentLastname =
+          !value.match(letters) || value.length < 2 || value.length === 0
+            ? 'Pavardė turi būti iš raidžių ir ilgesnė nei 1 raidė! '
+            : '';
+        break;
+
+      case 'secondParentPersonalCode':
+        errors.secondParentPersonalCode =
+          !value.match(validPersonalCode) ||
+          value.length < 11 ||
+          value.length > 11 ||
+          value.length === 0
+            ? 'Asmens kodo formatas: 49001011111 arba 39001011111 '
+            : '';
+        break;
+
+      case 'secondParentStreet':
+        errors.secondParentstreet =
+          !value || value.length === 0 ? 'Įrašykite gatvę!' : '';
+        break;
+      case 'secondParentCity':
+        errors.secondParentCity =
+          !value || !value.match(letters) || value.length === 0
+            ? 'Įrašykite miestą'
+            : '';
+        break;
+      case 'secondParentHouseNumber':
+        errors.secondParentHouseNumber =
+          !value || value.length === 0 ? 'Įrašykite namo numerį' : '';
+        break;
+
+      case 'secondParentFlatNumber':
+        errors.secondParentFlatNumber = !value.match(numbers)
+          ? 'Įrašykite buto numerį, pvz: 2'
+          : '';
+        break;
+      case 'secondParentEmail':
+        errors.secondParentEmail =
+          validEmailRegex.test(value) || value.length === 0
+            ? ''
+            : 'El.paštas netinkamas! Formato pvz.: vardas@mail.com';
+        break;
+      case 'secondParentPhone':
+        errors.secondParentPhone =
+          !value.match(validPhone) ||
+          value.length < 12 ||
+          value.length > 12 ||
+          value.length === 0
+            ? 'Telefono numerio formatas +37061234567 '
+            : '';
+        break;
+        case 'secondParentNumberOfKids':
+          errors.secondParentNumberOfKids =
+            !value.match(numbers) || value.length < 0
+              ? 'Įrašykite vaikų skaičių'
+              : '';
+          break;
+      case 'secondParentStudyingInstitution':
+        errors.secondParentStudyingInstitution =
+          !value || value.length === 0 ? 'Įrašykite Mokymosi instituciją!' : '';
+        break;
+      case 'secondParentDeclaredStreet':
+        errors.secondParentDeclaredStreet =
+          !value || value.length === 0 ? 'Įrašykite gatvę!' : '';
+        break;
+      case 'secondParentDeclaredCity':
+        errors.secondParentDeclaredCity =
+          !value || !value.match(letters) || value.length === 0
+            ? 'Įrašykite miestą'
+            : '';
+        break;
+      case 'secondParentDeclaredHouseNumber':
+        errors.secondParentDeclaredHouseNumber =
+          !value || value.length === 0 ? 'Įrašykite namo numerį' : '';
+        break;
+
+      case 'secondParentDeclaredFlatNumber':
+        errors.secondParentDeclaredFlatNumber = !value.match(numbers)
+          ? 'Įrašykite buto numerį, pvz: 2'
+          : '';
+        break;
       default:
         break;
     }
@@ -132,7 +241,8 @@ export default class ChildrenRegistrationFormContainer extends Component {
     event.preventDefault();
 
     const childrenInput = {
-      // id: this.state.id,
+      id: this.state.id,
+
       firstname: this.state.firstname,
       lastname: this.state.lastname,
       birthdate: this.state.birthdate,
@@ -141,7 +251,9 @@ export default class ChildrenRegistrationFormContainer extends Component {
       street: this.state.street,
       houseNumber: this.state.houseNumber,
       flatNumber: this.state.flatNumber,
+
       userId: this.state.userId,
+
       secondParentFirstname: this.state.secondParentFirstname,
       secondParentLastname: this.state.secondParentLastname,
       secondParentEmail: this.state.secondParentEmail,
@@ -152,6 +264,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
       secondParentHouseNumber: this.state.secondParentHouseNumber,
       secondParentFlatNumber: this.secondParentFlatNumber,
       secondParentNumberOfKids: this.state.secondParentNumberOfKids,
+      secondParentIsAdopted: this.state.secondParentIsAdopted,
       secondParentStudying: this.state.secondParentStudying,
       secondParentStudyingInstitution: this.state
         .secondParentStudyingInstitution,
@@ -256,6 +369,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
       secondParentHouseNumber: this.state.secondParentHouseNumber,
       secondParentFlatNumber: this.secondParentFlatNumber,
       secondParentNumberOfKids: this.state.secondParentNumberOfKids,
+      secondParentIsAdopted: this.state.secondParentIsAdopted,
       secondParentStudying: this.state.secondParentStudying,
       secondParentStudyingInstitution: this.state
         .secondParentStudyingInstitution,
@@ -478,9 +592,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     noValidate
                   />
-                  {/* {errors.secondParentFirstname.length > 0 && (
-                <span className="error">{errors.secondParentFirstname}</span>
-              )} */}
+                  {errors.secondParentFirstname.length > 0 && (
+                    <span className="error">
+                      {errors.secondParentFirstname}
+                    </span>
+                  )}
                 </div>
                 <div className="mb-3 ">
                   <label
@@ -497,9 +613,9 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     noValidate
                   />
-                  {/* {errors.lastname.length > 0 && (
-                <span className="error">{errors.lastname}</span>
-              )} */}
+                  {errors.secondParentLastname.length > 0 && (
+                    <span className="error">{errors.secondParentLastname}</span>
+                  )}
                 </div>
                 <div className="mb-3">
                   <label htmlFor="secondParentEmail" className="control-label">
@@ -513,9 +629,9 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     noValidate
                   />
-                  {/* {errors.secondParentEmail.length > 0 && (
+                  {errors.secondParentEmail.length > 0 && (
                 <span className="error">{errors.secondParentEmail}</span>
-              )} */}
+              )}
                 </div>
                 <div className="mb-3">
                   <label
@@ -532,9 +648,9 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     noValidate
                   />
-                  {/* {errors.secondParentEmailPhone.length > 0 && (
-                <span className="error">{errors.secondParentEmailPhone}</span>
-              )} */}
+                  {errors.secondParentPhone.length > 0 && (
+                <span className="error">{errors.secondParentPhone}</span>
+              )}
                 </div>
                 <div className="mb-3">
                   <label
@@ -551,9 +667,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     noValidate
                   />
-                  {/* {errors.secondParentPersonalCode.length > 0 && (
-                <span className="error">{errors.secondParentPersonalCode}</span>
-              )} */}
+                  {errors.secondParentPersonalCode.length > 0 && (
+                    <span className="error">
+                      {errors.secondParentPersonalCode}
+                    </span>
+                  )}
                 </div>
                 <div className="mb-3">
                   <label htmlFor="secondParentStreet" className="control-label">
@@ -567,29 +685,29 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     noValidate
                   />
-                  {/* {errors.secondParentStreet.length > 0 && (
-                <span className="error">{errors.secondParentStreet}</span>
-              )} */}
+                  {errors.secondParentStreet.length > 0 && (
+                    <span className="error">{errors.secondParentStreet}</span>
+                  )}
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="seconParentCity" className="control-label">
+                  <label htmlFor="secondParentCity" className="control-label">
                     Antrojo Tėvo/Globėjo Miestas*:
                   </label>
                   <input
                     type="text"
                     placeholder="Miestas"
                     className="form-control"
-                    name="seconParentCity"
+                    name="secondParentCity"
                     onChange={this.handleChange}
                     noValidate
                   />
-                  {/* {errors.seconParentCity.length > 0 && (
-                <span className="error">{errors.seconParentCity}</span>
-              )} */}
+                  {errors.secondParentCity.length > 0 && (
+                    <span className="error">{errors.secondParentCity}</span>
+                  )}
                 </div>
                 <div className="mb-3">
                   <label
-                    htmlFor="seconParentHouseNumber"
+                    htmlFor="secondParentHouseNumber"
                     className="control-label"
                   >
                     Antrojo Tėvo/Globėjo Namo Numeris*:
@@ -598,17 +716,19 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     type="text"
                     placeholder="Namo numeris"
                     className="form-control"
-                    name="seconParentHouseNumber"
+                    name="secondParentHouseNumber"
                     onChange={this.handleChange}
                     noValidate
                   />
-                  {/* {errors.seconParentHouseNumber.length > 0 && (
-                <span className="error">{errors.seconParentHouseNumber}</span>
-              )} */}
+                  {errors.secondParentHouseNumber.length > 0 && (
+                    <span className="error">
+                      {errors.secondParentHouseNumber}
+                    </span>
+                  )}
                 </div>
                 <div className="mb-3">
                   <label
-                    htmlFor="seconParentFlatNumber"
+                    htmlFor="secondParentFlatNumber"
                     className="control-label"
                   >
                     Antrojo Tėvo/Globėjo Butas*:
@@ -618,13 +738,15 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     min="0"
                     placeholder="Butas"
                     className="form-control"
-                    name="seconParentFlatNumber"
+                    name="secondParentFlatNumber"
                     onChange={this.handleChange}
                     noValidate
                   />
-                  {/* {errors.seconParentFlatNumber.length > 0 && (
-                <span className="error">{errors.seconParentFlatNumber}</span>
-              )} */}
+                  {errors.secondParentFlatNumber.length > 0 && (
+                    <span className="error">
+                      {errors.secondParentFlatNumber}
+                    </span>
+                  )}
                 </div>
                 <div className="mb-3">
                   <label
@@ -642,9 +764,24 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     noValidate
                   />
-                  {/* {errors.secondParentNumberOfKids.length > 0 && (
+                  {errors.secondParentNumberOfKids.length > 0 && (
                 <span className="error">{errors.secondParentNumberOfKids}</span>
-              )} */}
+              )}
+                </div>
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    name="secondParentIsAdopted"
+                    checked={this.state.secondParentIsAdopted}
+                    onChange={this.handleChange}
+                  />
+                  <label
+                    htmlFor="secondParentIsAdopted"
+                    className="form-check-label"
+                  >
+                    Esu šio vaiko globėjas
+                  </label>
                 </div>
                 <div className="form-check">
                   <input
@@ -678,9 +815,9 @@ export default class ChildrenRegistrationFormContainer extends Component {
                       onChange={this.handleChange}
                       noValidate
                     />
-                    {/* {errors.secondParentStudyingInstitution.length > 0 && (
+                    {errors.secondParentStudyingInstitution.length > 0 && (
                   <span className="error">{errors.secondParentStudyingInstitution}</span>
-                )} */}
+                )}
                   </div>
                 ) : null}
                 <div className="form-check">
@@ -737,9 +874,9 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         noValidate
                         //required
                       />
-                      {/* {errors.secondParentDeclaredStreet.length > 0 && (
+                      {errors.secondParentDeclaredStreet.length > 0 && (
                     <span className="error">{errors.secondParentDeclaredStreet}</span>
-                  )} */}
+                  )}
                     </div>
                     <div className="mb-3">
                       <label
@@ -757,11 +894,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         noValidate
                         //required
                       />
-                      {/* {errors.dsecondParentDeclaredCity.length > 0 && (
+                      {errors.secondParentDeclaredCity.length > 0 && (
                     <span className="error">
                       {errors.secondParentDeclaredCity}
                     </span>
-                  )} */}
+                  )} 
                     </div>
                     <div className="mb-3">
                       <label
@@ -779,9 +916,9 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         noValidate
                         //required
                       />
-                      {/* {errors.secondParentDeclaredHouseNumber.length > 0 && (
+                      {errors.secondParentDeclaredHouseNumber.length > 0 && (
                     <span className="error">{errors.secondParentDeclaredHouseNumberr}</span>
-                  )} */}
+                  )}
                     </div>
                     <div className="mb-3">
                       <label
@@ -800,9 +937,9 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         noValidate
                         //required
                       />
-                      {/* {errors.secondParentDeclaredFlatNumber.length > 0 && (
+                      {errors.secondParentDeclaredFlatNumber.length > 0 && (
                     <span className="error">{errors.secondParentDeclaredFlatNumber}</span>
-                  )} */}
+                  )}
                     </div>
                   </div>
                 )}

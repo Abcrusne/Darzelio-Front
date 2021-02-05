@@ -8,7 +8,7 @@ export default class ParentRegistrationFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // id: '',
+      id: '',
       firstname: '',
       lastname: '',
       email: '',
@@ -19,6 +19,7 @@ export default class ParentRegistrationFormContainer extends Component {
       houseNumber: '',
       flatNumber: '',
       numberOfKids: '',
+      isAdopted: false,
       studying: false,
       studyingInstitution: '',
       hasDisability: false,
@@ -27,7 +28,7 @@ export default class ParentRegistrationFormContainer extends Component {
       declaredStreet: '',
       declaredHouseNumber: '',
       declaredFlatNumber: '',
-      userId: '',
+      // userId: '',
 
       errors: {
         firstname: '',
@@ -160,21 +161,21 @@ export default class ParentRegistrationFormContainer extends Component {
           !value || value.length === 0 ? 'Įrašykite Mokymosi instituciją!' : '';
         break;
       case 'declaredStreet':
-        errors.street = !value || value.length === 0 ? 'Įrašykite gatvę!' : '';
+        errors.declaredStreet = !value || value.length === 0 ? 'Įrašykite gatvę!' : '';
         break;
       case 'declaredCity':
-        errors.city =
+        errors.declaredCity =
           !value || !value.match(letters) || value.length === 0
             ? 'Įrašykite miestą'
             : '';
         break;
       case 'declaredHouseNumber':
-        errors.houseNumber =
+        errors.declaredHouseNumber=
           !value || value.length === 0 ? 'Įrašykite namo numerį' : '';
         break;
 
       case 'declaredFlatNumber':
-        errors.flatNumber = !value.match(numbers)
+        errors.declaredFlatNumber = !value.match(numbers)
           ? 'Įrašykite buto numerį, pvz: 2'
           : '';
         break;
@@ -195,7 +196,7 @@ export default class ParentRegistrationFormContainer extends Component {
     event.preventDefault();
 
     const outputUser = {
-      // id: this.state.id,
+      id: this.state.id,
       email: this.state.email,
       firstname: this.state.firstname,
       lastname: this.state.lastname,
@@ -206,6 +207,7 @@ export default class ParentRegistrationFormContainer extends Component {
       houseNumber: this.state.houseNumber,
       flatNumber: this.state.flatNumber,
       numberOfKids: this.state.numberOfKids,
+      isAdopted: this.state.isAdopted,
       studying: this.state.studying,
       studyingInstitution: this.state.studyingInstitution,
       hasDisability: this.state.hasDisability,
@@ -214,7 +216,7 @@ export default class ParentRegistrationFormContainer extends Component {
       declaredStreet: this.state.declaredStreet,
       declaredHouseNumber: this.state.declaredHouseNumber,
       declaredFlatNumber: this.state.declaredFlatNumber,
-      userId: this.state.userId,
+      // userId: this.state.userId,
     };
     const validateForm = (errors) => {
       let valid = true;
@@ -228,7 +230,7 @@ export default class ParentRegistrationFormContainer extends Component {
     if (validateForm(this.state.errors)) {
       axios
         .post(
-          `${API}/api/users/${this.state.userId}/parentsdetails`,
+          `${API}/api/users/${this.state.id}/parentsdetails`,
           outputUser
         )
         .then((response) => {
@@ -488,6 +490,18 @@ export default class ParentRegistrationFormContainer extends Component {
               {errors.numberOfKids.length > 0 && (
                 <span className="error">{errors.numberOfKids}</span>
               )}
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                name="isAdopted"
+                checked={this.state.isAdopted}
+                onChange={this.handleChange}
+              />
+              <label htmlFor="isAdopted" className="form-check-label">
+                Esu šio vaiko globėjas
+              </label>
             </div>
             <div className="form-check">
               <input

@@ -3,7 +3,7 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
 import LogoutPresentation from '../SysAdminLanding/LogoutPresentation';
-import NavigationComponent from '../SysAdminLanding/NavigationComponent';
+import NavigationComponent from '../Navigation/SysAdminNavigationComponent';
 
 export default class RegistrationFormContainer extends Component {
   constructor(props) {

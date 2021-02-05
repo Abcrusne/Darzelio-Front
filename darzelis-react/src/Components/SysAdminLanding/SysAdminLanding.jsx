@@ -1,7 +1,7 @@
 import React from 'react';
 
 import LogoutPresentation from './LogoutPresentation';
-import NavigationComponent from './NavigationComponent';
+import NavigationComponent from '../Navigation/SysAdminNavigationComponent';
 
 const SysAdminLanding = () => {
   return (

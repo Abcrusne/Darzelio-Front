@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LogoutPresentation from '../SysAdminLanding/LogoutPresentation';
-import NavigationComponent from '../SysAdminLanding/NavigationComponent';
+import NavigationComponent from '../Navigation/SysAdminNavigationComponent';
 //import { Link } from 'react-router-dom';
 
 export default class RegistrationSuccessPresentation extends Component {

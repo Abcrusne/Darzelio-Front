@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import UsersListTablePresentation from './UsersListTablePresentation';
 import LogoutPresentation from '../SysAdminLanding/LogoutPresentation';
-import NavigationComponent from '../SysAdminLanding/NavigationComponent';
+import NavigationComponent from '../Navigation/SysAdminNavigationComponent';
 
 export default class UsersListTableContainer extends Component {
   constructor() {
