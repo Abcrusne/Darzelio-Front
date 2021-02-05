@@ -13,6 +13,7 @@ import SysAdminLanding from './Components/SysAdminLanding/SysAdminLanding';
 import ParentRegistrationFormContainer from './Components/ParentRegistration/ParentRegistrationFormContainer';
 import LoginSuccess from "./Components/Login/LoginSuccess";
 import PrivateRoute from "./Configuration/PrivateRoute";
+import ChildrenRegistrationFormContainer from './Components/ChildrenRegistration/ChildrenRegistrationFormContainer';
 
 function App() {
   return (
@@ -47,6 +48,10 @@ function App() {
           <Route
             path="/tevai/registracija"
             component={ParentRegistrationFormContainer}
+          />
+            <Route
+            path="/tevai/vaikoregistracija"
+            component={ChildrenRegistrationFormContainer}
           />
           <Route path="*" component={NoMatch} />
           <Route component={NoMatch} />
