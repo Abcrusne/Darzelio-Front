@@ -19,7 +19,7 @@ export default class ParentRegistrationFormContainer extends Component {
       houseNumber: '',
       flatNumber: '',
       numberOfKids: '',
-      isAdopted: false,
+
       studying: false,
       studyingInstitution: '',
       hasDisability: false,
@@ -161,7 +161,8 @@ export default class ParentRegistrationFormContainer extends Component {
           !value || value.length === 0 ? 'Įrašykite Mokymosi instituciją!' : '';
         break;
       case 'declaredStreet':
-        errors.declaredStreet = !value || value.length === 0 ? 'Įrašykite gatvę!' : '';
+        errors.declaredStreet =
+          !value || value.length === 0 ? 'Įrašykite gatvę!' : '';
         break;
       case 'declaredCity':
         errors.declaredCity =
@@ -170,7 +171,7 @@ export default class ParentRegistrationFormContainer extends Component {
             : '';
         break;
       case 'declaredHouseNumber':
-        errors.declaredHouseNumber=
+        errors.declaredHouseNumber =
           !value || value.length === 0 ? 'Įrašykite namo numerį' : '';
         break;
 
@@ -207,7 +208,7 @@ export default class ParentRegistrationFormContainer extends Component {
       houseNumber: this.state.houseNumber,
       flatNumber: this.state.flatNumber,
       numberOfKids: this.state.numberOfKids,
-      isAdopted: this.state.isAdopted,
+
       studying: this.state.studying,
       studyingInstitution: this.state.studyingInstitution,
       hasDisability: this.state.hasDisability,
@@ -229,10 +230,7 @@ export default class ParentRegistrationFormContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(
-          `${API}/api/users/${this.state.id}/parentsdetails`,
-          outputUser
-        )
+        .post(`${API}/api/users/${this.state.id}/parentsdetails`, outputUser)
         .then((response) => {
           console.log(response);
           alert('Tėvo/Globėjo registracija sėkminga');
@@ -491,18 +489,7 @@ export default class ParentRegistrationFormContainer extends Component {
                 <span className="error">{errors.numberOfKids}</span>
               )}
             </div>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                name="isAdopted"
-                checked={this.state.isAdopted}
-                onChange={this.handleChange}
-              />
-              <label htmlFor="isAdopted" className="form-check-label">
-                Esu šio vaiko globėjas
-              </label>
-            </div>
+
             <div className="form-check">
               <input
                 className="form-check-input"
