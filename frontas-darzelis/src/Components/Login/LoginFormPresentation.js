@@ -15,16 +15,17 @@ const LoginFormPresentation = ({email, password, onPasswdChange, onEmailChange, 
                     <input
                         type="email"
                         className="form-control"
-                        id="exampleInputEmail1"
-                        autoComplete="username"
+                        id="InputEmail"
+                        autoComplete="email"
                         placeholder="vardas@mail.com"
                         aria-describedby="emailHelp"
                         onChange={onEmailChange}
-                        // onChange={onChange}
                         value={email}
-                        // onInvalid={(e) => {
-                        //     e.target.setCustomValidity('įvestas netinkamas el. pašto formatas');
-                        // }}
+                        pattern="^(([-\w\d]+)(\.[-\w\d]+)*@([-\w\d]+)(\.[-\w\d]+)*(\.([a-zA-Z]{2,5}|[\d]{1,3})){1,2})$"
+                        onInvalid={(e) => {
+                            e.target.setCustomValidity('Įvestas netinkamas el. pašto formatas.');
+                        }}
+                        onInput={e => e.target.setCustomValidity('')}
                         required/>
                 </div>
                 <div className="mb-3">
@@ -32,16 +33,11 @@ const LoginFormPresentation = ({email, password, onPasswdChange, onEmailChange, 
                     <input
                         type="password"
                         className="form-control"
-                        id="exampleInputPassword1"
+                        id="InputPassword"
                         autoComplete="current-password"
                         placeholder="********"
                         onChange={onPasswdChange}
                         value={password}
-                        // onChange={onChange}
-                        // minLength="8"
-                        // onInvalid={(e) => {
-                        //     e.target.setCustomValidity('Slaptažodis turi būti ne mažiau 8 ženklų');
-                        // }}
                         required/>
                 </div>
                 {/*<div className="mb-3 form-check">*/}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import LogoutPresentation from './LogoutPresentation';
+import LogoutPresentation from '../Utilities/LogoutPresentation';
 import NavigationComponent from './NavigationComponent';
 
 const SysAdminLanding = () => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LogoutPresentation from '../SysAdminLanding/LogoutPresentation';
+import LogoutPresentation from '../Utilities/LogoutPresentation';
 import NavigationComponent from '../SysAdminLanding/NavigationComponent';
 //import { Link } from 'react-router-dom';
 

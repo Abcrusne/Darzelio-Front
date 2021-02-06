@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import LogoutPresentation from '../SysAdminLanding/LogoutPresentation';
+import LogoutPresentation from '../Utilities/LogoutPresentation';
 import NavigationComponent from '../SysAdminLanding/NavigationComponent';
 
 export default class UpdateUserFormContainer extends Component {

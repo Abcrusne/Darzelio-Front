@@ -1,29 +1,14 @@
 import React from "react";
 import {withRouter} from "react-router";
 
-import UserService from "../../Configuration/UserService";
+import NavigationForAllPages from "../Utilities/NavigationForAllPages";
 
 const EduAdminLanding = (props) => {
 
-        const logOut = (event) => {
-            event.preventDefault();
-            UserService.deleteRole();
-            props.history.push("/");
-        }
-
         return(
-            <div className="container">
+            <div className="">
                 <div className="card">
-                    <div className="card-body">
-                        Sveikiname sėkmingai prisijungus į Darželio administratoriaus paskyrą!
-                    </div>
-                    <button
-                        type="button"
-                        className="btn btn-success"
-                        onClick={logOut}
-                    >
-                        Atsijungti
-                    </button>
+                    <NavigationForAllPages/>
                 </div>
             </div>
 
