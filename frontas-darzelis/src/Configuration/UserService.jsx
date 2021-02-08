@@ -1,33 +1,35 @@
-const UserService = ({
+const UserService = {
+  // setUsername: (username) => {
+  //     localStorage.setItem('username', username);
+  // },
+  //
+  // getUsername: () => {
+  //     return localStorage.getItem('username') || '';
+  // },
 
-    // setUsername: (username) => {
-    //     localStorage.setItem('username', username);
-    // },
-    //
-    // getUsername: () => {
-    //     return localStorage.getItem('username') || '';
-    // },
+  setRole: (role) => {
+    localStorage.setItem('role', role);
+  },
 
-    setRole: (role) => {
-        localStorage.setItem('role', role);
-    },
+  getRole: () => {
+    return localStorage.getItem('role') || '';
+  },
 
-    getRole: () => {
-        return localStorage.getItem('role') || '';
-    },
+  setRoleExpiration: (currentDate) => {
+    const timeStamp = currentDate + 15 * 60 * 1000;
+    localStorage.setItem('role-expiration', JSON.stringify(timeStamp));
+  },
 
-    setRoleExpiration: (currentDate) => {
-        const timeStamp = currentDate + 15 * 60 * 1000;
-        localStorage.setItem('role-expiration', JSON.stringify(timeStamp));
-    },
+  getRoleExpiration: () => {
+    return localStorage.getItem('role-expiration') || '';
+  },
 
-    getRoleExpiration: () => {
-        return localStorage.getItem('role-expiration') || '';
-    },
-
-    deleteRole: () => {
-        localStorage.clear();
-    },
-});
+  deleteRole: () => {
+    localStorage.clear();
+  },
+  setId: (id) => {
+    localStorage.setItem('id', id);
+  },
+};
 
 export default UserService;

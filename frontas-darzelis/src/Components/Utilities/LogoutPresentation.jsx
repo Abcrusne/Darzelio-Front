@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useHistory } from 'react-router';
-import UserService from '../../Configuration/UserService';
+//import UserService from '../../Configuration/UserService';
 
 const LogoutPresentation = () => {
   const history = useHistory();
