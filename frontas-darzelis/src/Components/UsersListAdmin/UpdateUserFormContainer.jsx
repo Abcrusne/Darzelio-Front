@@ -133,7 +133,7 @@ export default class UpdateUserFormContainer extends Component {
         })
 
         .catch((error) => {
-          if (error.response.data.message === 'Email already taken') {
+          if (error.response.data.message === 'Item already exists') {
             alert('Toks el.paštas jau egzistuoja! ');
           } else if (error.response.data.message === 'Invalid field entry') {
             alert('Užpildykite visus laukus!');
@@ -155,7 +155,7 @@ export default class UpdateUserFormContainer extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div>
+      <div className="container mt-5">
         <NavigationComponent />
 
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
