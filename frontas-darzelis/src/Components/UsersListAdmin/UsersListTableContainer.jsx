@@ -25,7 +25,6 @@ export default class UsersListTableContainer extends Component {
       .catch((error) => console.log(error));
   };
 
-  
   //   handleSearchChange = (e) => {
   //     this.setState({ search: e.target.value });
   //     axios
@@ -40,7 +39,7 @@ export default class UsersListTableContainer extends Component {
   //     this.setState({ users: response.data });
   //   });
   // };
-  deleteProduct = (event) => {
+  deleteUser = (event) => {
     event.preventDefault();
     axios
       .delete(`${API}/api/users/${event.target.value}`)
@@ -73,7 +72,7 @@ export default class UsersListTableContainer extends Component {
     return (
       <div className="container mt-5">
         <NavigationComponent />
-      <LogoutPresentation  />
+        <LogoutPresentation />
         <Link to={`/admin/registracija`} className="btn btn-primary mb-5">
           Pridėti naują vartotoją
         </Link>
@@ -95,16 +94,16 @@ export default class UsersListTableContainer extends Component {
               <th scope="col">Pavardė</th>
               <th scope="col">El.paštas</th>
               <th scope="col">Rolė</th>
-              <th scope="col">Ištrinti vartotoją</th>
+
               <th scope="col">Atnaujinti vartotojo duomenis</th>
-              {/* <th scope="col">Atstatyti slaptažodį į pirminį</th> */}
+              <th scope="col">Ištrinti vartotoją</th>
             </tr>
           </thead>
           {this.state.users.length > 0 && (
             <tbody>
               <UsersListTablePresentation
                 users={this.state.users}
-                deleteProduct={this.deleteProduct}
+                deleteUser={this.deleteUser}
                 // resetPassword={this.resetPassword}
                 // searchQuery={this.searchQuery}
                 // handleSearch={this.handleSearch}

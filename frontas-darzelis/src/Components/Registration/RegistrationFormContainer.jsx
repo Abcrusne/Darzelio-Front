@@ -29,7 +29,7 @@ export default class RegistrationFormContainer extends Component {
     event.preventDefault();
 
     const validEmailRegex = RegExp(
-      /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+      /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
     );
     const { name, value } = event.target;
     const errors = this.state.errors;
@@ -97,7 +97,7 @@ export default class RegistrationFormContainer extends Component {
         })
 
         .catch((error) => {
-          if (error.response.data.message === 'Email already taken') {
+          if (error.response.data.message === 'Item already exists') {
             alert('Toks el.paštas jau egzistuoja! ');
           } else if (error.response.data.message === 'Invalid field entry') {
             alert('Užpildykite visus laukus!');
