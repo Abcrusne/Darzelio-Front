@@ -312,7 +312,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
         .then((response) => {
           console.log(response);
           alert('Vaiko duomenų registracija sėkminga');
-          this.props.history.push('/dashboard');
+          this.props.history.push('/tevai/toliau');
           // this.props.history.push('/tevai/registracijadarzeliui');
         })
 
@@ -350,6 +350,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
   //     houseNumber: this.state.houseNumber,
   //     flatNumber: this.state.flatNumber,
   //     // userId: this.state.userId,
+  //     secondParent: this.state.secondParent,
   //     secondParentFirstname: this.state.secondParentFirstname,
   //     secondParentLastname: this.state.secondParentLastname,
   //     secondParentEmail: this.state.secondParentEmail,
@@ -640,10 +641,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                   )}
                 </div>
                 <div className="mb-3">
-                  <label
-                    htmlFor="secondParentPhone"
-                    className="control-label"
-                  >
+                  <label htmlFor="secondParentPhone" className="control-label">
                     Antrojo Tėvo/Globėjo Tel.nr*:
                   </label>
                   <input
@@ -953,7 +951,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
               {/* <button
                 type="submit"
                 className="btn btn-success btn-lg btn-block"
-                onSubmit={this.handleAddAnotherChild}
+                onClick={this.handleAddAnotherChild}
               >
                 Išsaugoti ir Pridėti kitą vaiką
               </button> */}
@@ -961,7 +959,6 @@ export default class ChildrenRegistrationFormContainer extends Component {
               <button
                 type="submit"
                 className="btn btn-success btn-lg btn-block"
-                // onSubmit={this.handleSubmit}
               >
                 Išsaugoti ir Tęsti
               </button>

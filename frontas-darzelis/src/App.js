@@ -14,6 +14,7 @@ import ParentRegistrationFormContainer from './Components/ParentRegistration/Par
 import LoginSuccess from "./Components/Login/LoginSuccess";
 import PrivateRoute from "./Configuration/PrivateRoute";
 import ChildrenRegistrationFormContainer from './Components/ChildrenRegistration/ChildrenRegistrationFormContainer';
+import NextPage from './Components/ChildrenRegistration/NextPage';
 
 function App() {
   return (
@@ -53,6 +54,11 @@ function App() {
             path="/tevai/vaikoregistracija"
             component={ChildrenRegistrationFormContainer}
           />
+          <Route
+            path="/tevai/toliau"
+            component={NextPage}
+          />
+
           <Route path="*" component={NoMatch} />
           <Route component={NoMatch} />
         </Switch>
