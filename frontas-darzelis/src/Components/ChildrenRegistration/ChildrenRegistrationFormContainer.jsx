@@ -45,7 +45,6 @@ export default class ChildrenRegistrationFormContainer extends Component {
       secondParentDeclaredHouseNumber: '',
       secondParentDeclaredFlatNumber: '',
       adopted: false,
-      // },
 
       errors: {
         firstname: '',
@@ -209,7 +208,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
           value.length < 12 ||
           value.length > 12 ||
           value.length === 0
-            ? 'Telefono numerio formatas +37061234567 '
+            ? 'Telefono numerio formatas +37061234567'
             : '';
         break;
       case 'secondParentNumberOfKids':
@@ -246,10 +245,10 @@ export default class ChildrenRegistrationFormContainer extends Component {
         break;
     }
     if (event.target.type === 'checkbox') {
-      // console.log(event.target.checked);
+      console.log(event.target.checked);
       this.setState({ [event.target.name]: event.target.checked });
     } else
-      this.setState({ errors, [name]: value }, () => {
+      this.setState({ errors, [event.target.name]: event.target.value }, () => {
         console.log(errors);
       });
     console.log(this.state);
@@ -565,11 +564,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
                 onChange={this.handleChange}
                 noValidate
               />
-              {errors.flatNumber.length > 0 && (
+              {/* {errors.flatNumber.length > 0 && (
                 <span className="error">{errors.flatNumber}</span>
-              )}
+              )} */}
             </div>
-            <h5> Antrojojo Tėvo/Globėjo duomenys</h5>
+            <h5> Antrojo Tėvo/Globėjo duomenys</h5>
             <div className="form-check">
               <input
                 className="form-check-input"
@@ -578,7 +577,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                 checked={this.state.secondParent}
                 onChange={this.handleChange}
               />
-              <label htmlFor="secondParentg" className="form-check-label">
+              <label htmlFor="secondParent" className="form-check-label">
                 Pridėti antrąjį šio vaiko tėvą/globėją
               </label>
             </div>
@@ -642,16 +641,16 @@ export default class ChildrenRegistrationFormContainer extends Component {
                 </div>
                 <div className="mb-3">
                   <label
-                    htmlFor="secondParentEmailPhone"
+                    htmlFor="secondParentPhone"
                     className="control-label"
                   >
-                    Antrojojo Tėvo/Globėjo Tel.nr*:
+                    Antrojo Tėvo/Globėjo Tel.nr*:
                   </label>
                   <input
                     type="tel"
                     placeholder="Tel.nr"
                     className="form-control"
-                    name="secondParentEmailPhone"
+                    name="secondParentPhone"
                     onChange={this.handleChange}
                     noValidate
                   />
@@ -738,7 +737,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     htmlFor="secondParentFlatNumber"
                     className="control-label"
                   >
-                    Antrojo Tėvo/Globėjo Butas*:
+                    Antrojo Tėvo/Globėjo Butas:
                   </label>
                   <input
                     type="number"
@@ -749,11 +748,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     noValidate
                   />
-                  {errors.secondParentFlatNumber.length > 0 && (
+                  {/* {errors.secondParentFlatNumber.length > 0 && (
                     <span className="error">
                       {errors.secondParentFlatNumber}
                     </span>
-                  )}
+                  )} */}
                 </div>
                 <div className="mb-3">
                   <label
