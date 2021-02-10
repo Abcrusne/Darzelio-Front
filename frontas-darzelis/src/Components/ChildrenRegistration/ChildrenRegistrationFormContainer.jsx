@@ -11,7 +11,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
     super(props);
     this.state = {
       //vaiko id
-      id: 0,
+      id: "",
       firstname: '',
       lastname: '',
       personalCode: 0,
@@ -23,6 +23,8 @@ export default class ChildrenRegistrationFormContainer extends Component {
       //user'io kuris prisijunges id
       userId: '',
 
+      //second parent id
+      secondParentId: "",
       secondParent: false,
       secondParentFirstname: '',
       secondParentLastname: '',
@@ -101,7 +103,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
     let date = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
 
     let validPersonalCode = /^[3|4]+[0-9]+$/;
-    let validPhone = /^[+3706]+[0-9]+$/;
+    let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
     let numbers = /^[0-9]+$/;
     switch (name) {
       case 'firstname':
@@ -269,6 +271,9 @@ export default class ChildrenRegistrationFormContainer extends Component {
       houseNumber: this.state.houseNumber,
       flatNumber: this.state.flatNumber,
       // userId: this.state.userId,
+
+      secondParentId: this.state.secondParentId,
+
       secondParent: this.state.secondParent,
       secondParentFirstname: this.state.secondParentFirstname,
       secondParentLastname: this.state.secondParentLastname,

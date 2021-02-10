@@ -74,7 +74,7 @@ export default class ParentRegistrationFormContainer extends Component {
     const { name, value } = event.target;
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ]+$/;
-    let validPhone = /^[+3706]+[0-9]+$/;
+    let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
     let validPersonalCode = /^[3|4]+[0-9]+$/;
     let numbers = /^[0-9]+$/;
     switch (name) {
