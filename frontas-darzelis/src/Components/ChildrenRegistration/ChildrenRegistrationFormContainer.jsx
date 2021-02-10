@@ -430,7 +430,9 @@ export default class ChildrenRegistrationFormContainer extends Component {
           <div className="mb-4">
             <h3>Vaiko duomenų registracija</h3>
           </div>
-          <form onSubmit={this.handleSubmit} noValidate className="form-group ">
+          <form onSubmit={this.handleSubmit}
+          //  noValidate 
+          className="form-group ">
             <div className="mb-3">
               <label htmlFor="firstname" className="control-label">
                 Vaiko Vardas*:
@@ -810,13 +812,20 @@ export default class ChildrenRegistrationFormContainer extends Component {
                       className="form-control"
                       name="secondParentStudyingInstitution"
                       onChange={this.handleChange}
-                      noValidate
+                      // noValidate
+                      onInvalid={(e) => {
+                        e.target.setCustomValidity(
+                          'Įveskite mokymosios įstaigos pavadinimą.'
+                        );
+                      }}
+                      onInput={(e) => e.target.setCustomValidity('')}
+                      required
                     />
-                    {errors.secondParentStudyingInstitution.length > 0 && (
+                    {/* {errors.secondParentStudyingInstitution.length > 0 && (
                       <span className="error">
                         {errors.secondParentStudyingInstitution}
                       </span>
-                    )}
+                    )} */}
                   </div>
                 ) : null}
                 <div className="form-check">
@@ -870,8 +879,15 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         className="form-control"
                         name="secondParentDeclaredStreet"
                         onChange={this.handleChange}
-                        noValidate
+                        // noValidate
                         //required
+                        onInvalid={(e) => {
+                          e.target.setCustomValidity(
+                            'Įveskite deklaruotą gatvę.'
+                          );
+                        }}
+                        onInput={(e) => e.target.setCustomValidity('')}
+                        required
                       />
                       {errors.secondParentDeclaredStreet.length > 0 && (
                         <span className="error">
@@ -892,14 +908,21 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         className="form-control"
                         name="secondParentDeclaredCity"
                         onChange={this.handleChange}
-                        noValidate
+                        // noValidate
                         //required
+                        onInvalid={(e) => {
+                          e.target.setCustomValidity(
+                            'Įveskite deklaruotą miestą.'
+                          );
+                        }}
+                        onInput={(e) => e.target.setCustomValidity('')}
+                        required
                       />
-                      {errors.secondParentDeclaredCity.length > 0 && (
+                      {/* {errors.secondParentDeclaredCity.length > 0 && (
                         <span className="error">
                           {errors.secondParentDeclaredCity}
                         </span>
-                      )}
+                      )} */}
                     </div>
                     <div className="mb-3">
                       <label
@@ -914,14 +937,21 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         className="form-control"
                         name="secondParentDeclaredHouseNumber"
                         onChange={this.handleChange}
-                        noValidate
+                        // noValidate
                         //required
+                        onInvalid={(e) => {
+                          e.target.setCustomValidity(
+                            'Įveskite deklaruotą namo numerį.'
+                          );
+                        }}
+                        onInput={(e) => e.target.setCustomValidity('')}
+                        required
                       />
-                      {errors.secondParentDeclaredHouseNumber.length > 0 && (
+                      {/* {errors.secondParentDeclaredHouseNumber.length > 0 && (
                         <span className="error">
                           {errors.secondParentDeclaredHouseNumberr}
                         </span>
-                      )}
+                      )} */}
                     </div>
                     <div className="mb-3">
                       <label
@@ -940,11 +970,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         noValidate
                         //required
                       />
-                      {errors.secondParentDeclaredFlatNumber.length > 0 && (
+                      {/* {errors.secondParentDeclaredFlatNumber.length > 0 && (
                         <span className="error">
                           {errors.secondParentDeclaredFlatNumber}
                         </span>
-                      )}
+                      )} */}
                     </div>
                   </div>
                 )}
