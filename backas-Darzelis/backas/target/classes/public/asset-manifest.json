@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/bean-app/static/css/main.beb9e63b.chunk.css",
+    "main.js": "/bean-app/static/js/main.df0fbff2.chunk.js",
+    "main.js.map": "/bean-app/static/js/main.df0fbff2.chunk.js.map",
+    "runtime-main.js": "/bean-app/static/js/runtime-main.d6595c75.js",
+    "runtime-main.js.map": "/bean-app/static/js/runtime-main.d6595c75.js.map",
+    "static/css/2.437d98bc.chunk.css": "/bean-app/static/css/2.437d98bc.chunk.css",
+    "static/js/2.95f47ac4.chunk.js": "/bean-app/static/js/2.95f47ac4.chunk.js",
+    "static/js/2.95f47ac4.chunk.js.map": "/bean-app/static/js/2.95f47ac4.chunk.js.map",
+    "static/js/3.384b0c66.chunk.js": "/bean-app/static/js/3.384b0c66.chunk.js",
+    "static/js/3.384b0c66.chunk.js.map": "/bean-app/static/js/3.384b0c66.chunk.js.map",
+    "index.html": "/bean-app/index.html",
+    "precache-manifest.ba23bc20d792aaa682637b36383cb9b9.js": "/bean-app/precache-manifest.ba23bc20d792aaa682637b36383cb9b9.js",
+    "service-worker.js": "/bean-app/service-worker.js",
+    "static/css/2.437d98bc.chunk.css.map": "/bean-app/static/css/2.437d98bc.chunk.css.map",
+    "static/css/main.beb9e63b.chunk.css.map": "/bean-app/static/css/main.beb9e63b.chunk.css.map",
+    "static/js/2.95f47ac4.chunk.js.LICENSE.txt": "/bean-app/static/js/2.95f47ac4.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d6595c75.js",
+    "static/css/2.437d98bc.chunk.css",
+    "static/js/2.95f47ac4.chunk.js",
+    "static/css/main.beb9e63b.chunk.css",
+    "static/js/main.df0fbff2.chunk.js"
+  ]
+}

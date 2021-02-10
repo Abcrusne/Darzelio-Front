@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f69b3fb4-63e5-4d5a-a0d8-f377d25c6bb6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Darzelio-Front-master/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Darzelio-Front-master/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Darzelio-Front-master/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Darzelio-Front-master/frontas-darzelis/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Darzelio-Front-master/frontas-darzelis/src/Components/ParentLanding/ParentLanding.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Darzelio-Front-master/frontas-darzelis/src/Components/ParentLanding/ParentLanding.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Darzelio-Front-master/frontas-darzelis/src/Components/ParentLanding/ParentLandingDashboard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Darzelio-Front-master/frontas-darzelis/src/Components/ParentLanding/ParentLandingFooter.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Darzelio-Front-master/frontas-darzelis/src/Components/ParentLanding/ParentSideBarNavigation.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Darzelio-Front-master/frontas-darzelis/src/Components/Utilities/LandingPage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../darzelis-react/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../darzelis-react/src/Components/LandingPage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../darzelis-react/src/Components/ParentLanding/ParentLanding.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../darzelis-react/src/Components/ParentLanding/ParentLanding.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../darzelis-react/src/Components/ParentLanding/ParentLandingDashboard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../darzelis-react/src/Components/ParentLanding/ParentLandingFooter.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../darzelis-react/src/Components/ParentLanding/ParentSideBarNavigation.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../darzelis-react/src/Components/SysAdminLanding/Logout.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backas/src/main/resources/public/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/backas/src/main/resources/public/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backas/src/main/resources/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/backas/src/main/resources/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backas/src/main/resources/public/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/backas/src/main/resources/public/service-worker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../darzelis-react/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../darzelis-react/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../darzelis-react/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../darzelis-react/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../darzelis-react/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../darzelis-react/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../darzelis-react/src/Components/LandingPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../darzelis-react/src/Components/LandingPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../darzelis-react/src/Components/Login/LoginFormPresentation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../darzelis-react/src/Components/Login/LoginFormPresentation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../darzelis-react/src/Components/SysAdminLanding/LogoutPresentation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../darzelis-react/src/Components/SysAdminLanding/LogoutPresentation.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../darzelis-react/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../darzelis-react/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../darzelis-react/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../darzelis-react/yarn.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1o3PVWlBzqlfX0p0VCF1HpY9AW6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Darzelio-Back-master/bean-app" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f69b3fb4-63e5-4d5a-a0d8-f377d25c6bb6" name="Default Changelist" comment="" />
+      <created>1612512325182</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612512325182</updated>
+      <workItem from="1612512326858" duration="6259000" />
+      <workItem from="1612770680598" duration="1638000" />
+      <workItem from="1612945390768" duration="68000" />
+      <workItem from="1612945549989" duration="37000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

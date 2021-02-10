@@ -10,9 +10,15 @@ import UpdateUserFormContainer from './Components/UsersListAdmin/UpdateUserFormC
 
 import SysAdminLanding from './Components/SysAdminLanding/SysAdminLanding';
 import ParentRegistrationFormContainer from './Components/ParentRegistration/ParentRegistrationFormContainer';
+<<<<<<< Updated upstream:darzelis-react/src/App.js
 
 import LoginSuccess from "./Components/Login/LoginSuccess";
+=======
+>>>>>>> Stashed changes:frontas-darzelis/src/App.js
 import PrivateRoute from "./Configuration/PrivateRoute";
+import ParentLanding from "./Components/ParentLanding/ParentLanding";
+
+import "./App.css"
 
 function App() {
   return (
@@ -21,9 +27,15 @@ function App() {
         <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route path="/login" component={LandingPage} />
+<<<<<<< Updated upstream:darzelis-react/src/App.js
         <PrivateRoute exact path="/dashboard" component={LoginSuccess} role={"PARENT"} />
           {/*<PrivateRoute exact path="/admin/pradzia" component={AdminDashboard} />*/}
           {/*<PrivateRoute exact path="/admin/edu" component={EduDashboard} />*/}
+=======
+        <PrivateRoute exact path="/dashboard" component={ParentLanding} role={"PARENT"} />
+          <PrivateRoute exact path="/admin/pradzia" component={SysAdminLanding} role={"ADMIN"}/>
+          <PrivateRoute exact path="/admin/edu" component={EduAdminLanding} role={"EDU"}/>
+>>>>>>> Stashed changes:frontas-darzelis/src/App.js
           <Route
             exact
             path="/admin/registracija"

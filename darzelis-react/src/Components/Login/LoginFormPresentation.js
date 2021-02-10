@@ -46,7 +46,7 @@ const LoginFormPresentation = ({email, password, onPasswdChange, onEmailChange, 
                 {/*    <input type="checkbox" className="form-check-input" id="prisiminti" required/>*/}
                 {/*    <label className="form-check-label" htmlFor="prisiminti">Prisiminti mane</label>*/}
                 {/*</div>*/}
-                <button type="submit" className="mr-4 btn btn-success">Prisijungti</button>
+                <button type="submit" className="mr-4 btn">Prisijungti</button>
                 <Link to="/registracija">Naujo vartotojo registracija</Link>
             </form>
         </div>

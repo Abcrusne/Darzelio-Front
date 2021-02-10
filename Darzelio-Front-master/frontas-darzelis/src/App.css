@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    background-color: #fbf9f8; /* snow */
+    height: 100hv;
+}
+.App {
+}
+
+.container .container-fluid {
+    background-color: #fbf9f8; /* snow */
+    height: 100hv;
+}
+
+
+p, a {
+    color: #8f989e; /* lightslategray */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #282f47; /* darkslategray */
+}

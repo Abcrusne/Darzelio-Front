@@ -1,0 +1,31 @@
+main {
+    background-color: #fbf9f8; /* snow */
+}
+div {
+    text-align: center;
+}
+.fas.fa-school{
+    font-size: 5em;
+    align-content: center;
+}
+
+/* mygtukai*/
+button.btn {
+    background-color: #1baaa0; /* lightseagreen */
+    color: #ffffff;
+    width: 150px;
+    padding: 0.6em 1.5em;
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    vertical-align: bottom;
+}
+
+button.btn:hover {
+    background-color: #1baaa0; /* lightseagreen */
+    color: #ffffff;
+    font-weight: bolder;
+    padding: 0.6em 1.5em;
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    vertical-align: bottom;
+}
