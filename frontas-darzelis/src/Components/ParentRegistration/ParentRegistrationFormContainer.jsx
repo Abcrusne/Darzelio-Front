@@ -449,7 +449,7 @@ export default class ParentRegistrationFormContainer extends Component {
                   required
                   onInvalid={(e) => {
                     e.target.setCustomValidity(
-                      'Įveskite mokymosios įstaigos pavadinimą.'
+                      'Įveskite mokymosi įstaigos pavadinimą.'
                     );
                   }}
                   onInput={(e) => e.target.setCustomValidity('')}
