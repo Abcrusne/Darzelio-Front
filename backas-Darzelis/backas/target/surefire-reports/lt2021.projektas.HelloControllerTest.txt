@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: lt2021.projektas.HelloControllerTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.983 s - in lt2021.projektas.HelloControllerTest
