@@ -22,6 +22,7 @@ export default class ParentRegistrationFormContainer extends Component {
       houseNumber: '',
       flatNumber: '',
       numberOfKids: 0,
+      studying: false,
       studyingInstitution: '',
       hasDisability: false,
       declaredResidenceSameAsLiving: false,
@@ -29,7 +30,6 @@ export default class ParentRegistrationFormContainer extends Component {
       declaredStreet: '',
       declaredHouseNumber: '',
       declaredFlatNumber: '',
-      studying: false,
 
       errors: {
         firstname: '',
@@ -197,6 +197,7 @@ export default class ParentRegistrationFormContainer extends Component {
       houseNumber: this.state.houseNumber,
       flatNumber: this.state.flatNumber,
       numberOfKids: this.state.numberOfKids,
+      studying: this.state.studying,
       studyingInstitution: this.state.studyingInstitution,
       hasDisability: this.state.hasDisability,
       declaredResidenceSameAsLiving: this.state.declaredResidenceSameAsLiving,
@@ -204,7 +205,7 @@ export default class ParentRegistrationFormContainer extends Component {
       declaredStreet: this.state.declaredStreet,
       declaredHouseNumber: this.state.declaredHouseNumber,
       declaredFlatNumber: this.state.declaredFlatNumber,
-      studying: this.state.studying,
+
       // userId: this.state.userId,
     };
     const validateForm = (errors) => {
@@ -255,9 +256,11 @@ export default class ParentRegistrationFormContainer extends Component {
           <div className="mb-4">
             <h3>Užpildykite savo kaip tėvo/globėjo duomenis</h3>
           </div>
-          <form onSubmit={this.handleSubmit} 
-          // noValidate 
-          className="form-group ">
+          <form
+            onSubmit={this.handleSubmit}
+            // noValidate
+            className="form-group "
+          >
             <div className="mb-3">
               <label htmlFor="firstname" className="control-label">
                 Vardas*:
@@ -339,22 +342,6 @@ export default class ParentRegistrationFormContainer extends Component {
               )}
             </div>
             <div className="mb-3">
-              <label htmlFor="street" className="control-label">
-                Gatvė*:
-              </label>
-              <input
-                type="text"
-                placeholder="Gatvė"
-                className="form-control"
-                name="street"
-                onChange={this.handleChange}
-                noValidate
-              />
-              {errors.street.length > 0 && (
-                <span className="error">{errors.street}</span>
-              )}
-            </div>
-            <div className="mb-3">
               <label htmlFor="city" className="control-label">
                 Miestas*:
               </label>
@@ -370,6 +357,23 @@ export default class ParentRegistrationFormContainer extends Component {
                 <span className="error">{errors.city}</span>
               )}
             </div>
+            <div className="mb-3">
+              <label htmlFor="street" className="control-label">
+                Gatvė*:
+              </label>
+              <input
+                type="text"
+                placeholder="Gatvė"
+                className="form-control"
+                name="street"
+                onChange={this.handleChange}
+                noValidate
+              />
+              {errors.street.length > 0 && (
+                <span className="error">{errors.street}</span>
+              )}
+            </div>
+          
             <div className="mb-3">
               <label htmlFor="houseNumber" className="control-label">
                 Namo Numeris*:
@@ -446,13 +450,14 @@ export default class ParentRegistrationFormContainer extends Component {
                   name="studyingInstitution"
                   onChange={this.handleChange}
                   // noValidate
-                  required
+
                   onInvalid={(e) => {
                     e.target.setCustomValidity(
                       'Įveskite mokymosi įstaigos pavadinimą.'
                     );
                   }}
                   onInput={(e) => e.target.setCustomValidity('')}
+                  required
                 />
                 {/* {errors.studyingInstitution.length > 0 && (
                   <span className="error">{errors.studyingInstitution}</span>
@@ -505,9 +510,7 @@ export default class ParentRegistrationFormContainer extends Component {
                     // noValidate
                     required
                     onInvalid={(e) => {
-                      e.target.setCustomValidity(
-                        'Įveskite deklaruotą gatvę.'
-                      );
+                      e.target.setCustomValidity('Įveskite deklaruotą gatvę.');
                     }}
                     onInput={(e) => e.target.setCustomValidity('')}
                   />
@@ -528,9 +531,7 @@ export default class ParentRegistrationFormContainer extends Component {
                     // noValidate
                     required
                     onInvalid={(e) => {
-                      e.target.setCustomValidity(
-                        'Įveskite deklaruotą miestą.'
-                      );
+                      e.target.setCustomValidity('Įveskite deklaruotą miestą.');
                     }}
                     onInput={(e) => e.target.setCustomValidity('')}
                   />
@@ -553,7 +554,6 @@ export default class ParentRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     // noValidate
                     required
-
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
                         'Įveskite deklaruotą namo numerį.'
@@ -578,7 +578,6 @@ export default class ParentRegistrationFormContainer extends Component {
                     name="declaredFlatNumber"
                     onChange={this.handleChange}
                     noValidate
-                   
                   />
                   {/* {errors.declaredFlatNumber.length > 0 && (
                     <span className="error">{errors.declaredFlatNumber}</span>

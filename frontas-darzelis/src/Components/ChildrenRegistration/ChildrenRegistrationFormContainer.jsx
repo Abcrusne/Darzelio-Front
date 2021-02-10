@@ -11,7 +11,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
     super(props);
     this.state = {
       //vaiko id
-      id: "",
+      id: '',
       firstname: '',
       lastname: '',
       personalCode: 0,
@@ -24,7 +24,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
       userId: '',
 
       //second parent id
-      secondParentId: "",
+      secondParentId: '',
       secondParent: false,
       secondParentFirstname: '',
       secondParentLastname: '',
@@ -340,85 +340,6 @@ export default class ChildrenRegistrationFormContainer extends Component {
       );
     }
   };
-  // handleAddAnotherChild = (event) => {
-  //   event.preventDefault();
-
-  //   const childrenInput = {
-  //     id: this.state.id,
-
-  //     firstname: this.state.firstname,
-  //     lastname: this.state.lastname,
-  //     personalCode: this.state.personalCode,
-  //     birthdate: this.state.birthdate,
-  //     city: this.state.city,
-  //     street: this.state.street,
-  //     houseNumber: this.state.houseNumber,
-  //     flatNumber: this.state.flatNumber,
-  //     // userId: this.state.userId,
-  //     secondParent: this.state.secondParent,
-  //     secondParentFirstname: this.state.secondParentFirstname,
-  //     secondParentLastname: this.state.secondParentLastname,
-  //     secondParentEmail: this.state.secondParentEmail,
-  //     secondParentPhone: this.state.secondParentPhone,
-  //     secondParentPersonalCode: this.state.secondParentPersonalCode,
-  //     secondParentCity: this.state.secondParentCity,
-  //     secondParentStreet: this.state.secondParentStreet,
-  //     secondParentHouseNumber: this.state.secondParentHouseNumber,
-  //     secondParentFlatNumber: this.secondParentFlatNumber,
-  //     secondParentNumberOfKids: this.state.secondParentNumberOfKids,
-  //     secondParentStudying: this.state.secondParentStudying,
-  //     secondParentStudyingInstitution: this.state
-  //       .secondParentStudyingInstitution,
-  //     secondParentHasDisability: this.state.secondParentHasDisability,
-  //     secondParentDeclaredResidenceSameAsLiving: this.state
-  //       .secondParentDeclaredResidenceSameAsLiving,
-  //     secondParentDeclaredCity: this.state.secondParentDeclaredCity,
-  //     secondParentDeclaredStreet: this.state.secondParentDeclaredStreet,
-  //     secondParentDeclaredHouseNumber: this.state
-  //       .secondParentDeclaredHouseNumber,
-  //     secondParentDeclaredFlatNumber: this.state.secondParentDeclaredFlatNumber,
-  //     adopted: this.state.adopted,
-  //   };
-  //   const validateForm = (errors) => {
-  //     let valid = true;
-  //     Object.values(errors).forEach(
-  //       // if we have an error string set valid to false
-  //       (val) => val.length > 0 && (valid = false)
-  //     );
-  //     return valid;
-  //   };
-
-  //   if (validateForm(this.state.errors)) {
-  //     axios
-  //       .post(
-  //         `${API}/api/${this.state.userId}/parentdetails/children`,
-  //         childrenInput
-  //       )
-  //       .then((response) => {
-  //         console.log(response);
-  //         alert('Vaiko duomenų registracija sėkminga');
-  //         this.props.history.push('/tevai/vaikoregistracija');
-  //       })
-
-  //       .catch((error) => {
-  //         if (error.response.data.message === 'Item already exists') {
-  //           alert('Toks asmens kodas jau egzistuoja! ');
-  //         } else if (error.response.data.message === 'Invalid field entry') {
-  //           alert('Užpildykite visus laukus!');
-  //         } else if (error.response.status === 400) {
-  //           alert(
-  //             'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
-  //           );
-  //         }
-  //         console.log(error);
-  //       });
-  //   } else {
-  //     console.error('Invalid Form');
-  //     alert(
-  //       'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
-  //     );
-  //   }
-  // };
 
   render() {
     const { errors } = this.state;
@@ -430,9 +351,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
           <div className="mb-4">
             <h3>Vaiko duomenų registracija</h3>
           </div>
-          <form onSubmit={this.handleSubmit}
-          //  noValidate 
-          className="form-group ">
+          <form
+            onSubmit={this.handleSubmit}
+            //  noValidate
+            className="form-group "
+          >
             <div className="mb-3">
               <label htmlFor="firstname" className="control-label">
                 Vaiko Vardas*:
@@ -499,7 +422,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                 <span className="error">{errors.personalCode}</span>
               )}
             </div>
-            <div className="form-check">
+            {/* <div className="form-check">
               <input
                 className="form-check-input"
                 type="checkbox"
@@ -510,6 +433,22 @@ export default class ChildrenRegistrationFormContainer extends Component {
               <label htmlFor="adopted" className="form-check-label">
                 Esu šio vaiko globėjas
               </label>
+            </div> */}
+            <div className="mb-3">
+              <label htmlFor="city" className="control-label">
+                Miestas*:
+              </label>
+              <input
+                type="text"
+                placeholder="Miestas"
+                className="form-control"
+                name="city"
+                onChange={this.handleChange}
+                noValidate
+              />
+              {errors.city.length > 0 && (
+                <span className="error">{errors.city}</span>
+              )}
             </div>
             <div className="mb-3">
               <label htmlFor="street" className="control-label">
@@ -527,22 +466,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                 <span className="error">{errors.street}</span>
               )}
             </div>
-            <div className="mb-3">
-              <label htmlFor="city" className="control-label">
-                Miestas*:
-              </label>
-              <input
-                type="text"
-                placeholder="Miestas"
-                className="form-control"
-                name="city"
-                onChange={this.handleChange}
-                noValidate
-              />
-              {errors.city.length > 0 && (
-                <span className="error">{errors.city}</span>
-              )}
-            </div>
+
             <div className="mb-3">
               <label htmlFor="houseNumber" className="control-label">
                 Namo Numeris*:
@@ -576,8 +500,21 @@ export default class ChildrenRegistrationFormContainer extends Component {
                 <span className="error">{errors.flatNumber}</span>
               )} */}
             </div>
-            <h5> Antrojo Tėvo/Globėjo duomenys</h5>
-            <div className="form-check">
+            <div className="form-check mt-4">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                name="adopted"
+                checked={this.state.adopted}
+                onChange={this.handleChange}
+              />
+              <label htmlFor="adopted" className="form-check-label">
+                Esu šio vaiko globėjas (pažymėkite jei šis vaikas yra
+                įvaikintas)
+              </label>
+            </div>
+            <h5 className="mt-4"> Antrojo Tėvo/Globėjo duomenys</h5>
+            <div className="form-check mt-4">
               <input
                 className="form-check-input"
                 type="checkbox"
@@ -981,7 +918,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
               </div>
             ) : null}
 
-            <div> * - privalomi laukai</div>
+            <div className="mt-3"> * - privalomi laukai</div>
             <div>
               {/* <button
                 type="submit"
