@@ -58,7 +58,7 @@ export default class KindergartenRegistrationContainer extends Component {
             : '';
         break;
       case 'spotsInSecondAgeGroup':
-        errors.spotsInFirstAgeGroup =
+        errors.spotsInSecondAgeGroup =
           !value.match(numbers) || value.length < 0
             ? 'Pasirinkite laisvų vietų skaičių grupėje!'
             : '';
@@ -80,7 +80,7 @@ export default class KindergartenRegistrationContainer extends Component {
       address: this.state.address,
       id: this.state.id,
       spotsInFirstAgeGroup: this.state.spotsInFirstAgeGroup,
-      spotsInSecondAgeGrou: this.state.spotsInSecondAgeGrou,
+      spotsInSecondAgeGroup: this.state.spotsInSecondAgeGroup,
     };
     const validateForm = (errors) => {
       let valid = true;

@@ -74,6 +74,7 @@ function App() {
           />
           <Route path="/tevai/toliau" component={NextPage} />
           <Route
+           exact
             path="/admin/edu/darzeliai"
             component={KindergartenListTableContainer}
           />
