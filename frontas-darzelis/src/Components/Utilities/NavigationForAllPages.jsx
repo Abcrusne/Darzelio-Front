@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import LogoutPresentation from "./LogoutPresentation";
 import UserService from "../../Configuration/UserService";
 
@@ -7,39 +7,32 @@ import UserService from "../../Configuration/UserService";
 import "../../Style/ParentLanding.css"
 
 const NavigationForAllPages = (props) => {
+    const currentRole = UserService.getRole();
     const pradzia = () => {
-        const currentRole = UserService.getRole();
-        switch (currentRole) {
-            case "[PARENT]":
-                return ('/dashboard')
-                break;
-            case "[EDU]":
-                return ('/admin/edu')
-                break;
-            case "[ADMIN]":
-                return ('/admin/pradzia')
-                break;
-            default:
-                break;
+        if (currentRole === "[PARENT]") {
+            return ('/dashboard')
+        } else if (currentRole === "[EDU]") {
+            return ('/admin/edu')
+        } else if (currentRole === "[ADMIN]") {
+            return ('/admin/pradzia')
+        } else {
         }
     }
-    const role = UserService.getRole();
 
-    console.log(role)
-    console.log(pradzia())
     return (
         <div>
-            <nav className="py-3 pl-3 pr-4 navbar-light">
+            <nav className="py-3 pr-4 navbar-light">
                 <ul className="nav flex-column flex-sm-row">
                     <li className="flex-sm-fill nav-item active">
-                        <NavLink to={pradzia} className="nav-link ">
+                        <Link to={pradzia} className="nav-link ">
                             Į pradžią
-                        </NavLink>
+                        </Link>
                     </li>
-                    <span className="navbar-text pr-3">
-                                Esate prisijungęs kaip {role}
-                            </span>
-                    <LogoutPresentation/>
+                    <span className="navbar-text flex-column flex-sm-row pr-3">
+                        Esate prisijungęs kaip {currentRole}
+                        {/* reikia sugalvoti, kaip parašyti, vardą*/}
+                    </span>
+                    <LogoutPresentation />
                 </ul>
             </nav>
             {props.children}

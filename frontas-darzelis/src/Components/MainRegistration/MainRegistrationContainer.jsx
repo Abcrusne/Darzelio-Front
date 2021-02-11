@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import UserService from "../../Configuration/UserService";
+import {API} from "../../Configuration/AppConfig";
+import "../../Style/ParentLanding.css"
+import MainRegistrationPresentation from "./MainRegistrationPresentation";
 
 const MainRegistrationContainer = (props) => {
     const [children, setChildren] = useState([
@@ -21,12 +24,25 @@ const MainRegistrationContainer = (props) => {
     const [kindergartens, setKindergartens] = useState([]);
 
     const handleChange = (event) => {
-        const {id, value} = event.target
-        setChildren(prevState => ({
-            ...prevState,
-            [id]:value
+        // const {id, value} = event.target
+        setChildren(prevChildren => ({
+            ...prevChildren,
+            [event.target.name]:event.target.value,
         }))
     }
+
+    useEffect( () => {
+        axios
+            .get(`${API}/api/users/loggeduserid`)
+            .then((res) => {
+                UserService.setId(res.data);
+                this.setState({
+                    name: res.data,
+                });
+                console.log('user id: ' + this.state.id);
+            })
+            .catch((err) => console.log(err));
+    })
 
    useEffect(() => {
         const userId = UserService.getId();
@@ -50,7 +66,7 @@ const MainRegistrationContainer = (props) => {
             .get(`${API}/api/kindergartens`)
             .then(response => {
                 console.log(response.data)
-                setKindergartens(response.data.map(kindergarten => kindergarten.data));
+                setKindergartens(response.data);
             })
     }, []);
 
@@ -77,7 +93,7 @@ const MainRegistrationContainer = (props) => {
                         ...prevPriorities
                         }))
                         alert('Registracija sėkminga!');
-                        props.history.push("/dashboard");
+                        props.history.push("/tevai");
                     } else {
                         alert('Registracija nesėkminga, patikrinkite duomenis!');
                     }
@@ -88,33 +104,11 @@ const MainRegistrationContainer = (props) => {
 
      return(
          <div>
-             <form>
-             <div className="input-group mb-3">
-                 <select className="form-select-kids" aria-label="kids selection">
-                     <option selected>Pasirinkite vaiką</option>
-                     {children.map((child) => (
-                         <option
-                             key={child.childId}
-                             value={child.childId}>
-                             {child.firstName}{child.lastName}
-                         </option>
-                     ))}
-                 </select>
-             </div>
-             <div className="input-group mb-3">
-                 <select className="form-select" aria-label="Default select example">
-                     <option selected>Pasirinkite darželį</option>
-                     {kindergartens.map(kindergarten => (
-                         <option
-                             key={kindergarten.id}
-                             value={kindergarten.id}>
-                             {kindergarten.name}
-                         </option>
-                     ))}
-                 </select>
-             </div>
-             </form>
+             <MainRegistrationPresentation
+                onSubmit={handleSubmit}
+             />
          </div>
+
      )
 };
 export default MainRegistrationContainer;

@@ -39,6 +39,7 @@ footer {
 
 div .card {
     max-width: 450px;
+    min-width: 180px;
     padding: 1em;
 }
 
@@ -58,11 +59,12 @@ p {
     vertical-align: center;
 }
 
+/*kitos ikonos šoniniame meniu*/
 .fa-user, .fa-envelope, .fa-info {
     font-size: 1.5em;
     padding-right: 8px;
 }
-
+/*ikonos ties anketomis*/
 .fa-file-contract {
     font-size: 1.5em;
     padding-right: 8px;
@@ -71,7 +73,6 @@ p {
 
 div.arrow {
     max-width: 60px;
-    vertical-align: center;
 }
 
 /* mygtukai*/
@@ -88,6 +89,31 @@ a.btn:hover {
     background-color: #1baaa0; /* lightseagreen */
     color: #ffffff;
     font-weight: bolder;
+    padding: 0.6em 1.5em;
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    vertical-align: bottom;
+}
+
+a.btn:active {
+    background-color: #1baaa0; /* lightseagreen */
+    color: #ffffff;
+    font-weight: bolder;
+    padding: 0.6em 1.5em;
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    vertical-align: bottom;
+}
+
+.input-group-text {
+    color: white;
+    background-color: #8f989e; /* lightslategray */
+}
+
+.btn {
+    background-color: #1baaa0; /* lightseagreen */
+    color: #ffffff;
+    min-width: 100px;
     padding: 0.6em 1.5em;
     border: 1px solid #ffffff;
     border-radius: 8px;
