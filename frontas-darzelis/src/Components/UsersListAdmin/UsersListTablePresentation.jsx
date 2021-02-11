@@ -1,28 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ModalComponent from '../Modal/ModalComponent';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 const UsersListTablePresentation = ({
   users,
   deleteUser,
-
-  searchQuery,
-  handleSearch,
-  search,
-  handleSearchChange,
+  // toggleModal,
+  // isOpen,
 }) => {
-
-  // return(
-  //   <input
-  //             type="text"
-  //             className="form-control my-3"
-  //             placeholder="Ieškoti pagal el.paštą..."
-  //             value={searchQuery}
-  //             onChange={handleSearch}
-  //         />
-  //var Confirm = require('react-confirm-bootstrap');
-  //var Confirm = require('react-confirm-bootstrap');
-
   return users.map(({ id, firstname, lastname, email, role }, index) => {
     // const roleLt =
     //   users.role == 'PARENT'
@@ -61,7 +47,7 @@ const UsersListTablePresentation = ({
           </button>
         </td>
         <td>
-          <ModalComponent id={id} email={email} deleteUser={deleteUser} />
+          <ModalComponent userId={id} email={email} deleteUser={deleteUser} />
         </td>
       </tr>
     );
