@@ -258,7 +258,7 @@ export default class ParentRegistrationFormContainer extends Component {
     return (
       <div>
         {/* <NavigationComponent /> */}
-        <LogoutPresentation />
+        {/*<LogoutPresentation />*/}
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
             <h3>Užpildykite savo kaip tėvo/globėjo duomenis</h3>

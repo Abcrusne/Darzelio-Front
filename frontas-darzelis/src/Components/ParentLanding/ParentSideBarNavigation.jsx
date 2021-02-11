@@ -8,26 +8,26 @@ const ParentSideBarNavigation = () => {
         <nav className="pt-3 mt-3">
             <ul  className="nav flex-column">
                 <li className="nav-item">
-                    <Link to="/dashboard/naudotojo-duomenys" className="nav-link active">
+                    <Link to="/tevai/naudotojo-duomenys" className="nav-link active" id="userData">
                         <i className="fas fa-user"></i>
                         Naudotojo duomenys
                     </Link>
                     <hr />
                 </li>
                 <li className="nav-item">
-                    <Link to="/dashboard/tevai" className="nav-link active">
+                    <Link to="/tevai/registracija" className="nav-link active" id="parentForm">
                         <i className="fas fa-file-contract"></i>
                         Tėvo (globėjo) anketa
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/dashboard/vaikai" className="nav-link active">
+                    <Link to="/tevai/vaikoregistracija" className="nav-link active" id="childForm">
                         <i className="fas fa-file-contract"></i>
                         Vaiko duomenų anketa
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/dashboard/registracija" className="nav-link active">
+                    <Link to="/tevai/registracija-i-darzeli" className="nav-link active" id="mainRegForm">
                         <i className="fas fa-file-contract"></i>
                         Prašymas regitruoti į darželį
                     </Link>
@@ -40,19 +40,19 @@ const ParentSideBarNavigation = () => {
                 {/*    </Link>*/}
                 {/*</li>*/}
                 <li className="nav-item">
-                    <Link to="/dashboard/tvarka" className="nav-link active">
+                    <Link to="/tevai/tvarka" className="nav-link active">
                         <i className="fas fa-info"></i>
                         Vaikų priėmimo tvarka
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/dashboard/statistika" className="nav-link active">
+                    <Link to="/tevai/statistika" className="nav-link active">
                         <i className="fas fa-info"></i>
                         Statistika
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/dashboard/salygos" className="nav-link active">
+                    <Link to="/tevai/salygos" className="nav-link active">
                         <i className="fas fa-info"></i>
                         Sąlygos
                     </Link>

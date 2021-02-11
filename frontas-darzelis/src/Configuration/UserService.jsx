@@ -30,6 +30,9 @@ const UserService = {
   setId: (id) => {
     localStorage.setItem('id', id);
   },
+  getId: () => {
+    return localStorage.getItem('id') || '';
+  }
 };
 
 export default UserService;

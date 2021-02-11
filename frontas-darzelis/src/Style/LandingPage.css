@@ -2,7 +2,7 @@ main {
     background-color: #fbf9f8; /* snow */
 }
 div {
-    text-align: center;
+    text-align: left;
 }
 .fas.fa-school{
     font-size: 5em;
@@ -30,3 +30,4 @@ button.btn:hover {
     border-radius: 8px;
     vertical-align: bottom;
 }
+

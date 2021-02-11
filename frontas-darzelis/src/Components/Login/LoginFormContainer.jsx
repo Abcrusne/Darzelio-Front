@@ -44,7 +44,7 @@ class LoginFormContainer extends Component {
           const currentRole = this.state.role;
           switch (currentRole) {
             case "[PARENT]":
-              return (this.props.history.push('/dashboard'))
+              return (this.props.history.push('/tevai'))
               break;
             case "[EDU]":
               return (this.props.history.push('/admin/edu'))
