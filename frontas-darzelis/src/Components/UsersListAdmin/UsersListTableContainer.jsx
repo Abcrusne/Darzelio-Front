@@ -11,6 +11,7 @@ export default class UsersListTableContainer extends Component {
     super();
     this.state = {
       users: [],
+    //  isOpen: false,
       // searchQuery: '',
       // search: "",
       // newUsers: []
@@ -39,6 +40,18 @@ export default class UsersListTableContainer extends Component {
   //     this.setState({ users: response.data });
   //   });
   // };
+
+  // replaceModalItem=(id)=> {
+  //   this.setState({
+  //     requiredItem: this.state.users.id
+  //   });
+  // }
+
+  // toggleModal = () => {
+  //   this.setState({
+  //     isOpen: !this.state.isOpen,
+  //   });
+  // }
   deleteUser = (event) => {
     event.preventDefault();
     axios
@@ -49,24 +62,9 @@ export default class UsersListTableContainer extends Component {
           .then((response) => this.setState({ users: response.data }));
       })
       .catch((err) => console.log(err));
+      console.log("deleteUser");
   };
 
-  // resetPassword = (event) => {
-  //   event.preventDefault();
-  //   // const outputUser = {
-  //   //   password: this.state.firstname,
-  //   // };
-  //   axios
-  //     .put(
-  //       `${API}/api/users/${this.state.id}`,
-  //       // outputUser
-  //       { password: this.state.firstname }
-  //     )
-  //     .then((response) => {
-  //       console.log(response);
-  //       alert('Vartotojo slaptažodis atsatatytas į pirminį');
-  //     });
-  // };
 
   render() {
     return (
@@ -97,13 +95,19 @@ export default class UsersListTableContainer extends Component {
 
               <th scope="col">Atnaujinti vartotojo duomenis</th>
               <th scope="col">Ištrinti vartotoją</th>
+              <th scope="col"></th>
+
             </tr>
           </thead>
           {this.state.users.length > 0 && (
             <tbody>
               <UsersListTablePresentation
                 users={this.state.users}
-                deleteUser={this.deleteUser}
+                 deleteUser={this.deleteUser}
+                //  toggleModal={this.toggleModal}
+                //  isOpen={this.isOpen}
+
+                // replaceModalItem={this.replaceModalItem}
                 // resetPassword={this.resetPassword}
                 // searchQuery={this.searchQuery}
                 // handleSearch={this.handleSearch}

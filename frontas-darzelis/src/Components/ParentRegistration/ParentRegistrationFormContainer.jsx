@@ -72,11 +72,13 @@ export default class ParentRegistrationFormContainer extends Component {
       /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
     );
     const { name, value } = event.target;
+
     let errors = this.state.errors;
-    let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ]+$/;
+    let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
+    let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9]+$/;
     let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
     let validPersonalCode = /^[3|4]+[0-9]+$/;
-    let numbers = /^[0-9]+$/;
+    let numbers = /^[1-9]+$/;
     switch (name) {
       case 'firstname':
         errors.firstname =
@@ -115,7 +117,10 @@ export default class ParentRegistrationFormContainer extends Component {
             : '';
         break;
       case 'street':
-        errors.street = !value || value.length === 0 ? 'Įrašykite gatvę!' : '';
+        errors.street =
+          !value || !value.match(lettersAndNumber) || value.length === 0
+            ? 'Įrašykite gatvę!'
+            : '';
         break;
       case 'city':
         errors.city =
@@ -125,7 +130,9 @@ export default class ParentRegistrationFormContainer extends Component {
         break;
       case 'houseNumber':
         errors.houseNumber =
-          !value || value.length === 0 ? 'Įrašykite namo numerį' : '';
+          !value || !value.match(lettersAndNumber) || value.length === 0
+            ? 'Įrašykite namo numerį'
+            : '';
         break;
 
       case 'flatNumber':
@@ -373,7 +380,7 @@ export default class ParentRegistrationFormContainer extends Component {
                 <span className="error">{errors.street}</span>
               )}
             </div>
-          
+
             <div className="mb-3">
               <label htmlFor="houseNumber" className="control-label">
                 Namo Numeris*:
@@ -409,11 +416,11 @@ export default class ParentRegistrationFormContainer extends Component {
             </div>
             <div className="mb-3">
               <label htmlFor="numberOfKids" className="control-label">
-                Kiek turite vaikų?*:
+                Kiek turite nepilnamečių vaikų?*:
               </label>
               <input
                 type="number"
-                min="0"
+                min=""
                 placeholder="Skaičius"
                 className="form-control"
                 name="numberOfKids"
