@@ -1,17 +1,20 @@
 import React, {Component} from "react";
 import LoginFormContainer from "../Components/Login/LoginFormContainer"
-import {Link} from "react-router-dom";
+
+//style
+import "../Style/LandingPage.css"
 
 export default class LandingPage extends Component {
 
     render(){
         return(
-            <div className="container-fluid">
-                <header >
-                    <h3 className="text-center align-middle mt-3">Sveiki atvykę į Vaikų darželių informacinę sistemą</h3>
-                </header>
+            <main className="pt-5">
+                <div className="text-center align-middle ">
+                    <i className="fas fa-school"></i>
+                    <h2 className="mt-4">Vaikų darželių informacinė sistema</h2>
+                </div>
                 <LoginFormContainer/>
-            </div>
+            </main>
 
         )
     }
