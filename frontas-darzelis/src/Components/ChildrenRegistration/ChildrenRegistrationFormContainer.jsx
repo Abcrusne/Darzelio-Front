@@ -9,6 +9,24 @@ axios.defaults.withCredentials = true; // leidžia dalintis cookies
 export default class ChildrenRegistrationFormContainer extends Component {
   constructor(props) {
     super(props);
+    //current date for checking is birthdate not from the future
+    var today = new Date();
+    var eighteenYearsAgo = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    var minYear = today.getFullYear() - 18;
+    if (dd < 10) {
+      dd = '0' + dd;
+    }
+    if (mm < 10) {
+      mm = '0' + mm;
+    }
+
+    today = yyyy + '-' + mm + '-' + dd;
+    eighteenYearsAgo = minYear + '-' + mm + '-' + dd;
+    console.log('today ' + today);
+    console.log('18 years ago: ' + eighteenYearsAgo);
     this.state = {
       //vaiko id
       id: '',
@@ -47,6 +65,9 @@ export default class ChildrenRegistrationFormContainer extends Component {
       secondParentDeclaredHouseNumber: '',
       secondParentDeclaredFlatNumber: '',
       adopted: false,
+
+      currentDate: today,
+      eighteenYearsAgoDate: eighteenYearsAgo,
 
       errors: {
         firstname: '',
@@ -99,12 +120,13 @@ export default class ChildrenRegistrationFormContainer extends Component {
 
     const { name, value } = event.target;
     let errors = this.state.errors;
-    let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ]+$/;
+    let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
+    let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9]+$/;
     let date = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
 
     let validPersonalCode = /^[3|4]+[0-9]+$/;
     let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
-    let numbers = /^[0-9]+$/;
+    let numbers = /^[1-9]+$/;
     switch (name) {
       case 'firstname':
         errors.firstname =
@@ -136,7 +158,10 @@ export default class ChildrenRegistrationFormContainer extends Component {
             : '';
         break;
       case 'street':
-        errors.street = !value || value.length === 0 ? 'Įrašykite gatvę!' : '';
+        errors.street =
+          !value || !value.match(lettersAndNumber) || value.length === 0
+            ? 'Įrašykite gatvę!'
+            : '';
         break;
       case 'city':
         errors.city =
@@ -146,7 +171,9 @@ export default class ChildrenRegistrationFormContainer extends Component {
         break;
       case 'houseNumber':
         errors.houseNumber =
-          !value || value.length === 0 ? 'Įrašykite namo numerį' : '';
+          !value || !value.match(lettersAndNumber) || value.length === 0
+            ? 'Įrašykite namo numerį'
+            : '';
         break;
 
       case 'flatNumber':
@@ -322,10 +349,25 @@ export default class ChildrenRegistrationFormContainer extends Component {
         })
 
         .catch((error) => {
-          if (error.response.data.message === 'Item already exists') {
-            alert('Toks asmens kodas jau egzistuoja! ');
+          if (
+            error.response.data.message === 'This personal code already exists'
+          ) {
+            alert(
+              'Pasitikrinkite ar suvedėte teisingus asmens kodus. Tokiu tėvo asmens kodu jau užregistruotas vaikas! '
+            );
+          } else if (error.response.data.message === 'Item  already exists') {
+            alert(
+              'Pasitikrinkite ar suved4te teisingus asmens kodus. Toks vaiko asmens kodas jau egzistuoja'
+            );
           } else if (error.response.data.message === 'Invalid field entry') {
             alert('Užpildykite visus privalomus laukus!');
+          } else if (
+            error.response.data.message ===
+            `The birthdate can't be from the future`
+          ) {
+            alert('Gimimo data negali būti iš ateities!');
+          } else if (error.response.data.message === `Bad birthdate format`) {
+            alert('Netinkamas datos formatas!');
           } else if (error.response.status === 400) {
             alert(
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
@@ -394,17 +436,23 @@ export default class ChildrenRegistrationFormContainer extends Component {
                 Vaiko Gimimo Data*:
               </label>
               <input
-                // type="date"
-                type="text"
+                type="date"
+                max={this.state.currentDate}
+                min={this.state.eighteenYearsAgoDate}
                 placeholder="MMMM-MM-DD"
                 className="form-control"
                 name="birthdate"
                 onChange={this.handleChange}
-                noValidate
+                // noValidate
+                onInvalid={(e) => {
+                  e.target.setCustomValidity('Įveskite datą.');
+                }}
+                onInput={(e) => e.target.setCustomValidity('')}
+                required
               />
-              {errors.birthdate.length > 0 && (
+              {/* {errors.birthdate.length > 0 && (
                 <span className="error">{errors.birthdate}</span>
-              )}
+              )} */}
             </div>
             <div className="mb-3">
               <label htmlFor="personalCode" className="control-label">
@@ -509,8 +557,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                 onChange={this.handleChange}
               />
               <label htmlFor="adopted" className="form-check-label">
-                Esu šio vaiko globėjas (pažymėkite jei šis vaikas yra
-                įvaikintas)
+                Esu šio vaiko Globėjas
               </label>
             </div>
             <h5 className="mt-4"> Antrojo Tėvo/Globėjo duomenys</h5>
@@ -528,7 +575,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
             </div>
             {this.state.secondParent ? (
               <div>
-                <div className="mb-3">
+                <div className="mb-3 mt-3">
                   <label
                     htmlFor="secondParentFirstname"
                     className="control-label"
@@ -622,22 +669,6 @@ export default class ChildrenRegistrationFormContainer extends Component {
                   )}
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="secondParentStreet" className="control-label">
-                    Antrojo Tėvo/Globėjo Gatvė*:
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Gatvė"
-                    className="form-control"
-                    name="secondParentStreet"
-                    onChange={this.handleChange}
-                    noValidate
-                  />
-                  {errors.secondParentStreet.length > 0 && (
-                    <span className="error">{errors.secondParentStreet}</span>
-                  )}
-                </div>
-                <div className="mb-3">
                   <label htmlFor="secondParentCity" className="control-label">
                     Antrojo Tėvo/Globėjo Miestas*:
                   </label>
@@ -653,6 +684,23 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     <span className="error">{errors.secondParentCity}</span>
                   )}
                 </div>
+                <div className="mb-3">
+                  <label htmlFor="secondParentStreet" className="control-label">
+                    Antrojo Tėvo/Globėjo Gatvė*:
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Gatvė"
+                    className="form-control"
+                    name="secondParentStreet"
+                    onChange={this.handleChange}
+                    noValidate
+                  />
+                  {errors.secondParentStreet.length > 0 && (
+                    <span className="error">{errors.secondParentStreet}</span>
+                  )}
+                </div>
+
                 <div className="mb-3">
                   <label
                     htmlFor="secondParentHouseNumber"
@@ -701,16 +749,23 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     htmlFor="secondParentNumberOfKids"
                     className="control-label"
                   >
-                    Kiek antrasis Tėvas/Globėjas turi vaikų?*
+                    Kiek antrasis Tėvas/Globėjas turi nepilnamečių vaikų?*
                   </label>
                   <input
                     type="number"
-                    min="0"
+                    min="1"
                     placeholder="Skaičius"
                     className="form-control"
                     name="secondParentNumberOfKids"
                     onChange={this.handleChange}
                     noValidate
+                    // onInvalid={(e) => {
+                    //   e.target.setCustomValidity(
+                    //     'Įveskite vaikų skaičių.'
+                    //   );
+                    // }}
+                    // onInput={(e) => e.target.setCustomValidity('')}
+                    // required
                   />
                   {errors.secondParentNumberOfKids.length > 0 && (
                     <span className="error">
@@ -803,6 +858,36 @@ export default class ChildrenRegistrationFormContainer extends Component {
                 </div>
                 {this.state.secondParentDeclaredResidenceSameAsLiving ? null : (
                   <div>
+                    <div className="mb-3 mt-3">
+                      <label
+                        htmlFor="secondParentDeclaredCity"
+                        className="control-label"
+                      >
+                        Antrojo Tėvo/Globėjo Deklaruotas Miestas*:
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Deklaruotas Miestas"
+                        className="form-control"
+                        name="secondParentDeclaredCity"
+                        onChange={this.handleChange}
+                        //  noValidate
+
+                        // pattern="/^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9]+$/"
+                        // onInvalid={(e) => {
+                        //   e.target.setCustomValidity(
+                        //     'Įveskite deklaruotą miestą tinkamu formatu.'
+                        //   );
+                        // }}
+                        // onInput={(e) => e.target.setCustomValidity('')}
+                        required
+                      />
+                      {/* {errors.secondParentDeclaredCity.length > 0 && (
+                        <span className="error">
+                          {errors.secondParentDeclaredCity}
+                        </span>
+                      )} */}
+                    </div>
                     <div className="mb-3">
                       <label
                         htmlFor="secondParentDeclaredStreet"
@@ -817,10 +902,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         name="secondParentDeclaredStreet"
                         onChange={this.handleChange}
                         // noValidate
-                        //required
+
+                        // pattern="/^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9]+$/"
                         onInvalid={(e) => {
                           e.target.setCustomValidity(
-                            'Įveskite deklaruotą gatvę.'
+                            'Įveskite deklaruotą gatvę tinkamu formatu.'
                           );
                         }}
                         onInput={(e) => e.target.setCustomValidity('')}
@@ -832,35 +918,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         </span>
                       )}
                     </div>
-                    <div className="mb-3">
-                      <label
-                        htmlFor="secondParentDeclaredCity"
-                        className="control-label"
-                      >
-                        Antrojo Tėvo/Globėjo Deklaruotas Miestas*:
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Deklaruotas Miestas"
-                        className="form-control"
-                        name="secondParentDeclaredCity"
-                        onChange={this.handleChange}
-                        // noValidate
-                        //required
-                        onInvalid={(e) => {
-                          e.target.setCustomValidity(
-                            'Įveskite deklaruotą miestą.'
-                          );
-                        }}
-                        onInput={(e) => e.target.setCustomValidity('')}
-                        required
-                      />
-                      {/* {errors.secondParentDeclaredCity.length > 0 && (
-                        <span className="error">
-                          {errors.secondParentDeclaredCity}
-                        </span>
-                      )} */}
-                    </div>
+
                     <div className="mb-3">
                       <label
                         htmlFor="secondParentDeclaredHouseNumber"
@@ -876,9 +934,10 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         onChange={this.handleChange}
                         // noValidate
                         //required
+                        // pattern="/^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9]+$/"
                         onInvalid={(e) => {
                           e.target.setCustomValidity(
-                            'Įveskite deklaruotą namo numerį.'
+                            'Įveskite deklaruotą namo numerį tinkamu formatu.'
                           );
                         }}
                         onInput={(e) => e.target.setCustomValidity('')}
@@ -904,7 +963,14 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         className="form-control"
                         name="secondParentDeclaredFlatNumber"
                         onChange={this.handleChange}
-                        noValidate
+                        // noValidate
+                        // pattern="/^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9]+$/"
+                        onInvalid={(e) => {
+                          e.target.setCustomValidity(
+                            'Įveskite deklaruotą buto numerį tinkamu formatu.'
+                          );
+                        }}
+                        onInput={(e) => e.target.setCustomValidity('')}
                         //required
                       />
                       {/* {errors.secondParentDeclaredFlatNumber.length > 0 && (
@@ -920,14 +986,6 @@ export default class ChildrenRegistrationFormContainer extends Component {
 
             <div className="mt-3"> * - privalomi laukai</div>
             <div>
-              {/* <button
-                type="submit"
-                className="btn btn-success btn-lg btn-block"
-                onClick={this.handleAddAnotherChild}
-              >
-                Išsaugoti ir Pridėti kitą vaiką
-              </button> */}
-
               <button
                 type="submit"
                 className="btn btn-success btn-lg btn-block"
