@@ -75,7 +75,7 @@ export default class ParentRegistrationFormContainer extends Component {
 
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
-    let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9]+$/;
+    let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
     let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
     let validPersonalCode = /^[3|4]+[0-9]+$/;
     let numbers = /^[1-9]+$/;
@@ -259,16 +259,16 @@ export default class ParentRegistrationFormContainer extends Component {
       <div>
         {/* <NavigationComponent /> */}
         {/*<LogoutPresentation />*/}
-        <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
+        <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
             <h3>Užpildykite savo kaip tėvo/globėjo duomenis</h3>
           </div>
           <form
             onSubmit={this.handleSubmit}
             // noValidate
-            className="form-group "
+            className="form-row "
           >
-            <div className="mb-3">
+            <div className=" form-group mb-3 col-6">
               <label htmlFor="firstname" className="control-label">
                 Vardas*:
               </label>
@@ -284,7 +284,7 @@ export default class ParentRegistrationFormContainer extends Component {
                 <span className="error">{errors.firstname}</span>
               )}
             </div>
-            <div className="mb-3 ">
+            <div className=" form-group mb-3 col-6">
               <label htmlFor="lastname" className="control-label">
                 Pavardė*:
               </label>
@@ -300,7 +300,7 @@ export default class ParentRegistrationFormContainer extends Component {
                 <span className="error">{errors.lastname}</span>
               )}
             </div>
-            <div className="mb-3">
+            <div className="form-group mb-3 col-6">
               <label htmlFor="email" className="control-label">
                 El.paštas*:
               </label>
@@ -316,7 +316,7 @@ export default class ParentRegistrationFormContainer extends Component {
                 <span className="error">{errors.email}</span>
               )}
             </div>
-            <div className="mb-3">
+            <div className="form-group mb-3 col-6">
               <label htmlFor="phone" className="control-label">
                 Tel.nr*:
               </label>
@@ -332,7 +332,7 @@ export default class ParentRegistrationFormContainer extends Component {
                 <span className="error">{errors.phone}</span>
               )}
             </div>
-            <div className="mb-3">
+            <div className="form-group mb-3 col-6">
               <label htmlFor="personalCode" className="control-label">
                 Asmens Kodas*:
               </label>
@@ -348,7 +348,7 @@ export default class ParentRegistrationFormContainer extends Component {
                 <span className="error">{errors.personalCode}</span>
               )}
             </div>
-            <div className="mb-3">
+            <div className="form-group mb-3 col-6">
               <label htmlFor="city" className="control-label">
                 Miestas*:
               </label>
@@ -364,7 +364,7 @@ export default class ParentRegistrationFormContainer extends Component {
                 <span className="error">{errors.city}</span>
               )}
             </div>
-            <div className="mb-3">
+            <div className="form-group mb-3 col-6">
               <label htmlFor="street" className="control-label">
                 Gatvė*:
               </label>
@@ -381,7 +381,7 @@ export default class ParentRegistrationFormContainer extends Component {
               )}
             </div>
 
-            <div className="mb-3">
+            <div className="form-group mb-3 col-6">
               <label htmlFor="houseNumber" className="control-label">
                 Namo Numeris*:
               </label>
@@ -397,7 +397,7 @@ export default class ParentRegistrationFormContainer extends Component {
                 <span className="error">{errors.houseNumber}</span>
               )}
             </div>
-            <div className="mb-3">
+            <div className="form-group mb-3 col-6">
               <label htmlFor="flatNumber" className="control-label">
                 Butas:
               </label>
@@ -414,13 +414,13 @@ export default class ParentRegistrationFormContainer extends Component {
                 <span className="error">{errors.flatNumber}</span>
               )}
             </div>
-            <div className="mb-3">
+            <div className="form-group mb-3 col-6">
               <label htmlFor="numberOfKids" className="control-label">
                 Kiek turite nepilnamečių vaikų?*:
               </label>
               <input
                 type="number"
-                min=""
+                min="1"
                 placeholder="Skaičius"
                 className="form-control"
                 name="numberOfKids"
@@ -432,7 +432,7 @@ export default class ParentRegistrationFormContainer extends Component {
               )}
             </div>
 
-            <div className="form-check">
+            <div className="ml-4 form-check mb-3 col-12">
               <input
                 className="form-check-input"
                 type="checkbox"
@@ -446,7 +446,7 @@ export default class ParentRegistrationFormContainer extends Component {
             </div>
 
             {this.state.studying ? (
-              <div className="mb-3">
+              <div className="form-group mb-3 col-6">
                 <label htmlFor="studyingInstitution" className="control-label">
                   Mokymosi įstaigos pavadinimas*:
                 </label>
@@ -471,7 +471,7 @@ export default class ParentRegistrationFormContainer extends Component {
                 )} */}
               </div>
             ) : null}
-            <div className="form-check">
+            <div className=" ml-4 form-check form-group mb-3 col-10">
               <input
                 type="checkbox"
                 className="form-check-input"
@@ -486,7 +486,7 @@ export default class ParentRegistrationFormContainer extends Component {
               </label>
             </div>
 
-            <div className="form-check">
+            <div className=" ml-4 form-check form-group mb-3 col-12">
               <input
                 className="form-check-input"
                 type="checkbox"
@@ -503,8 +503,8 @@ export default class ParentRegistrationFormContainer extends Component {
               </label>
             </div>
             {this.state.declaredResidenceSameAsLiving ? null : (
-              <div>
-                <div className="mb-3">
+              <div className="form-row">
+                <div className="form-group mb-3 col-12">
                   <label htmlFor="declaredStreet" className="control-label">
                     Deklaruota Gatvė*:
                   </label>
@@ -525,7 +525,7 @@ export default class ParentRegistrationFormContainer extends Component {
                     <span className="error">{errors.declaredStreet}</span>
                   )} */}
                 </div>
-                <div className="mb-3">
+                <div className="form-group mb-3 col-12">
                   <label htmlFor="declaredCity" className="control-label">
                     Deklaruotas Miestas*:
                   </label>
@@ -546,7 +546,7 @@ export default class ParentRegistrationFormContainer extends Component {
                     <span className="error">{errors.declaredCity}</span>
                   )} */}
                 </div>
-                <div className="mb-3">
+                <div className="form-group mb-3 col-12">
                   <label
                     htmlFor="declaredHouseNumber"
                     className="control-label"
@@ -573,7 +573,7 @@ export default class ParentRegistrationFormContainer extends Component {
                     <span className="error">{errors.declaredHouseNumber}</span>
                   )} */}
                 </div>
-                <div className="mb-3">
+                <div className="form-group mb-3 col-12">
                   <label htmlFor="declaredFlatNumber" className="control-label">
                     Deklaruotas Butas:
                   </label>
@@ -592,11 +592,12 @@ export default class ParentRegistrationFormContainer extends Component {
                 </div>
               </div>
             )}
-            <div> * - privalomi laukai</div>
+            <div className="form-group mb-3 col-6"> * - privalomi laukai</div>
             <div>
               <button
                 type="submit"
-                className="btn btn-success btn-lg btn-block"
+                className="btn btn-success btn-lg mt-5  
+                "
                 // onSubmit={this.handleSubmit}
               >
                 Tęsti
