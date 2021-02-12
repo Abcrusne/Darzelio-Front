@@ -3,6 +3,7 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
 import LogoutPresentation from '../Utilities/LogoutPresentation';
+import NavigationForAllPages from '../Utilities/NavigationForAllPages';
 
 export default class KindergartenRegistrationContainer extends Component {
   constructor(props) {
@@ -96,7 +97,8 @@ export default class KindergartenRegistrationContainer extends Component {
         .post(API + '/api/kindergartens', inputKindergarten)
         .then((response) => {
           console.log(response);
-          this.props.history.push('/admin/sekminga');
+          alert("Darželio registracija sėkminga");
+          this.props.history.push('/admin/edu/darzeliai');
         })
 
         .catch((error) => {
@@ -123,6 +125,7 @@ export default class KindergartenRegistrationContainer extends Component {
     const { errors } = this.state;
     return (
       <div className="container mt-5">
+        <NavigationForAllPages/>
         <LogoutPresentation />
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
