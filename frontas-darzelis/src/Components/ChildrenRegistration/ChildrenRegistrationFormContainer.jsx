@@ -140,10 +140,10 @@ export default class ChildrenRegistrationFormContainer extends Component {
     const { name, value } = event.target;
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
-    let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9]+$/;
+    let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 ,/./-]+$/;
     let date = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
 
-    let validPersonalCode = /^[3|4]+[0-9]+$/;
+    let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
     let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
     let numbers = /^[1-9]+$/;
     switch (name) {
@@ -366,25 +366,21 @@ export default class ChildrenRegistrationFormContainer extends Component {
           console.log(response);
           alert('Vaiko duomenų registracija sėkminga');
           this.props.history.push('/tevai/toliau');
-          // this.props.history.push('/tevai/registracijadarzeliui');
         })
 
         .catch((error) => {
-          if (
-            error.response.data.message === 'This personal code already exists'
-          ) {
+          if (error.response.data === 'This personal code already exists') {
             alert(
-              'Pasitikrinkite ar suvedėte teisingus asmens kodus. Tokiu tėvo asmens kodu jau užregistruotas vaikas! '
+              'Pasitikrinkite ar suvedėte teisingus asmens kodus. Toks vaiko asmens kodas jau egzstuoja! '
             );
-          } else if (error.response.data.message === 'Item  already exists') {
+          } else if (error.response.data.message === 'Item already exists') {
             alert(
-              'Pasitikrinkite ar suved4te teisingus asmens kodus. Toks vaiko asmens kodas jau egzistuoja'
+              'Pasitikrinkite ar suvedėte teisingus asmens kodus. Toks asmens kodas jau egzistuoja'
             );
           } else if (error.response.data.message === 'Invalid field entry') {
             alert('Užpildykite visus privalomus laukus!');
           } else if (
-            error.response.data.message ===
-            `The birthdate can't be from the future`
+            error.response.data === `The birthdate can't be from the future`
           ) {
             alert('Gimimo data negali būti iš ateities!');
           } else if (error.response.data.message === `Bad birthdate format`) {
@@ -394,7 +390,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          console.log(error);
+          console.log(error.response);
         });
     } else {
       console.error('Invalid Form');
@@ -452,13 +448,13 @@ export default class ChildrenRegistrationFormContainer extends Component {
                 <span className="error">{errors.lastname}</span>
               )}
             </div>
-            <div className="form-group mb-3 col-6">
+            <div className="form-group mb-3 col-6  ">
               <label htmlFor="birthdate" className="control-label">
                 Vaiko gimimo data*:
               </label>
-              <div  >
+              <div>
                 <DatePicker
-                
+                  className="form-control  "
                   dateFormat="yyyy-MM-dd"
                   locale="lt"
                   name="birthdate"
@@ -553,7 +549,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
               </label>
               <input
                 type="number"
-                min="0"
+                min="1"
                 placeholder="Butas"
                 className="form-control"
                 name="flatNumber"
@@ -891,8 +887,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         name="secondParentDeclaredCity"
                         onChange={this.handleChange}
                         //  noValidate
-
-                         //pattern="/^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9]+$/"
+                        pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9-]+"
                         onInvalid={(e) => {
                           e.target.setCustomValidity(
                             'Įveskite deklaruotą miestą tinkamu formatu.'
@@ -921,9 +916,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         name="secondParentDeclaredStreet"
                         onChange={this.handleChange}
                         // noValidate
-
-                         //pattern="[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]"
-                          //onKeyPress={event => (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)}
+                        pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
                         onInvalid={(e) => {
                           e.target.setCustomValidity(
                             'Įveskite deklaruotą gatvę tinkamu formatu.'
@@ -953,8 +946,8 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         name="secondParentDeclaredHouseNumber"
                         onChange={this.handleChange}
                         // noValidate
-                        //required
-                        // pattern="/^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 ]+$/"
+
+                        pattern="[a-zA-Z-z - 0-9-]+"
                         onInvalid={(e) => {
                           e.target.setCustomValidity(
                             'Įveskite deklaruotą namo numerį tinkamu formatu.'
@@ -978,20 +971,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
                       </label>
                       <input
                         type="number"
-                        min="0"
+                        min="1"
                         placeholder="Deklaruotas Butas"
                         className="form-control"
                         name="secondParentDeclaredFlatNumber"
                         onChange={this.handleChange}
-                        // noValidate
-                        // pattern="/^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9]+$/"
-                        onInvalid={(e) => {
-                          e.target.setCustomValidity(
-                            'Įveskite deklaruotą buto numerį tinkamu formatu.'
-                          );
-                        }}
-                        onInput={(e) => e.target.setCustomValidity('')}
-                        //required
                       />
                       {/* {errors.secondParentDeclaredFlatNumber.length > 0 && (
                         <span className="error">

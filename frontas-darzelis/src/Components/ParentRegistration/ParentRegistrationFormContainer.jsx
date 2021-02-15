@@ -77,7 +77,7 @@ export default class ParentRegistrationFormContainer extends Component {
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
     let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
     let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
-    let validPersonalCode = /^[3|4]+[0-9]+$/;
+    let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
     let numbers = /^[1-9]+$/;
     switch (name) {
       case 'firstname':

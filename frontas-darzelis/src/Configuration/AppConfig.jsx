@@ -1,4 +1,3 @@
-
 export const API = 'http://akademijait.vtmc.lt:8181/bean-app';
 
 //export const API = '/bean-app';
