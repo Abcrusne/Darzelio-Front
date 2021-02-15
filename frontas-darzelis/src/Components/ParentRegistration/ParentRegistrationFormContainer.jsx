@@ -457,7 +457,7 @@ export default class ParentRegistrationFormContainer extends Component {
                   name="studyingInstitution"
                   onChange={this.handleChange}
                   // noValidate
-
+                  pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
                   onInvalid={(e) => {
                     e.target.setCustomValidity(
                       'Įveskite mokymosi įstaigos pavadinimą.'
@@ -504,6 +504,28 @@ export default class ParentRegistrationFormContainer extends Component {
             </div>
             {this.state.declaredResidenceSameAsLiving ? null : (
               <div className="form-row">
+                 <div className="form-group mb-3 col-12">
+                  <label htmlFor="declaredCity" className="control-label">
+                    Deklaruotas Miestas*:
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Deklaruotas Miestas"
+                    className="form-control"
+                    name="declaredCity"
+                    onChange={this.handleChange}
+                    // noValidate
+                    pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9-]+"
+                    onInvalid={(e) => {
+                      e.target.setCustomValidity(
+                        'Įveskite deklaruotą miestą tinkamu formatu.'
+                      );
+                    }}
+                    onInput={(e) => e.target.setCustomValidity('')}
+                    required
+                  />
+                
+                </div>
                 <div className="form-group mb-3 col-12">
                   <label htmlFor="declaredStreet" className="control-label">
                     Deklaruota Gatvė*:
@@ -515,37 +537,18 @@ export default class ParentRegistrationFormContainer extends Component {
                     name="declaredStreet"
                     onChange={this.handleChange}
                     // noValidate
-                    required
+                    pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
                     onInvalid={(e) => {
-                      e.target.setCustomValidity('Įveskite deklaruotą gatvę.');
+                      e.target.setCustomValidity(
+                        'Įveskite deklaruotą gatvę tinkamu formatu.'
+                      );
                     }}
                     onInput={(e) => e.target.setCustomValidity('')}
-                  />
-                  {/* {errors.declaredStreet.length > 0 && (
-                    <span className="error">{errors.declaredStreet}</span>
-                  )} */}
-                </div>
-                <div className="form-group mb-3 col-12">
-                  <label htmlFor="declaredCity" className="control-label">
-                    Deklaruotas Miestas*:
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Deklaruotas Miestas"
-                    className="form-control"
-                    name="declaredCity"
-                    onChange={this.handleChange}
-                    // noValidate
                     required
-                    onInvalid={(e) => {
-                      e.target.setCustomValidity('Įveskite deklaruotą miestą.');
-                    }}
-                    onInput={(e) => e.target.setCustomValidity('')}
                   />
-                  {/* {errors.declaredCity.length > 0 && (
-                    <span className="error">{errors.declaredCity}</span>
-                  )} */}
+               
                 </div>
+               
                 <div className="form-group mb-3 col-12">
                   <label
                     htmlFor="declaredHouseNumber"
@@ -560,18 +563,16 @@ export default class ParentRegistrationFormContainer extends Component {
                     name="declaredHouseNumber"
                     onChange={this.handleChange}
                     // noValidate
-                    required
+                    pattern="[a-zA-Z-z - 0-9-]+"
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
-                        'Įveskite deklaruotą namo numerį.'
+                        'Įveskite deklaruotą namo numerį tinkamu formatu.'
                       );
                     }}
                     onInput={(e) => e.target.setCustomValidity('')}
-                    // required
+                    required
                   />
-                  {/* {errors.declaredHouseNumber.length > 0 && (
-                    <span className="error">{errors.declaredHouseNumber}</span>
-                  )} */}
+             
                 </div>
                 <div className="form-group mb-3 col-12">
                   <label htmlFor="declaredFlatNumber" className="control-label">
@@ -579,16 +580,14 @@ export default class ParentRegistrationFormContainer extends Component {
                   </label>
                   <input
                     type="number"
-                    min="0"
+                    min="1"
                     placeholder="Deklaruotas Butas"
                     className="form-control"
                     name="declaredFlatNumber"
                     onChange={this.handleChange}
-                    noValidate
+                
                   />
-                  {/* {errors.declaredFlatNumber.length > 0 && (
-                    <span className="error">{errors.declaredFlatNumber}</span>
-                  )} */}
+               
                 </div>
               </div>
             )}
