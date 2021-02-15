@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import {API} from "../../Configuration/AppConfig";
-import axios from "axios";
-import LogoutPresentation from "../Utilities/LogoutPresentation";
+import { API } from '../../Configuration/AppConfig';
+import axios from 'axios';
+import LogoutPresentation from '../Utilities/LogoutPresentation';
+import UserService from '../../Configuration/UserService';
+
+axios.defaults.withCredentials = true; // leidžia dalintis cookies
 
 export default class UpdateParentRegistrationFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      userId: '',
       id: '',
       firstname: '',
       lastname: '',
@@ -18,15 +22,14 @@ export default class UpdateParentRegistrationFormContainer extends Component {
       houseNumber: '',
       flatNumber: '',
       numberOfKids: '',
-      studying: false,
+      studying: '',
       studyingInstitution: '',
-      hasDisability: false,
-      declaredResidenceSameAsLiving: false,
+      hasDisability: '',
+      declaredResidenceSameAsLiving: '',
       declaredCity: '',
       declaredStreet: '',
       declaredHouseNumber: '',
       declaredFlatNumber: '',
-      userId: '',
 
       errors: {
         firstname: '',
@@ -47,14 +50,49 @@ export default class UpdateParentRegistrationFormContainer extends Component {
       },
     };
   }
+
+  // getUserId = () =>
+  //   axios.get(`${API}/api/users/loggeduserid`).catch((err) => null);
+
+  //  getParentDetails = () => axios.get(`${API}/api/users/${this.state.userId}/parentdetails`).catch(err => null);
+
+  // async componentDidMount() {
+  //   try {
+  //     const [user, parent] = await axios.all([
+  //       this.getUserId(),
+  //       this.getParentDetails(),
+  //     ]);
+  //     this.setState({
+  //       userId: user.data,
+  //       parentDetails: parent.data,
+  //     });
+  //     console.log('userId:' + this.state.userId);
+  //     console.log('parentDetails:' + this.state.parentDetails.firstname);
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   }
+  // }
+
+  // componentDidMount() {
+
+  //   axios
+  //     .get(`${API}/api/users/loggeduserid`)
+  //     .then((res) => {
+  //       UserService.setId(res.data);
+  //       this.setState({
+  //         userId: res.data,
+  //       });
+  //       console.log('user id: ' + this.state.userId);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
+
   componentDidMount() {
-    console.log('component did mount');
     axios
-      .get(
-        `${API}/api/users/${this.state.userId}/parentsdetails/${this.props.match.params.id}`
-      )
+      .get(`${API}/api/users/getparentdetails`)
       .then((res) => {
         this.setState({
+          //userId: res.data.userId,
           id: res.data.id,
           email: res.data.email,
           firstname: res.data.firstname,
@@ -74,25 +112,35 @@ export default class UpdateParentRegistrationFormContainer extends Component {
           declaredStreet: res.data.declaredStreet,
           declaredHouseNumber: res.data.declaredHouseNumber,
           declaredFlatNumber: res.data.declaredFlatNumber,
-          userId: res.data.userId,
+          // userId: res.data.userId,
         });
         console.log(res.data);
+        return axios.get(`${API}/api/users/loggeduserid`);
+      })
+      .then((res) => {
+        this.setState({
+          userId: res.data,
+        });
+        console.log('user id: ' + res.data);
       })
       .catch((err) => console.log(err));
   }
+
   handleChange = (event) => {
-    // event.preventDefault();
-    console.log(event.target.checked);
+    //event.preventDefault();
+    //console.log(event.target.checked);
 
     const validEmailRegex = RegExp(
       /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
     );
     const { name, value } = event.target;
+
     let errors = this.state.errors;
-    let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ]+$/;
-    let validPhone = /^[+3706]+[0-9]+$/;
-    let validPersonalCode = /^[3|4]+[0-9]+$/;
-    let numbers = /^[0-9]+$/;
+    let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
+    let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
+    let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
+    let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
+    let numbers = /^[1-9]+$/;
     switch (name) {
       case 'firstname':
         errors.firstname =
@@ -131,7 +179,10 @@ export default class UpdateParentRegistrationFormContainer extends Component {
             : '';
         break;
       case 'street':
-        errors.street = !value || value.length === 0 ? 'Įrašykite gatvę!' : '';
+        errors.street =
+          !value || !value.match(lettersAndNumber) || value.length === 0
+            ? 'Įrašykite gatvę!'
+            : '';
         break;
       case 'city':
         errors.city =
@@ -141,7 +192,9 @@ export default class UpdateParentRegistrationFormContainer extends Component {
         break;
       case 'houseNumber':
         errors.houseNumber =
-          !value || value.length === 0 ? 'Įrašykite namo numerį' : '';
+          !value || !value.match(lettersAndNumber) || value.length === 0
+            ? 'Įrašykite namo numerį'
+            : '';
         break;
 
       case 'flatNumber':
@@ -155,29 +208,6 @@ export default class UpdateParentRegistrationFormContainer extends Component {
             ? 'Įrašykite vaikų skaičių'
             : '';
         break;
-      case 'studyingInstitution':
-        errors.studyingInstitution =
-          !value || value.length === 0 ? 'Įrašykite Mokymosi instituciją!' : '';
-        break;
-      case 'declaredStreet':
-        errors.street = !value || value.length === 0 ? 'Įrašykite gatvę!' : '';
-        break;
-      case 'declaredCity':
-        errors.city =
-          !value || !value.match(letters) || value.length === 0
-            ? 'Įrašykite miestą'
-            : '';
-        break;
-      case 'declaredHouseNumber':
-        errors.houseNumber =
-          !value || value.length === 0 ? 'Įrašykite namo numerį' : '';
-        break;
-
-      case 'declaredFlatNumber':
-        errors.flatNumber = !value.match(numbers)
-          ? 'Įrašykite buto numerį, pvz: 2'
-          : '';
-        break;
 
       default:
         break;
@@ -186,36 +216,21 @@ export default class UpdateParentRegistrationFormContainer extends Component {
       // console.log(event.target.checked);
       this.setState({ [event.target.name]: event.target.checked });
     } else
-      this.setState({ errors, [event.target.name]: event.target.value }, () => {
-        console.log(errors);
-      });
+      this.setState(
+        {
+          errors,
+          [name]: value,
+        },
+        () => {
+          console.log(errors);
+        }
+      );
     console.log(this.state);
   };
+
   handleSubmit = (event) => {
     event.preventDefault();
 
-    // const outputUser = {
-    //   id: this.state.id,
-    //   email: this.state.email,
-    //   firstname: this.state.firstname,
-    //   lastname: this.state.lastname,
-    //   phone: this.state.phone,
-    //   personalCode: this.state.personalCode,
-    //   city: this.state.city,
-    //   street: this.state.street,
-    //   houseNumber: this.state.houseNumber,
-    //   flatNumber: this.state.flatNumber,
-    //   numberOfKids: this.state.numberOfKids,
-    //   studying: this.state.studying,
-    //   studyingInstitution: this.state.studyingInstitution,
-    //   hasDisability: this.state.hasDisability,
-    //   declaredResidenceSameAsLiving: this.state.declaredResidenceSameAsLiving,
-    //   declaredCity: this.state.declaredCity,
-    //   declaredStreet: this.state.declaredStreet,
-    //   declaredHouseNumber: this.state.declaredHouseNumber,
-    //   declaredFlatNumber: this.state.declaredFlatNumber,
-    //   userId: this.state.userId,
-    // };
     const validateForm = (errors) => {
       let valid = true;
       Object.values(errors).forEach(
@@ -227,50 +242,47 @@ export default class UpdateParentRegistrationFormContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .put(
-          `${API}/api/${this.state.userId}/parentsdetails/${this.state.id}`,
-          {
-            id: this.state.id,
-            email: this.state.email,
-            firstname: this.state.firstname,
-            lastname: this.state.lastname,
-            phone: this.state.phone,
-            personalCode: this.state.personalCode,
-            city: this.state.city,
-            street: this.state.street,
-            houseNumber: this.state.houseNumber,
-            flatNumber: this.state.flatNumber,
-            numberOfKids: this.state.numberOfKids,
-            studying: this.state.studying,
-            studyingInstitution: this.state.studyingInstitution,
-            hasDisability: this.state.hasDisability,
-            declaredResidenceSameAsLiving: this.state
-              .declaredResidenceSameAsLiving,
-            declaredCity: this.state.declaredCity,
-            declaredStreet: this.state.declaredStreet,
-            declaredHouseNumber: this.state.declaredHouseNumber,
-            declaredFlatNumber: this.state.declaredFlatNumber,
-            userId: this.state.userId,
-          }
-          // outputUser
-        )
+        .put(`${API}/api/users/${this.state.userId}/parentdetails/`, {
+          id: this.state.id,
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
+          email: this.state.email,
+          phone: this.state.phone,
+          personalCode: this.state.personalCode,
+          city: this.state.city,
+          street: this.state.street,
+          houseNumber: this.state.houseNumber,
+          flatNumber: this.state.flatNumber,
+          numberOfKids: this.state.numberOfKids,
+          studying: this.state.studying,
+          studyingInstitution: this.state.studyingInstitution,
+          hasDisability: this.state.hasDisability,
+          declaredResidenceSameAsLiving: this.state
+            .declaredResidenceSameAsLiving,
+          declaredCity: this.state.declaredCity,
+          declaredStreet: this.state.declaredStreet,
+          declaredHouseNumber: this.state.declaredHouseNumber,
+          declaredFlatNumber: this.state.declaredFlatNumber,
+
+          // userId: this.state.userId,
+        })
         .then((response) => {
           console.log(response);
           alert('Tėvo/Globėjo duomenys atnaujinti sėkmingai');
-          this.props.history.push('/tevai/sarasas');
+          this.props.history.push('/tevai');
         })
 
         .catch((error) => {
-          if (error.response.data.message === 'Email already taken') {
-            alert('Toks el.paštas jau egzistuoja! ');
+          if (error.response.data.message === 'Item already exists') {
+            alert('Toks asmens kodas jau egzistuoja!');
           } else if (error.response.data.message === 'Invalid field entry') {
-            alert('Užpildykite visus laukus!');
+            alert('Užpildykite visus privalomus laukus!');
           } else if (error.response.status === 400) {
             alert(
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          console.log(error);
+          console.log(error.response);
         });
     } else {
       console.error('Invalid Form');
@@ -280,17 +292,22 @@ export default class UpdateParentRegistrationFormContainer extends Component {
     }
   };
   render() {
+    // console.log('this.state length: ' + this.state.length);
     const { errors } = this.state;
     return (
       <div>
         {/* <NavigationComponent /> */}
-        <LogoutPresentation />
-        <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
+        {/*<LogoutPresentation />*/}
+        <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
-            <h3>Tėvo/Globėjo registracija</h3>
+            <h3>Anaujinkite savo kaip tėvo/globėjo duomenis</h3>
           </div>
-          <form noValidate className="form-group ">
-            <div className="mb-3">
+          <form
+            onSubmit={this.handleSubmit}
+            // noValidate
+            className="form-row "
+          >
+            <div className=" form-group mb-3 col-6">
               <label htmlFor="firstname" className="control-label">
                 Vardas*:
               </label>
@@ -301,12 +318,13 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                 name="firstname"
                 onChange={this.handleChange}
                 noValidate
+                value={this.state.firstname}
               />
               {errors.firstname.length > 0 && (
                 <span className="error">{errors.firstname}</span>
               )}
             </div>
-            <div className="mb-3 ">
+            <div className=" form-group mb-3 col-6">
               <label htmlFor="lastname" className="control-label">
                 Pavardė*:
               </label>
@@ -316,13 +334,14 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                 className="form-control"
                 name="lastname"
                 onChange={this.handleChange}
+                value={this.state.lastname}
                 noValidate
               />
               {errors.lastname.length > 0 && (
                 <span className="error">{errors.lastname}</span>
               )}
             </div>
-            <div className="mb-3">
+            <div className="form-group mb-3 col-6">
               <label htmlFor="email" className="control-label">
                 El.paštas*:
               </label>
@@ -332,13 +351,14 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                 className="form-control"
                 name="email"
                 onChange={this.handleChange}
+                value={this.state.email}
                 noValidate
               />
               {errors.email.length > 0 && (
                 <span className="error">{errors.email}</span>
               )}
             </div>
-            <div className="mb-3">
+            <div className="form-group mb-3 col-6">
               <label htmlFor="phone" className="control-label">
                 Tel.nr*:
               </label>
@@ -348,13 +368,14 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                 className="form-control"
                 name="phone"
                 onChange={this.handleChange}
+                value={this.state.phone}
                 noValidate
               />
               {errors.phone.length > 0 && (
                 <span className="error">{errors.phone}</span>
               )}
             </div>
-            <div className="mb-3">
+            <div className="form-group mb-3 col-6">
               <label htmlFor="personalCode" className="control-label">
                 Asmens Kodas*:
               </label>
@@ -364,29 +385,14 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                 className="form-control"
                 name="personalCode"
                 onChange={this.handleChange}
+                value={this.state.personalCode}
                 noValidate
               />
               {errors.personalCode.length > 0 && (
                 <span className="error">{errors.personalCode}</span>
               )}
             </div>
-            <div className="mb-3">
-              <label htmlFor="street" className="control-label">
-                Gatvė*:
-              </label>
-              <input
-                type="text"
-                placeholder="Gatvė"
-                className="form-control"
-                name="street"
-                onChange={this.handleChange}
-                noValidate
-              />
-              {errors.street.length > 0 && (
-                <span className="error">{errors.street}</span>
-              )}
-            </div>
-            <div className="mb-3">
+            <div className="form-group mb-3 col-6">
               <label htmlFor="city" className="control-label">
                 Miestas*:
               </label>
@@ -396,13 +402,32 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                 className="form-control"
                 name="city"
                 onChange={this.handleChange}
+                value={this.state.city}
                 noValidate
               />
               {errors.city.length > 0 && (
                 <span className="error">{errors.city}</span>
               )}
             </div>
-            <div className="mb-3">
+            <div className="form-group mb-3 col-6">
+              <label htmlFor="street" className="control-label">
+                Gatvė*:
+              </label>
+              <input
+                type="text"
+                placeholder="Gatvė"
+                className="form-control"
+                name="street"
+                onChange={this.handleChange}
+                value={this.state.street}
+                noValidate
+              />
+              {errors.street.length > 0 && (
+                <span className="error">{errors.street}</span>
+              )}
+            </div>
+
+            <div className="form-group mb-3 col-6">
               <label htmlFor="houseNumber" className="control-label">
                 Namo Numeris*:
               </label>
@@ -412,13 +437,14 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                 className="form-control"
                 name="houseNumber"
                 onChange={this.handleChange}
+                value={this.state.houseNumber}
                 noValidate
               />
               {errors.houseNumber.length > 0 && (
                 <span className="error">{errors.houseNumber}</span>
               )}
             </div>
-            <div className="mb-3">
+            <div className="form-group mb-3 col-6">
               <label htmlFor="flatNumber" className="control-label">
                 Butas:
               </label>
@@ -429,36 +455,40 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                 className="form-control"
                 name="flatNumber"
                 onChange={this.handleChange}
+                value={this.state.flatNumber}
                 noValidate
               />
               {errors.flatNumber.length > 0 && (
                 <span className="error">{errors.flatNumber}</span>
               )}
             </div>
-            <div className="mb-3">
+            <div className="form-group mb-3 col-6">
               <label htmlFor="numberOfKids" className="control-label">
-                Kiek turite vaikų?*:
+                Kiek turite nepilnamečių vaikų?*:
               </label>
               <input
                 type="number"
-                min="0"
+                min="1"
                 placeholder="Skaičius"
                 className="form-control"
                 name="numberOfKids"
                 onChange={this.handleChange}
+                value={this.state.numberOfKids}
                 noValidate
               />
               {errors.numberOfKids.length > 0 && (
                 <span className="error">{errors.numberOfKids}</span>
               )}
             </div>
-            <div className="form-check">
+
+            <div className="ml-4 form-check mb-3 col-12">
               <input
                 className="form-check-input"
                 type="checkbox"
                 name="studying"
                 checked={this.state.studying}
                 onChange={this.handleChange}
+                value={this.state.studying}
               />
               <label htmlFor="studying" className="form-check-label">
                 Mokausi bendrojo lavinimo mokykloje
@@ -466,7 +496,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
             </div>
 
             {this.state.studying ? (
-              <div className="mb-3">
+              <div className="form-group mb-3 col-6">
                 <label htmlFor="studyingInstitution" className="control-label">
                   Mokymosi įstaigos pavadinimas*:
                 </label>
@@ -476,14 +506,21 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                   className="form-control"
                   name="studyingInstitution"
                   onChange={this.handleChange}
-                  noValidate
+                  value={this.state.studyingInstitution}
+                  // noValidate
+
+                  pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
+                  onInvalid={(e) => {
+                    e.target.setCustomValidity(
+                      'Įveskite mokymosi įstaigos pavadinimą.'
+                    );
+                  }}
+                  onInput={(e) => e.target.setCustomValidity('')}
+                  required
                 />
-                {errors.studyingInstitution.length > 0 && (
-                  <span className="error">{errors.studyingInstitution}</span>
-                )}
               </div>
             ) : null}
-            <div className="form-check">
+            <div className=" ml-4 form-check form-group mb-3 col-10">
               <input
                 type="checkbox"
                 className="form-check-input"
@@ -491,6 +528,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                 id="hasDisability"
                 checked={this.state.hasDisability}
                 onChange={this.handleChange}
+                value={this.state.hasDisability}
                 noValidate
               />
               <label htmlFor="hasDisability" className="form-check-label">
@@ -498,7 +536,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
               </label>
             </div>
 
-            <div className="form-check">
+            <div className=" ml-4 form-check form-group mb-3 col-12">
               <input
                 className="form-check-input"
                 type="checkbox"
@@ -506,6 +544,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                 name="declaredResidenceSameAsLiving"
                 id="declaredResidenceSameAsLiving"
                 onChange={this.handleChange}
+                value={this.state.declaredResidenceSameAsLiving}
               />
               <label
                 htmlFor="declaredResidenceSameAsLiving"
@@ -515,24 +554,8 @@ export default class UpdateParentRegistrationFormContainer extends Component {
               </label>
             </div>
             {this.state.declaredResidenceSameAsLiving ? null : (
-              <div>
-                <div className="mb-3">
-                  <label htmlFor="declaredStreet" className="control-label">
-                    Deklaruota Gatvė*:
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Deklaruota Gatvė"
-                    className="form-control"
-                    name="declaredStreet"
-                    onChange={this.handleChange}
-                    noValidate
-                  />
-                  {errors.declaredStreet.length > 0 && (
-                    <span className="error">{errors.declaredStreet}</span>
-                  )}
-                </div>
-                <div className="mb-3">
+              <div className="form-row">
+                <div className="form-group mb-3 col-12">
                   <label htmlFor="declaredCity" className="control-label">
                     Deklaruotas Miestas*:
                   </label>
@@ -542,13 +565,42 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                     className="form-control"
                     name="declaredCity"
                     onChange={this.handleChange}
-                    noValidate
+                    value={this.state.declaredCity}
+                    // noValidate
+                    pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9-]+"
+                    onInvalid={(e) => {
+                      e.target.setCustomValidity(
+                        'Įveskite deklaruotą miestą tinkamu formatu.'
+                      );
+                    }}
+                    onInput={(e) => e.target.setCustomValidity('')}
+                    required
                   />
-                  {errors.declaredCity.length > 0 && (
-                    <span className="error">{errors.declaredCity}</span>
-                  )}
                 </div>
-                <div className="mb-3">
+                <div className="form-group mb-3 col-12">
+                  <label htmlFor="declaredStreet" className="control-label">
+                    Deklaruota Gatvė*:
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Deklaruota Gatvė"
+                    className="form-control"
+                    name="declaredStreet"
+                    onChange={this.handleChange}
+                    value={this.state.declaredStreet}
+                    // noValidate
+                    pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
+                    onInvalid={(e) => {
+                      e.target.setCustomValidity(
+                        'Įveskite deklaruotą gatvę tinkamu formatu.'
+                      );
+                    }}
+                    onInput={(e) => e.target.setCustomValidity('')}
+                    required
+                  />
+                </div>
+
+                <div className="form-group mb-3 col-12">
                   <label
                     htmlFor="declaredHouseNumber"
                     className="control-label"
@@ -561,40 +613,43 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                     className="form-control"
                     name="declaredHouseNumber"
                     onChange={this.handleChange}
-                    noValidate
+                    // noValidate
+                    value={this.state.declaredHouseNumber}
+                    pattern="[a-zA-Z-z - 0-9-]+"
+                        onInvalid={(e) => {
+                          e.target.setCustomValidity(
+                            'Įveskite deklaruotą namo numerį tinkamu formatu.'
+                          );
+                        }}
+                        onInput={(e) => e.target.setCustomValidity('')}
+                        required
                   />
-                  {errors.declaredHouseNumber.length > 0 && (
-                    <span className="error">{errors.declaredHouseNumber}</span>
-                  )}
                 </div>
-                <div className="mb-3">
+                <div className="form-group mb-3 col-12">
                   <label htmlFor="declaredFlatNumber" className="control-label">
                     Deklaruotas Butas:
                   </label>
                   <input
                     type="number"
-                    min="0"
+                    min="1"
                     placeholder="Deklaruotas Butas"
                     className="form-control"
                     name="declaredFlatNumber"
                     onChange={this.handleChange}
+                    value={this.state.declaredFlatNumber}
                     noValidate
-                    //required
                   />
-                  {errors.declaredFlatNumber.length > 0 && (
-                    <span className="error">{errors.declaredFlatNumber}</span>
-                  )}
                 </div>
               </div>
             )}
-            <div> * - privalomi laukai</div>
+            <div className="form-group mb-3 col-6"> * - privalomi laukai</div>
             <div>
               <button
                 type="submit"
-                className="btn btn-success btn-lg btn-block"
-                onSubmit={this.handleSubmit}
+                className="btn btn-success btn-lg mt-5  
+                "
               >
-                Išsaugoti
+               Atnaujinti
               </button>
             </div>
           </form>

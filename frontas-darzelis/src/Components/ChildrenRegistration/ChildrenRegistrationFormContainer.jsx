@@ -385,6 +385,16 @@ export default class ChildrenRegistrationFormContainer extends Component {
             alert('Gimimo data negali būti iš ateities!');
           } else if (error.response.data.message === `Bad birthdate format`) {
             alert('Netinkamas datos formatas!');
+          } else if (error.response.data === 'Parent registration not filled') {
+            alert(
+              'Registracija nesėkminga. Pirminė tėvo registracijos forma neužpildyta'
+            );
+          } else if (
+            error.response.data.message === 'Parent registration not filled'
+          ) {
+            alert(
+              'Registracija nesėkminga. Pirminė tėvo registracijos forma neužpildyta'
+            );
           } else if (error.response.status === 400) {
             alert(
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
@@ -820,9 +830,10 @@ export default class ChildrenRegistrationFormContainer extends Component {
                       name="secondParentStudyingInstitution"
                       onChange={this.handleChange}
                       // noValidate
+                      pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
                       onInvalid={(e) => {
                         e.target.setCustomValidity(
-                          'Įveskite mokymosios įstaigos pavadinimą.'
+                          'Įveskite mokymosi įstaigos pavadinimą.'
                         );
                       }}
                       onInput={(e) => e.target.setCustomValidity('')}
@@ -956,11 +967,6 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         onInput={(e) => e.target.setCustomValidity('')}
                         required
                       />
-                      {/* {errors.secondParentDeclaredHouseNumber.length > 0 && (
-                        <span className="error">
-                          {errors.secondParentDeclaredHouseNumberr}
-                        </span>
-                      )} */}
                     </div>
                     <div className="form-group mb-3 col-6">
                       <label
@@ -977,11 +983,6 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         name="secondParentDeclaredFlatNumber"
                         onChange={this.handleChange}
                       />
-                      {/* {errors.secondParentDeclaredFlatNumber.length > 0 && (
-                        <span className="error">
-                          {errors.secondParentDeclaredFlatNumber}
-                        </span>
-                      )} */}
                     </div>
                   </div>
                 )}

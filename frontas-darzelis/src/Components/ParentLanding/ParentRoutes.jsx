@@ -10,7 +10,8 @@ import ParentRegistrationFormContainer from '../ParentRegistration/ParentRegistr
 import ChildrenRegistrationFormContainer from '../ChildrenRegistration/ChildrenRegistrationFormContainer';
 import MainRegistrationContainer from '../MainRegistration/MainRegistrationContainer';
 import NotFoundPage from './NotFoundPage';
-import NextPage from "../ChildrenRegistration/NextPage"
+import NextPage from '../ChildrenRegistration/NextPage';
+import UpdateParentRegistrationFormContainer from '../ParentRegistration/UpdateParentRegistrationFormContainer';
 
 const ParentRoutes = () => {
   return (
@@ -31,6 +32,12 @@ const ParentRoutes = () => {
         path="/tevai/registracija"
         exact
         component={ParentRegistrationFormContainer}
+        role={'PARENT'}
+      />
+      <PrivateRoute
+        path="/tevai/registracija/redaguoti"
+        exact
+        component={UpdateParentRegistrationFormContainer}
         role={'PARENT'}
       />
       <PrivateRoute
