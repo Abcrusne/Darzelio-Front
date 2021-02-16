@@ -10,6 +10,7 @@ import ParentRegistrationFormContainer from "../ParentRegistration/ParentRegistr
 import ChildrenRegistrationFormContainer from "../ChildrenRegistration/ChildrenRegistrationFormContainer";
 import MainRegistrationContainer from "../MainRegistration/MainRegistrationContainer";
 import NotFoundPage from "./NotFoundPage";
+import UpdateParentRegistrationFormContainer from "../ParentRegistration/UpdateParentRegistrationFormContainer";
 
 
 const ParentRoutes = () => {
@@ -18,7 +19,8 @@ const ParentRoutes = () => {
                 <PrivateRoute path='/tevai' exact component={ParentLandingDashboard} role={"PARENT"}/>
                 <PrivateRoute path='/tevai/naudotojo-duomenys' exact component={ParentUserdata} role={"PARENT"}/>
                 <PrivateRoute path='/tevai/registracija' exact component={ParentRegistrationFormContainer} role={"PARENT"}/>
-                <PrivateRoute path='tevai/vaikoregistracija' exact component={ChildrenRegistrationFormContainer} role={"PARENT"}/>
+                <PrivateRoute path='/tevai/registracija/redaguoti' exact component={UpdateParentRegistrationFormContainer} role={"PARENT"}/>
+                <PrivateRoute path='/tevai/vaikoregistracija' exact component={ChildrenRegistrationFormContainer} role={"PARENT"}/>
                 <PrivateRoute path='/tevai/registracija-i-darzeli' exact component={MainRegistrationContainer} role={"PARENT"}/>
                 <PrivateRoute path='/tevai/*' exact component={NotFoundPage} role={"PARENT"}/>
             </Switch>

@@ -33,12 +33,15 @@ class LoginFormContainer extends Component {
     userData.append('password', this.state.password);
 
     axios
-        .post(`${API}/login`, userData, {
+        .post(`${API}/login`, userData,
+        {
           headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-        })
+        }
+        )
         .then((response) => {
           UserService.setRole(response.data.role);
           this.setState({ role: response.data.role });
+          console.log(response.data);
           const currentDate = Date.now();
           UserService.setRoleExpiration(currentDate);
           const currentRole = this.state.role;

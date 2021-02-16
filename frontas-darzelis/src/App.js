@@ -31,7 +31,8 @@ function App() {
         <PrivateRoute exact path="/tevai" component={ParentLanding} role={"PARENT"} />
         <PrivateRoute path='/tevai/naudotojo-duomenys' exact component={ParentLanding} role={"PARENT"}/>
         <PrivateRoute path='/tevai/registracija' exact component={ParentLanding} role={"PARENT"}/>
-        <PrivateRoute path='tevai/vaikoregistracija' exact component={ParentLanding} role={"PARENT"}/>
+        <PrivateRoute path='/tevai/registracija/redaguoti' exact component={ParentLanding} role={"PARENT"}/>
+        <PrivateRoute path='/tevai/vaikoregistracija' exact component={ParentLanding} role={"PARENT"}/>
         <PrivateRoute path='/tevai/registracija-i-darzeli' exact component={ParentLanding} role={"PARENT"}/>
         <PrivateRoute path='/tevai/*' exact component={ParentLanding} role={"PARENT"}/>
         <PrivateRoute exact path="/admin/pradzia" component={SysAdminLanding} role={"ADMIN"}/>
