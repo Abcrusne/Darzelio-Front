@@ -141,9 +141,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
     let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 ,/./-]+$/;
+    let houseNumberValidation = /^\d+[a-zA-Z ]*$/;
     let date = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
 
-    let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
+    let validPersonalCode = /^[5|6]+[0-9]+$/;
+    let validParentPersonalCode = /^[3|4|5|6]+[0-9]+$/;
     let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
     let numbers = /^[1-9]+$/;
     switch (name) {
@@ -167,7 +169,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
           value.length < 11 ||
           value.length > 11 ||
           value.length === 0
-            ? 'Asmens kodo formatas: 49001011111 arba 39001011111 '
+            ? 'Vaiko asmens kodo formatas: 59001011111 arba 69001011111 '
             : '';
         break;
       case 'birthdate':
@@ -190,8 +192,8 @@ export default class ChildrenRegistrationFormContainer extends Component {
         break;
       case 'houseNumber':
         errors.houseNumber =
-          !value || !value.match(lettersAndNumber) || value.length === 0
-            ? 'Įrašykite namo numerį'
+          !value || !value.match(houseNumberValidation) || value.length === 0
+            ? 'Įrašykite namo numerį, pvz.: 1A'
             : '';
         break;
 
@@ -216,11 +218,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
 
       case 'secondParentPersonalCode':
         errors.secondParentPersonalCode =
-          !value.match(validPersonalCode) ||
+          !value.match(validParentPersonalCode) ||
           value.length < 11 ||
           value.length > 11 ||
           value.length === 0
-            ? 'Asmens kodo formatas: 49001011111 arba 39001011111 '
+            ? 'Asmens kodo formatas: 39001011111, 49001011111, 59001011111 arba 69001011111  '
             : '';
         break;
 
@@ -236,7 +238,9 @@ export default class ChildrenRegistrationFormContainer extends Component {
         break;
       case 'secondParentHouseNumber':
         errors.secondParentHouseNumber =
-          !value || value.length === 0 ? 'Įrašykite namo numerį' : '';
+          !value || !value.match(houseNumberValidation) || value.length === 0
+            ? 'Įrašykite namo numerį, pvz.: 1A'
+            : '';
         break;
 
       case 'secondParentFlatNumber':
@@ -958,10 +962,17 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         onChange={this.handleChange}
                         // noValidate
 
-                        pattern="[a-zA-Z-z - 0-9-]+"
+                        // pattern="[a-zA-Z-z - 0-9-]+"
+                        // onInvalid={(e) => {
+                        //   e.target.setCustomValidity(
+                        //     'Įveskite deklaruotą namo numerį tinkamu formatu.'
+                        //   );
+                        // }}
+                        // onInput={(e) => e.target.setCustomValidity('')}
+                        pattern ="^\d+[a-zA-Z ]*"
                         onInvalid={(e) => {
                           e.target.setCustomValidity(
-                            'Įveskite deklaruotą namo numerį tinkamu formatu.'
+                            'Įveskite deklaruotą namo numerį tinkamu formatu, pvz.: 1A'
                           );
                         }}
                         onInput={(e) => e.target.setCustomValidity('')}
