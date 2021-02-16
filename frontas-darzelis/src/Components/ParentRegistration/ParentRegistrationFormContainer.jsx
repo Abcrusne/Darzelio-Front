@@ -83,6 +83,7 @@ export default class ParentRegistrationFormContainer extends Component {
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
     let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
+    let streetValidation =  /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,\.\- ]*$/;
     let houseNumberValidation = /^\d+[a-zA-Z ]*$/;
     let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
     let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
@@ -126,7 +127,7 @@ export default class ParentRegistrationFormContainer extends Component {
         break;
       case 'street':
         errors.street =
-          !value || !value.match(lettersAndNumber) || value.length === 0
+          !value || !value.match(streetValidation) || value.length === 0
             ? 'Įrašykite gatvę!'
             : '';
         break;
@@ -448,6 +449,13 @@ export default class ParentRegistrationFormContainer extends Component {
                 name="numberOfKids"
                 onChange={this.handleChange}
                 noValidate
+                onInvalid={(e) => {
+                  e.target.setCustomValidity(
+                    'Įveskite vaikų skaičių.'
+                  );
+                }}
+                onInput={(e) => e.target.setCustomValidity('')}
+                required
               />
               {errors.numberOfKids.length > 0 && (
                 <span className="error">{errors.numberOfKids}</span>
@@ -537,7 +545,7 @@ export default class ParentRegistrationFormContainer extends Component {
                     name="declaredCity"
                     onChange={this.handleChange}
                     // noValidate
-                    pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9-]+"
+                    pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ -]+"
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
                         'Įveskite deklaruotą miestą tinkamu formatu.'
@@ -559,7 +567,9 @@ export default class ParentRegistrationFormContainer extends Component {
                     name="declaredStreet"
                     onChange={this.handleChange}
                     // noValidate
-                    pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
+                    // pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
+                    // pattern ="^\[a-zA-z]+[0-9 . -  ]*"
+                    pattern ="^[a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+[- a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 . -  ]*"
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
                         'Įveskite deklaruotą gatvę tinkamu formatu.'
