@@ -60,7 +60,14 @@ export default class ParentRegistrationFormContainer extends Component {
           id: res.data,
         });
         console.log('user id: ' + this.state.id);
+       // return axios.get(`${API}/api/users/${this.state.id}/parentdetails`);
       })
+      // .then((res) => {
+      //   this.setState({
+      //     id: res.data.id,
+      //   });
+      //   console.log("parent id: "+ this.state.id);
+      // })
       .catch((err) => console.log(err));
   }
 
@@ -76,6 +83,7 @@ export default class ParentRegistrationFormContainer extends Component {
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
     let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
+    let houseNumberValidation = /^\d+[a-zA-Z ]*$/;
     let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
     let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
     let numbers = /^[1-9]+$/;
@@ -113,7 +121,7 @@ export default class ParentRegistrationFormContainer extends Component {
           value.length < 11 ||
           value.length > 11 ||
           value.length === 0
-            ? 'Asmens kodo formatas: 49001011111 arba 39001011111 '
+            ? 'Asmens kodo formatas: 39001011111, 49001011111, 59001011111 arba 69001011111 '
             : '';
         break;
       case 'street':
@@ -130,7 +138,7 @@ export default class ParentRegistrationFormContainer extends Component {
         break;
       case 'houseNumber':
         errors.houseNumber =
-          !value || !value.match(lettersAndNumber) || value.length === 0
+          !value || !value.match(houseNumberValidation) || value.length === 0
             ? 'Įrašykite namo numerį'
             : '';
         break;
@@ -242,7 +250,7 @@ export default class ParentRegistrationFormContainer extends Component {
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          console.log(error);
+          console.log(error.response);
         });
     } else {
       console.error('Invalid Form');
@@ -259,6 +267,20 @@ export default class ParentRegistrationFormContainer extends Component {
       <div>
         {/* <NavigationComponent /> */}
         {/*<LogoutPresentation />*/}
+        {/* if(this.state.id > 0) {
+          return (
+            <div>
+              Jus jau užpildėte duomenis, jei norite juos peržiūrėti ir/arba redaguoti 
+              <NavLink to="/tevai/registracija/redaguoti" className="nav-link ">
+               spauskite čia
+              </NavLink>
+            </div>
+          )
+        }
+        else {
+          return ( */}
+            
+       
         <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
             <h3>Užpildykite savo kaip tėvo/globėjo duomenis</h3>
@@ -563,10 +585,11 @@ export default class ParentRegistrationFormContainer extends Component {
                     name="declaredHouseNumber"
                     onChange={this.handleChange}
                     // noValidate
-                    pattern="[a-zA-Z-z - 0-9-]+"
+                    // pattern="[0-9][a-zA-Z0-9- - ]*?{1,7}"
+                    pattern ="^\d+[a-zA-Z ]*"
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
-                        'Įveskite deklaruotą namo numerį tinkamu formatu.'
+                        'Įveskite deklaruotą namo numerį tinkamu formatu, pvz.: 1A'
                       );
                     }}
                     onInput={(e) => e.target.setCustomValidity('')}
@@ -604,7 +627,9 @@ export default class ParentRegistrationFormContainer extends Component {
             </div>
           </form>
         </div>
-      </div>
+           {/* )
+          } */}
+      // </div>
     );
   }
 }
