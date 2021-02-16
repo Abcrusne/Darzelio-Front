@@ -3,6 +3,31 @@ import { Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
 //our imports
+<<<<<<< HEAD
+import PrivateRoute from "../../Configuration/PrivateRoute";
+import ParentLandingDashboard from "./ParentLandingDashboard";
+import ParentUserdata from "./ParentUserdata";
+import ParentRegistrationFormContainer from "../ParentRegistration/ParentRegistrationFormContainer";
+import ChildrenRegistrationFormContainer from "../ChildrenRegistration/ChildrenRegistrationFormContainer";
+import MainRegistrationContainer from "../MainRegistration/MainRegistrationContainer";
+import NotFoundPage from "./NotFoundPage";
+import UpdateParentRegistrationFormContainer from "../ParentRegistration/UpdateParentRegistrationFormContainer";
+
+
+const ParentRoutes = () => {
+    return (
+            <Switch>
+                <PrivateRoute path='/tevai' exact component={ParentLandingDashboard} role={"PARENT"}/>
+                <PrivateRoute path='/tevai/naudotojo-duomenys' exact component={ParentUserdata} role={"PARENT"}/>
+                <PrivateRoute path='/tevai/registracija' exact component={ParentRegistrationFormContainer} role={"PARENT"}/>
+                <PrivateRoute path='/tevai/registracija/redaguoti' exact component={UpdateParentRegistrationFormContainer} role={"PARENT"}/>
+                <PrivateRoute path='/tevai/vaikoregistracija' exact component={ChildrenRegistrationFormContainer} role={"PARENT"}/>
+                <PrivateRoute path='/tevai/registracija-i-darzeli' exact component={MainRegistrationContainer} role={"PARENT"}/>
+                <PrivateRoute path='/tevai/*' exact component={NotFoundPage} role={"PARENT"}/>
+            </Switch>
+    )
+}
+=======
 import PrivateRoute from '../../Configuration/PrivateRoute';
 import ParentLandingDashboard from './ParentLandingDashboard';
 import ParentUserdata from './ParentUserdata';
@@ -67,5 +92,6 @@ const ParentRoutes = () => {
     </Switch>
   );
 };
+>>>>>>> 34a9546f3c2609569f1d47c706d3d8df4ce0e00c
 
 export default ParentRoutes;

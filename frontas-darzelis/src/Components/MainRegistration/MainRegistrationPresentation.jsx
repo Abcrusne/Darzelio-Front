@@ -1,6 +1,6 @@
 import React from "react";
 
-const MainRegistrationPresentation = ({onSubmit, ...other }) => {
+const MainRegistrationPresentation = ({onSubmit, key, value, kindergartens, ...other }) => {
     return (
         <form className="col-lg-5 shadow p-3 mt-5 bg-white rounded" onSubmit={onSubmit} >
             <div className="mb-3">
@@ -23,13 +23,13 @@ const MainRegistrationPresentation = ({onSubmit, ...other }) => {
                 <label className="input-group-text" htmlFor="selectKindergarten1">I prioriteto darželis</label>
                 <select className="form-control" id="selectKindergarten1">
                     <option selected>Pasirinkite darželį</option>
-                    {/*{kindergartens.map(kindergarten => (*/}
-                    {/*    <option*/}
-                    {/*        key={kindergarten.id}*/}
-                    {/*        value={kindergarten.id}>*/}
-                    {/*        {kindergarten.name}*/}
-                    {/*    </option>*/}
-                    {/*))}*/}
+                    {kindergartens.map((kindergarten, index) => (
+                        <option
+                            key={index}
+                            value={kindergarten}>
+                            {kindergarten.name}
+                        </option>
+                    ))}
                 </select>
             </div>
             <div className="input-group mb-3">
