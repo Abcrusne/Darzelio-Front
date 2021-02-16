@@ -138,6 +138,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
     let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
+    let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,\.\- ]*$/;
     let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
     let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
     let numbers = /^[1-9]+$/;
@@ -180,7 +181,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
         break;
       case 'street':
         errors.street =
-          !value || !value.match(lettersAndNumber) || value.length === 0
+          !value || !value.match(streetValidation) || value.length === 0
             ? 'Įrašykite gatvę!'
             : '';
         break;
@@ -273,10 +274,32 @@ export default class UpdateParentRegistrationFormContainer extends Component {
         })
 
         .catch((error) => {
-          if (error.response.data.message === 'Item already exists') {
-            alert('Toks asmens kodas jau egzistuoja!');
+          if (error.response.data === 'This personal code already exists') {
+            alert(
+              'Pasitikrinkite ar suvedėte teisingus asmens kodus. Toks vaiko asmens kodas jau egzstuoja! '
+            );
+          } else if (error.response.data.message === 'Item already exists') {
+            alert(
+              'Pasitikrinkite ar suvedėte teisingus asmens kodus. Toks asmens kodas jau egzistuoja'
+            );
           } else if (error.response.data.message === 'Invalid field entry') {
             alert('Užpildykite visus privalomus laukus!');
+          } else if (
+            error.response.data === `The birthdate can't be from the future`
+          ) {
+            alert('Gimimo data negali būti iš ateities!');
+          } else if (error.response.data.message === `Bad birthdate format`) {
+            alert('Netinkamas datos formatas!');
+          } else if (error.response.data === 'Parent registration not filled') {
+            alert(
+              'Registracija nesėkminga. Pirminė tėvo registracijos forma neužpildyta'
+            );
+          } else if (
+            error.response.data.message === 'Parent registration not filled'
+          ) {
+            alert(
+              'Registracija nesėkminga. Pirminė tėvo registracijos forma neužpildyta'
+            );
           } else if (error.response.status === 400) {
             alert(
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
@@ -567,7 +590,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     value={this.state.declaredCity}
                     // noValidate
-                    pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9-]+"
+                    pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ - ]+"
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
                         'Įveskite deklaruotą miestą tinkamu formatu.'
@@ -589,7 +612,8 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     value={this.state.declaredStreet}
                     // noValidate
-                    pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
+                    // pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
+                    pattern ="^[a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+[- a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 . -  ]*"
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
                         'Įveskite deklaruotą gatvę tinkamu formatu.'
@@ -615,14 +639,14 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     // noValidate
                     value={this.state.declaredHouseNumber}
-                    pattern="[a-zA-Z-z - 0-9-]+"
-                        onInvalid={(e) => {
-                          e.target.setCustomValidity(
-                            'Įveskite deklaruotą namo numerį tinkamu formatu.'
-                          );
-                        }}
-                        onInput={(e) => e.target.setCustomValidity('')}
-                        required
+                    pattern="^\d+[a-zA-Z ]*"
+                    onInvalid={(e) => {
+                      e.target.setCustomValidity(
+                        'Įveskite deklaruotą namo numerį tinkamu formatu.'
+                      );
+                    }}
+                    onInput={(e) => e.target.setCustomValidity('')}
+                    required
                   />
                 </div>
                 <div className="form-group mb-3 col-12">
@@ -637,7 +661,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                     name="declaredFlatNumber"
                     onChange={this.handleChange}
                     value={this.state.declaredFlatNumber}
-                    noValidate
+                    // noValidate
                   />
                 </div>
               </div>
@@ -649,7 +673,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                 className="btn btn-success btn-lg mt-5  
                 "
               >
-               Atnaujinti
+                Atnaujinti
               </button>
             </div>
           </form>
