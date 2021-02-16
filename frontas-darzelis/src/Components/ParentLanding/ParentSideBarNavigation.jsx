@@ -15,7 +15,7 @@ const ParentSideBarNavigation = () => {
                     <hr />
                 </li>
                 <li className="nav-item">
-                    <Link to="/tevai/registracija" className="nav-link active" id="parentForm">
+                    <Link to="/tevai/registracija/redaguoti" className="nav-link active" id="parentForm">
                         <i className="fas fa-file-contract"></i>
                         Tėvo (globėjo) anketa
                     </Link>

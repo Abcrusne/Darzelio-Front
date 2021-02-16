@@ -122,6 +122,7 @@ class MainRegistrationContainer extends Component {
         //         kindergarten === priorities.fifthPriority
         // );
 
+<<<<<<< HEAD
         return(
             <form className="col-lg-5 shadow p-3 mt-5 bg-white rounded"
                   onSubmit={this.handleSubmit}
@@ -241,3 +242,8 @@ class MainRegistrationContainer extends Component {
     }
 }
 export default  withRouter(MainRegistrationContainer);
+=======
+     )
+};
+export default MainRegistrationContainer;
+>>>>>>> 34a9546f3c2609569f1d47c706d3d8df4ce0e00c

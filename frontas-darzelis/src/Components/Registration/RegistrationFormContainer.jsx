@@ -33,7 +33,7 @@ export default class RegistrationFormContainer extends Component {
     );
     const { name, value } = event.target;
     const errors = this.state.errors;
-    const letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ]+$/;
+    const letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ -]+$/;
 
     switch (name) {
       case 'firstname':
