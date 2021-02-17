@@ -246,6 +246,14 @@ export default class ParentRegistrationFormContainer extends Component {
             alert('Toks asmens kodas jau egzistuoja!');
           } else if (error.response.data.message === 'Invalid field entry') {
             alert('Užpildykite visus privalomus laukus!');
+          } else if (error.response.data === 'Toks asmens kodas jau užimtas') {
+            alert('Pasitikrinkite asmens kodus.');
+          } else if (
+            error.response.data === 'Šis asmens kodas jau egzistuoja sistemoje!'
+          ) {
+            alert(
+              'Pasitikrinkite ar suvedėte teisingus asmens kodus. Šis asmens kodas jau egzistuoja sistemoje!(toks tevo asmens kodas jau egzistuoja vaiku sistemoje)'
+            );
           } else if (error.response.status === 400) {
             alert(
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
@@ -273,7 +281,7 @@ export default class ParentRegistrationFormContainer extends Component {
       return (
         <div>
           <h5>
-            Jus jau užpildėte duomenis, jei norite juos peržiūrėti ir/arba
+            Jūs jau užpildėte duomenis, jei norite juos peržiūrėti ir/arba
             redaguoti
             <NavLink to="/tevai/registracija/redaguoti" className="nav-link ">
               spauskite čia

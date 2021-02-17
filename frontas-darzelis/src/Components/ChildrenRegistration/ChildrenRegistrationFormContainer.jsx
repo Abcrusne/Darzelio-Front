@@ -386,6 +386,8 @@ export default class ChildrenRegistrationFormContainer extends Component {
             alert(
               'Pasitikrinkite ar suvedėte teisingus asmens kodus. Toks asmens kodas jau egzistuoja'
             );
+          } else if (error.response.data === 'Toks asmens kodas jau užimtas') {
+            alert('Pasitikrinkite asmens kodus.');
           } else if (
             error.response.data === 'Šis asmens kodas jau egzistuoja sistemoje!'
           ) {

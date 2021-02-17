@@ -282,6 +282,14 @@ export default class UpdateParentRegistrationFormContainer extends Component {
             alert(
               'Pasitikrinkite ar suvedėte teisingus asmens kodus. Toks asmens kodas jau egzistuoja'
             );
+          } else if (error.response.data === 'Toks asmens kodas jau užimtas') {
+            alert('Pasitikrinkite asmens kodą. Toks asmens kodas jau užimtas.');
+          } else if (
+            error.response.data === 'Šis asmens kodas jau egzistuoja sistemoje!'
+          ) {
+            alert(
+              'Pasitikrinkite ar suvedėte teisingus asmens kodus. Šis asmens kodas jau egzistuoja sistemoje!(toks tevo asmens kodas jau egzistuoja vaiku sistemoje)'
+            );
           } else if (error.response.data.message === 'Invalid field entry') {
             alert('Užpildykite visus privalomus laukus!');
           } else if (
