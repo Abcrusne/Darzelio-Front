@@ -272,13 +272,15 @@ export default class ParentRegistrationFormContainer extends Component {
     if (this.state.parentId > 0) {
       return (
         <div>
-          {/* Jus jau užpildėte duomenis, jei norite juos peržiūrėti ir/arba
-          redaguoti
-          <NavLink to="/tevai/registracija/redaguoti" className="nav-link ">
-            spauskite čia
-          </NavLink> */}
+          <h5>
+            Jus jau užpildėte duomenis, jei norite juos peržiūrėti ir/arba
+            redaguoti
+            <NavLink to="/tevai/registracija/redaguoti" className="nav-link ">
+              spauskite čia
+            </NavLink>
+          </h5>
 
-          <UpdateParentRegistrationFormContainer />
+          {/* <UpdateParentRegistrationFormContainer /> */}
         </div>
       );
     } else {
