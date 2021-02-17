@@ -323,7 +323,11 @@ export default class UpdateParentRegistrationFormContainer extends Component {
         {/*<LogoutPresentation />*/}
         <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
-            <h3>Anaujinkite savo kaip tėvo/globėjo duomenis</h3>
+            <h4>
+              Jūs jau užpildėte savo kaip tėvo/globėjo duomenis. Juos galite
+              peržiūrėti ir/arba redaguoti čia:
+            </h4>
+            <h3>Anaujinkite savo tėvo/globėjo duomenis</h3>
           </div>
           <form
             onSubmit={this.handleSubmit}
@@ -613,7 +617,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                     value={this.state.declaredStreet}
                     // noValidate
                     // pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
-                    pattern ="^[a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+[- a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 . -  ]*"
+                    pattern="^[a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+[- a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 . -  ]*"
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
                         'Įveskite deklaruotą gatvę tinkamu formatu.'
