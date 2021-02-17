@@ -128,9 +128,9 @@ export default class ChildrenRegistrationFormContainer extends Component {
       .then((res) => {
         UserService.setId(res.data);
         this.setState({
-          id: res.data,
+          userId: res.data,
         });
-        console.log('user id: ' + this.state.id);
+        console.log('user id: ' + this.state.userId);
       })
       .catch((err) => console.log(err));
   }
