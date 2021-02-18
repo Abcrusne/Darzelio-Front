@@ -11,9 +11,9 @@ const UsersListTablePresentation = ({
 }) => {
   return users.map(({ id, firstname, lastname, email, role }, index) => {
     // const roleLt =
-    //   users.role == 'PARENT'
+    //   users.role == '[PARENT]'
     //     ? 'Tėvas'
-    //     : users.role == 'EDU'
+    //     : users.role == '[EDU]'
     //     ? 'Švietimo specialistas'
     //     : 'Nenurodyta';
 
