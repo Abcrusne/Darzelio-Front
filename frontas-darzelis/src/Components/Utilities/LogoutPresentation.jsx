@@ -14,7 +14,7 @@ const LogoutPresentation = () => {
   };
 
   return (
-    <div className="fixed-top d-flex justify-content-end mt-3 mr-5">
+    <div className="d-flex justify-content-end">
       <button className="btn" onClick={logout}>
         Atsijungti
       </button>
