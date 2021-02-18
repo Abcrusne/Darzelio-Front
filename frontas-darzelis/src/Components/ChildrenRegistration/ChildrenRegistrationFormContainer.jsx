@@ -174,7 +174,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
     let validPersonalCode = /^[5|6]+[0-9]+$/;
     let validParentPersonalCode = /^[3|4|5|6]+[0-9]+$/;
     let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
-    let numbers = /^[1-9]+$/;
+    let numbers = /^[0-9]+$/;
     switch (name) {
       case 'firstname':
         errors.firstname =
@@ -402,15 +402,18 @@ export default class ChildrenRegistrationFormContainer extends Component {
             alert('Gimimo data negali būti iš ateities!');
           } else if (error.response.data.message === `Bad birthdate format`) {
             alert('Netinkamas datos formatas!');
-          } else if (error.response.data === 'Parent registration not filled') {
+          } else if (
+            error.response.data === 'Tėvas/globėjas neregistruotas sistemoje'
+          ) {
             alert(
               'Registracija nesėkminga. Pirminė tėvo registracijos forma neužpildyta'
             );
           } else if (
-            error.response.data.message === 'Parent registration not filled'
+            error.response.data.message ===
+            'Tėvas/globėjas neregistruotas sistemoje!'
           ) {
             alert(
-              'Registracija nesėkminga. Pirminė tėvo registracijos forma neužpildyta'
+              'Registracija nesėkminga. Pirminė tėvo/globėjo registracijos forma neužpildyta'
             );
           } else if (error.response.status === 400) {
             alert(

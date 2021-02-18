@@ -111,7 +111,7 @@ export default class ParentRegistrationFormContainer extends Component {
     let houseNumberValidation = /^\d+[a-zA-Z ]*$/;
     let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
     let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
-    let numbers = /^[1-9]+$/;
+    let numbers = /^[0-9]+$/;
     switch (name) {
       case 'firstname':
         errors.firstname =
@@ -253,6 +253,14 @@ export default class ParentRegistrationFormContainer extends Component {
           ) {
             alert(
               'Pasitikrinkite ar suvedėte teisingus asmens kodus. Šis asmens kodas jau egzistuoja sistemoje!(toks tevo asmens kodas jau egzistuoja vaiku sistemoje)'
+            );
+          } else if (error.response.data === 'Asmens kodas jau užimtas') {
+            alert(
+              'Pasitikrinkite ar suvedėte teisingus asmens kodus. Asmens kodas jau užimtas'
+            );
+          } else if (error.response.data === 'Toks asmens kodas jau užimtas') {
+            alert(
+              'Pasitikrinkite ar suvedėte teisingus asmens kodus.Toks asmens kodas jau užimtas '
             );
           } else if (error.response.status === 400) {
             alert(

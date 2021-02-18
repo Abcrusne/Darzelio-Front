@@ -331,10 +331,6 @@ export default class UpdateParentRegistrationFormContainer extends Component {
         {/*<LogoutPresentation />*/}
         <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
-            <h4>
-              Jūs jau užpildėte savo kaip tėvo/globėjo duomenis. Juos galite
-              peržiūrėti ir/arba redaguoti čia:
-            </h4>
             <h3>Anaujinkite savo tėvo/globėjo duomenis</h3>
           </div>
           <form
