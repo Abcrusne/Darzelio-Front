@@ -1,11 +1,12 @@
 import React from "react";
 import {withRouter} from "react-router";
 
+//our imports
 import NavigationForAllPages from "../Utilities/NavigationForAllPages";
 import "../../Style/ParentLanding.css"
-import ParentSideBarNavigation from "../ParentLanding/ParentSideBarNavigation";
-import ParentRoutes from "../ParentLanding/ParentRoutes";
-import ParentlandingFooter from "../ParentLanding/ParentLandingFooter";
+import EduAdminSideBarNavigation from "./EduAdminSideBarNavigation";
+import EduAdminRoutes from "./EduAdminRoutes";
+import EduAdminlandingFooter from "./EduAdminLandingFooter";
 
 const EduAdminLanding = (props) => {
 
@@ -16,11 +17,11 @@ const EduAdminLanding = (props) => {
                     </header>
                     <div className="row pl-3">
                         <aside className="col-lg-2 col-md-4 col-sm-12 border-0 bg-white">
-                            {/*<ParentSideBarNavigation/>*/}
+                            <EduAdminSideBarNavigation/>
                             <p>Šoninis meniu</p>
                         </aside>
                         <main id="content" className="col-lg-10 col-md-8 col-sm-12">
-                            {/*<ParentRoutes/>*/}
+                            <EduAdminRoutes/>
                             <div className="m-auto">
                                 <h1>Dashboard</h1>
                             </div>
@@ -28,7 +29,7 @@ const EduAdminLanding = (props) => {
                         </main>
                     </div>
                     <footer className="footer pt-3">
-                        <ParentlandingFooter/>
+                        <EduAdminlandingFooter/>
                     </footer>
                 </div>
         )

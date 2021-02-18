@@ -1,34 +1,33 @@
-
 import React, {Component} from 'react';
 import axios from "axios";
-import { withRouter } from 'react-router';
+import {withRouter} from 'react-router';
 
 //our imports
 import {API} from "../../Configuration/AppConfig";
 import "../../Style/ParentLanding.css"
 
 class MainRegistrationContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      children: [],
-      childId: 0,
-      firstname: '',
-      lastname: '',
-      kindergartens: [],
-      kindergarten_name: '',
-      firstPriority: '',
-      secondPriority: '',
-      thirdPriority: '',
-      fourthPriority: '',
-      fifthPriority: '',
-    };
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            children: [],
+            childId: 0,
+            firstname: '',
+            lastname: '',
+            kindergartens: [],
+            kindergarten_name: '',
+            firstPriority: '',
+            secondPriority: '',
+            thirdPriority: '',
+            fourthPriority: '',
+            fifthPriority: '',
+        };
+    }
 
     getKindergartens = async () => {
         try {
             const {data} = await axios.get(`${API}/api/kindergartens`, {
-                headers: { 'Content-type': 'application/x-www-form-urlencoded' }
+                headers: {'Content-type': 'application/x-www-form-urlencoded'}
             });
             return data;
         } catch (error) {
@@ -36,78 +35,92 @@ class MainRegistrationContainer extends Component {
         }
     };
 
-  getChildren = async () => {
-    try {
-      const { data } = await axios.get(
-        `${API}/api/users/getloggeduserchildren`
-      );
-      return data;
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+    getChildren = async () => {
+        try {
+            const {data} = await axios.get(
+                `${API}/api/users/getloggeduserchildren`
+            );
+            return data;
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
 
-  async componentDidMount() {
-    const kindergartensData = await this.getKindergartens();
-    const childrenData = await this.getChildren();
-    console.log(kindergartensData);
-    console.log(childrenData);
-    let kindergartens = kindergartensData.map((kindergarten) => ({
-      name: kindergarten.name,
-      id: kindergarten.id,
-    }));
-    let children = childrenData.map((child) => ({
-      firstname: child.firstname,
-      lastname: child.lastname,
-      id: child.id,
-    }));
-    this.setState({
-      kindergartens: kindergartens,
-      children: children,
-    });
-  }
+    async componentDidMount() {
+        const kindergartensData = await this.getKindergartens();
+        const childrenData = await this.getChildren();
+        console.log(kindergartensData);
+        console.log(childrenData);
+        let kindergartens = kindergartensData.map((kindergarten) => ({
+            name: kindergarten.name,
+            id: kindergarten.id,
+        }));
+        let children = childrenData.map((child) => ({
+            firstname: child.firstname,
+            lastname: child.lastname,
+            id: child.id,
+        }));
+        this.setState({
+            kindergartens: kindergartens,
+            children: children,
+        });
+    }
 
     handleChange = (event) => {
         this.setState({
                 ...this.state,
                 [event.target.name]: event.target.name === "childId"
                     ? parseInt(event.target.value, 10)
-                    : event.target.value
+                    : (event.target.value === '-' ? '' : event.target.value)
             }
         )
     };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    let state = this.state;
 
-    const dataLoad = {
-      childId: state.childId,
-      firstPriority: state.firstPriority,
-      secondPriority: state.secondPriority,
-      thirdPriority: state.thirdPriority,
-      fourthPriority: state.fourthPriority,
-      fifthPriority: state.fifthPriority,
-      id: 0,
-    };
-    console.log(dataLoad);
+    handleSubmit = (e) => {
+        e.preventDefault();
+        let state = this.state;
 
-   if(dataLoad.childId && dataLoad.firstPriority && dataLoad.firstPriority.length > 0) {
+        const dataLoad = {
+            childId: state.childId,
+            firstPriority: state.firstPriority,
+            secondPriority: state.secondPriority,
+            thirdPriority: state.thirdPriority,
+            fourthPriority: state.fourthPriority,
+            fifthPriority: state.fifthPriority,
+            id: 0,
+        };
+
+        if (dataLoad.childId && dataLoad.firstPriority) {
             axios
                 .post(`${API}/api/kindergartens/register`, dataLoad
                 )
                 .then(response => {
+                    console.log(response.data)
                     alert('Registracija sėkminga!');
                     this.props.history.push('/tevai');
                 })
-                .catch((error) => {console.log(error)});
-        } else {alert('Patikrinkite ar visi duomenys teisingi!')}
+                .catch((error) => {
+                    console.log(error.response.data)
+                    if (error.response.data === "vaikas nerastas sistemoje") {
+                        alert(
+                            'Tokio vaiko nėra, pasitikrinkite ar teisingi duomenys!'
+                        )
+                    } else if (error.response.data === "Šio vaiko registracija jau užpildyta!") {
+                        alert(
+                            'Šio vaiko registracija jau užpildyta!'
+                        )
+                    }
+                })
+        } else {
+            alert('Patikrinkite ar visi duomenys teisingi!')
+        }
     }
 
     render() {
         const {kindergartens, children, firstPriority, secondPriority, thirdPriority, fourthPriority} = this.state;
 
-        return(
+        return (
             <div className="container">
                 {(children && children.length > 0) && (kindergartens && kindergartens.length > 0) ? (
                     <form className="shadow p-3 mt-5 bg-white rounded"
@@ -122,7 +135,7 @@ class MainRegistrationContainer extends Component {
                             </label>
                             <select className="form-control" id="selectChild" onChange={this.handleChange}
                                     name="childId">
-                                <option selected>Pasirinkite vaiką</option>
+                                <option defaultValue>-</option>
                                 {this.state.children.map((child) => (
                                     <option
                                         key={child.id}
@@ -142,7 +155,7 @@ class MainRegistrationContainer extends Component {
                                 onChange={this.handleChange}
                                 name="firstPriority"
                             >
-                                <option selected>Pasirinkite darželį</option>
+                                <option defaultValue>-</option>
                                 {kindergartens
                                     .map((kindergarten, index) => {
                                         return <option
@@ -163,7 +176,7 @@ class MainRegistrationContainer extends Component {
                                 name="secondPriority"
                                 onChange={this.handleChange}
                             >
-                                <option selected>Pasirinkite darželį</option>
+                                <option defaultValue>-</option>
                                 {kindergartens
                                     .filter(kindergarten =>
                                         kindergarten.name !== firstPriority)
@@ -186,7 +199,7 @@ class MainRegistrationContainer extends Component {
                                 name="thirdPriority"
                                 onChange={this.handleChange}
                             >
-                                <option selected>Pasirinkite darželį</option>
+                                <option defaultValue>-</option>
                                 {kindergartens
                                     .filter(kindergarten =>
                                         kindergarten.name !== firstPriority &&
@@ -210,7 +223,7 @@ class MainRegistrationContainer extends Component {
                                 name="fourthPriority"
                                 onChange={this.handleChange}
                             >
-                                <option selected>Pasirinkite darželį</option>
+                                <option defaultValue>-</option>
                                 {kindergartens
                                     .filter(kindergarten =>
                                         kindergarten.name !== firstPriority &&
@@ -235,7 +248,7 @@ class MainRegistrationContainer extends Component {
                                 name="fifthPriority"
                                 onChange={this.handleChange}
                             >
-                                <option selected>Pasirinkite darželį</option>
+                                <option defaultValue>-</option>
                                 {kindergartens
                                     .filter(kindergarten =>
                                         kindergarten.name !== firstPriority &&
@@ -258,4 +271,5 @@ class MainRegistrationContainer extends Component {
         )
     }
 }
-export default  withRouter(MainRegistrationContainer);
+
+export default withRouter(MainRegistrationContainer);
