@@ -254,7 +254,7 @@ export default class UpdateUserFormContainer extends Component {
                 className="btn btn-warning ml-3"
                 onClick={this.resetPassword}
               >
-                Atstatyti slaptažodį į pirminį
+                Atstatyti slaptažodį į standartinį
               </button>
             </div>
             {/* {this.state.errorCount !== null ? <p className="form-status">Form is {formValid ? 'valid ✅' : 'invalid ❌'}</p> : 'Form not submitted'} */}
