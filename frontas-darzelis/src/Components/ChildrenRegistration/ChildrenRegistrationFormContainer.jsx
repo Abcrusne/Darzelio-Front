@@ -998,7 +998,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                           //   );
                           // }}
                           // onInput={(e) => e.target.setCustomValidity('')}
-                          pattern="^[1-9]+[a-zA-Z 0-9 ]*"
+                          pattern="^[1-9]+[ a-zA-Z 0-9 ]*"
                           onInvalid={(e) => {
                             e.target.setCustomValidity(
                               'Įveskite deklaruotą namo numerį tinkamu formatu, pvz.: 1A'
