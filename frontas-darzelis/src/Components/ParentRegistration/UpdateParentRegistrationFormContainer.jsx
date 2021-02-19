@@ -648,7 +648,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     // noValidate
                     value={this.state.declaredHouseNumber}
-                    pattern="^[1-9]+[a-zA-Z 0-9 ]*"
+                    pattern="^[1-9]+[ a-zA-Z 0-9 ]*"
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
                         'Įveskite deklaruotą namo numerį tinkamu formatu.'
