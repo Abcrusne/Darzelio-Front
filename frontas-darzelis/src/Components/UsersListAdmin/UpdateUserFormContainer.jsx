@@ -15,6 +15,7 @@ export default class UpdateUserFormContainer extends Component {
       email: '',
       role: '',
       password: '',
+      markedForDeletion: false,
       errors: {
         firstname: '',
         lastname: '',
@@ -35,6 +36,7 @@ export default class UpdateUserFormContainer extends Component {
           email: res.data.email,
           role: res.data.role,
           password: res.data.password,
+          markedForDeletion: res.data.markedForDeletion,
         })
       )
       .catch((err) => console.log(err));
@@ -49,6 +51,7 @@ export default class UpdateUserFormContainer extends Component {
         email: this.state.email,
         role: this.state.role,
         password: this.state.firstname,
+        markedForDeletion: this.state.markedForDeletion,
       })
       .then((response) => {
         console.log(response);
