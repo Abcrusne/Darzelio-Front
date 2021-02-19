@@ -25,7 +25,7 @@ const UserData = () => {
         </h5>
       </div>
     );
-  } else if (currentRole === '[[EDU]]') {
+  } else if (currentRole === '[EDU]') {
     return (
       <div>
         <h5>
@@ -37,7 +37,7 @@ const UserData = () => {
         <h5>
           {' '}
           <NavLink
-            to="/admin.edu/duomenys/redaguoti/slaptazodi"
+            to="/admin/edu/duomenys/redaguoti/slaptazodi"
             className="nav-link"
           >
             Keisti slaptažodį
