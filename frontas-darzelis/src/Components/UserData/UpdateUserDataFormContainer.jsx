@@ -4,7 +4,6 @@ import axios from 'axios';
 import '../../Style/style.css';
 import LogoutPresentation from '../Utilities/LogoutPresentation';
 
-
 export default class UpdateUserDataFormContainer extends Component {
   constructor(props) {
     super(props);
@@ -14,44 +13,36 @@ export default class UpdateUserDataFormContainer extends Component {
       lastname: '',
       email: '',
       role: '',
-      //currentPassword
       password: '',
-
-      // newPassword: '',
-      // confirmPassword: '',
+      requestedDelete: false,
 
       errors: {
         firstname: '',
         lastname: '',
         email: '',
-     
-        // password: '',
-        // newPassword: '',
-        // confirmPassword: '',
       },
     };
   }
   componentDidMount() {
-  
     axios
       .get(`${API}/api/users/loggeduserid`)
       .then((res) => {
         this.setState({
-          id: res.data, 
+          id: res.data,
         });
-        console.log("user id:" + this.state.id);
-        return axios.get(`${API}/api/users/${this.state.id}`)
+        console.log('user id:' + this.state.id);
+        return axios.get(`${API}/api/users/${this.state.id}`);
       })
       .then((res) =>
-            this.setState({
-              id: res.data.id,
-              firstname: res.data.firstname,
-              lastname: res.data.lastname,
-              email: res.data.email,
-              role: res.data.role,
-              password: res.data.password
-            })
-          )
+        this.setState({
+          id: res.data.id,
+          firstname: res.data.firstname,
+          lastname: res.data.lastname,
+          email: res.data.email,
+          role: res.data.role,
+          password: res.data.password,
+        })
+      )
       .catch((err) => console.log(err));
   }
   // componentDidMount() {
@@ -72,7 +63,7 @@ export default class UpdateUserDataFormContainer extends Component {
   // }
 
   handleChange = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     const validEmailRegex = RegExp(
       /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
@@ -103,13 +94,23 @@ export default class UpdateUserDataFormContainer extends Component {
         break;
     }
 
-    this.setState({ errors, [name]: value }, () => {
-      console.log(errors);
-    });
+    if (event.target.type === 'checkbox') {
+      // console.log(event.target.checked);
+      this.setState({ [event.target.name]: event.target.checked });
+    } else
+      this.setState(
+        {
+          errors,
+          [name]: value,
+        },
+        () => {
+          console.log(errors);
+        }
+      );
+    console.log(this.state);
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    // event.target.className += ' was-validated';
 
     const validateForm = (errors) => {
       let valid = true;
@@ -132,11 +133,12 @@ export default class UpdateUserDataFormContainer extends Component {
             email: this.state.email,
             role: this.state.role,
             password: this.state.password,
+            // requestedDelete: this.state.requestedDelete
           }
         )
         .then((response) => {
           console.log(response);
-          alert("Duomenys atnaujinti sėkmingai!");
+          alert('Duomenys atnaujinti sėkmingai!');
           this.props.history.push('/tevai/naudotojo-duomenys');
         })
 
@@ -164,10 +166,7 @@ export default class UpdateUserDataFormContainer extends Component {
     const { errors } = this.state;
     return (
       <div className="container mt-5">
-       
-
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
-      
           <div className="mb-4">
             <h3>Atnaujinti vartotojo duomenis</h3>
           </div>
@@ -223,58 +222,33 @@ export default class UpdateUserDataFormContainer extends Component {
                 <span className="error">{errors.email}</span>
               )}
             </div>
-            {/* <div>
-              <p>Keisti slaptažodį</p>
-              <div className="mb-3">
-                <label htmlFor="password" className="control-label">
-                  Senas slaptažodis*:
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  onChange={this.handleChange}
-                  noValidate
-                  value={this.state.password}
-                />
-                {/* {errors.password.length > 0 && (
-                <span className="error">{errors.password}</span>
-              )} */}
-              {/* </div>
-              <div className="mb-3">
-                <label htmlFor="newPassword" className="control-label">
-                  Naujas slaptažodis*:
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  name="newPassword"
-                  onChange={this.handleChange}
-                  noValidate
-                  value={this.state.newPassword}
-                />
-                {errors.newPassword.length > 0 && (
-                  <span className="error">{errors.newPassword}</span>
-                )}
-              </div>
-              <div className="mb-3">
-                <label htmlFor="confirmPassword" className="control-label">
-                  Patvirtinkite naują slaptažodį*:
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  name="confirmPassword"
-                  onChange={this.handleChange}
-                  noValidate
-                  value={this.state.confirmPassword}
-                />
-                {errors.confirmPassword.length > 0 && (
-                  <span className="error">{errors.confirmPassword}</span>
-                )}
-              </div> */}
-            {/* </div>  */}
 
+            <div className="  form-check form-group mb-3 col-10">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                name="requestedDelete"
+                id="requestedDelete"
+                checked={this.state.requestedDelete}
+                onChange={this.handleChange}
+                noValidate
+              />
+              <label htmlFor="requestedDelete" className="form-check-label">
+                Pažymėkite jei norite, kad Jūsų anketa ir duomenys būtų ištrinti
+                iš sistemos
+              </label>
+            </div>
+            {this.state.requestedDelete ? (
+              <div>
+                <p>
+                  {' '}
+                  <i>
+                    {' '}
+                    <b>Anketa ir duomenys bus ištrinti per 14 d.d. dienų</b>
+                  </i>
+                </p>
+              </div>
+            ) : null}
 
             <div> * - privalomi laukai</div>
 
