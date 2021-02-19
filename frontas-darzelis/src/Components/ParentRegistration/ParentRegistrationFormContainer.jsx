@@ -611,7 +611,7 @@ export default class ParentRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     // noValidate
                     // pattern="[0-9][a-zA-Z0-9- - ]*?{1,7}"
-                     pattern="^[1-9]+[a-zA-Z 0-9 ]*"
+                     pattern="^[1-9]+[ a-zA-Z 0-9 ]*"
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
                         'Įveskite deklaruotą namo numerį tinkamu formatu, pvz.: 1A'
