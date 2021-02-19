@@ -167,7 +167,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
     let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 ,/./-]+$/;
-    let houseNumberValidation = /^\d+[a-zA-Z ]*$/;
+    let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
     let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,\.\- ]*$/;
     let date = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
 
@@ -998,7 +998,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                           //   );
                           // }}
                           // onInput={(e) => e.target.setCustomValidity('')}
-                          pattern="^\d+[a-zA-Z ]*"
+                          pattern="^[1-9]+[a-zA-Z 0-9 ]*"
                           onInvalid={(e) => {
                             e.target.setCustomValidity(
                               'Įveskite deklaruotą namo numerį tinkamu formatu, pvz.: 1A'
