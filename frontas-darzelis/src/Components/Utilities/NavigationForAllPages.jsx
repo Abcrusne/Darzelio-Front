@@ -10,7 +10,7 @@ const NavigationForAllPages = (props) => {
     const currentRole = UserService.getRole();
     const pradzia = () => {
         if (currentRole === "[PARENT]") {
-            return ('/dashboard')
+            return ('/tevai')
         } else if (currentRole === "[EDU]") {
             return ('/admin/edu')
         } else if (currentRole === "[ADMIN]") {
@@ -20,7 +20,7 @@ const NavigationForAllPages = (props) => {
     }
 
     return (
-        <div>
+        <div className="">
             <nav className="py-3 pr-4 navbar-light">
                 <ul className="nav flex-column flex-sm-row">
                     <li className="flex-sm-fill nav-item active">

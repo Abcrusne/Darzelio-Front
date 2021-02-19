@@ -140,10 +140,12 @@ export default class UpdateParentRegistrationFormContainer extends Component {
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
     let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
     let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,\.\- ]*$/;
+
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
+
     let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
     let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
-    let numbers = /^[1-9]+$/;
+    let numbers = /^[0-9]+$/;
     switch (name) {
       case 'firstname':
         errors.firstname =
@@ -551,7 +553,12 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                     value={this.state.studyingInstitution}
                     // noValidate
 
+
                     pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
+
+                    value={this.state.declaredHouseNumber}
+                  
+
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
                         'Įveskite mokymosi įstaigos pavadinimą.'

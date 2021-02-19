@@ -3,18 +3,20 @@ import { Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
 //our imports
-import PrivateRoute from '../../Configuration/PrivateRoute';
-import ParentLandingDashboard from './ParentLandingDashboard';
-import ParentUserdata from './ParentUserdata';
-import ParentRegistrationFormContainer from '../ParentRegistration/ParentRegistrationFormContainer';
-import ChildrenRegistrationFormContainer from '../ChildrenRegistration/ChildrenRegistrationFormContainer';
-import MainRegistrationContainer from '../MainRegistration/MainRegistrationContainer';
-import NotFoundPage from './NotFoundPage';
+import PrivateRoute from "../../Configuration/PrivateRoute";
+import ParentLandingDashboard from "./ParentLandingDashboard";
+import ParentUserdata from "./ParentUserdata";
+import ParentRegistrationFormContainer from "../ParentRegistration/ParentRegistrationFormContainer";
+import ChildrenRegistrationFormContainer from "../ChildrenRegistration/ChildrenRegistrationFormContainer";
+import MainRegistrationContainer from "../MainRegistration/MainRegistrationContainer";
+import NotFoundPage from "./NotFoundPage";
+import UpdateParentRegistrationFormContainer from "../ParentRegistration/UpdateParentRegistrationFormContainer";
 import NextPage from '../ChildrenRegistration/NextPage';
-import UpdateParentRegistrationFormContainer from '../ParentRegistration/UpdateParentRegistrationFormContainer';
+
 import UpdateUserDataFormContainer from '../UserData/UpdateUserDataFormContainer';
 import UserData from '../UserData/UserData';
 import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
+
 
 const ParentRoutes = () => {
   return (
