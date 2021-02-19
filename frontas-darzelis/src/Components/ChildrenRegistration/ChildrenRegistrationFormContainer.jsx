@@ -387,12 +387,13 @@ export default class ChildrenRegistrationFormContainer extends Component {
               'Pasitikrinkite ar suvedėte teisingus asmens kodus. Toks asmens kodas jau egzistuoja'
             );
           } else if (error.response.data === 'Toks asmens kodas jau užimtas') {
-            alert('Pasitikrinkite asmens kodus.');
+            alert('Pasitikrinkite asmens kodus. ' + error.response.data);
           } else if (
             error.response.data === 'Šis asmens kodas jau egzistuoja sistemoje!'
           ) {
             alert(
-              'Pasitikrinkite ar suvedėte teisingus asmens kodus. Šis asmens kodas jau egzistuoja sistemoje!(toks tevo asmens kodas jau egzistuoja vaiku sistemoje)'
+              'Pasitikrinkite ar suvedėte teisingus asmens kodus. ' +
+                error.response.data
             );
           } else if (error.response.data.message === 'Invalid field entry') {
             alert('Užpildykite visus privalomus laukus!');
@@ -406,7 +407,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
             error.response.data === 'Tėvas/globėjas neregistruotas sistemoje'
           ) {
             alert(
-              'Registracija nesėkminga. Pirminė tėvo registracijos forma neužpildyta'
+              'Registracija nesėkminga. Pirminė tėvo registracijos forma turi būti užpildyta pirma'
             );
           } else if (
             error.response.data.message ===
