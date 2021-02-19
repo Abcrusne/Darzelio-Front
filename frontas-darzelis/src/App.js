@@ -20,10 +20,11 @@ import ParentRoutes from "./Components/ParentLanding/ParentRoutes";
 import ParentLandingDashboard from "./Components/ParentLanding/ParentLandingDashboard";
 import ParentUserdata from "./Components/ParentLanding/ParentUserdata";
 import MainRegistrationContainer from "./Components/MainRegistration/MainRegistrationContainer";
-import NotFoundPage from "./Components/ParentLanding/NotFoundPage";
+import NotFoundPage from "./Components/Utilities/NotFoundPage";
 import KindergartenListTableContainer from './Components/KindergartenList/KindergartenListTableContainer';
 import KindergartenRegistrationContainer from './Components/KindergartenList/KindergartenRegistrationContainer';
 import UpdateKindergartenFormContainer from './Components/KindergartenList/UpdateKindergartenFormContainer';
+import EduAdminDashboard from "./Components/EduAdminLanding/EduAdminDashboard";
 
 function App() {
   return (
@@ -42,6 +43,42 @@ function App() {
         <PrivateRoute path='/tevai/*' exact component={ParentLanding} role={"PARENT"}/>
         <PrivateRoute exact path="/admin/pradzia" component={SysAdminLanding} role={"ADMIN"}/>
         <PrivateRoute exact path="/admin/edu" component={EduAdminLanding} role={"EDU"}/>
+        <PrivateRoute
+            path="/admin/edu"
+            exact
+            component={EduAdminLanding}
+            role={'EDU'}
+        />
+        {/*<PrivateRoute */}
+        {/*path="/admin/edu/naudotojo-duomenys"*/}
+        {/*exact*/}
+        {/*component={EduAdminLanding}*/}
+        {/*role={'EDU'}*/}
+        {/*/>*/}
+        <PrivateRoute
+            path="/admin/edu/vaikai"
+            exact
+            component={EduAdminLanding}
+            role={'EDU'}
+        />
+        <PrivateRoute
+            path="/admin/edu/registracijos"
+            exact
+            component={EduAdminLanding}
+            role={'EDU'}
+        />
+        <PrivateRoute
+            path="/admin/edu/darzeliai"
+            exact
+            component={EduAdminLanding}
+            role={'EDU'}
+        />
+        <PrivateRoute
+            path="/admin/edu/*"
+            exact
+            component={EduAdminLanding}
+            role={'EDU'}
+        />
         <Route
           exact
           path="/admin/registracija"

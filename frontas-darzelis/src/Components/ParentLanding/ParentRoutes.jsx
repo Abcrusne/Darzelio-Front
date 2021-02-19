@@ -9,7 +9,7 @@ import ParentUserdata from "./ParentUserdata";
 import ParentRegistrationFormContainer from "../ParentRegistration/ParentRegistrationFormContainer";
 import ChildrenRegistrationFormContainer from "../ChildrenRegistration/ChildrenRegistrationFormContainer";
 import MainRegistrationContainer from "../MainRegistration/MainRegistrationContainer";
-import NotFoundPage from "./NotFoundPage";
+import NotFoundPage from "../Utilities/NotFoundPage";
 import UpdateParentRegistrationFormContainer from "../ParentRegistration/UpdateParentRegistrationFormContainer";
 import NextPage from '../ChildrenRegistration/NextPage';
 

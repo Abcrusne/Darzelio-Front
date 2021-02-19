@@ -14,9 +14,6 @@ import "../../Style/ParentLanding.css"
 import UserService from "../../Configuration/UserService";
 import ParentRoutes from "./ParentRoutes";
 
-
-
-
 const ParentLanding = (props) => {
 
                 return (

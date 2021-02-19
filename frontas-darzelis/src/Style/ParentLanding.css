@@ -17,6 +17,8 @@ aside {
 main.row {
     background-color: #fbf9f8; /* snow */
     padding-left: 10px;
+    justify-content: space-evenly;
+
 }
 
 footer {
