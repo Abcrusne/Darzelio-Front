@@ -9,8 +9,10 @@ import ListOfChildren from "../ChildrenRegistration/ListOfChildren";
 import ListOfRegistrations from "../MainRegistration/ListOfRegistrations";
 import KindergartenListTableContainer from "../KindergartenList/KindergartenListTableContainer";
 import KindergartenRegistrationContainer from '../KindergartenList/KindergartenRegistrationContainer';
-import UpdateKindergartenFormContainer from '..KindergartenList/UpdateKindergartenFormContainer';
-
+import UpdateKindergartenFormContainer from '../KindergartenList/UpdateKindergartenFormContainer';
+import UpdateUserDataFormContainer from '../UserData/UpdateUserDataFormContainer';
+import UserData from '../UserData/UserData';
+import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
 
 
 const EduAdminRoutes = () => {
@@ -58,6 +60,24 @@ const EduAdminRoutes = () => {
                 component={UpdateKindergartenFormContainer}
                 role={'EDU'}
             />
+            <PrivateRoute
+        path="/admin/edu/naudotojo-duomenys"
+        exact
+        component={UserData}
+        role={'EDU'}
+      />
+      <PrivateRoute
+        path="/admin/edu/duomenys/redaguoti"
+        exact
+        component={UpdateUserDataFormContainer}
+        role={'EDU'}
+      />
+      <PrivateRoute
+        path="/admin/edu/duomenys/redaguoti/slaptazodi"
+        exact
+        component={UpdateUserPasswordContainer}
+        role={'EDU'}
+      />
             <PrivateRoute
                 path="/admin/edu/*"
                 exact
