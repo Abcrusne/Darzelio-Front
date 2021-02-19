@@ -15,6 +15,7 @@ import UpdateParentRegistrationFormContainer from '../ParentRegistration/UpdateP
 import UpdateUserDataFormContainer from '../UserData/UpdateUserDataFormContainer';
 import UserData from '../UserData/UserData';
 import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
+import UploadPdfContainer from '../UploadPDF/UploadPdfContainer';
 
 const ParentRoutes = () => {
   return (
@@ -77,6 +78,12 @@ const ParentRoutes = () => {
         path="/tevai/duomenys/redaguoti/slaptazodi"
         exact
         component={UpdateUserPasswordContainer}
+        role={'PARENT'}
+      />
+       <PrivateRoute
+        path="/tevai/ikelti"
+        exact
+        component={UploadPdfContainer}
         role={'PARENT'}
       />
       <PrivateRoute

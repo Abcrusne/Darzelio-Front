@@ -52,7 +52,6 @@ const ParentSideBarNavigation = () => {
             <i className="fas fa-file-contract"></i>
             Prašymas registruoti į darželį
           </Link>
-          <hr />
         </li>
         {/*<li className="nav-item">*/}
         {/*    <Link to="/dashboard/prasymai" className="nav-link active">*/}
@@ -60,6 +59,13 @@ const ParentSideBarNavigation = () => {
         {/*        Valdyti prašymus*/}
         {/*    </Link>*/}
         {/*</li>*/}
+        <li className="nav-item">
+          <Link to="/tevai/ikelti" className="nav-link active" id="uploadPdf">
+            <i className="fas fa-file-contract"></i>
+            Įkelti PDF dokumentus
+          </Link>
+          <hr />
+        </li>
         <li className="nav-item">
           <Link to="/tevai/tvarka" className="nav-link active">
             <i className="fas fa-info"></i>

@@ -94,6 +94,7 @@ export default class UsersListTableContainer extends Component {
               <th scope="col">Rolė</th>
 
               <th scope="col">Atnaujinti vartotojo duomenis</th>
+              <th scope="col"> Prašymas ištrinti anketą</th>
               <th scope="col">Ištrinti vartotoją</th>
               <th scope="col"></th>
 
