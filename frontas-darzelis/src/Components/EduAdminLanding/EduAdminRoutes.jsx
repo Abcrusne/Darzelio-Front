@@ -8,6 +8,9 @@ import EduAdminDashboard from "./EduAdminDashboard";
 import ListOfChildren from "../ChildrenRegistration/ListOfChildren";
 import ListOfRegistrations from "../MainRegistration/ListOfRegistrations";
 import KindergartenListTableContainer from "../KindergartenList/KindergartenListTableContainer";
+import KindergartenRegistrationContainer from '../KindergartenList/KindergartenRegistrationContainer';
+import UpdateKindergartenFormContainer from '..KindergartenList/UpdateKindergartenFormContainer';
+
 
 
 const EduAdminRoutes = () => {
@@ -41,6 +44,18 @@ const EduAdminRoutes = () => {
                 path="/admin/edu/darzeliai"
                 exact
                 component={KindergartenListTableContainer}
+                role={'EDU'}
+            />
+           <PrivateRoute
+                path="/admin/edu/darzelioregistracija"
+                exact
+                component={KindergartenRegistrationContainer}
+                role={'EDU'}
+            />
+            <PrivateRoute
+                path="/admin/edu/darzeliai/:id"
+                exact
+                component={UpdateKindergartenFormContainer}
                 role={'EDU'}
             />
             <PrivateRoute
