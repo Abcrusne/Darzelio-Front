@@ -97,7 +97,7 @@ export default class UpdateUserPasswordContainer extends Component {
     if (validateForm(this.state.errors)) {
       axios
         .post(
-          `${API}/api/users/passwordChange`,
+          `${API}/api/users/changePassword`,
 
           {
             // id: this.state.id,
@@ -121,6 +121,7 @@ export default class UpdateUserPasswordContainer extends Component {
           else if (error.response.status === 400) {
             alert('Nepavyko pakeisti slaptažodžio!');
           }
+          console.log(error.data);
         });
     } else {
       console.error('Invalid Form');

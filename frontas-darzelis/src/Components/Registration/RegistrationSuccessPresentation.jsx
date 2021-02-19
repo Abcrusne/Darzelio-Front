@@ -9,7 +9,7 @@ export default class RegistrationSuccessPresentation extends Component {
     return (
       <div className="container mt-5">
         <NavigationForAllPages />
-        <LogoutPresentation />
+        {/* <LogoutPresentation /> */}
         <div className=" justify-content-center">
           <div className="col-10">
             <h5>Registracija sėkminga.</h5>

@@ -14,7 +14,7 @@ export default class UpdateUserDataFormContainer extends Component {
       email: '',
       role: '',
       password: '',
-      requestedDelete: false,
+      markedForDeletion: false,
 
       errors: {
         firstname: '',
@@ -41,6 +41,7 @@ export default class UpdateUserDataFormContainer extends Component {
           email: res.data.email,
           role: res.data.role,
           password: res.data.password,
+          markedForDeletion:res.data.markedForDeletion
         })
       )
       .catch((err) => console.log(err));
@@ -133,6 +134,7 @@ export default class UpdateUserDataFormContainer extends Component {
             email: this.state.email,
             role: this.state.role,
             password: this.state.password,
+            markedForDeletion:this.state.markedForDeletion,
             // requestedDelete: this.state.requestedDelete
           }
         )
@@ -149,7 +151,7 @@ export default class UpdateUserDataFormContainer extends Component {
             alert('Užpildykite visus laukus!');
           } else if (error.response.status === 400) {
             alert(
-              'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
+              'RNepavyko pakeisti! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
           console.log(error);
@@ -157,7 +159,7 @@ export default class UpdateUserDataFormContainer extends Component {
     } else {
       console.error('Invalid Form');
       alert(
-        'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
+        'Nepavyko pakeisti! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );
     }
   };
@@ -223,22 +225,22 @@ export default class UpdateUserDataFormContainer extends Component {
               )}
             </div>
 
-            <div className="  form-check form-group mb-3 col-10">
+            <div className="form-check form-group mb-3 col-10">
               <input
                 type="checkbox"
                 className="form-check-input"
-                name="requestedDelete"
-                id="requestedDelete"
-                checked={this.state.requestedDelete}
+                name="markedForDeletion"
+                id="markedForDeletion"
+                checked={this.state.markedForDeletion}
                 onChange={this.handleChange}
                 noValidate
               />
-              <label htmlFor="requestedDelete" className="form-check-label">
+              <label htmlFor="markedForDeletion" className="form-check-label">
                 Pažymėkite jei norite, kad Jūsų anketa ir duomenys būtų ištrinti
                 iš sistemos
               </label>
             </div>
-            {this.state.requestedDelete ? (
+            {this.state.markedForDeletion ? (
               <div>
                 <p>
                   {' '}
