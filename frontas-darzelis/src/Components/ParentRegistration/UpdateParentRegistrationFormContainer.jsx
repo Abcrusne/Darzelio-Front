@@ -556,7 +556,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
 
                     pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
 
-                    value={this.state.declaredHouseNumber}
+                 
                   
 
                     onInvalid={(e) => {
