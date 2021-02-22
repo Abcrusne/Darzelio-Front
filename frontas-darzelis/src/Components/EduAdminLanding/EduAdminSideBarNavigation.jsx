@@ -49,7 +49,7 @@ const EduAdminSideBarNavigation = () => {
                     </li>
                     <li className="nav-item">
                         <Link
-                            to="/admin/edu/darzeliai/registracija"
+                            to="/admin/edu/darzelioregistracija"
                             className="nav-link active"
                             id="mainRegForm"
                         >
