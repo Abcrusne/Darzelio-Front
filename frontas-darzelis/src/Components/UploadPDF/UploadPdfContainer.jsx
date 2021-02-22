@@ -103,7 +103,7 @@ handleChange = (event) => {
               handleSubmit={this.handleSubmit}
               handleChange={this.handleChange}
             /> */}
-          );
+          {/* ); */}
         {/* })} */}
   
     <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
@@ -160,8 +160,8 @@ handleChange = (event) => {
           <input
             type="file"
             accept=".pdf"
-            className="form-control"
-            name="pdl"
+            className="form-control hidden"
+            name="pdf"
             onChange={this.handleChange}
 
             //required
