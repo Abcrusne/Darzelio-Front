@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from 'react-router';
+import {Route, Switch} from 'react-router';
 
 //our imports
 import PrivateRoute from "../../Configuration/PrivateRoute";
@@ -8,7 +8,7 @@ import EduAdminDashboard from "./EduAdminDashboard";
 import ListOfChildren from "../ChildrenRegistration/ListOfChildren";
 import ListOfRegistrations from "../MainRegistration/ListOfRegistrations";
 import KindergartenListTableContainer from "../KindergartenList/KindergartenListTableContainer";
-
+import KindergartenRegistrationContainer from "../KindergartenList/KindergartenRegistrationContainer"
 
 const EduAdminRoutes = () => {
     return (
@@ -41,6 +41,12 @@ const EduAdminRoutes = () => {
                 path="/admin/edu/darzeliai"
                 exact
                 component={KindergartenListTableContainer}
+                role={'EDU'}
+            />
+            <PrivateRoute
+                path="/admin/edu/darzeliai/registracija"
+                exact
+                component={KindergartenRegistrationContainer}
                 role={'EDU'}
             />
             <PrivateRoute

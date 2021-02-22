@@ -1,8 +1,16 @@
+html {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
 }
 
 code {

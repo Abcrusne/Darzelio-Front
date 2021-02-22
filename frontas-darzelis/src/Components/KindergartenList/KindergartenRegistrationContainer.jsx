@@ -125,8 +125,6 @@ export default class KindergartenRegistrationContainer extends Component {
     const { errors } = this.state;
     return (
       <div className="container mt-5">
-        <NavigationForAllPages/>
-        <LogoutPresentation />
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
             <h3>Užregistruoti naują darželį</h3>
