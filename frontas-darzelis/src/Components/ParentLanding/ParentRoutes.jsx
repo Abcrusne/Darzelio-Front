@@ -18,6 +18,7 @@ import UserData from '../UserData/UserData';
 import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
 import UploadPdfContainer from '../UploadPDF/UploadPdfContainer';
 import ChildrenListTableContainer from '../ChildrenRegistration/ChildrenListTableContainer';
+import UpdateChildrenRegistrationFormContainer from '../ChildrenRegistration/UpdateChildrenRegistrationFormContainer';
 
 
 const ParentRoutes = () => {
@@ -93,6 +94,12 @@ const ParentRoutes = () => {
         path="/tevai/vaikai"
         exact
         component={ChildrenListTableContainer}
+        role={'PARENT'}
+      />
+       <PrivateRoute
+        path="/tevai/vaikai/:id"
+        exact
+        component={UpdateChildrenRegistrationFormContainer}
         role={'PARENT'}
       />
       <PrivateRoute

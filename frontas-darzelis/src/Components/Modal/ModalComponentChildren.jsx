@@ -22,7 +22,7 @@ const ModalComponentChildren = ({
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="staticBackdropLabel">
-              {firstname} {lastname}
+              {firstname} {lastname} 
             </h5>
             <button
               type="button"

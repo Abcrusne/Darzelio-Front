@@ -6,14 +6,13 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 const UsersListTablePresentation = ({
   users,
   deleteUser,
-  // toggleModal,
-  // isOpen,
+
 }) => {
   return users.map(({ id, firstname, lastname, email, role, markedForDeletion}, index) => {
     const roleLt =
-      role == 'PARENT'
+      role === 'PARENT'
         ? 'Tėvas/Globėjas'
-        : role == 'EDU'
+        : role === 'EDU'
         ? 'Švietimo specialistas'
         : 'Nenurodyta';
 

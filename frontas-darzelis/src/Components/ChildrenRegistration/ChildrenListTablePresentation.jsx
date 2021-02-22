@@ -31,6 +31,7 @@ const ChildrenListTablePresentation = ({ children, deleteChild }) => {
             className="btn btn-danger"
             data-toggle="modal"
             data-target={`#staticBackdrop${id}`}
+            // onClick={deleteChild}
             value={id}
           >
             Ištrinti

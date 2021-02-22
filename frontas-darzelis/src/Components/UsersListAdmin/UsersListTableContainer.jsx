@@ -22,8 +22,13 @@ export default class UsersListTableContainer extends Component {
     console.log('component did mount');
     axios
       .get(API + '/api/users')
-      .then((response) => this.setState({ users: response.data }))
+      .then((response) => 
+      this.setState({ users: response.data })
+     
+      )
+     
       .catch((error) => console.log(error));
+        // console.log('users: ' + this.state.users);
   };
 
   //   handleSearchChange = (e) => {
