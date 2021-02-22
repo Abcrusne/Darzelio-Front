@@ -11,7 +11,7 @@
 
 .container, .container-fluid {
     background-color: #fbf9f8; /* snow */
-    overflow: hidden;
+    overflow: auto;
 }
 
 
