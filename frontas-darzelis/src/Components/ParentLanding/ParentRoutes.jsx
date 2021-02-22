@@ -17,6 +17,7 @@ import UpdateUserDataFormContainer from '../UserData/UpdateUserDataFormContainer
 import UserData from '../UserData/UserData';
 import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
 import UploadPdfContainer from '../UploadPDF/UploadPdfContainer';
+import ChildrenListTableContainer from '../ChildrenRegistration/ChildrenListTableContainer';
 
 
 const ParentRoutes = () => {
@@ -86,6 +87,12 @@ const ParentRoutes = () => {
         path="/tevai/ikelti"
         exact
         component={UploadPdfContainer}
+        role={'PARENT'}
+      />
+       <PrivateRoute
+        path="/tevai/vaikai"
+        exact
+        component={ChildrenListTableContainer}
         role={'PARENT'}
       />
       <PrivateRoute

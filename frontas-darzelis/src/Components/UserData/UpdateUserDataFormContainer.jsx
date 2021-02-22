@@ -141,7 +141,11 @@ export default class UpdateUserDataFormContainer extends Component {
         .then((response) => {
           console.log(response);
           alert('Duomenys atnaujinti sėkmingai!');
-          this.props.history.push('/tevai/naudotojo-duomenys');
+          if (this.state.role =="PARENT") {
+          this.props.history.push('/tevai/naudotojo-duomenys');}
+          else if (this.state.role =="EDU"){
+            this.props.history.push('/admin/edu/naudotojo-duomenys')
+          }
         })
 
         .catch((error) => {

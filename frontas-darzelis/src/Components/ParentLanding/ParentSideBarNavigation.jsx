@@ -53,6 +53,16 @@ const ParentSideBarNavigation = () => {
             Prašymas registruoti į darželį
           </Link>
         </li>
+        <li className="nav-item">
+          <Link
+            to="/tevai/vaikai"
+            className="nav-link active"
+            id="childForm"
+          >
+            <i className="fas fa-file-contract"></i>
+            Peržiūrėti/Redaguoti vaikų duomenis
+          </Link>
+        </li>
         {/*<li className="nav-item">*/}
         {/*    <Link to="/dashboard/prasymai" className="nav-link active">*/}
         {/*        <i className="fas fa-envelope"></i>*/}
