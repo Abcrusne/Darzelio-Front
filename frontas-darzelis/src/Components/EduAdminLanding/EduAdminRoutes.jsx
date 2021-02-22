@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from 'react-router';
+import {Route, Switch} from 'react-router';
 
 //our imports
 import PrivateRoute from "../../Configuration/PrivateRoute";
@@ -13,7 +13,6 @@ import UpdateKindergartenFormContainer from '../KindergartenList/UpdateKindergar
 import UpdateUserDataFormContainer from '../UserData/UpdateUserDataFormContainer';
 import UserData from '../UserData/UserData';
 import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
-
 
 const EduAdminRoutes = () => {
     return (
@@ -78,6 +77,12 @@ const EduAdminRoutes = () => {
         component={UpdateUserPasswordContainer}
         role={'EDU'}
       />
+            <PrivateRoute
+                path="/admin/edu/darzeliai/registracija"
+                exact
+                component={KindergartenRegistrationContainer}
+                role={'EDU'}
+            />
             <PrivateRoute
                 path="/admin/edu/*"
                 exact
