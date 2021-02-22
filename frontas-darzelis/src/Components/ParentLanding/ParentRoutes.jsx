@@ -13,6 +13,12 @@ import NotFoundPage from "../Utilities/NotFoundPage";
 import UpdateParentRegistrationFormContainer from "../ParentRegistration/UpdateParentRegistrationFormContainer";
 import NextPage from '../ChildrenRegistration/NextPage';
 
+import UpdateUserDataFormContainer from '../UserData/UpdateUserDataFormContainer';
+import UserData from '../UserData/UserData';
+import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
+import UploadPdfContainer from '../UploadPDF/UploadPdfContainer';
+
+
 const ParentRoutes = () => {
   return (
     <Switch>
@@ -22,10 +28,16 @@ const ParentRoutes = () => {
         component={ParentLandingDashboard}
         role={'PARENT'}
       />
-      <PrivateRoute
+      {/* <PrivateRoute
         path="/tevai/naudotojo-duomenys"
         exact
         component={ParentUserdata}
+        role={'PARENT'}
+      /> */}
+      <PrivateRoute
+        path="/tevai/naudotojo-duomenys"
+        exact
+        component={UserData}
         role={'PARENT'}
       />
       <PrivateRoute
@@ -59,6 +71,24 @@ const ParentRoutes = () => {
         role={'PARENT'}
       />
       <PrivateRoute
+        path="/tevai/duomenys/redaguoti"
+        exact
+        component={UpdateUserDataFormContainer}
+        role={'PARENT'}
+      />
+      <PrivateRoute
+        path="/tevai/duomenys/redaguoti/slaptazodi"
+        exact
+        component={UpdateUserPasswordContainer}
+        role={'PARENT'}
+      />
+       <PrivateRoute
+        path="/tevai/ikelti"
+        exact
+        component={UploadPdfContainer}
+        role={'PARENT'}
+      />
+      <PrivateRoute
         path="/tevai/*"
         exact
         component={NotFoundPage}
@@ -67,4 +97,5 @@ const ParentRoutes = () => {
     </Switch>
   );
 };
+
 export default ParentRoutes;

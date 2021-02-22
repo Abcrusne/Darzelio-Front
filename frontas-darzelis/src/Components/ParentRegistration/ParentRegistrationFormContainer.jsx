@@ -108,10 +108,12 @@ export default class ParentRegistrationFormContainer extends Component {
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
     let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
     let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,\.\- ]*$/;
-    let houseNumberValidation = /^\d+[a-zA-Z ]*$/;
+
+   let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
+
     let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
     let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
-    let numbers = /^[1-9]+$/;
+    let numbers = /^[0-9]+$/;
     switch (name) {
       case 'firstname':
         errors.firstname =
@@ -247,12 +249,18 @@ export default class ParentRegistrationFormContainer extends Component {
           } else if (error.response.data.message === 'Invalid field entry') {
             alert('Užpildykite visus privalomus laukus!');
           } else if (error.response.data === 'Toks asmens kodas jau užimtas') {
-            alert('Pasitikrinkite asmens kodus.');
+            alert('Pasitikrinkite asmens kodus.' + error.response.data);
           } else if (
             error.response.data === 'Šis asmens kodas jau egzistuoja sistemoje!'
           ) {
             alert(
-              'Pasitikrinkite ar suvedėte teisingus asmens kodus. Šis asmens kodas jau egzistuoja sistemoje!(toks tevo asmens kodas jau egzistuoja vaiku sistemoje)'
+              'Pasitikrinkite ar suvedėte teisingus asmens kodus.' +
+                error.response.data
+            );
+          } else if (error.response.data === 'Asmens kodas jau užimtas') {
+            alert(
+              'Pasitikrinkite ar suvedėte teisingus asmens kodus. ' +
+                error.response.data
             );
           } else if (error.response.status === 400) {
             alert(
@@ -603,7 +611,9 @@ export default class ParentRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     // noValidate
                     // pattern="[0-9][a-zA-Z0-9- - ]*?{1,7}"
-                    pattern="^\d+[a-zA-Z ]*"
+
+                     pattern="^[1-9]+[ a-zA-Z 0-9 ]*"
+
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
                         'Įveskite deklaruotą namo numerį tinkamu formatu, pvz.: 1A'

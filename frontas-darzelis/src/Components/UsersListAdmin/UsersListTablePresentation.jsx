@@ -9,13 +9,20 @@ const UsersListTablePresentation = ({
   // toggleModal,
   // isOpen,
 }) => {
-  return users.map(({ id, firstname, lastname, email, role }, index) => {
-    // const roleLt =
-    //   users.role == '[PARENT]'
-    //     ? 'Tėvas'
-    //     : users.role == '[EDU]'
-    //     ? 'Švietimo specialistas'
-    //     : 'Nenurodyta';
+  return users.map(({ id, firstname, lastname, email, role, markedForDeletion}, index) => {
+    const roleLt =
+      role == 'PARENT'
+        ? 'Tėvas/Globėjas'
+        : role == 'EDU'
+        ? 'Švietimo specialistas'
+        : 'Nenurodyta';
+
+    const markedForDeletionLt = 
+    markedForDeletion === true 
+    ? "Ištrinti"
+    : markedForDeletion === false
+    ? "-"
+    :"nenurodyta";
 
     return (
       <tr key={id}>
@@ -23,7 +30,7 @@ const UsersListTablePresentation = ({
         <td>{firstname}</td>
         <td> {lastname}</td>
         <td>{email}</td>
-        <td>{role}</td>
+        <td>{roleLt}</td>
 
         <td>
           <Link
@@ -34,9 +41,10 @@ const UsersListTablePresentation = ({
           </Link>
         </td>
         <td>
-          {/* <button className="btn btn-danger" value={id} onClick={deleteUser}>
-            Ištrinti
-          </button> */}
+      {markedForDeletionLt}
+        </td>
+        <td>
+         
           <button
             className="btn btn-danger"
             data-toggle="modal"

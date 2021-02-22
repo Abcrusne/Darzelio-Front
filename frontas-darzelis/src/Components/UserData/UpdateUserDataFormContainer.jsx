@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
-// import { Link } from 'react-router-dom';
+import '../../Style/style.css';
 import LogoutPresentation from '../Utilities/LogoutPresentation';
-import NavigationComponent from '../SysAdminLanding/NavigationComponent';
 
-export default class UpdateUserFormContainer extends Component {
+export default class UpdateUserDataFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,19 +14,25 @@ export default class UpdateUserFormContainer extends Component {
       email: '',
       role: '',
       password: '',
-      markedForDeletion: "",
+      markedForDeletion: false,
+
       errors: {
         firstname: '',
         lastname: '',
         email: '',
-        role: '',
       },
     };
   }
   componentDidMount() {
-    console.log('component did mount');
     axios
-      .get(`${API}/api/users/${this.props.match.params.id}`)
+      .get(`${API}/api/users/loggeduserid`)
+      .then((res) => {
+        this.setState({
+          id: res.data,
+        });
+        console.log('user id:' + this.state.id);
+        return axios.get(`${API}/api/users/${this.state.id}`);
+      })
       .then((res) =>
         this.setState({
           id: res.data.id,
@@ -36,36 +41,30 @@ export default class UpdateUserFormContainer extends Component {
           email: res.data.email,
           role: res.data.role,
           password: res.data.password,
-          markedForDeletion: res.data.markedForDeletion,
+          markedForDeletion:res.data.markedForDeletion
         })
       )
       .catch((err) => console.log(err));
   }
-  resetPassword = (event) => {
-    event.preventDefault();
-    axios
-      .put(`${API}/api/users/${this.state.id}`, {
-        id: this.state.id,
-        firstname: this.state.firstname,
-        lastname: this.state.lastname,
-        email: this.state.email,
-        role: this.state.role,
-        password: this.state.firstname,
-        markedForDeletion: this.state.markedForDeletion,
-      })
-      .then((response) => {
-        console.log(response);
-        alert(
-          'Vartotojo slaptažodis atsatatytas į pirminį (toks kaip vardas dabar)'
-        );
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // componentDidMount() {
+  //   console.log('component did mount');
+  //   axios
+  //     .get(`${API}/api/users/${this.props.match.params.id}`)
+  //     .then((res) =>
+  //       this.setState({
+  //         id: res.data.id,
+  //         firstname: res.data.firstname,
+  //         lastname: res.data.lastname,
+  //         email: res.data.email,
+  //         role: res.data.role,
+  //         password: res.data.password,
+  //       })
+  //     )
+  //     .catch((err) => console.log(err));
+  // }
 
   handleChange = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     const validEmailRegex = RegExp(
       /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
@@ -79,9 +78,6 @@ export default class UpdateUserFormContainer extends Component {
           !value.match(letters) || value.length < 2
             ? 'Vardas turi būti iš raidžių ir ilgesnis nei 1 raidė!'
             : '';
-        break;
-      case 'role':
-        errors.role = !value || value.length === 0 ? 'Pasirinkite rolę!' : '';
         break;
 
       case 'email':
@@ -99,13 +95,23 @@ export default class UpdateUserFormContainer extends Component {
         break;
     }
 
-    this.setState({ errors, [name]: value }, () => {
-      console.log(errors);
-    });
+    if (event.target.type === 'checkbox') {
+      // console.log(event.target.checked);
+      this.setState({ [event.target.name]: event.target.checked });
+    } else
+      this.setState(
+        {
+          errors,
+          [name]: value,
+        },
+        () => {
+          console.log(errors);
+        }
+      );
+    console.log(this.state);
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    // event.target.className += ' was-validated';
 
     const validateForm = (errors) => {
       let valid = true;
@@ -129,11 +135,13 @@ export default class UpdateUserFormContainer extends Component {
             role: this.state.role,
             password: this.state.password,
             markedForDeletion:this.state.markedForDeletion,
+            // requestedDelete: this.state.requestedDelete
           }
         )
         .then((response) => {
           console.log(response);
-          this.props.history.push('/admin/vartotojai');
+          alert('Duomenys atnaujinti sėkmingai!');
+          this.props.history.push('/tevai/naudotojo-duomenys');
         })
 
         .catch((error) => {
@@ -143,7 +151,7 @@ export default class UpdateUserFormContainer extends Component {
             alert('Užpildykite visus laukus!');
           } else if (error.response.status === 400) {
             alert(
-              'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
+              'RNepavyko pakeisti! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
           console.log(error);
@@ -151,7 +159,7 @@ export default class UpdateUserFormContainer extends Component {
     } else {
       console.error('Invalid Form');
       alert(
-        'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
+        'Nepavyko pakeisti! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );
     }
   };
@@ -160,10 +168,7 @@ export default class UpdateUserFormContainer extends Component {
     const { errors } = this.state;
     return (
       <div className="container mt-5">
-        <NavigationComponent />
-
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
-          <LogoutPresentation />
           <div className="mb-4">
             <h3>Atnaujinti vartotojo duomenis</h3>
           </div>
@@ -219,28 +224,33 @@ export default class UpdateUserFormContainer extends Component {
                 <span className="error">{errors.email}</span>
               )}
             </div>
-            <div className="mb-3">
-              <label htmlFor="role" className="control-label">
-                Parinkite rolę*:
-              </label>
-              <select
-                type="role"
-                className="form-control"
-                name="role"
+
+            <div className="form-check form-group mb-3 col-10">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                name="markedForDeletion"
+                id="markedForDeletion"
+                checked={this.state.markedForDeletion}
                 onChange={this.handleChange}
                 noValidate
-                value={this.state.role}
-                // required
-              >
-                <option value=""></option>
-                <option value="PARENT">Tėvas/globėjas</option>
-                <option value="EDU">Švietimo specialistas</option>
-              </select>
-              {errors.role.length > 0 && (
-                <span className="error">{errors.role}</span>
-              )}
-              {/* <span className="invalid-feedback error">Pasirinkite rolę.</span> */}
+              />
+              <label htmlFor="markedForDeletion" className="form-check-label">
+                Pažymėkite jei norite, kad Jūsų anketa ir duomenys būtų ištrinti
+                iš sistemos
+              </label>
             </div>
+            {this.state.markedForDeletion ? (
+              <div>
+                <p>
+                  {' '}
+                  <i>
+                    {' '}
+                    <b>Anketa ir duomenys bus ištrinti per 14 d.d. dienų</b>
+                  </i>
+                </p>
+              </div>
+            ) : null}
 
             <div> * - privalomi laukai</div>
 
@@ -248,16 +258,7 @@ export default class UpdateUserFormContainer extends Component {
               <button type="submit" className="btn btn-success">
                 Išsaugoti
               </button>
-
-              <button
-                type="submit"
-                className="btn btn-warning ml-3"
-                onClick={this.resetPassword}
-              >
-                Atstatyti slaptažodį į standartinį
-              </button>
             </div>
-            {/* {this.state.errorCount !== null ? <p className="form-status">Form is {formValid ? 'valid ✅' : 'invalid ❌'}</p> : 'Form not submitted'} */}
           </form>
         </div>
       </div>
