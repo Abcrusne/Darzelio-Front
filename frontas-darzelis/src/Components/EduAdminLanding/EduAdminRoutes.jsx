@@ -78,12 +78,6 @@ const EduAdminRoutes = () => {
         role={'EDU'}
       />
             <PrivateRoute
-                path="/admin/edu/darzeliai/registracija"
-                exact
-                component={KindergartenRegistrationContainer}
-                role={'EDU'}
-            />
-            <PrivateRoute
                 path="/admin/edu/*"
                 exact
                 component={NotFoundPage}
