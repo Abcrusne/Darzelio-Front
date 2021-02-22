@@ -12,7 +12,7 @@ export default class UpdateUserPasswordContainer extends Component {
     super(props);
     this.state = {
       // id: '',
-
+      role: '',
       //currentPassword
       oldPassword: '',
       newPassword: '',
@@ -28,24 +28,16 @@ export default class UpdateUserPasswordContainer extends Component {
       },
     };
   }
-  //   componentDidMount() {
-  //     axios
-  //       .get(`${API}/api/users/loggeduserid`)
-  //       .then((res) => {
-  //         UserService.setId(res.data);
-  //         this.setState({
-  //           id: res.data,
-  //         });
-  //         console.log('user id:' + this.state.id);
-  //         //   return axios.get(`${API}/api/users/${this.state.id}`);
-  //         // })
-  //         // .then((res) =>
-  //         //   this.setState({
-  //         //     id: res.data.id,
-  //       })
-  // //)
-  //       .catch((err) => console.log(err));
-  //   }
+  componentDidMount() {
+    axios
+      .get(`${API}/api/users/loggedrole`)
+      .then((res) => {
+        this.setState({
+          role: res.data,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
 
   handleChange = (event) => {
     event.preventDefault();
@@ -108,6 +100,7 @@ export default class UpdateUserPasswordContainer extends Component {
         )
         .then((response) => {
           console.log(response);
+          alert('Duomenys atnaujinti sėkmingai!');
           if (this.state.role == 'PARENT') {
             this.props.history.push('/tevai/naudotojo-duomenys');
           } else if (this.state.role == 'EDU') {

@@ -138,7 +138,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
 
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
-    let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
+    // let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
     let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,\.\- ]*$/;
 
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;

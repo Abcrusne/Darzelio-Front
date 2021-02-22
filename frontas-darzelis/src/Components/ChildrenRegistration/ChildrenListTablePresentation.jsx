@@ -29,21 +29,21 @@ const ChildrenListTablePresentation = ({ children, deleteChild }) => {
         <td>
           <button
             className="btn btn-danger"
-            // data-toggle="modal"
-            // data-target={`#staticBackdrop${id}`}
-            onClick={deleteChild}
+            data-toggle="modal"
+            data-target={`#staticBackdrop${id}`}
+            // onClick={deleteChild}
             value={id}
           >
             Ištrinti
           </button>
         </td>
         <td>
-          {/* <ModalComponentChildren
+          <ModalComponentChildren
             childId={id}
             firstname={firstname}
             lastname={lastname}
             deleteChild={deleteChild}
-          /> */}
+          />
         </td>
       </tr>
     );

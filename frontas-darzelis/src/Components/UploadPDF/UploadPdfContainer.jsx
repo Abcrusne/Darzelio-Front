@@ -160,8 +160,10 @@ handleChange = (event) => {
           <input
             type="file"
             accept=".pdf"
-            className="form-control hidden"
+            // className="form-control hidden"
+            className="hidden"
             name="pdf"
+            id="pdf"
             onChange={this.handleChange}
 
             //required

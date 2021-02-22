@@ -26,16 +26,16 @@ export default class ChildrenListTableContainer extends Component {
           `${API}/api/users/${this.state.id}/parentdetails/children`
         );
       })
-      .then((res) => {
+      .then((response) => {
         this.setState({
-          children: res.data,
+          children: response.data,
         });
-        // console.log('children: ' + this.state.children);
       })
       .catch((error) => console.log(error));
+        // console.log('children: ' + this.state.children);
   }
   deleteChild = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     axios
       .delete(
         `${API}/api/users/${this.state.id}/parentdetails/children/${event.target.value}`
@@ -45,7 +45,7 @@ export default class ChildrenListTableContainer extends Component {
           .get(`${API}/api/users/${this.state.id}/parentdetails/children`)
           .then((response) => this.setState({ children: response.data }));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.data));
     console.log('deleteChildren');
   };
 
