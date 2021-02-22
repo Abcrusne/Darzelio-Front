@@ -552,13 +552,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                     onChange={this.handleChange}
                     value={this.state.studyingInstitution}
                     // noValidate
-
-
                     pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
-
-                   
-                  
-
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
                         'Įveskite mokymosi įstaigos pavadinimą.'
