@@ -30,7 +30,7 @@ export default class ChildrenListTableContainer extends Component {
         this.setState({
           children: res.data,
         });
-        console.log('children: ' + this.state.children);
+        // console.log('children: ' + this.state.children);
       })
       .catch((error) => console.log(error));
   }

@@ -23,6 +23,7 @@ export default class UsersListTableContainer extends Component {
     axios
       .get(API + '/api/users')
       .then((response) => this.setState({ users: response.data }))
+      console.log("users: " + this.state.users)
       .catch((error) => console.log(error));
   };
 

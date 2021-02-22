@@ -28,30 +28,30 @@ export default class UpdateUserPasswordContainer extends Component {
       },
     };
   }
-//   componentDidMount() {
-//     axios
-//       .get(`${API}/api/users/loggeduserid`)
-//       .then((res) => {
-//         UserService.setId(res.data);
-//         this.setState({
-//           id: res.data,
-//         });
-//         console.log('user id:' + this.state.id);
-//         //   return axios.get(`${API}/api/users/${this.state.id}`);
-//         // })
-//         // .then((res) =>
-//         //   this.setState({
-//         //     id: res.data.id,
-//       })
-// //)
-//       .catch((err) => console.log(err));
-//   }
+  //   componentDidMount() {
+  //     axios
+  //       .get(`${API}/api/users/loggeduserid`)
+  //       .then((res) => {
+  //         UserService.setId(res.data);
+  //         this.setState({
+  //           id: res.data,
+  //         });
+  //         console.log('user id:' + this.state.id);
+  //         //   return axios.get(`${API}/api/users/${this.state.id}`);
+  //         // })
+  //         // .then((res) =>
+  //         //   this.setState({
+  //         //     id: res.data.id,
+  //       })
+  // //)
+  //       .catch((err) => console.log(err));
+  //   }
 
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
     let errors = this.state.errors;
-   
+
     //min 1 lowercase letter, min 1 uppercase letter,min 1 number, length min=8
     const newPasswordValidation = /^(?=.*[a-ząčęėįšųūž])(?=.*[A-ZĄČĘĖĮŠŲŪŽ])(?=.*\d)[a-ząčęėįšųūžA-ZĄČĘĖĮŠŲŪŽ\d]{8,}$/;
     switch (name) {
@@ -103,22 +103,26 @@ export default class UpdateUserPasswordContainer extends Component {
             // id: this.state.id,
             oldPassword: this.state.oldPassword,
             newPassword: this.state.newPassword,
-            withCredentials:true
+            withCredentials: true,
           }
         )
         .then((response) => {
           console.log(response);
-          alert('Slaptažodis pakeistas sėkmingai!');
-          this.props.history.push('/tevai/naudotojo-duomenys');
+          if (this.state.role == 'PARENT') {
+            this.props.history.push('/tevai/naudotojo-duomenys');
+          } else if (this.state.role == 'EDU') {
+            this.props.history.push('/admin/edu/naudotojo-duomenys');
+          }
         })
         .catch((error) => {
           console.log(error.data);
           if (error.response.data === 'Neteisingai įvestas senas slaptažodis') {
             alert(error.response.data);
-          } else if (error.response.data === 'Senas ir naujas slaptažodis negali sutapti') {
+          } else if (
+            error.response.data === 'Senas ir naujas slaptažodis negali sutapti'
+          ) {
             alert(error.response.data);
-          }
-          else if (error.response.status === 400) {
+          } else if (error.response.status === 400) {
             alert('Nepavyko pakeisti slaptažodžio!');
           }
           console.log(error.data);
