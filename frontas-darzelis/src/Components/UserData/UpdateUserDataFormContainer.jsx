@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
-import LogoutPresentation from '../Utilities/LogoutPresentation';
+
 
 export default class UpdateUserDataFormContainer extends Component {
   constructor(props) {
@@ -141,9 +141,9 @@ export default class UpdateUserDataFormContainer extends Component {
         .then((response) => {
           console.log(response);
           alert('Duomenys atnaujinti sėkmingai!');
-          if (this.state.role =="PARENT") {
+          if (this.state.role ==="PARENT") {
           this.props.history.push('/tevai/naudotojo-duomenys');}
-          else if (this.state.role =="EDU"){
+          else if (this.state.role ==="EDU"){
             this.props.history.push('/admin/edu/naudotojo-duomenys')
           }
         })

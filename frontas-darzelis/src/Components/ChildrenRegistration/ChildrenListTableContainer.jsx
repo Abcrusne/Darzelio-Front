@@ -34,20 +34,20 @@ export default class ChildrenListTableContainer extends Component {
       .catch((error) => console.log(error));
         // console.log('children: ' + this.state.children);
   }
-  deleteChild = (event) => {
-    //event.preventDefault();
-    axios
-      .delete(
-        `${API}/api/users/${this.state.id}/parentdetails/children/${event.target.value}`
-      )
-      .then(() => {
-        axios
-          .get(`${API}/api/users/${this.state.id}/parentdetails/children`)
-          .then((response) => this.setState({ children: response.data }));
-      })
-      .catch((err) => console.log(err.data));
-    console.log('deleteChildren');
-  };
+  // deleteChild = (event) => {
+  //   //event.preventDefault();
+  //   axios
+  //     .delete(
+  //       `${API}/api/users/${this.state.id}/parentdetails/children/${event.target.value}`
+  //     )
+  //     .then(() => {
+  //       axios
+  //         .get(`${API}/api/users/${this.state.id}/parentdetails/children`)
+  //         .then((response) => this.setState({ children: response.data }));
+  //     })
+  //     .catch((err) => console.log(err.data));
+  //   console.log('deleteChildren');
+  // };
 
   render() {
     return (
@@ -60,18 +60,18 @@ export default class ChildrenListTableContainer extends Component {
               <th scope="col">Pavardė</th>
               <th scope="col">Peržiūrėti/Atnaujinti vaiko duomenis</th>
               <th scope="col">Peržiūrėti/Atnaujinti prašymą į darželį </th>
-              <th scope="col">Ištrinti vaiką</th>
-              <th scope="col"></th>
+              {/* <th scope="col">Ištrinti vaiką</th>
+              <th scope="col"></th> */}
             </tr>
           </thead>
-          {this.state.children.length > 0 && (
+          {/* {this.state.children.length > 0 && ( */}
             <tbody>
               <ChildrenListTablePresentation
                 children={this.state.children}
                 deleteChild={this.state.deleteChild}
               />
             </tbody>
-          )}
+          {/* )} */}
         </table>
       </div>
     );

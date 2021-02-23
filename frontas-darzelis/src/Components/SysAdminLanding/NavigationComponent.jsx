@@ -26,6 +26,11 @@ function NavigationComponent(props) {
               </NavLink>
             </li>
             <li className="nav-item active">
+              <NavLink to="/admin/darzeliai" className="nav-link ">
+                Darželių sąrašas
+              </NavLink>
+            </li>
+            <li className="nav-item active">
               <NavLink to="/admin/prasymai" className="nav-link">
                 Prašymai
               </NavLink>

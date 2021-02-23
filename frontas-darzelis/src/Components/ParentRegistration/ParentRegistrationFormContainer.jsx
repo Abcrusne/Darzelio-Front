@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
-import LogoutPresentation from '../Utilities/LogoutPresentation';
 import { NavLink } from 'react-router-dom';
 import UserService from '../../Configuration/UserService';
-import UpdateParentRegistrationFormContainer from './UpdateParentRegistrationFormContainer';
+//import UpdateParentRegistrationFormContainer from './UpdateParentRegistrationFormContainer';
 
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
 
@@ -106,8 +105,8 @@ export default class ParentRegistrationFormContainer extends Component {
 
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
-    let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
-    let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,\.\- ]*$/;
+    //let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
+    let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,.\- ]*$/;
 
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
 
