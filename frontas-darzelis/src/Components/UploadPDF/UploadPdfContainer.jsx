@@ -108,12 +108,12 @@ handleChange = (event) => {
   
     <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
       <div className="mb-4">
-        <h3>Įkelkite vaiko PDF formatu pažymas</h3>
+        <h3>Įkelkite vaiko sveikatos pažymą PDF formatu</h3>
       </div>
       <form onSubmit={this.handleSubmit} className="form-row ">
-        <div className="form-group mb-3 col-6">
+        <div className="form-group mb-3 col-4">
           <label htmlFor="selectChild" className="control-label">
-            Parinkite vaiką*:
+            Pasirinkite vaiką*:
           </label>
           <select
             
@@ -135,7 +135,7 @@ handleChange = (event) => {
                                 ))}
           </select>
         </div>
-        <div className="form-group mb-3 col-6">
+        {/* <div className="form-group mb-3 col-6">
           <label htmlFor="" className="control-label">
             Parinkite dokumento pavadinimą*:
           </label>
@@ -152,7 +152,7 @@ handleChange = (event) => {
               Sveikatos medicininė pažyma
             </option>
           </select>
-        </div>
+        </div> */}
         <div className="form-group mb-3 col-12">
           <label htmlFor="pdf" className="control-label">
             Įkelti dokumentą*:
@@ -165,8 +165,7 @@ handleChange = (event) => {
             name="pdf"
             id="pdf"
             onChange={this.handleChange}
-
-            //required
+            required
           />
         </div>
         <div className="form-group mb-3 col-12" > * - privalomi laukai</div>

@@ -79,28 +79,21 @@ function App() {
             component={EduAdminLanding}
             role={'EDU'}
         />
-        <Route
-          exact
-          path="/admin/registracija"
-          component={RegistrationFormContainer}
-        />
-        <Route
-          exact
-          path="/admin/sekminga"
-          component={RegistrationSuccessPresentation}
-        />
-          <Route path="/tevai/toliau" component={NextPage} />
-          <Route
+    
+          <PrivateRoute exact path="/tevai/toliau" component={NextPage} />
+          <PrivateRoute
            exact
             path="/admin/edu/darzeliai"
             component={KindergartenListTableContainer}
           />
-          <Route
+          <PrivateRoute
             path="/admin/edu/darzelioregistracija"
+            exact
             component={KindergartenRegistrationContainer}
           />
-          <Route
+          <PrivateRoute
             path="/admin/edu/darzeliai/:id"
+            exact
             component={UpdateKindergartenFormContainer}
           />
         <Route
@@ -112,6 +105,31 @@ function App() {
           path="/admin/vartotojai/:id"
           component={UpdateUserFormContainer}
         />
+            <Route
+          exact
+          path="/admin/registracija"
+          component={RegistrationFormContainer}
+        />
+        <Route
+          exact
+          path="/admin/sekminga"
+          component={RegistrationSuccessPresentation}
+        />
+            <Route
+          exact
+          path="/admin/darzelioregistracija"
+          component={KindergartenRegistrationContainer}
+        />
+         <Route
+           exact
+            path="/admin/darzeliai"
+            component={KindergartenListTableContainer}
+          />
+          <Route
+            path="/admin/darzeliai/:id"
+            component={UpdateKindergartenFormContainer}
+          />
+        
         <Route path="*" component={NoMatch} />
         <Route component={NoMatch} />
         </Switch>

@@ -4,3 +4,12 @@
   font-size: 0.625em;
   display: relative;
 }
+#deleteChildData {
+  background-color: #af4e4e;
+}
+.delete {
+  margin-left: 4.6em;
+}
+.next {
+  margin-left: 30em;
+}

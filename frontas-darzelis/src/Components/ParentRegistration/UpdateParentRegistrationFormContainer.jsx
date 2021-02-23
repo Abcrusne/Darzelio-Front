@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
-import LogoutPresentation from '../Utilities/LogoutPresentation';
-import UserService from '../../Configuration/UserService';
+
+//import UserService from '../../Configuration/UserService';
 
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
 

@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import ModalComponentChildren from '../Modal/ModalComponentChildren';
 
-const ChildrenListTablePresentation = ({ children, deleteChild }) => {
+const ChildrenListTablePresentation = ({ 
+  children, 
+  // deleteChild
+
+ }) => {
   return children.map(({ id, firstname, lastname }, index) => {
     return (
       <tr key={id}>
@@ -26,7 +30,7 @@ const ChildrenListTablePresentation = ({ children, deleteChild }) => {
             Peržiūrėti/Atnaujinti prašymą į darželį
           </Link>
         </td>
-        <td>
+        {/* <td>
           <button
             className="btn btn-danger"
             data-toggle="modal"
@@ -36,15 +40,15 @@ const ChildrenListTablePresentation = ({ children, deleteChild }) => {
           >
             Ištrinti
           </button>
-        </td>
-        <td>
+        </td> */}
+        {/* <td>
           <ModalComponentChildren
             childId={id}
             firstname={firstname}
             lastname={lastname}
             deleteChild={deleteChild}
           />
-        </td>
+        </td> */}
       </tr>
     );
   });

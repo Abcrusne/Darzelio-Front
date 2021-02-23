@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
-
-import moment from 'moment';
+import ModalComponentChildren from '../Modal/ModalComponentChildren';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import "../../Style/style.css"
+//import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import lt from 'date-fns/locale/lt';
@@ -140,6 +142,23 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
       })
       .catch((err) => console.log(err));
   }
+
+  deleteChild = (event) => {
+    //event.preventDefault();
+    axios
+      .delete(
+        `${API}/api/users/${this.state.userId}/parentdetails/children/${this.state.id}`
+      )
+      .then(() => {
+        alert ("Vaikas buvo ištrintas");
+        this.props.history.push('/tevai/vaikai');
+       
+      })
+      .catch((err) => console.log(err.data));
+    console.log('deleteChildren');
+  };
+
+
   handleChangeDate = (date) => {
     //this.dd = moment(date).format("YYYY-MM-DD");
     //  date = moment(date).format("YYYY-MM-DD");
@@ -158,9 +177,9 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
     const { name, value } = event.target;
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
-    let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 ,/./-]+$/;
+    //let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 ,/./-]+$/;
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
-    let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,\.\- ]*$/;
+    let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,.\- ]*$/;
     let date = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
 
     let validPersonalCode = /^[5|6]+[0-9]+$/;
@@ -465,7 +484,8 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
               <div>
 
                 <input 
-                type= "string"
+                type= "text"
+                className="form-control"
                 //  dateFormat="yyyy-MM-dd"
                  name="birthdate"
                  value={this.state.birthdate}
@@ -1008,15 +1028,35 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
               {' '}
               * - privalomi laukai
             </div>
-            <div>
+            <div className= "">
               <button
                 type="submit"
-                className="btn btn-success btn-lg btn-block mt-5"
+                className="btn btn-success  btn-lg btn-block mt-5"
               >
-                Išsaugoti ir Tęsti
+                Atnaujinti
               </button>
             </div>
           </form>
+      
+          <div className="col text-center delete">
+          <button
+                //onClick={this.deleteChild}
+                id="deleteChildData"
+                className="btn mt-3"
+                data-toggle="modal"
+                data-target={`#staticBackdrop${this.state.id}`}
+                value={this.state.id}
+              >
+               Ištrinti vaiko duomenis
+              </button>
+              <ModalComponentChildren
+               childId={this.state.id}
+               firstname={this.state.firstname}
+               lastname={this.state.lastname}
+               deleteChild={this.deleteChild}
+               />
+               </div>
+             
         </div>
       </div>
     );
