@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
-import UploadPdfPresentation from './UploadPdfPresentation';
+import style from "../../Style/style.css";
+//import UploadPdfPresentation from './UploadPdfPresentation';
 
 export default class UploadPdfContainer extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export default class UploadPdfContainer extends Component {
       lastname: '',
 
       pdf: '',
-      title: '',
+      // title: '',
     };
   }
 //   componentDidMount() {
@@ -41,7 +42,7 @@ getChildren = async () => {
 async componentDidMount() {
 
     const childrenData = await this.getChildren();
-    console.log(childrenData);
+   // console.log(childrenData);
     let children = childrenData.map((child) => ({
         firstname: child.firstname,
         lastname: child.lastname,
@@ -66,12 +67,17 @@ handleChange = (event) => {
     // )
 };
 
+handleFile =(event)=>{
+  //console.log(event.target.files +"files");
+  //console.log(event.target.files[0] +"files[0]");
+  this.setState({pdf: event.target.files[0]})
+}
   handleSubmit = (event) => {
     event.preventDefault();
 
     const inputPdf = {
         pdf: this.state.pdf,
-        title:this.state.title,
+        // title:this.state.title,
         childId: this.state.childId
         // firstname: this.state.firstname,
         // lastname: this.state.lastname
@@ -120,7 +126,7 @@ handleChange = (event) => {
             className="form-control"
             id="selectChild"
             name="childId"
-            onChange={this.handleChange}
+            onChange={(e)=> this.handleFile(e)}
 
             //required
           >
@@ -135,34 +141,15 @@ handleChange = (event) => {
                                 ))}
           </select>
         </div>
-        {/* <div className="form-group mb-3 col-6">
-          <label htmlFor="" className="control-label">
-            Parinkite dokumento pavadinimą*:
-          </label>
-          <select
-            type="text"
-            className="form-control"
-            name="title"
-            onChange={this.handleChange}
-
-            //required
-          >
-            <option value=""></option>
-            <option value="Sveikatos medicininė pažyma">
-              Sveikatos medicininė pažyma
-            </option>
-          </select>
-        </div> */}
-        <div className="form-group mb-3 col-12">
-          <label htmlFor="pdf" className="control-label">
-            Įkelti dokumentą*:
+        <div className=" fileUpload form-group mb-3 col-12">
+          <label htmlFor="pdf" className="upload control-label">
+         Įkelti dokumentą*
           </label>
           <input
             type="file"
             accept=".pdf"
-            // className="form-control hidden"
-            className="hidden"
-            name="pdf"
+             className=" file form-control"
+            // name="pdf"
             id="pdf"
             onChange={this.handleChange}
             required
