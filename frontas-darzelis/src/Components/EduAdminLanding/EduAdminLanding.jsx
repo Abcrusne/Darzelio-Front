@@ -18,14 +18,9 @@ const EduAdminLanding = (props) => {
                     <div className="row pl-3">
                         <aside className="col-lg-2 col-md-4 col-sm-12 border-0 bg-white">
                             <EduAdminSideBarNavigation/>
-                            <p>Šoninis meniu</p>
                         </aside>
                         <main id="content" className="col-lg-10 col-md-8 col-sm-12">
                             <EduAdminRoutes/>
-                            <div className="m-auto">
-                                <h1>Dashboard</h1>
-                            </div>
-
                         </main>
                     </div>
                     <footer className="footer pt-3">

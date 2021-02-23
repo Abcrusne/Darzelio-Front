@@ -199,3 +199,4 @@ export default class UpdateUserPasswordContainer extends Component {
     );
   }
 }
+

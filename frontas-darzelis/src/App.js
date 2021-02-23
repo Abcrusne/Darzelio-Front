@@ -49,7 +49,7 @@ function App() {
             component={EduAdminLanding}
             role={'EDU'}
         />
-        {/*<PrivateRoute */}
+        {/*<Route */}
         {/*path="/admin/edu/naudotojo-duomenys"*/}
         {/*exact*/}
         {/*component={EduAdminLanding}*/}
@@ -73,6 +73,12 @@ function App() {
             component={EduAdminLanding}
             role={'EDU'}
         />
+          <PrivateRoute
+              path="/admin/edu/darzeliai/registracija"
+              exact
+              component={EduAdminLanding}
+              role={'EDU'}
+          />
         <PrivateRoute
             path="/admin/edu/*"
             exact

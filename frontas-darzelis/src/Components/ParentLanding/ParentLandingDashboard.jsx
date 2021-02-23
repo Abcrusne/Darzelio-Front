@@ -24,7 +24,7 @@ const ParentLandingDashboard = () => {
                     <i className="fas fa-chevron-right"></i>
                 </div>
                 <div className="col-lg-1 col-md-6 col-sm-12 card shadow-sm bg-white border-0 rounded m-auto">
-                    <p>Prašymas regitruoti į darželį</p>
+                    <p>Prašymas registruoti į darželį</p>
                     <Link to="/tevai/registracija-i-darzeli" className="btn">Pildyti</Link>
                 </div>
                 <div className="col-lg-1 col-md-6 col-sm-12 d-flex align-items-center arrow  m-auto">

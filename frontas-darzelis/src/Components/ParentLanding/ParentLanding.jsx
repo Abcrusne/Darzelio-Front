@@ -4,14 +4,8 @@ import {withRouter} from "react-router";
 
 //our
 import ParentSideBarNavigation from "./ParentSideBarNavigation";
-import ParentLandingDashboard from "./ParentLandingDashboard";
 import ParentlandingFooter from "./ParentLandingFooter";
-import ChildRegForm from "../ChildrenRegistration/ChildrenRegistrationFormContainer"
-import MainRegForm from "../MainRegistration/MainRegistrationContainer";
-import ParentRegForm from "../ParentRegistration/ParentRegistrationFormContainer";
-import UpdateParentRegForm from "../ParentRegistration/UpdateParentRegistrationFormContainer";
 import "../../Style/ParentLanding.css"
-import UserService from "../../Configuration/UserService";
 import ParentRoutes from "./ParentRoutes";
 
 const ParentLanding = (props) => {
