@@ -369,7 +369,10 @@ export default class ChildrenRegistrationFormContainer extends Component {
       axios
         .post(
           `${API}/api/users/${this.state.userId}/parentdetails/children`,
-          childrenInput
+          childrenInput ,
+          {
+            headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+          }
         )
         .then((response) => {
           console.log(response);

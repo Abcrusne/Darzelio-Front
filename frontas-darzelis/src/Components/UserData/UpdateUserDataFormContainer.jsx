@@ -174,12 +174,12 @@ export default class UpdateUserDataFormContainer extends Component {
       <div className="container mt-5">
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
-            <h3>Atnaujinti vartotojo duomenis</h3>
+            <h3>Atnaujinti naudotojo duomenis</h3>
           </div>
           <form onSubmit={this.handleSubmit} noValidate className="form-group ">
             <div className="mb-3">
               <label htmlFor="firstname" className="control-label">
-                Vartotojo vardas*:
+                Naudotojo vardas*:
               </label>
               <input
                 type="text"
@@ -198,7 +198,7 @@ export default class UpdateUserDataFormContainer extends Component {
             </div>
             <div className="mb-3">
               <label htmlFor="lastname" className="control-label">
-                Vartotojo pavardė*:
+                Naudotojo pavardė*:
               </label>
               <input
                 type="text"
@@ -214,7 +214,7 @@ export default class UpdateUserDataFormContainer extends Component {
             </div>
             <div className="mb-3">
               <label htmlFor="email" className="control-label">
-                Vartotojo el.paštas*:
+                Naudotojo el.paštas*:
               </label>
               <input
                 type="email"

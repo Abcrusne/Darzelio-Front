@@ -37,6 +37,16 @@ const EduAdminSideBarNavigation = () => {
                             Registracijų sąrašas
                         </Link>
                     </li>
+                    {/* <li className="nav-item">
+                        <Link
+                            to="/admin/edu/priemimai/:id/eiles"
+                            className="nav-link active"
+                            id="childForm"
+                        >
+                            <i className="fas fa-file-contract"></i>
+                            Darželių eilės
+                        </Link>
+                    </li> */}
                     <li className="nav-item">
                         <Link
                             to="/admin/edu/darzeliai"
