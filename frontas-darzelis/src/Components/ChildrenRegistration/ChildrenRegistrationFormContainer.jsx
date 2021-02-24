@@ -389,9 +389,17 @@ export default class ChildrenRegistrationFormContainer extends Component {
             alert(
               'Pasitikrinkite ar suvedėte teisingus asmens kodus. Toks asmens kodas jau egzistuoja'
             );
-          } else if (error.response.data === 'Toks asmens kodas jau užimtas') {
+          }  else if (error.response.data === 'Vaiko ir tėvo asmens kodai negali sutapti') {
+            alert('Pasitikrinkite asmens kodus. ' + error.response.data + "!");
+          }
+           else if (error.response.data === 'Toks asmens kodas jau užimtas') {
             alert('Pasitikrinkite asmens kodus. ' + error.response.data);
-          } else if (
+          }  else if (
+            error.response.data === `Gimimo data negali būti iš ateities!`
+          ) {
+            alert(error.response.data);
+          }
+          else if (
             error.response.data === 'Šis asmens kodas jau egzistuoja sistemoje!'
           ) {
             alert(
