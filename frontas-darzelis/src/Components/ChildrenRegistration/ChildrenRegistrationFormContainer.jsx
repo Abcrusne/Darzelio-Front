@@ -8,7 +8,7 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import lt from 'date-fns/locale/lt';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
-import ParentRegistrationFormContainer from '../ParentRegistration/ParentRegistrationFormContainer';
+//import ParentRegistrationFormContainer from '../ParentRegistration/ParentRegistrationFormContainer';
 registerLocale('lt', lt);
 
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
@@ -168,7 +168,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
     // let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 ,/./-]+$/;
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
-    let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,\.\- ]*$/;
+    let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,.\- ]*$/;
     let date = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
 
     let validPersonalCode = /^[5|6]+[0-9]+$/;

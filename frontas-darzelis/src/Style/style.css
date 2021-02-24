@@ -13,3 +13,19 @@
 .next {
   margin-left: 30em;
 }
+/* input[type="file"]
+{
+  display: none;
+} */
+/* .fileUpload input.upload 
+{
+    display: inline-block;
+} */
+.upload{
+  text-decoration: underline;
+  cursor:pointer;
+}
+.file {
+  position: relative;
+  opacity: 0
+}

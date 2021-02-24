@@ -7,7 +7,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import "../../Style/style.css"
 //import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
-import DatePicker, { registerLocale } from 'react-datepicker';
+import  { registerLocale } from 'react-datepicker';
 import lt from 'date-fns/locale/lt';
 
 registerLocale('lt', lt);
