@@ -134,3 +134,28 @@ a.btn.active {
     border-radius: 8px;
     vertical-align: bottom;
 }
+
+.btn.btn-link-1 {
+    background-color: #fbf9f8; /* snow */
+    color: #282f47; /* darkslategray */
+    text-decoration-line: underline;
+    min-width: 10px;
+    padding: 0.6em 1em;
+    border: none;
+    border-radius: 8px;
+    vertical-align: bottom;
+}
+
+.btn.btn-link-1:hover {
+    background-color: #fbf9f8; /* snow */;
+    color: #282f47; /* darkslategray */
+    font-weight: bolder;
+    padding: 0.6em 1em;
+    border: none;
+    border-radius: 8px;
+    vertical-align: bottom;
+}
+
+td {
+    min-width: 150px;
+}

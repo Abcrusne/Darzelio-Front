@@ -46,9 +46,8 @@ const LoginFormPresentation = ({email, password, onPasswdChange, onEmailChange, 
                 {/*</div>*/}
                 <div className="align-items-center">
                     <button type="submit" className="mr-4 btn">Prisijungti</button>
-                    <Link to="/registracija">Naujo vartotojo registracija</Link>
+                    <Link className="btn btn-link" to="/registracija">Naujo vartotojo registracija</Link>
                 </div>
-
             </form>
         </div>
     )
