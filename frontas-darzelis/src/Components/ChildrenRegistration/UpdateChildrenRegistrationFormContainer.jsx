@@ -389,11 +389,11 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
             );
           } else if (error.response.data === 'Toks asmens kodas jau užimtas') {
             alert('Pasitikrinkite asmens kodus. ' + error.response.data);
-          }
-          else if (error.response.data === 'Vaiko ir tėvo asmens kodai negali sutapti') {
-            alert('Pasitikrinkite asmens kodus. ' + error.response.data + "!");
-          }
-           else if (
+          } else if (
+            error.response.data === 'Vaiko ir tėvo asmens kodai negali sutapti'
+          ) {
+            alert('Pasitikrinkite asmens kodus. ' + error.response.data + '!');
+          } else if (
             error.response.data === 'Šis asmens kodas jau egzistuoja sistemoje!'
           ) {
             alert(
@@ -702,28 +702,54 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                     <span className="error">{errors.secondParentPhone}</span>
                   )}
                 </div>
-                <div className="form-group mb-3 col-6">
-                  <label
-                    htmlFor="secondParentPersonalCode"
-                    className="control-label"
-                  >
-                    Antrojo Tėvo/Globėjo Asmens Kodas*:
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Asmens kodas"
-                    className="form-control"
-                    name="secondParentPersonalCode"
-                    onChange={this.handleChange}
-                    noValidate
-                    value={this.state.secondParentPersonalCode}
-                  />
-                  {errors.secondParentPersonalCode.length > 0 && (
-                    <span className="error">
-                      {errors.secondParentPersonalCode}
-                    </span>
-                  )}
-                </div>
+                {this.state.secondParentPersonalCode > 0 ? (
+                  <div className="form-group mb-3 col-6">
+                    <label
+                      htmlFor="secondParentPersonalCode"
+                      className="control-label"
+                    >
+                      Antrojo Tėvo/Globėjo Asmens Kodas*:
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Asmens kodas"
+                      className="form-control"
+                      name="secondParentPersonalCode"
+                      onChange={this.handleChange}
+                      noValidate
+                      value={this.state.secondParentPersonalCode}
+                    />
+                    {errors.secondParentPersonalCode.length > 0 && (
+                      <span className="error">
+                        {errors.secondParentPersonalCode}
+                      </span>
+                    )}
+                  </div>
+                ) : (
+                  <div className="form-group mb-3 col-6">
+                    <label
+                      htmlFor="secondParentPersonalCode"
+                      className="control-label"
+                    >
+                      Antrojo Tėvo/Globėjo Asmens Kodas*:
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Asmens kodas"
+                      className="form-control"
+                      name="secondParentPersonalCode"
+                      onChange={this.handleChange}
+                      noValidate
+                      // value={this.state.secondParentPersonalCode}
+                    />
+                    {errors.secondParentPersonalCode.length > 0 && (
+                      <span className="error">
+                        {errors.secondParentPersonalCode}
+                      </span>
+                    )}
+                  </div>
+                )}
+
                 <div className="form-group mb-3 col-6">
                   <label htmlFor="secondParentCity" className="control-label">
                     Antrojo Tėvo/Globėjo Miestas*:

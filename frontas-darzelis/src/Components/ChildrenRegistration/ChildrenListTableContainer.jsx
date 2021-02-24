@@ -12,7 +12,7 @@ export default class ChildrenListTableContainer extends Component {
       id: '',
     };
   }
-
+ 
   componentDidMount() {
     console.log('component did mount');
     axios
@@ -64,14 +64,14 @@ export default class ChildrenListTableContainer extends Component {
               <th scope="col"></th> */}
             </tr>
           </thead>
-          {/* {this.state.children.length > 0 && ( */}
+          {this.state.children.length > 0 && (
             <tbody>
               <ChildrenListTablePresentation
                 children={this.state.children}
                 deleteChild={this.state.deleteChild}
               />
             </tbody>
-          {/* )} */}
+      )} 
         </table>
       </div>
     );
