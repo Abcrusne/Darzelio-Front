@@ -8,6 +8,16 @@ const ChildrenListTablePresentation = ({
   // deleteChild
 
  }) => {
+    let sortedChildren = [...children];
+  sortedChildren.sort((a, b) => {
+    if (a.firstname < b.firstname) {
+      return -1;
+    }
+    if (a.firstname > b.firstname) {
+      return 1;
+    }
+    return 0;
+  });
   return children.map(({ id, firstname, lastname }, index) => {
     return (
       <tr key={id}>
