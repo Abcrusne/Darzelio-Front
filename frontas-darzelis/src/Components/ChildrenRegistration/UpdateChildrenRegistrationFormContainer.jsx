@@ -4,10 +4,10 @@ import axios from 'axios';
 import '../../Style/style.css';
 import ModalComponentChildren from '../Modal/ModalComponentChildren';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import "../../Style/style.css"
+import '../../Style/style.css';
 //import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
-import  { registerLocale } from 'react-datepicker';
+import { registerLocale } from 'react-datepicker';
 import lt from 'date-fns/locale/lt';
 
 registerLocale('lt', lt);
@@ -18,7 +18,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      birthdate: "",
+      birthdate: '',
 
       //parent id ar jau egzistuoja toks tevas
       //user'io kuris prisijunges id
@@ -150,14 +150,12 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
         `${API}/api/users/${this.state.userId}/parentdetails/children/${this.state.id}`
       )
       .then(() => {
-        alert ("Vaikas buvo ištrintas");
+        alert('Vaikas buvo ištrintas');
         this.props.history.push('/tevai/vaikai');
-       
       })
       .catch((err) => console.log(err.data));
     console.log('deleteChildren');
   };
-
 
   handleChangeDate = (date) => {
     //this.dd = moment(date).format("YYYY-MM-DD");
@@ -324,8 +322,6 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-  
-
     const validateForm = (errors) => {
       let valid = true;
       Object.values(errors).forEach(
@@ -340,7 +336,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
         .put(
           `${API}/api/users/${this.state.userId}/parentdetails/children/${this.state.id}`,
           {
-             birthdate: this.state.birthdate,
+            birthdate: this.state.birthdate,
             id: this.state.id,
             firstname: this.state.firstname,
             lastname: this.state.lastname,
@@ -371,8 +367,10 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
             secondParentDeclaredStreet: this.state.secondParentDeclaredStreet,
             secondParentDeclaredHouseNumber: this.state
               .secondParentDeclaredHouseNumber,
-            secondParentDeclaredFlatNumber: this.state.secondParentDeclaredFlatNumber,
-            adopted: this.state.adopted, }
+            secondParentDeclaredFlatNumber: this.state
+              .secondParentDeclaredFlatNumber,
+            adopted: this.state.adopted,
+          }
         )
         .then((response) => {
           console.log(response);
@@ -391,13 +389,21 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
             );
           } else if (error.response.data === 'Toks asmens kodas jau užimtas') {
             alert('Pasitikrinkite asmens kodus. ' + error.response.data);
-          } else if (
+          }
+          else if (error.response.data === 'Vaiko ir tėvo asmens kodai negali sutapti') {
+            alert('Pasitikrinkite asmens kodus. ' + error.response.data + "!");
+          }
+           else if (
             error.response.data === 'Šis asmens kodas jau egzistuoja sistemoje!'
           ) {
             alert(
               'Pasitikrinkite ar suvedėte teisingus asmens kodus. ' +
                 error.response.data
             );
+          } else if (
+            error.response.data === `Gimimo data negali būti iš ateities!`
+          ) {
+            alert(error.response.data);
           } else if (error.response.data.message === 'Invalid field entry') {
             alert('Užpildykite visus privalomus laukus!');
           } else if (
@@ -482,14 +488,13 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                 Vaiko gimimo data*:
               </label>
               <div>
-
-                <input 
-                type= "text"
-                className="form-control"
-                //  dateFormat="yyyy-MM-dd"
-                 name="birthdate"
-                 value={this.state.birthdate}
-                 onChange={this.handleChange}
+                <input
+                  type="text"
+                  className="form-control"
+                  //  dateFormat="yyyy-MM-dd"
+                  name="birthdate"
+                  value={this.state.birthdate}
+                  onChange={this.handleChange}
                 />
                 {/* <DatePicker
                   className="form-control  "
@@ -1028,7 +1033,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
               {' '}
               * - privalomi laukai
             </div>
-            <div className= "">
+            <div className="">
               <button
                 type="submit"
                 className="btn btn-success  btn-lg btn-block mt-5"
@@ -1037,26 +1042,25 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
               </button>
             </div>
           </form>
-      
+
           <div className="col text-center delete">
-          <button
-                //onClick={this.deleteChild}
-                id="deleteChildData"
-                className="btn mt-3"
-                data-toggle="modal"
-                data-target={`#staticBackdrop${this.state.id}`}
-                value={this.state.id}
-              >
-               Ištrinti vaiko duomenis
-              </button>
-              <ModalComponentChildren
-               childId={this.state.id}
-               firstname={this.state.firstname}
-               lastname={this.state.lastname}
-               deleteChild={this.deleteChild}
-               />
-               </div>
-             
+            <button
+              //onClick={this.deleteChild}
+              id="deleteChildData"
+              className="btn mt-3"
+              data-toggle="modal"
+              data-target={`#staticBackdrop${this.state.id}`}
+              value={this.state.id}
+            >
+              Ištrinti vaiko duomenis
+            </button>
+            <ModalComponentChildren
+              childId={this.state.id}
+              firstname={this.state.firstname}
+              lastname={this.state.lastname}
+              deleteChild={this.deleteChild}
+            />
+          </div>
         </div>
       </div>
     );

@@ -14,7 +14,7 @@ const NextPage = () => {
   };
 
   return (
-    <div className="mt-5">
+    <div className="mt-5 mr-5 ml-5">
       <button
         type="submit"
         className="btn btn-success btn-lg btn-block next"
