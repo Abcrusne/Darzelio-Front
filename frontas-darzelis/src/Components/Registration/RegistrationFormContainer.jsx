@@ -92,7 +92,11 @@ export default class RegistrationFormContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(API + '/api/users', outputUser)
+        .post(API + '/api/users', outputUser
+        ,
+        {
+          headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+        })
         .then((response) => {
           console.log(response);
           this.props.history.push('/admin/sekminga');

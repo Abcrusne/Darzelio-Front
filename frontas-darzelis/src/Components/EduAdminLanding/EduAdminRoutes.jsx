@@ -13,6 +13,7 @@ import UpdateKindergartenFormContainer from '../KindergartenList/UpdateKindergar
 import UpdateUserDataFormContainer from '../UserData/UpdateUserDataFormContainer';
 import UserData from '../UserData/UserData';
 import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
+import KindergartenTableContainer from '../Queue/KindergartenTableContainer';
 
 const EduAdminRoutes = () => {
     return (
@@ -75,6 +76,13 @@ const EduAdminRoutes = () => {
         path="/admin/edu/duomenys/redaguoti/slaptazodi"
         exact
         component={UpdateUserPasswordContainer}
+        role={'EDU'}
+      />
+    
+      <PrivateRoute
+        path="/admin/edu/priemimai/:id/eiles"
+        exact
+        component={KindergartenTableContainer}
         role={'EDU'}
       />
             <PrivateRoute

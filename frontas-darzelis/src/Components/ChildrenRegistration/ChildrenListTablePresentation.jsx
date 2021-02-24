@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import ModalComponentChildren from '../Modal/ModalComponentChildren';
+//import ModalComponentChildren from '../Modal/ModalComponentChildren';
 
 const ChildrenListTablePresentation = ({ 
   children, 

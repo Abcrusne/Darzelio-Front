@@ -46,17 +46,7 @@ export default class UsersListTableContainer extends Component {
   //   });
   // };
 
-  // replaceModalItem=(id)=> {
-  //   this.setState({
-  //     requiredItem: this.state.users.id
-  //   });
-  // }
-
-  // toggleModal = () => {
-  //   this.setState({
-  //     isOpen: !this.state.isOpen,
-  //   });
-  // }
+ 
   deleteUser = (event) => {
     event.preventDefault();
     axios

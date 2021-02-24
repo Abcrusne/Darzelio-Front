@@ -236,7 +236,11 @@ export default class ParentRegistrationFormContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(`${API}/api/users/${this.state.id}/parentdetails`, inputParent)
+        .post(`${API}/api/users/${this.state.id}/parentdetails`, inputParent
+        ,
+        {
+          headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+        })
         .then((response) => {
           console.log(response);
           alert('Tėvo/Globėjo registracija sėkminga');
