@@ -24,43 +24,45 @@ export default function KindergartenTable({
   }
 
   return (
+    <div>
+       <h4 className="text-center mb-3">Eilės darželiuose</h4>
     <table>
-      <caption>Eilės darželiuose</caption>
+     
       <thead>
-        <tr>
+        <tr className="mt-5 mb-5">
           <th>
             <button
-              type="button"
+              className="btn"
               onClick={() => setSortedField('kindergartenName')}
             >
-              Pagal darželio pavadinimą
+                Rūšiuoti pagal darželio pavadinimą
             </button>
           </th>
           <th>
-            <button type="button" onClick={() => setSortedField('submissions')}>
-              Pagal darželio registracijų skaičių
+            <button className="btn" onClick={() => setSortedField('submissions')}>
+              Rūšiuoti pagal darželio registracijų skaičių
             </button>
           </th>
           <th>
-            <button type="button" onClick={() => setSortedField('freeSpots')}>
-              Pagal darželio laisvų vietų skaičių
+            <button className="btn" onClick={() => setSortedField('freeSpots')}>
+            Rūšiuoti pagal darželio laisvų vietų skaičių
             </button>
           </th>
         </tr>
-        <tr>
+        <tr className="mt-5 mb-5">
           <th>#</th>
           <th>Darželio pavadinimas</th>
           <th>Amžiaus grupė</th>
           <th>Registracijų skaičius</th>
           <th>Laisvų vietų skaičius</th>
-          <th>Patvirtinta (taip/ne)</th>
+          {/* <th>Patvirtinta (taip/ne)</th> */}
           <th>Peržiūrėti eilę</th>
-          <th>Patvirtinti eilę</th>
+          {/* <th>Patvirtinti eilę</th> */}
         </tr>
       </thead>
-      {this.state.kindergartens.length > 0 && (
+      {kindergartens.length > 0 && (
         <tbody>
-          {kindergartens.map(
+          {sortedKindergartens.map(
             (
               {
                 id,
@@ -78,7 +80,7 @@ export default function KindergartenTable({
                 <td>{ageGroup}</td>
                 <td>{submissions}</td>
                 <td>{freeSpots}</td>
-                <td> {confirmed}</td>
+                {/* <td> {confirmed}</td> */}
                 <td>
                   <Link
                     className="btn btn-link-1 mr-3"
@@ -88,41 +90,42 @@ export default function KindergartenTable({
                     Peržiūrėti
                   </Link>
                 </td>
-                {this.state.confirm ? (
+                {/* {this.state.confirm ? (
                   <td>
                     <button className="btn" disabled>
                       Patvirtinta
                     </button>
                   </td>
-                ) : (
-                  <td>
-                    {/* <button
-                    className="btn"
-                    value={id}
-                    onClick={handleConfirm(id)}
-                  >
-                    Patvirtinti
-                  </button> */}
+                ) : ( */}
+                  {/* <td>
                     <button
+                    className="btn"
+                    // value={id}
+                    // onClick={handleConfirm(id)}
+                  > */}
+                    {/* Patvirtinti
+                  </button> */}
+                    {/* <button
                       className="btn btn-danger"
                       // data-toggle="modal"
                       // data-target={`#staticBackdrop${id}`}
                       // value={id}
                     >
                       Patvirtinti
-                    </button>
+                    </button> */}
                     {/* <ModalComponentConfirm
                       kindergartenId={id}
                       kindergartenName={kindergartenName}
                       handleConfirm={handleConfirm}
                     /> */}
-                  </td>
-                )}
+                  {/* </td> */}
+                {/* )} */}
               </tr>
             )
           )}
         </tbody>
       )}
     </table>
+    </div>
   );
 }
