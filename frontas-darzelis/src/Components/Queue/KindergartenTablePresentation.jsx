@@ -1,13 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ModalComponentConfirm from '../Modal/ModalComponentConfirm';
+import Pagination from '../Pagination/Pagination';
+import  { useState} from 'react';
 
-export default function KindergartenTable({
+const KindergartenTable=({
   kindergartens,
   admissionId,
   // handleConfirm,
   //   queueId,
-}) {
+}) => {
+
+  // let sortedDefaultKindergartens = [...kindergartens];
+  // sortedDefaultKindergartens.sort((a, b) => {
+  //   if (a.kindergartenName < b.kindergartenName) {
+  //     return -1;
+  //   }
+  //   if (a.kindergartenName > b.kindergartenName) {
+  //     return 1;
+  //   }
+  //   return 0;
+  // });
+  
   const [sortedField, setSortedField] = React.useState(null);
   let sortedKindergartens = [...kindergartens];
 
@@ -22,6 +36,20 @@ export default function KindergartenTable({
       return 0;
     });
   }
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [kindergartensPerPage] = useState(5);
+
+  const indexOfLastKindergarten = currentPage * kindergartensPerPage;
+  const indexOfFirstKindergarten = indexOfLastKindergarten - kindergartensPerPage;
+  const currentKindergartens = sortedKindergartens.slice(indexOfFirstKindergarten, indexOfLastKindergarten);
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
+ 
+
+ 
+
+  
 
   return (
     <div>
@@ -62,7 +90,7 @@ export default function KindergartenTable({
       </thead>
       {kindergartens.length > 0 && (
         <tbody>
-          {sortedKindergartens.map(
+          {currentKindergartens.map(
             (
               {
                 id,
@@ -126,6 +154,12 @@ export default function KindergartenTable({
         </tbody>
       )}
     </table>
+    <Pagination
+     kindergartensPerPage={kindergartensPerPage}
+     totalKindergartens={kindergartens.length}
+     paginate={paginate}
+    />
     </div>
   );
 }
+export default  KindergartenTable;
