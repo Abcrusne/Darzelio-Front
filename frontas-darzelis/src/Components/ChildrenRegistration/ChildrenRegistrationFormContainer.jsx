@@ -173,7 +173,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
 
     let validPersonalCode = /^[5|6]+[0-9]+$/;
     let validParentPersonalCode = /^[3|4|5|6]+[0-9]+$/;
-    let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
+    let validPhone = /^[+][3][7][0][6|5]+[0-9]+$/;
     let numbers = /^[0-9]+$/;
     switch (name) {
       case 'firstname':
@@ -289,7 +289,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
           value.length < 12 ||
           value.length > 12 ||
           value.length === 0
-            ? 'Telefono numerio formatas +37061234567'
+            ? 'Telefono numerio formatas +37061234567 arba +37051234567'
             : '';
         break;
       case 'secondParentNumberOfKids':
