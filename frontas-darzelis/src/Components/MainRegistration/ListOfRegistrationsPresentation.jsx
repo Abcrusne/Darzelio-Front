@@ -36,7 +36,7 @@ const ListOfRegistrationsPresentation = ({admissionQues, onClick}) => {
             <td>
                 <Link
                     className="btn btn-link-1"
-                    to={`${API}/admin/edu/priemimai/${id}/eiles`}
+                    to={`/admin/edu/priemimai/${id}/eiles`}
                 >
                     Į sąrašą
                 </Link>

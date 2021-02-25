@@ -8,7 +8,7 @@ export default class KindergartenContainer extends Component {
     super(props);
     this.state = {
       admissionId: '',
-      confirm: false,
+      // confirm: false,
       kindergartens: [],
     };
   }
@@ -17,7 +17,7 @@ export default class KindergartenContainer extends Component {
     console.log('component did mount');
     axios
       .get(
-        `${API}/api/kindergartens/admissions/${this.props.match.params.admissionId}`
+        `${API}/api/kindergartens/admissions/${this.props.match.params.admissionId}/queues`
       )
       .then((res) => {
         this.setState({
@@ -72,11 +72,16 @@ export default class KindergartenContainer extends Component {
   render() {
     return (
       <div>
-        <KindergartenTable
+        {this.state ? (
+          <KindergartenTable
           kindergartens={this.state.kindergartens}
           admissionId={this.state.admissionId}
-          handleConfirm={this.handleConfirm}
+          // handleConfirm={this.handleConfirm}
         />
+        ) :(<div>
+          Loading
+          </div>)}
+        
       </div>
     );
   }

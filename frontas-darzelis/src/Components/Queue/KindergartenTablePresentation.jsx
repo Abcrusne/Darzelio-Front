@@ -5,7 +5,7 @@ import ModalComponentConfirm from '../Modal/ModalComponentConfirm';
 export default function KindergartenTable({
   kindergartens,
   admissionId,
-  handleConfirm,
+  // handleConfirm,
   //   queueId,
 }) {
   const [sortedField, setSortedField] = React.useState(null);
@@ -105,17 +105,17 @@ export default function KindergartenTable({
                   </button> */}
                     <button
                       className="btn btn-danger"
-                      data-toggle="modal"
-                      data-target={`#staticBackdrop${id}`}
-                      value={id}
+                      // data-toggle="modal"
+                      // data-target={`#staticBackdrop${id}`}
+                      // value={id}
                     >
                       Patvirtinti
                     </button>
-                    <ModalComponentConfirm
+                    {/* <ModalComponentConfirm
                       kindergartenId={id}
                       kindergartenName={kindergartenName}
                       handleConfirm={handleConfirm}
-                    />
+                    /> */}
                   </td>
                 )}
               </tr>

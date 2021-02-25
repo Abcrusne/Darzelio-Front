@@ -108,10 +108,10 @@ export default class KindergartenRegistrationContainer extends Component {
     if (validateForm(this.state.errors)) {
       axios
         .post(API + '/api/kindergartens', inputKindergarten
-        ,
-        {
-          headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-        }
+        // ,
+        // {
+        //   headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+        // }
         )
         .then((response) => {
           console.log(response);
