@@ -81,8 +81,9 @@ export default function KindergartenTable({
                 <td> {confirmed}</td>
                 <td>
                   <Link
-                    className="text-decoration-none mr-3"
-                    to={`/admin/edu/priemimai/${admissionId}/eiles/${id}/registracijos`}
+                    className="btn btn-link-1 mr-3"
+                    to={`/admin/edu/registracijos/${admissionId}/eiles/${id}/`}
+                   
                   >
                     Peržiūrėti
                   </Link>

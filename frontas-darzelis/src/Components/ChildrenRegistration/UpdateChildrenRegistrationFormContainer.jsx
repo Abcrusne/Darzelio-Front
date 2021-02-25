@@ -182,7 +182,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
 
     let validPersonalCode = /^[5|6]+[0-9]+$/;
     let validParentPersonalCode = /^[3|4|5|6]+[0-9]+$/;
-    let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
+    let validPhone = /^[+][3][7][0][6|5]+[0-9]+$/;
     let numbers = /^[0-9]+$/;
     switch (name) {
       case 'firstname':
@@ -298,7 +298,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
           value.length < 12 ||
           value.length > 12 ||
           value.length === 0
-            ? 'Telefono numerio formatas +37061234567'
+            ? 'Telefono numerio formatas +37061234567  arba +37051234567'
             : '';
         break;
       case 'secondParentNumberOfKids':
@@ -825,34 +825,65 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                     value={this.state.secondParentFlatNumber}
                   />
                 </div>
-                <div className="form-group mb-3 col-6">
-                  <label
-                    htmlFor="secondParentNumberOfKids"
-                    className="control-label"
-                  >
-                    Kiek antrasis Tėvas/Globėjas turi nepilnamečių vaikų?*
-                  </label>
-                  <input
-                    type="number"
-                    min="1"
-                    placeholder="Skaičius"
-                    className="form-control"
-                    name="secondParentNumberOfKids"
-                    onChange={this.handleChange}
-                    noValidate
-                    value={this.state.secondParentNumberOfKids}
-                    onInvalid={(e) => {
-                      e.target.setCustomValidity('Įveskite vaikų skaičių.');
-                    }}
-                    onInput={(e) => e.target.setCustomValidity('')}
-                    required
-                  />
-                  {errors.secondParentNumberOfKids.length > 0 && (
-                    <span className="error">
-                      {errors.secondParentNumberOfKids}
-                    </span>
-                  )}
-                </div>
+                {this.state.secondParentNumberOfKids > 0 ? (
+                  <div className="form-group mb-3 col-6">
+                    <label
+                      htmlFor="secondParentNumberOfKids"
+                      className="control-label"
+                    >
+                      Kiek antrasis Tėvas/Globėjas turi nepilnamečių vaikų?*
+                    </label>
+                    <input
+                      type="number"
+                      min="1"
+                      placeholder="Skaičius"
+                      className="form-control"
+                      name="secondParentNumberOfKids"
+                      onChange={this.handleChange}
+                      noValidate
+                      value={this.state.secondParentNumberOfKids}
+                      onInvalid={(e) => {
+                        e.target.setCustomValidity('Įveskite vaikų skaičių.');
+                      }}
+                      onInput={(e) => e.target.setCustomValidity('')}
+                      required
+                    />
+                    {errors.secondParentNumberOfKids.length > 0 && (
+                      <span className="error">
+                        {errors.secondParentNumberOfKids}
+                      </span>
+                    )}
+                  </div>
+                ) : (
+                  <div className="form-group mb-3 col-6">
+                    <label
+                      htmlFor="secondParentNumberOfKids"
+                      className="control-label"
+                    >
+                      Kiek antrasis Tėvas/Globėjas turi nepilnamečių vaikų?*
+                    </label>
+                    <input
+                      type="number"
+                      min="1"
+                      placeholder="Skaičius"
+                      className="form-control"
+                      name="secondParentNumberOfKids"
+                      onChange={this.handleChange}
+                      noValidate
+                      // value={this.state.secondParentNumberOfKids}
+                      onInvalid={(e) => {
+                        e.target.setCustomValidity('Įveskite vaikų skaičių.');
+                      }}
+                      onInput={(e) => e.target.setCustomValidity('')}
+                      required
+                    />
+                    {errors.secondParentNumberOfKids.length > 0 && (
+                      <span className="error">
+                        {errors.secondParentNumberOfKids}
+                      </span>
+                    )}
+                  </div>
+                )}
 
                 <div className="ml-4 form-check mb-3 col-12">
                   <input

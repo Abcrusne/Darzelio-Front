@@ -110,7 +110,7 @@ export default class ParentRegistrationFormContainer extends Component {
 
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
 
-    let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
+    let validPhone = /^[+][3][7][0][6|5]+[0-9]+$/;
     let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
     let numbers = /^[0-9]+$/;
     switch (name) {
@@ -138,7 +138,7 @@ export default class ParentRegistrationFormContainer extends Component {
           value.length < 12 ||
           value.length > 12 ||
           value.length === 0
-            ? 'Telefono numerio formatas +37061234567 '
+            ? 'Telefono numerio formatas +37061234567 arba +37051234567 '
             : '';
         break;
       case 'personalCode':
@@ -237,10 +237,11 @@ export default class ParentRegistrationFormContainer extends Component {
     if (validateForm(this.state.errors)) {
       axios
         .post(`${API}/api/users/${this.state.id}/parentdetails`, inputParent
-        ,
-        {
-          headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-        })
+        // ,
+        // {
+        //   headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+        // }
+        )
         .then((response) => {
           console.log(response);
           alert('Tėvo/Globėjo registracija sėkminga');
