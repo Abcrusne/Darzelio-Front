@@ -1,29 +1,36 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import style from '../../Style/style.css';
 
 const Pagination = ({ kindergartensPerPage, totalKindergartens, paginate }) => {
   const pageNumbers = [];
-//   const [buttonDisabled, setButtonDisabled] = useState(false);
+  //   const [buttonDisabled, setButtonDisabled] = useState(false);
 
-  for (let i = 1; i <= Math.ceil(totalKindergartens / kindergartensPerPage); i++) {
+  for (
+    let i = 1;
+    i <= Math.ceil(totalKindergartens / kindergartensPerPage);
+    i++
+  ) {
     pageNumbers.push(i);
   }
 
   return (
     <nav>
-      <ul className='pagination'>
-        {pageNumbers.map(number => (
-          <li key={number} className='page-item'  >
-          {/* //disabled={buttonDisabled}> */}
-            <a onClick={() => paginate(number)
-           //  && setButtonDisabled(true)
-              }  className='page-link'>
+      <ul className="pagination">
+        {pageNumbers.map((number) => (
+          <li key={number} className="page-item">
+            {/* //disabled={buttonDisabled}> */}
+            <a
+              onClick={
+                () => paginate(number)
+                //  && setButtonDisabled(true)
+              }
+              className="page-link"
+            >
               {number}
             </a>
           </li>
         ))}
       </ul>
-  
-    
     </nav>
   );
 };

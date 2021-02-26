@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import Loading from '../Loading/Loading';
 //import ModalComponentChildren from '../Modal/ModalComponentChildren';
 
-const ChildrenListTablePresentation = ({ 
-  children, 
+const ChildrenListTablePresentation = ({
+  children,
   // deleteChild
-
- }) => {
+}) => {
   let sortedChildren = [...children];
   sortedChildren.sort((a, b) => {
     if (a.firstname < b.firstname) {
@@ -18,32 +18,30 @@ const ChildrenListTablePresentation = ({
     }
     return 0;
   });
-    
-  return sortedChildren.map(({ id, firstname, lastname }, index) => {
-
-    
-    return (
-      <tr key={id}>
-        <th scope="row">{index + 1}</th>
-        <td>{firstname}</td>
-        <td> {lastname}</td>
-        <td>
-          <Link
-            className="text-decoration-none mr-3"
-            to={`/tevai/vaikai/${id}`}
-          >
-            Peržiūrėti/Atnaujinti vaiko duomenis
-          </Link>
-        </td>
-        <td>
-          <Link
-            className="text-decoration-none mr-3"
-            to={`/tevai/registracijos/${id}`}
-          >
-            Peržiūrėti/Atnaujinti prašymą į darželį
-          </Link>
-        </td>
-        {/* <td>
+  if (sortedChildren.length > 0) {
+    return sortedChildren.map(({ id, firstname, lastname }, index) => {
+      return (
+        <tr key={id}>
+          <th scope="row">{index + 1}</th>
+          <td>{firstname}</td>
+          <td> {lastname}</td>
+          <td>
+            <Link
+              className="text-decoration-none mr-3"
+              to={`/tevai/vaikai/${id}`}
+            >
+              Peržiūrėti/Atnaujinti vaiko duomenis
+            </Link>
+          </td>
+          <td>
+            <Link
+              className="text-decoration-none mr-3"
+              to={`/tevai/registracijos/${id}`}
+            >
+              Peržiūrėti/Atnaujinti prašymą į darželį
+            </Link>
+          </td>
+          {/* <td>
           <button
             className="btn btn-danger"
             data-toggle="modal"
@@ -54,7 +52,7 @@ const ChildrenListTablePresentation = ({
             Ištrinti
           </button>
         </td> */}
-        {/* <td>
+          {/* <td>
           <ModalComponentChildren
             childId={id}
             firstname={firstname}
@@ -62,8 +60,13 @@ const ChildrenListTablePresentation = ({
             deleteChild={deleteChild}
           />
         </td> */}
-      </tr>
-    );
-  });
+        </tr>
+      );
+    });
+  } else {
+    return(
+      <Loading/>
+    )
+  }
 };
 export default ChildrenListTablePresentation;
