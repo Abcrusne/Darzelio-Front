@@ -446,7 +446,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
       <div>
         <div className=" container  m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
-            <h3>Vaiko duomenų registracija</h3>
+            <h3>Atnaujinkite savo vaiko duomenis</h3>
           </div>
           <form onSubmit={this.handleSubmit} className="form-row ">
             <div className="form-group mb-3 col-6">

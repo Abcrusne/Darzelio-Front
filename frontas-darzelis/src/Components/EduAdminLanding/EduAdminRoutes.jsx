@@ -80,7 +80,8 @@ const EduAdminRoutes = () => {
       />
     
       <PrivateRoute
-        path="/admin/edu/priemimai/:id/eiles"
+        // path="/admin/edu/priemimai/:id/eiles"
+        path="/admin/edu/priemimai/eiles"
         exact
         component={KindergartenTableContainer}
         role={'EDU'}
