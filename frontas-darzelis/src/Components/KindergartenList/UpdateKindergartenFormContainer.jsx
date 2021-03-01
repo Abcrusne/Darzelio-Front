@@ -82,7 +82,7 @@ export default class UpdateKindergartenFormContainer extends Component {
     }
 
     this.setState({ errors, [name]: value }, () => {
-      console.log(errors);
+      // console.log(errors);
     });
   };
   handleSubmit = (event) => {
@@ -214,7 +214,7 @@ export default class UpdateKindergartenFormContainer extends Component {
             <div> * - privalomi laukai</div>
             <div>
               <button type="submit" className="btn btn-success">
-                Registruoti
+                Atnaujinti
               </button>
             </div>
           </form>

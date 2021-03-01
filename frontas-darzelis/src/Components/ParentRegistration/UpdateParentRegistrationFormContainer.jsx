@@ -227,10 +227,10 @@ export default class UpdateParentRegistrationFormContainer extends Component {
           [name]: value,
         },
         () => {
-          console.log(errors);
+          // console.log(errors);
         }
       );
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   handleSubmit = (event) => {

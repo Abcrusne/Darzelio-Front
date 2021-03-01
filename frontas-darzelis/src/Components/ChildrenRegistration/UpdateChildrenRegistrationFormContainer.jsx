@@ -311,11 +311,11 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
         break;
     }
     if (event.target.type === 'checkbox') {
-      console.log(event.target.checked);
+      // console.log(event.target.checked);
       this.setState({ [event.target.name]: event.target.checked });
     } else
       this.setState({ errors, [event.target.name]: event.target.value }, () => {
-        console.log(errors);
+        // console.log(errors);
       });
     console.log(this.state);
   };

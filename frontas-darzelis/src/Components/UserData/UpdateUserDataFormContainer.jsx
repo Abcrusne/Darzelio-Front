@@ -14,7 +14,7 @@ export default class UpdateUserDataFormContainer extends Component {
       email: '',
       role: '',
       password: '',
-      markedForDeletion: false,
+      markedForDeletion: "",
 
       errors: {
         firstname: '',
@@ -105,10 +105,10 @@ export default class UpdateUserDataFormContainer extends Component {
           [name]: value,
         },
         () => {
-          console.log(errors);
+          // console.log(errors);
         }
       );
-    console.log(this.state);
+    // console.log(this.state);
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -134,7 +134,7 @@ export default class UpdateUserDataFormContainer extends Component {
             email: this.state.email,
             role: this.state.role,
             password: this.state.password,
-            markedForDeletion:this.state.markedForDeletion,
+            markedForDeletion: this.state.markedForDeletion,
             // requestedDelete: this.state.requestedDelete
           }
         )
@@ -155,7 +155,7 @@ export default class UpdateUserDataFormContainer extends Component {
             alert('Užpildykite visus laukus!');
           } else if (error.response.status === 400) {
             alert(
-              'RNepavyko pakeisti! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
+              'Nepavyko pakeisti! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
           console.log(error);

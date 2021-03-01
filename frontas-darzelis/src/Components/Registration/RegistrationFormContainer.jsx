@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
-import LogoutPresentation from '../Utilities/LogoutPresentation';
-import NavigationComponent from '../SysAdminLanding/NavigationComponent';
+
+import NavigationForAllPages from '../Utilities/NavigationForAllPages';
 
 export default class RegistrationFormContainer extends Component {
   constructor(props) {
@@ -64,7 +64,7 @@ export default class RegistrationFormContainer extends Component {
     }
 
     this.setState({ errors, [name]: value }, () => {
-      console.log(errors);
+      // console.log(errors);
     });
   };
   handleSubmit = (event) => {
@@ -99,8 +99,9 @@ export default class RegistrationFormContainer extends Component {
         // }
         )
         .then((response) => {
-          console.log(response);
-          this.props.history.push('/admin/sekminga');
+          // console.log(response);
+          alert("Vartotojo registracija sėkminga!");
+          this.props.history.push('/admin/vartotojai');
         })
 
         .catch((error) => {
@@ -113,11 +114,9 @@ export default class RegistrationFormContainer extends Component {
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          // error.message
-          //Error.response.data.message
-          //error
-          console.log(error);
-          // this.setState({error});
+         
+           console.log(error);
+         
         });
     } else {
       console.error('Invalid Form');
@@ -130,8 +129,8 @@ export default class RegistrationFormContainer extends Component {
     const { errors } = this.state;
     return (
       <div className="container mt-5">
-        <NavigationComponent />
-        <LogoutPresentation />
+        <NavigationForAllPages/>
+      
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
             <h3>Užregistruoti naują vartotoją</h3>
