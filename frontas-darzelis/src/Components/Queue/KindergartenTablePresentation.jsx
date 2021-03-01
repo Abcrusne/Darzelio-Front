@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
+//import 'mdbreact/dist/css/mdb.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { MDBDataTable } from 'mdbreact';
-import style from '../../Style/style.css';
+import '../../Style/style.css';
+import '../../Style/ParentLanding.css';
+import '../../Style/LandingPage.css';
 
 const KindergartenTable = ({ kindergartens, admissionId }) => {
   const data = {
@@ -58,7 +61,7 @@ const KindergartenTable = ({ kindergartens, admissionId }) => {
 
     // ]
   };
-  
+
   // useEffect(() => {
   //   if (data.rows.length === 0) {
   //     let error = document.createElement('td');
@@ -80,8 +83,8 @@ const KindergartenTable = ({ kindergartens, admissionId }) => {
       searchLabel="Paieška"
       paginationLabel={['Atgal', 'Kitas']}
       infoLabel={['Rodyti nuo', 'iki', 'rezultatų', '']}
-      messageLabel= ""
-      emptyTable= "ii"
+      messageLabel=""
+      emptyTable="ii"
     />
   );
 

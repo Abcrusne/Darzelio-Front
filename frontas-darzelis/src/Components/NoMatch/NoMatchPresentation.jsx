@@ -1,15 +1,23 @@
 import React from 'react';
+import UserService from '../../Configuration/UserService';
 
 const NoMatch = (props) => {
-  const goApp = () => props.history.push('/');
+
+  const currentRole = UserService.getRole();
+    if (currentRole === '[PARENT]') {
+      alert("Neteisingas maršrutas");
+      props.history.push('/tevai');
+    } else if (currentRole === '[EDU]') {
+      alert("Neteisingas maršrutas");
+      props.history.push('/admin/edu');
+    } else if (currentRole === '[ADMIN]') {
+      alert("Neteisingas maršrutas");
+      props.history.push('/admin/pradzia');
+    }
+
   return (
     <div className="container">
-      <div className=" m-5 text-center ">
-        Neteisingas maršrutas
-        <button className="btn btn-dark ml-3" onClick={goApp}>
-          Grįžti atgal į pradinį prisijungimo puslapį
-        </button>
-      </div>
+      
     </div>
   );
 };

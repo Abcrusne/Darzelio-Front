@@ -302,11 +302,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
         break;
     }
     if (event.target.type === 'checkbox') {
-      console.log(event.target.checked);
+      // console.log(event.target.checked);
       this.setState({ [event.target.name]: event.target.checked });
     } else
       this.setState({ errors, [event.target.name]: event.target.value }, () => {
-        console.log(errors);
+        // console.log(errors);
       });
     console.log(this.state);
   };
@@ -473,6 +473,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                   onChange={this.handleChange}
                   noValidate
                 />
+               
                 {errors.firstname.length > 0 && (
                   <span className="error">{errors.firstname}</span>
                 )}

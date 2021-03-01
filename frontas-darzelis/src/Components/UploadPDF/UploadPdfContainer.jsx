@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
-import style from '../../Style/style.css';
+import '../../Style/style.css';
 //import UploadPdfPresentation from './UploadPdfPresentation';
 
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
@@ -15,9 +15,8 @@ export default class UploadPdfContainer extends Component {
       id: 0,
       firstname: '',
       lastname: '',
-
       pdf: '',
-      // title: '',
+      // title: 'Sveikatos pažyma',
     };
   }
   //   componentDidMount() {
@@ -71,16 +70,15 @@ export default class UploadPdfContainer extends Component {
   handleFile = (event) => {
     //console.log(event.target.files +"files");
     //console.log(event.target.files[0] +"files[0]");
-    this.setState({ pdf: event.target.files });
+    this.setState({ pdf: event.target.files[0] });
   };
   handleSubmit = (event) => {
     event.preventDefault();
+    let data = new FormData();
+    data.append('data', this.state.pdf);
+    data.append('id', this.state.id);
     axios
-      .post(`${API}/api/users/pdf`, {
-        pdf: this.state.pdf,
-        id: this.state.childId,
-        withCredentials: true,
-      })
+      .post(`${API}/api/users/pdf`, data)
       .then((res) => {
         console.log(res);
         alert('PDF įkeltas.');
@@ -88,6 +86,13 @@ export default class UploadPdfContainer extends Component {
       })
       .catch((error) => {
         console.log(error.data);
+        if (error.response.data === 'Blogas failo formatas') {
+          alert('Pasitikrinkite ar įkėlėte tinkamo pdf formato failą.');
+        } else if (error.response.status === 400) {
+          alert(
+            'Nesėkmingas pdf įkelimas. Pasitikrinkite ar pažymėjote vaiką bei pasirinkote pdf failą.'
+          );
+        }
       });
   };
 
@@ -114,7 +119,11 @@ export default class UploadPdfContainer extends Component {
           <div className="mb-4">
             <h3>Įkelkite vaiko sveikatos pažymą PDF formatu</h3>
           </div>
-          <form onSubmit={this.handleSubmit} className="form-row ">
+          <form
+            onSubmit={this.handleSubmit}
+            className="form-row"
+            encType="multipart/form-data"
+          >
             <div className="form-group mb-3 col-4">
               <label htmlFor="selectChild" className="control-label">
                 Pasirinkite vaiką*:
@@ -123,9 +132,12 @@ export default class UploadPdfContainer extends Component {
                 className="form-control"
                 id="selectChild"
                 name="childId"
-                onChange={(e) => this.handleFile(e)}
-
-                //required
+                onChange={this.handleChange}
+                required
+                onInvalid={(e) => {
+                  e.target.setCustomValidity('Pasirinkite vaiką.');
+                }}
+                onInput={(e) => e.target.setCustomValidity('')}
               >
                 {/* <option defaultValue>-</option> */}
                 <option value=""> </option>
@@ -136,7 +148,7 @@ export default class UploadPdfContainer extends Component {
                 ))}
               </select>
             </div>
-            <div className=" fileUpload form-group mb-3 col-12">
+            <div className=" fileUpload form-group mt-4 ml-1 mb-1 col-12">
               <label htmlFor="pdf" className="upload control-label">
                 Įkelti dokumentą*
               </label>
@@ -146,9 +158,21 @@ export default class UploadPdfContainer extends Component {
                 className=" file form-control"
                 name="pdf"
                 id="pdf"
-                onChange={this.handleChange}
+                onChange={this.handleFile}
+                // onChange={(e)=>this.handleFile(e)}
+                // style={{width: "90px"}}
+                //&&{style ={{"width: "100%"}}
+
                 required
+                onInvalid={(e) => {
+                  e.target.setCustomValidity('Įkelkite pažymą.');
+                }}
+                onInput={(e) => e.target.setCustomValidity('')}
               />
+                <p className="mt-1">
+                  <b>{this.state.pdf.name} </b>
+                </p>
+            
             </div>
             <div className="form-group mb-3 col-12"> * - privalomi laukai</div>
             <div>

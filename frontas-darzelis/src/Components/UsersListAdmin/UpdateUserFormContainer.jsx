@@ -3,7 +3,7 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 // import { Link } from 'react-router-dom';
 import LogoutPresentation from '../Utilities/LogoutPresentation';
-import NavigationComponent from '../SysAdminLanding/NavigationComponent';
+
 
 export default class UpdateUserFormContainer extends Component {
   constructor(props) {
@@ -100,7 +100,7 @@ export default class UpdateUserFormContainer extends Component {
     }
 
     this.setState({ errors, [name]: value }, () => {
-      console.log(errors);
+      // console.log(errors);
     });
   };
   handleSubmit = (event) => {
@@ -160,10 +160,10 @@ export default class UpdateUserFormContainer extends Component {
     const { errors } = this.state;
     return (
       <div className="container mt-5">
-        <NavigationComponent />
+      
 
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
-          <LogoutPresentation />
+        
           <div className="mb-4">
             <h3>Atnaujinti vartotojo duomenis</h3>
           </div>

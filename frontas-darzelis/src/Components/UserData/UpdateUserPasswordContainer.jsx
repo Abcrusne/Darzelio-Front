@@ -71,7 +71,7 @@ export default class UpdateUserPasswordContainer extends Component {
         break;
     }
     this.setState({ errors, [name]: value }, () => {
-      console.log(errors);
+      // console.log(errors);
     });
   };
   handleSubmit = (event) => {

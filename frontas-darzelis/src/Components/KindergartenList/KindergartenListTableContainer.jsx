@@ -3,8 +3,7 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { KindergartensListTablePresentation } from './KindergartensListTablePresentation';
-import LogoutPresentation from '../Utilities/LogoutPresentation';
-import NavigationComponent from '../SysAdminLanding/NavigationComponent';
+
 
 export default class KindergartenListTableContainer extends Component {
   constructor() {
@@ -85,8 +84,7 @@ export default class KindergartenListTableContainer extends Component {
     } else if (this.state.role === 'ADMIN') {
       return (
         <div className="container mt-5">
-          <NavigationComponent />
-        <LogoutPresentation />
+   
           <Link
             to={`/admin/darzelioregistracija`}
             className="btn btn-primary mb-5"

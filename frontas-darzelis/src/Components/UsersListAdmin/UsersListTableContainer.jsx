@@ -3,8 +3,7 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import UsersListTablePresentation from './UsersListTablePresentation';
-import LogoutPresentation from '../Utilities/LogoutPresentation';
-import NavigationComponent from '../SysAdminLanding/NavigationComponent';
+
 
 export default class UsersListTableContainer extends Component {
   constructor() {
@@ -64,8 +63,7 @@ export default class UsersListTableContainer extends Component {
   render() {
     return (
       <div className="container mt-5">
-        <NavigationComponent />
-        <LogoutPresentation />
+      
         <Link to={`/admin/registracija`} className="btn btn-primary mb-5">
           Pridėti naują vartotoją
         </Link>
