@@ -40,7 +40,7 @@ const ParentSideBarNavigation = () => {
             id="childForm"
           >
             <i className="fas fa-file-contract"></i>
-            Vaiko duomenų anketa
+            Pildyti vaiko duomenų anketą
           </Link>
         </li>
         <li className="nav-item">
@@ -54,13 +54,9 @@ const ParentSideBarNavigation = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link
-            to="/tevai/vaikai"
-            className="nav-link active"
-            id="childForm"
-          >
+          <Link to="/tevai/vaikai" className="nav-link active" id="childForm">
             <i className="fas fa-file-contract"></i>
-            Peržiūrėti/Redaguoti vaikų duomenis
+            Peržiūrėti/Redaguoti vaikų duomenisir prašymus
           </Link>
         </li>
         {/*<li className="nav-item">*/}

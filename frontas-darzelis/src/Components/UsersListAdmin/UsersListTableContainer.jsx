@@ -10,13 +10,14 @@ export default class UsersListTableContainer extends Component {
     super();
     this.state = {
       users: [],
+      searchTerm: "",
     //  isOpen: false,
       // searchQuery: '',
       // search: "",
       // newUsers: []
     };
   }
-
+  // const [searchTerm, setSearchTerm] = useState('');
   componentDidMount = () => {
     console.log('component did mount');
     axios
@@ -68,6 +69,17 @@ export default class UsersListTableContainer extends Component {
           Pridėti naują vartotoją
         </Link>
         <div>
+        <input
+        className="form-control mt-3 col-4"
+        placeholder="Paieška"
+        type="text"
+        onChange={(event) => {
+          this.setState({searchTerm: event.target.value})
+          // console.log(this.state.searchTerm);
+         // setSearchTerm(event.target.value);
+        }}
+      />
+
           {/* <input
             type="text"
             className="form-control my-3"
@@ -98,6 +110,7 @@ export default class UsersListTableContainer extends Component {
               <UsersListTablePresentation
                 users={this.state.users}
                  deleteUser={this.deleteUser}
+                 searchTerm= {this.state.searchTerm}
                 //  toggleModal={this.toggleModal}
                 //  isOpen={this.isOpen}
 
