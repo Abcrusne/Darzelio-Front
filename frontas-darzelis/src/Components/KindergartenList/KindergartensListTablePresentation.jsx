@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import ModalComponentKindergarten from '../Modal/ModalComponentKindergarten';
+import '../../Style/UsersLandings.css'
 
 export const KindergartensListTablePresentation = ({
   kindergartens,
@@ -23,7 +24,7 @@ export const KindergartensListTablePresentation = ({
 
           <td>
             <Link
-              className="text-decoration-none mr-3"
+              className="btn btn-link-1"
               to={`/admin/edu/darzeliai/${id}`}
             >
               Atnaujinti duomenis

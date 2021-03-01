@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../Style/ParentLanding.css"
+import "../../Style/UsersLandings.css"
 import {Link} from "react-router-dom";
 
 const ParentLandingDashboard = () => {

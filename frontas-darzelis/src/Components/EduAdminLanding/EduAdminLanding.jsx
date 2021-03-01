@@ -3,7 +3,7 @@ import {withRouter} from "react-router";
 
 //our imports
 import NavigationForAllPages from "../Utilities/NavigationForAllPages";
-import "../../Style/ParentLanding.css"
+import "../../Style/UsersLandings.css"
 import EduAdminSideBarNavigation from "./EduAdminSideBarNavigation";
 import EduAdminRoutes from "./EduAdminRoutes";
 import EduAdminlandingFooter from "./EduAdminLandingFooter";
@@ -12,7 +12,7 @@ const EduAdminLanding = (props) => {
 
         return(
                 <div className="container-fluid">
-                    <header className=" m-auto bg-white ">
+                    <header className="m-auto bg-white ">
                         <NavigationForAllPages/>
                     </header>
                     <div className="row pl-3">
@@ -23,7 +23,7 @@ const EduAdminLanding = (props) => {
                             <EduAdminRoutes/>
                         </main>
                     </div>
-                    <footer className="footer pt-3">
+                    <footer className="footer m-auto">
                         <EduAdminlandingFooter/>
                     </footer>
                 </div>

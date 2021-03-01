@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../../Style/ParentLanding.css';
+import '../../Style/UsersLandings.css';
 
 const EduAdminSideBarNavigation = () => {
     return (
@@ -23,7 +23,7 @@ const EduAdminSideBarNavigation = () => {
                             className="nav-link active"
                             id="parentForm"
                         >
-                            <i className="fas fa-file-contract"></i>
+                            <i class="fas fa-list-ol"></i>
                             Vaikų sąrašas
                         </Link>
                     </li>
@@ -33,7 +33,7 @@ const EduAdminSideBarNavigation = () => {
                             className="nav-link active"
                             id="childForm"
                         >
-                            <i className="fas fa-file-contract"></i>
+                            <i class="fas fa-list-ol"></i>
                             Registracijų sąrašas
                         </Link>
                     </li>
@@ -43,9 +43,10 @@ const EduAdminSideBarNavigation = () => {
                             className="nav-link active"
                             id="mainRegForm"
                         >
-                            <i className="fas fa-file-contract"></i>
+                            <i class="fas fa-list-ol"></i>
                             Darželių sąrašas
                         </Link>
+                        <hr />
                     </li>
                     <li className="nav-item">
                         <Link

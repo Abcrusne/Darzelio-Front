@@ -5,7 +5,6 @@ import {Route, Switch} from 'react-router';
 import PrivateRoute from "../../Configuration/PrivateRoute";
 import NotFoundPage from "../Utilities/NotFoundPage";
 import EduAdminDashboard from "./EduAdminDashboard";
-import ListOfChildren from "../ChildrenRegistration/ListOfChildren";
 import ListOfRegistrations from "../MainRegistration/ListOfRegistrations";
 import KindergartenListTableContainer from "../KindergartenList/KindergartenListTableContainer";
 import KindergartenRegistrationContainer from '../KindergartenList/KindergartenRegistrationContainer';
@@ -13,6 +12,8 @@ import UpdateKindergartenFormContainer from '../KindergartenList/UpdateKindergar
 import UpdateUserDataFormContainer from '../UserData/UpdateUserDataFormContainer';
 import UserData from '../UserData/UserData';
 import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
+import ChildrenRegistrationQueueContainer from "../ChildrenRegistrationQue/ChildrenRegistrationQueueContainer";
+import RegisteredChildrenQueueList from "../ChildrenRegistrationQue/RegisteredChildrenQueueList";
 
 const EduAdminRoutes = () => {
     return (
@@ -32,13 +33,19 @@ const EduAdminRoutes = () => {
             <PrivateRoute
                 path="/admin/edu/vaikai"
                 exact
-                component={ListOfChildren}
+                component={RegisteredChildrenQueueList}
                 role={'EDU'}
             />
             <PrivateRoute
                 path="/admin/edu/registracijos"
                 exact
                 component={ListOfRegistrations}
+                role={'EDU'}
+            />
+            <PrivateRoute
+                path="/admin/edu/registracijos/:admissionId/eiles/:queueId"
+                exact
+                component={ChildrenRegistrationQueueContainer}
                 role={'EDU'}
             />
             <PrivateRoute

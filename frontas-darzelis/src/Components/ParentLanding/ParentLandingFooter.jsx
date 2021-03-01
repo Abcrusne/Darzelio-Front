@@ -1,10 +1,10 @@
 import React from 'react';
 
-import '../../Style/ParentLanding.css'
+import '../../Style/UsersLandings.css'
 
 const ParentlandingFooter = () => {
     return(
-        <div className="row">
+        <div className="row d-none">
             <div className="col">
                 <p>Adresas</p>
             </div>

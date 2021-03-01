@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../../Style/ParentLanding.css';
+import '../../Style/UsersLandings.css';
 
 const ParentSideBarNavigation = () => {
   return (
@@ -59,7 +59,7 @@ const ParentSideBarNavigation = () => {
             className="nav-link active"
             id="childForm"
           >
-            <i className="fas fa-file-contract"></i>
+            <i className="fas fa-list-ol"></i>
             Peržiūrėti/Redaguoti vaikų duomenis
           </Link>
         </li>

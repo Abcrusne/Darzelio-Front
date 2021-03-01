@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import ModalComponentChildren from '../Modal/ModalComponentChildren';
+import '../../Style/UsersLandings.css'
 
 const ChildrenListTablePresentation = ({ children, deleteChild }) => {
   return children.map(({ id, firstname, lastname }, index) => {
@@ -12,7 +13,7 @@ const ChildrenListTablePresentation = ({ children, deleteChild }) => {
         <td> {lastname}</td>
         <td>
           <Link
-            className="text-decoration-none mr-3"
+            className="btn btn-link-1"
             to={`/tevai/vaikai/${id}`}
           >
             Peržiūrėti/Atnaujinti vaiko duomenis
@@ -20,7 +21,7 @@ const ChildrenListTablePresentation = ({ children, deleteChild }) => {
         </td>
         <td>
           <Link
-            className="text-decoration-none mr-3"
+            className="btn btn-link-1"
             to={`/tevai/registracijos/${id}`}
           >
             Peržiūrėti/Atnaujinti prašymą į darželį

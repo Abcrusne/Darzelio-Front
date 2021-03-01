@@ -436,10 +436,8 @@ export default class ChildrenRegistrationFormContainer extends Component {
 
     if (this.state.parentId > 0) {
       return (
-        <div>
-          {/* <NavigationComponent /> */}
-          {/* <LogoutPresentation /> */}
-          <div className=" container  m-auto shadow p-3 mb-5 bg-white rounded">
+        <div >
+          <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
             <div className="mb-4">
               <h3>Vaiko duomenų registracija</h3>
             </div>
@@ -1037,7 +1035,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
               <div>
                 <button
                   type="submit"
-                  className="btn btn-success btn-lg btn-block mt-5"
+                  className="btn btn-block mt-5"
                 >
                   Išsaugoti ir Tęsti
                 </button>

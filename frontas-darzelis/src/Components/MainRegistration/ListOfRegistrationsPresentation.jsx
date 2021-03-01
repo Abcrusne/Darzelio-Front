@@ -5,10 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 //our imports
 import {API} from "../../Configuration/AppConfig";
-import "../../Style/ParentLanding.css"
+import "../../Style/UsersLandings.css"
 import {ModalForStopButton} from "../Modal/ModalForStopButton";
 
-const ListOfRegistrationsPresentation = ({admissionQues, onClick}) => {
+const ListOfRegistrationsPresentation = ({ChildrenAdmissionQues, onClick}) => {
 
     const handleEndClick = () => {
         axios
@@ -20,7 +20,7 @@ const ListOfRegistrationsPresentation = ({admissionQues, onClick}) => {
     }
 
     return (
-            admissionQues.map(
+        ChildrenAdmissionQues.map(
             ({ id, active, allQuesConfirmed, startDate, endDate, registrationCount, totalSpotsInKindergartens },
             index) => {
             return (
@@ -36,7 +36,7 @@ const ListOfRegistrationsPresentation = ({admissionQues, onClick}) => {
             <td>
                 <Link
                     className="btn btn-link-1"
-                    to={`${API}/admin/edu/priemimai/${id}/eiles`}
+                    to={`/admin/edu/priemimai/${id}/eiles`}
                 >
                     Į sąrašą
                 </Link>

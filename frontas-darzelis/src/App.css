@@ -12,13 +12,14 @@
 .container, .container-fluid {
     background-color: #fbf9f8; /* snow */
     overflow: auto;
+    height: 100% !important;
 }
 
 
-p, a {
-    color: #8f989e; /* lightslategray */
+p, a, td {
+    color: #8f989e !important; /* lightslategray */
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #282f47; /* darkslategray */
+    color: #282f47 !important; /* darkslategray */
 }

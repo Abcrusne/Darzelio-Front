@@ -34,7 +34,7 @@ export default class KindergartenListTableContainer extends Component {
 
   render() {
     return (
-      <div className="container mt-5">
+      <div className="m-5">
         <Link
           to={`/admin/edu/darzelioregistracija`}
           className="btn btn-primary mb-5"

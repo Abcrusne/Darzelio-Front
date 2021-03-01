@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
-import LogoutPresentation from '../Utilities/LogoutPresentation';
 
 export default class UpdateKindergartenFormContainer extends Component {
   constructor(props) {
@@ -136,7 +135,6 @@ export default class UpdateKindergartenFormContainer extends Component {
     const { errors } = this.state;
     return (
       <div className="container mt-5">
-        <LogoutPresentation />
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
             <h3>Atnaujinti darželio duomenis</h3>
