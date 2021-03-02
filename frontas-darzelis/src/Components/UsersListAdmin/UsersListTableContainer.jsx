@@ -3,6 +3,7 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import UsersListTablePresentation from './UsersListTablePresentation';
+import Loading from '../Loading/Loading';
 
 
 export default class UsersListTableContainer extends Component {
@@ -105,7 +106,7 @@ export default class UsersListTableContainer extends Component {
 
             </tr>
           </thead>
-          {this.state.users.length > 0 && (
+          {this.state.users.length > 0 ? (
             <tbody>
               <UsersListTablePresentation
                 users={this.state.users}
@@ -120,7 +121,7 @@ export default class UsersListTableContainer extends Component {
                 // handleSearch={this.handleSearch}
               />
             </tbody>
-          )}
+          ) : <Loading/>}
         </table>
       </div>
     );

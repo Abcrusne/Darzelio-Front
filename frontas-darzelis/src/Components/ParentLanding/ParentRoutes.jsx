@@ -19,6 +19,7 @@ import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer
 import UploadPdfContainer from '../UploadPDF/UploadPdfContainer';
 import ChildrenListTableContainer from '../ChildrenRegistration/ChildrenListTableContainer';
 import UpdateChildrenRegistrationFormContainer from '../ChildrenRegistration/UpdateChildrenRegistrationFormContainer';
+import UpdateChildrenApplicationByParents from '../ChildrenRegistration/UpdateChildrenApplicationByParents';
 
 
 const ParentRoutes = () => {
@@ -101,7 +102,15 @@ const ParentRoutes = () => {
         exact
         component={UpdateChildrenRegistrationFormContainer}
         role={'PARENT'}
-      />
+      /> 
+        <PrivateRoute
+        path="/tevai/vaikai/registracijos/:id"
+        exact
+        component={UpdateChildrenApplicationByParents}
+        role={'PARENT'}
+      /> 
+ 
+
       <PrivateRoute
         path="/tevai/*"
         exact

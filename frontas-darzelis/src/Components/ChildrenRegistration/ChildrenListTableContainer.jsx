@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import ChildrenListTablePresentation from './ChildrenListTablePresentation';
+import Loading from '../Loading/Loading';
 
 export default class ChildrenListTableContainer extends Component {
   constructor() {
@@ -12,7 +13,7 @@ export default class ChildrenListTableContainer extends Component {
       id: '',
     };
   }
- 
+
   componentDidMount() {
     console.log('component did mount');
     axios
@@ -23,7 +24,7 @@ export default class ChildrenListTableContainer extends Component {
         });
         console.log('user id: ' + this.state.id);
         return axios.get(
-          `${API}/api/users/${this.state.id}/parentdetails/children`
+          `${API}/api/users/getloggeduserchildren`
         );
       })
       .then((response) => {
@@ -32,7 +33,7 @@ export default class ChildrenListTableContainer extends Component {
         });
       })
       .catch((error) => console.log(error));
-        // console.log('children: ' + this.state.children);
+    // console.log('children: ' + this.state.children);
   }
   // deleteChild = (event) => {
   //   //event.preventDefault();
@@ -52,28 +53,36 @@ export default class ChildrenListTableContainer extends Component {
   render() {
     return (
       <div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Vardas</th>
-              <th scope="col">Pavardė</th>
-              <th scope="col">Peržiūrėti/Atnaujinti vaiko duomenis</th>
-              <th scope="col">Peržiūrėti/Atnaujinti prašymą į darželį </th>
-              {/* <th scope="col">Ištrinti vaiką</th>
-              <th scope="col"></th> */}
-            </tr>
-          </thead>
-          {this.state.children.length > 0 && (
+    {this.state.children.length > 0 ? (
+<div>
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Vardas</th>
+                <th scope="col">Pavardė</th>
+                <th scope="col">Peržiūrėti/Atnaujinti vaiko duomenis</th>
+                <th scope="col">Peržiūrėti/Atnaujinti prašymą į darželį </th>
+              
+              </tr>
+            </thead>
+            {/* {this.state.children.length > 0 &&  ( */}
             <tbody>
               <ChildrenListTablePresentation
                 children={this.state.children}
                 deleteChild={this.state.deleteChild}
               />
             </tbody>
-      )} 
-        </table>
-      </div>
-    );
+            {/* )}  */}
+          </table>
+        </div>
+    ) : 
+    // <p> Dar nepateikėte jokių duomenų apie savo vaikus</p>
+    <Loading/>
+    
+    } 
+    </div>
+    )
+     
   }
 }

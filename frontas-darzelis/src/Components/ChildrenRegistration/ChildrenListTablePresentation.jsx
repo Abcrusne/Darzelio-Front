@@ -8,7 +8,8 @@ const ChildrenListTablePresentation = ({
   children,
   // deleteChild
 }) => {
-  let sortedChildren = [...children];
+  const sortedChildren = [...children];
+
   sortedChildren.sort((a, b) => {
     if (a.firstname < b.firstname) {
       return -1;
@@ -18,7 +19,8 @@ const ChildrenListTablePresentation = ({
     }
     return 0;
   });
-  if (sortedChildren.length > 0) {
+
+  // if (children && children.length > 0) {
     return sortedChildren.map(({ id, firstname, lastname }, index) => {
       return (
         <tr key={id}>
@@ -36,37 +38,29 @@ const ChildrenListTablePresentation = ({
           <td>
             <Link
               className="text-decoration-none mr-3"
-              to={`/tevai/registracijos/${id}`}
+              to={`/tevai/vaikai/registracijos/${id}`}
             >
               Peržiūrėti/Atnaujinti prašymą į darželį
             </Link>
           </td>
-          {/* <td>
-          <button
-            className="btn btn-danger"
-            data-toggle="modal"
-            data-target={`#staticBackdrop${id}`}
-            // onClick={deleteChild}
-            value={id}
-          >
-            Ištrinti
-          </button>
-        </td> */}
-          {/* <td>
-          <ModalComponentChildren
-            childId={id}
-            firstname={firstname}
-            lastname={lastname}
-            deleteChild={deleteChild}
-          />
-        </td> */}
         </tr>
       );
     });
-  } else {
-    return(
-      <Loading/>
-    )
-  }
+  // } else {
+  //   return (
+  //     <tr>
+  //       <th></th>
+  //       <td></td>
+  //       <td> </td>
+  //       <td></td>
+  //       <td></td>
+  //     </tr>
+  //   );
+  // }
+  // ;} else {
+  //       return (
+  // <p>mmm</p>
+  // )
+  // }
 };
 export default ChildrenListTablePresentation;
