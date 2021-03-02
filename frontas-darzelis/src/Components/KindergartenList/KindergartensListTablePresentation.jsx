@@ -32,7 +32,7 @@ export const KindergartensListTablePresentation = ({
           </td>
           <td>
             <button
-              className="btn btn-danger"
+              className="btn btn-light"
               data-toggle="modal"
               data-target={`#staticBackdrop${id}`}
               value={id}

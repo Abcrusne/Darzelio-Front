@@ -29,7 +29,7 @@ const ChildrenListTablePresentation = ({ children, deleteChild }) => {
         </td>
         <td>
           <button
-            className="btn btn-danger"
+            className="btn btn-light"
             data-toggle="modal"
             data-target={`#staticBackdrop${id}`}
             // onClick={deleteChild}

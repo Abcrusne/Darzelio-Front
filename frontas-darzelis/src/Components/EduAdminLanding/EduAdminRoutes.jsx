@@ -12,7 +12,6 @@ import UpdateKindergartenFormContainer from '../KindergartenList/UpdateKindergar
 import UpdateUserDataFormContainer from '../UserData/UpdateUserDataFormContainer';
 import UserData from '../UserData/UserData';
 import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
-import ChildrenRegistrationQueueContainer from "../ChildrenRegistrationQue/ChildrenRegistrationQueueContainer";
 import RegisteredChildrenQueueList from "../ChildrenRegistrationQue/RegisteredChildrenQueueList";
 
 const EduAdminRoutes = () => {
@@ -42,12 +41,7 @@ const EduAdminRoutes = () => {
                 component={ListOfRegistrations}
                 role={'EDU'}
             />
-            <PrivateRoute
-                path="/admin/edu/registracijos/:admissionId/eiles/:queueId"
-                exact
-                component={ChildrenRegistrationQueueContainer}
-                role={'EDU'}
-            />
+
             <PrivateRoute
                 path="/admin/edu/darzeliai"
                 exact

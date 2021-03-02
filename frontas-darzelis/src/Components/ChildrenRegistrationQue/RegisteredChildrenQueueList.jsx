@@ -4,23 +4,22 @@ import {Link} from "react-router-dom"
 
 //out imports
 import {ModalForChildQueueDeleteButton} from "../Modal/ModalForChildQueueDeleteButton";
-import axios from "axios";
-import {API} from "../../Configuration/AppConfig";
-import DataService from "./DataService";
+import DataService from "../Utilities/DataService";
+import "../../Style/UsersLandings.css"
 
 export default class RegisteredChildrenQueueList extends Component {
     constructor(props) {
         super(props);
         this.state = {
             childrenQueueList: [],
+            sort:'',
+            sortAccepted: [],
+            searchLastname: '',
+            sortLastname: [],
             currentChild: null,
             currentIndex: -1,
-            searchLastName: '',
-            searchPersonalCode: '',
-            sortAccepted: '',
-            page: 1,
-            count: 0,
-            pageSize: 20,
+            pageNumber: 1,
+            count: 0
         };
     }
 
@@ -29,79 +28,50 @@ export default class RegisteredChildrenQueueList extends Component {
         this.retrieveChildrenQueueList();
     }
 
-    onChangeSearchLastName = (event) => {
-        event.preventDefault();
-        const searchLastName = event.target.value;
-
-        this.setState({
-            searchLastName: searchLastName,
-        });
-    }
-    //
-    // onChangeSearchPersonaCode = (event) => {
-    //     event.preventDefault();
-    //     const searchPersonalCode = event.target.value;
-    //
-    //     this.setState({
-    //         searchPersonalCode: searchPersonalCode,
-    //     });
-    // }
-
-    // getRequestParams = (searchLastName, searchPersonalCode, page, pageSize) => {
-    //     let params = {};
-    //
-    //     if (searchLastName) {
-    //         params['lastname'] = searchLastName;
-    //     }
-    //     // if (searchPersonalCode) {
-    //     //     params['personalCode'] = searchPersonalCode;
-    //     // }
-    //     if (page) {
-    //         params['page'] = page - 1;
-    //     }
-    //     if (pageSize) {
-    //         params['size'] = pageSize;
-    //     }
-    //     return params;
-    // }
-
-    retrieveChildrenQueueList = () => {
-        // const {searchLastName, searchPersonalCode, page, pageSize} = this.state;
-        // const params = this.getRequestParams(searchLastName, searchPersonalCode, page, pageSize);
-        // DataService.getAll(params)
-        axios
-            .get(`${API}/api/kindergartens/admission/registrations`,
-                {headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+        retrieveChildrenQueueList = () => {
+        const { pageNumber, searchLastname, sort } = this.state;
+        console.log("retrieveChildrenQueue")
+        console.log(pageNumber + '' + searchLastname + '' + sort );
+        DataService.getAll(pageNumber, sort, searchLastname)
             .then((response) => {
-                // const {childrenQueueList, totalPages} = response.data;
+                const {registrations, totalPages} = response.data;
                 console.log(response.data);
                 this.setState({
-                    childrenQueueList: response.data,
-                    // childrenQueueList: childrenQueueList,
-                    // count: totalPages,
+                    childrenQueueList: registrations,
+                    count: totalPages,
                 });
                 console.log(this.state.childrenQueueList);
             }).catch(error => {
-                if (error.status === 401) {
-                    alert('Neautorizuotas bandymas')
-                } else if (error.status === 403) {
-                    alert('Neturite teisės prieiti prie duomenų')
-                } else {
-                    alert('Duomenų nerasta')
-                }
+            if (error.status === 401) {
+                alert('Neautorizuotas bandymas')
+            } else if (error.status === 403) {
+                alert('Neturite teisės prieiti prie duomenų')
+            } else {
+                alert('Duomenų nerasta')
+            }
             console.log(error)
+        })
+    }
+
+    onChange = (event) => {
+        console.log(event.target.value)
+        const searchLastname = event.target.value;
+
+        this.setState({
+            searchLastname: searchLastname,
+        }, () => {
+            this.retrieveChildrenQueueList();
         })
     }
 
     deleteChild = (event) => {
         event.preventDefault();
         console.log("delete");
-        axios
-            .delete(`${API}/api/kindergartens/admission/registrations/${event.target.value}/delete`,
-                {headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+        const childId = event.target.value;
+        DataService.delete(childId)
             .then(() =>
                 this.retrieveChildrenQueueList()
-                )
+            )
             .catch(error => {
                 if (error.status === 401) {
                     alert('Neautorizuotas bandymas')
@@ -114,32 +84,43 @@ export default class RegisteredChildrenQueueList extends Component {
             })
     }
 
-    // handlePageChange = (event, value) => {
-    //     this.setState({
-    //             page: value,
-    //         },
-    //         () => {
-    //             this.retrieveChildrenQueueList();
-    //         });
-    // }
-    // handlePageSizeChange = (event) => {
-    //     this.setState({
-    //             pageSize: event.target.value,
-    //             page: 1,
-    //         },
-    //         () => {
-    //             this.retrieveChildrenQueueList();
-    //         });
-    // }
+    handlePageChange = (event, value) => {
+       const {sortAccepted, sortLastName} = this.state
+        this.setState({
+                pageNumber: value,
+            },
+            () => {
+                this.retrieveChildrenQueueList();
+            })
+    }
 
-    handleClick = (event) => {
+    handleAcceptedSort = (event) => {
+        event.preventDefault();
+        this.setState({
+            sort: "accepted",
+        }, () => {
+            this.retrieveChildrenQueueList();
+        })
+    }
+
+    handleLastnameSort = (event) => {
+        console.log("sort Lastname");
+
+        this.setState({
+            sort: "lastname",
+        }, () => {
+            this.retrieveChildrenQueueList();
+        })
+    }
+
+    handleConfirmClick = (event) => {
         event.preventDefault();
         console.log("eiles patvirtinimas")
-        axios
-            .post(`${API}/api/kindergartens/admission/registrations/confirm`)
+        DataService.confirm()
             .then(response => {
                 console.log(response.data);
-                alert('Eilė patvirtinta sėkmingai')})
+                alert('Eilė patvirtinta sėkmingai')
+            })
             .then(() => this.retrieveChildrenQueueList())
             .catch(error => console.log(error))
     }
@@ -148,29 +129,25 @@ export default class RegisteredChildrenQueueList extends Component {
         console.log("render")
         const {
             searchLastName,
-            // searchPersonalCode,
             childrenQueueList,
-            currentChild,
-            currentIndex,
-            page,
-            count,
-            // pageSize,
+            pageNumber,
+            count
         } = this.state;
 
         return (
 
             <div className="m-5">
                 <div className="mb-4">
-                    <h4>Vaikų, pateikusių registraciją į darželius, sąrašas</h4>
+                    <h4>Vaikų, pateikusių registraciją į darželius, eilės sąrašas</h4>
                 </div>
                 <div className="col-md-8">
-                    <div className="input-group mb-3">
+                    <div className="input-group">
                         <input
                             type="text"
                             className="form-control"
                             placeholder="Ieškoti pagal vaiko pavardę"
                             value={searchLastName}
-                            onChange={this.onChangeSearchLastName}
+                            onChange={this.onChange}
                         />
                         <div className="input-group-append">
                             <button
@@ -189,10 +166,10 @@ export default class RegisteredChildrenQueueList extends Component {
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Vardas</th>
-                        <th scope="col">Pavardė</th>
+                        <th scope="col"><Link onClick={this.handleLastnameSort}>Pavardė</Link></th>
                         <th scope="col">Asmens kodas</th>
                         <th scope="col">Reitingas</th>
-                        <th scope="col">Statusas(priimtas/ laukiantis)</th>
+                        <th scope="col" onClick={this.handleAcceptedSort}><Link>Statusas(priimtas/ laukiantis)</Link></th>
                         <th scope="col">Darželio pavadinimas (jei vaikas priimtas)</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
@@ -205,7 +182,8 @@ export default class RegisteredChildrenQueueList extends Component {
                             ({childId, firstname, lastname, rating, accepted, personalCode, kindergartenName},
                              index) => {
                                 return (
-                                    <tr key={childId}>
+                                    <tr key={childId}
+                                    >
                                         <th scope="row">{index + 1}</th>
                                         <td>{firstname}</td>
                                         <td>{lastname}</td>
@@ -215,7 +193,7 @@ export default class RegisteredChildrenQueueList extends Component {
                                         <td>{kindergartenName}</td>
                                         <td>
                                             <button
-                                                className="mr-4 btn btn-danger"
+                                                className="mr-4 btn btn-light"
                                                 data-toggle="modal"
                                                 data-target={`#staticBackdrop${childId}`}
                                                 value={childId}
@@ -234,45 +212,30 @@ export default class RegisteredChildrenQueueList extends Component {
                                 );
                             })) : <tr>...</tr>}
                     </tbody>
-
-                    <tfoot>
-                    <tr>
-                        <td colSpan="8">
-                            <button
-                                type="button"
-                                className="mr-4 btn text-nowrap"
-                                onClick={this.handleClick}
-                            >Patvirtinti darželio eilę
-                            </button>
-                        </td>
-                    </tr>
-
-                    </tfoot>
                 </table>
-
-                {/*<div className="mt-3">*/}
-                {/*    {"Eilučių puslapyje: "}*/}
-                {/*    <select onChange={this.handlePageSizeChange} value={pageSize}>*/}
-                {/*        {this.pageSizes.map((size) => (*/}
-                {/*            <option key={size} value={size}>*/}
-                {/*                {size}*/}
-                {/*            </option>*/}
-                {/*        ))}*/}
-                {/*    </select>*/}
 
                 <Pagination
                     className="my-3"
                     count={count}
-                    page={page}
+                    page={pageNumber}
                     siblingCount={1}
                     boundaryCount={1}
                     variant="outlined"
                     shape="rounded"
-                    // onChange={this.handlePageChange}
+                    onChange={this.handlePageChange}
                 />
+                <div>
+                    <button
+                        type="button"
+                        className="mr-4 btn text-nowrap"
+                        onClick={this.handleConfirmClick}
+                    >Patvirtinti vaikų eilę į darželius
+                    </button>
+                </div>
             </div>
         )
     }
+
 }
 
 

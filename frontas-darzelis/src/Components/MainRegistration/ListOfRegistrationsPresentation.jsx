@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 //our imports
 import {API} from "../../Configuration/AppConfig";
 import "../../Style/UsersLandings.css"
-import {ModalForStopButton} from "../Modal/ModalForStopButton";
+import {ModalForStopRegToKindergButton} from "../Modal/ModalForStopRegToKindergButton";
 
 const ListOfRegistrationsPresentation = ({ChildrenAdmissionQues, onClick}) => {
 
@@ -54,7 +54,7 @@ const ListOfRegistrationsPresentation = ({ChildrenAdmissionQues, onClick}) => {
                  : null}
             </td>
             <td>
-                <ModalForStopButton
+                <ModalForStopRegToKindergButton
                     QueId={id}
                     onClick={handleEndClick}
                 />

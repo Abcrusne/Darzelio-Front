@@ -162,6 +162,28 @@ a.btn.active {
     border-radius: 8px;
 }
 
+.btn.btn-light{
+    background-color: #fbf9f8; /* snow */
+    color: #282f47; /* darkslategray */
+    text-decoration-line: none;
+    border: 1px solid #1baaa0; /* lightseagreen */
+    border-radius: 8px;
+    min-width: 170px;
+    padding: 0.6em 1em;
+    text-wrap: none;
+}
+.btn.btn-light:hover{
+    background-color: #fbf9f8; /* snow */
+    color: #282f47; /* darkslategray */
+    text-decoration-line: none;
+    font-weight: bolder;
+    border: 1px solid #1baaa0;
+    border-radius: 5px;
+    min-width: 170px;
+    padding: 0.6em 1em;
+    text-wrap: none;
+}
+
 td {
     /*min-width: 150px;*/
     vertical-align: middle !important;
@@ -169,4 +191,28 @@ td {
 
 th {
     vertical-align: middle !important;
+}
+
+th a {
+    color: #282f47; /* darkslategray */
+    text-decoration-line: underline;
+}
+th a:hover {
+    color: #8f989e; /* lightslategray */
+}
+
+div.card-body {
+    text-align: center;
+}
+
+div.card {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 0;
+    margin: 3px;
+    background-color: #fbf9f8; /* snow */
+}
+
+.form-control {
+    height: 43px;
 }

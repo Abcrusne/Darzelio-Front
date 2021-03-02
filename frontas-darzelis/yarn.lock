@@ -6010,6 +6010,11 @@ identity-obj-proxy@3.0.0:
   dependencies:
     harmony-reflect "^1.4.6"
 
+idle-timer@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/idle-timer/-/idle-timer-1.2.0.tgz#318484dd0b0a9b4cbd7ea6a4f94128837bd5442e"
+  integrity sha1-MYSE3QsKm0y9fqak+UEog3vVRC4=
+
 ieee754@^1.1.4:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
@@ -9768,6 +9773,11 @@ react-fast-compare@^2.0.1:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
+
+react-idle-timer@^4.5.5:
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/react-idle-timer/-/react-idle-timer-4.5.5.tgz#73eeb816984d89fea1dda1225bd893bc4c2726be"
+  integrity sha512-hQpwbEmZq9NZyR3hsq9savk8SwKAyzBqqCpp3sjJQzMrYoQHMIxKrYy0dpCM0JbyHNmSDqD4vLTJAcA+BH47Dw==
 
 react-input-autosize@^2.2.2:
   version "2.2.2"
