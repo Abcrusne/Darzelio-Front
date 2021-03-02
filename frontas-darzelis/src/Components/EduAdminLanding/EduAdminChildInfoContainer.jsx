@@ -41,6 +41,10 @@ export default class EduAdminChildInfoContainer extends Component {
       rating: 0,
       secondPriority: '',
       thirdPriority: '',
+      accepted_kindergarten: "",
+      admission_id: "",
+     
+
     };
   }
 
@@ -74,25 +78,24 @@ export default class EduAdminChildInfoContainer extends Component {
           secondParentStudyingInstitution:
             res.data.secondParentStudyingInstitution,
           secondParentDisabled: res.data.secondParentDisabled,
-        })
-    
-      axios
-      .get(
-        `${API}/api/kindergartens/register/${this.props.match.params.id}`
-      );
-    } )
-    .then((res)=>{
-      this.setState({
-        fifthPriority: res.data.fifthPriority,
-        firstPriority: res.data.firstPriority,
-        fourthPriority: res.data.fourthPriority,
-        id: res.data.id,
-        rating: res.data.rating,
-        secondPriority: res.data.secondPriority,
-        thirdPriority: res.data.thirdPriority,
-
+        });
+        console.log('child id: ' + this.state.childId);
+return axios.get(`${API}/api/kindergartens/register/${this.state.childId}`);
       })
-    })
+      .then((res) => {
+        this.setState({
+          id: res.data.id,
+          // accepted_kindergarten: res.data.accepted_kindergarten,
+          // addmission_id: res.data.admission_id,
+          // childId: res.data.childId,
+          firstPriority: res.data.firstPriority,
+          secondPriority: res.data.secondPriority,
+          thirdPriority: res.data.thirdPriority,
+          fourthPriority: res.data.fourthPriority,
+          fifthPriority: res.data.fifthPriority,
+          rating: res.data.rating,
+        });
+      })
       .catch((err) => console.log(err));
     // console.log();
   }
@@ -126,14 +129,13 @@ export default class EduAdminChildInfoContainer extends Component {
             this.state.secondParentStudyingInstitution
           }
           secondParentDisabled={this.state.secondParentDisabled}
-          fifthPriority= {this.state.fifthPriority}
-          firstPriority= {this.state.firstPriority}
-          fourthPriority= {this.state.fourthPriority}
-          id= {this.state.id}
-          rating= {this.state.rating}
-          secondPriority= {this.state.secondPriority}
-          thirdPriority= {this.state.thirdPriority}
-
+          fifthPriority={this.state.fifthPriority}
+          firstPriority={this.state.firstPriority}
+          fourthPriority={this.state.fourthPriority}
+          id={this.state.id}
+          rating={this.state.rating}
+          secondPriority={this.state.secondPriority}
+          thirdPriority={this.state.thirdPriority}
         />
       </div>
     );

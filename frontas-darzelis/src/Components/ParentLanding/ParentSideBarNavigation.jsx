@@ -56,7 +56,7 @@ const ParentSideBarNavigation = () => {
         <li className="nav-item">
           <Link to="/tevai/vaikai" className="nav-link active" id="childForm">
             <i className="fas fa-file-contract"></i>
-            Peržiūrėti/Redaguoti vaikų duomenisir prašymus
+            Peržiūrėti/Redaguoti vaikų duomenis ir prašymus
           </Link>
         </li>
         {/*<li className="nav-item">*/}

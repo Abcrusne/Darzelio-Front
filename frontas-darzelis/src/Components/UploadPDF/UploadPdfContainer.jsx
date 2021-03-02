@@ -99,25 +99,12 @@ export default class UploadPdfContainer extends Component {
   render() {
     return (
       <div>
-        {/* {this.state.children.map((child) => {
-          return ( */}
-        {/* <UploadPdfPresentation
-              children={this.state.children}
-            //  id= {child.id}
-            //   key={child.id}
-              // firstname= {this.state.firstname}
-              // lastname={this.state.lastname}
-              pdf={this.state.pdf}
-              title={this.state.title}
-              handleSubmit={this.handleSubmit}
-              handleChange={this.handleChange}
-            /> */}
-        {/* ); */}
-        {/* })} */}
+    
 
         <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
             <h3>Įkelkite vaiko sveikatos pažymą PDF formatu</h3>
+            <p>Įkelti galite vienam vaikui vieną dokumentą. Jei įkelsite tam pačiam vaikui antrą dokumentą, ankstesnis dokumentas bus anuliuojamas.</p>
           </div>
           <form
             onSubmit={this.handleSubmit}
