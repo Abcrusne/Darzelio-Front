@@ -206,7 +206,7 @@ const EduAdminChildInfoPresentation = ({
               <td>
                 <Link
                   className="text-decoration-none mr-3"
-                  to={`/edu/admin/vaikoduomenys/prasymas/redaguoti/${childId}`}
+                  to={`/admin/edu/vaikai/${childId}/redaguoti`}
                 >
                   Redaguoti prašymą į darželį
                 </Link>

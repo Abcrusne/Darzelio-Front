@@ -15,6 +15,7 @@ import UserData from '../UserData/UserData';
 import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
 import KindergartenTableContainer from '../Queue/KindergartenTableContainer';
 import EduAdminChildInfoContainer from './EduAdminChildInfoContainer';
+import EduAdminUpdateChildApplicationContainer from './EduAdminUpdateChildApplicationContainer';
 
 const EduAdminRoutes = () => {
   return (
@@ -88,11 +89,18 @@ const EduAdminRoutes = () => {
         role={'EDU'}
       />
       <PrivateRoute
-                path="/admin/edu/vaikoduomenys/:id"
+                path="/admin/edu/vaikai/:id"
                 exact
                 component={EduAdminChildInfoContainer}
                 role={'EDU'}
-            />
+            /> 
+         
+            <PrivateRoute
+                path="/admin/edu/vaikai/:id/redaguoti"
+                exact
+                component={EduAdminUpdateChildApplicationContainer}
+                role={'EDU'}
+            /> 
       <PrivateRoute
         path="/admin/edu/*"
         exact
