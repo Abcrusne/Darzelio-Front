@@ -8,6 +8,7 @@ import '../../Style/ParentLanding.css';
 import '../../Style/LandingPage.css';
 
 const KindergartenTable = ({ kindergartens, admissionId }) => {
+
   const data = {
     columns: [
       {
@@ -73,7 +74,7 @@ const KindergartenTable = ({ kindergartens, admissionId }) => {
 
   return (
     <MDBDataTable
-      className="table admissions"
+      className="table "
       striped
       bordered
       // hover
