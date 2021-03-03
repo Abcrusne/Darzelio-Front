@@ -8,7 +8,7 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import lt from 'date-fns/locale/lt';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
-import ParentRegistrationFormContainer from '../ParentRegistration/ParentRegistrationFormContainer';
+//import ParentRegistrationFormContainer from '../ParentRegistration/ParentRegistrationFormContainer';
 registerLocale('lt', lt);
 
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
@@ -168,12 +168,12 @@ export default class ChildrenRegistrationFormContainer extends Component {
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
     // let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 ,/./-]+$/;
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
-    let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,\.\- ]*$/;
+    let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,.\- ]*$/;
     let date = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
 
     let validPersonalCode = /^[5|6]+[0-9]+$/;
     let validParentPersonalCode = /^[3|4|5|6]+[0-9]+$/;
-    let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
+    let validPhone = /^[+][3][7][0][6|5]+[0-9]+$/;
     let numbers = /^[0-9]+$/;
     switch (name) {
       case 'firstname':
@@ -289,7 +289,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
           value.length < 12 ||
           value.length > 12 ||
           value.length === 0
-            ? 'Telefono numerio formatas +37061234567'
+            ? 'Telefono numerio formatas +37061234567 arba +37051234567'
             : '';
         break;
       case 'secondParentNumberOfKids':
@@ -302,11 +302,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
         break;
     }
     if (event.target.type === 'checkbox') {
-      console.log(event.target.checked);
+      // console.log(event.target.checked);
       this.setState({ [event.target.name]: event.target.checked });
     } else
       this.setState({ errors, [event.target.name]: event.target.value }, () => {
-        console.log(errors);
+        // console.log(errors);
       });
     console.log(this.state);
   };
@@ -370,6 +370,10 @@ export default class ChildrenRegistrationFormContainer extends Component {
         .post(
           `${API}/api/users/${this.state.userId}/parentdetails/children`,
           childrenInput
+          //  ,
+          // {
+          //   headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+          // }
         )
         .then((response) => {
           console.log(response);
@@ -386,8 +390,16 @@ export default class ChildrenRegistrationFormContainer extends Component {
             alert(
               'Pasitikrinkite ar suvedėte teisingus asmens kodus. Toks asmens kodas jau egzistuoja'
             );
+          } else if (
+            error.response.data === 'Vaiko ir tėvo asmens kodai negali sutapti'
+          ) {
+            alert('Pasitikrinkite asmens kodus. ' + error.response.data + '!');
           } else if (error.response.data === 'Toks asmens kodas jau užimtas') {
             alert('Pasitikrinkite asmens kodus. ' + error.response.data);
+          } else if (
+            error.response.data === `Gimimo data negali būti iš ateities!`
+          ) {
+            alert(error.response.data);
           } else if (
             error.response.data === 'Šis asmens kodas jau egzistuoja sistemoje!'
           ) {
@@ -459,6 +471,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                   onChange={this.handleChange}
                   noValidate
                 />
+               
                 {errors.firstname.length > 0 && (
                   <span className="error">{errors.firstname}</span>
                 )}

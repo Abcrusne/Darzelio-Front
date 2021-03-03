@@ -14,6 +14,8 @@ export default class KindergartenRegistrationContainer extends Component {
       address: '',
       spotsInFirstAgeGroup: '',
       spotsInSecondAgeGroup: '',
+      //get logged role
+      role: '',
 
       errors: {
         name: '',
@@ -22,6 +24,17 @@ export default class KindergartenRegistrationContainer extends Component {
         spotsInSecondAgeGroup: '',
       },
     };
+  }
+  componentDidMount() {
+    console.log('component did mount darzeliu registracija');
+    axios
+      .get(`${API}/api/users/loggedrole`)
+      .then((res) =>
+        this.setState({
+          role: res.data,
+        })
+      )
+      .catch((error) => console.log(error));
   }
   handleChange = (event) => {
     event.preventDefault();
@@ -44,12 +57,12 @@ export default class KindergartenRegistrationContainer extends Component {
             : '';
         break;
       case 'address':
-          errors.address=
-        !value.match(lettersAndNumbers) ||
-        value.length < 2 ||
-        value.length === 0
-          ? 'Adresas turi būti ilgesnis nei 1 raidė!'
-          : '';
+        errors.address =
+          !value.match(lettersAndNumbers) ||
+          value.length < 2 ||
+          value.length === 0
+            ? 'Adresas turi būti ilgesnis nei 1 raidė!'
+            : '';
         break;
 
       case 'spotsInFirstAgeGroup':
@@ -69,7 +82,7 @@ export default class KindergartenRegistrationContainer extends Component {
     }
 
     this.setState({ errors, [name]: value }, () => {
-      console.log(errors);
+      // console.log(errors);
     });
   };
   handleSubmit = (event) => {
@@ -94,11 +107,21 @@ export default class KindergartenRegistrationContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(API + '/api/kindergartens', inputKindergarten)
+        .post(API + '/api/kindergartens', inputKindergarten
+        // ,
+        // {
+        //   headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+        // }
+        )
         .then((response) => {
           console.log(response);
-          alert("Darželio registracija sėkminga");
-          this.props.history.push('/admin/edu/darzeliai');
+          if (this.state.role === 'EDU') {
+            alert('Darželio registracija sėkminga');
+            this.props.history.push('/admin/edu/darzeliai');
+          } else if (this.state.role === 'ADMIN') {
+            alert('Darželio registracija sėkminga');
+            this.props.history.push('/admin/darzeliai');
+          }
         })
 
         .catch((error) => {
@@ -125,6 +148,8 @@ export default class KindergartenRegistrationContainer extends Component {
     const { errors } = this.state;
     return (
       <div className="container mt-5">
+        {/* <NavigationForAllPages /> */}
+        {/* <LogoutPresentation /> */}
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
             <h3>Užregistruoti naują darželį</h3>

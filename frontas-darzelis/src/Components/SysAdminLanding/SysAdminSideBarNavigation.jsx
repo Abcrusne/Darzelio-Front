@@ -1,58 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../Style/UsersLandings.css';
 
-const EduAdminSideBarNavigation = () => {
+export const SysAdminSideBarNavigation = () => {
   return (
     <nav className="sidebar pt-3 mt-3">
       <ul className="nav flex-column">
         <li className="nav-item">
-          <Link
-            to="/admin/edu/naudotojo-duomenys"
-            className="nav-link active"
-            id="userData"
-          >
+          <Link to="/admin/pradzia" className="nav-link active" >
             <i className="fas fa-user"></i>
-            Naudotojo duomenys
+            Sistemos administratorius
           </Link>
           <hr />
         </li>
         <li className="nav-item">
           <Link
-            to="/admin/edu/vaikai"
+            to="/admin/vartotojai"
             className="nav-link active"
-            id="parentForm"
+           
           >
             <i className="fas fa-file-contract"></i>
-            Vaikų sąrašas
+            Vartotojų sąrašas
           </Link>
         </li>
         <li className="nav-item">
           <Link
-            to="/admin/edu/registracijos"
+            to="/admin/darzeliai"
             className="nav-link active"
-            id="childForm"
-          >
-            <i className="fas fa-file-contract"></i>
-            Registracijų sąrašas
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link
-            to="/admin/edu/priemimai/eiles"
-            className="nav-link active"
-            id="mainRegForm"
-          >
-            <i className="fas fa-file-contract"></i>
-            Darželių eilės
-          </Link>
-        </li>
-                 
-        <li className="nav-item">
-          <Link
-            to="/admin/edu/darzeliai"
-            className="nav-link active"
-            id="mainRegForm"
+          
           >
             <i className="fas fa-file-contract"></i>
             Darželių sąrašas
@@ -60,17 +34,27 @@ const EduAdminSideBarNavigation = () => {
         </li>
         <li className="nav-item">
           <Link
-            to="/admin/edu/darzelioregistracija"
+            to="/admin/prasymai"
             className="nav-link active"
-            id="mainRegForm"
+           
           >
             <i className="fas fa-file-contract"></i>
-            Pridėti darželį
+            Prašymai
           </Link>
-          <hr />
+        </li>
+
+        <li className="nav-item">
+          <Link
+            to="/admin/eiliutvarkymas"
+            className="nav-link active"
+         
+          >
+            <i className="fas fa-file-contract"></i>
+            Eilių tvarkymas
+          </Link>
         </li>
         <li className="nav-item">
-          <Link to="/admin/edu/statistika" className="nav-link active">
+          <Link to="/admin/statistika" className="nav-link active">
             <i className="fas fa-info"></i>
             Statistika
           </Link>
@@ -79,4 +63,3 @@ const EduAdminSideBarNavigation = () => {
     </nav>
   );
 };
-export default EduAdminSideBarNavigation;

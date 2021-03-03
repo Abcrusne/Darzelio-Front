@@ -1,62 +1,63 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
-import UploadPdfPresentation from './UploadPdfPresentation';
+import '../../Style/style.css';
+//import UploadPdfPresentation from './UploadPdfPresentation';
+
+axios.defaults.withCredentials = true; // leidžia dalintis cookies
 
 export default class UploadPdfContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       children: [],
-      childId: 0,
+      //child id
+      id: 0,
       firstname: '',
       lastname: '',
-
       pdf: '',
-      title: '',
+      // title: 'Sveikatos pažyma',
     };
   }
-//   componentDidMount() {
-//     console.log('component did mount');
-//     axios.get(`${API}/api/users/getloggeduserchildren`).then((res) => {
-//       this.setState({
-//         children: res.data,
-//         // id: res.data.id,
-//         // firstname: res.data.firstname,
-//         // lastname: res.data.lastname
-//       });
-//       console.log("children "+ this.state.children);
-//     });
-//   }
-getChildren = async () => {
+  //   componentDidMount() {
+  //     console.log('component did mount');
+  //     axios.get(`${API}/api/users/getloggeduserchildren`).then((res) => {
+  //       this.setState({
+  //         children: res.data,
+  //         // id: res.data.id,
+  //         // firstname: res.data.firstname,
+  //         // lastname: res.data.lastname
+  //       });
+  //       console.log("children "+ this.state.children);
+  //     });
+  //   }
+  getChildren = async () => {
     try {
-        const {data} = await axios.get(
-            `${API}/api/users/getloggeduserchildren`
-        );
-        return data;
+      const { data } = await axios.get(
+        `${API}/api/users/getloggeduserchildren`
+      );
+      return data;
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-};
-async componentDidMount() {
-
+  };
+  async componentDidMount() {
     const childrenData = await this.getChildren();
-    console.log(childrenData);
+    // console.log(childrenData);
     let children = childrenData.map((child) => ({
-        firstname: child.firstname,
-        lastname: child.lastname,
-        id: child.id,
+      firstname: child.firstname,
+      lastname: child.lastname,
+      id: child.id,
     }));
     this.setState({
-        children: children,
+      children: children,
     });
-}
+  }
 
-
-handleChange = (event) => {
+  handleChange = (event) => {
     this.setState({
-        [event.target.name] : event.target.value
-    })
+      id: event.target.value,
+    });
     // this.setState({
     //         ...this.state,
     //         [event.target.name]: event.target.name === "childId"
@@ -64,119 +65,110 @@ handleChange = (event) => {
     //             : (event.target.value === '-' ? '' : event.target.value)
     //     }
     // )
-};
+  };
 
+  handleFile = (event) => {
+    //console.log(event.target.files +"files");
+    //console.log(event.target.files[0] +"files[0]");
+    this.setState({ pdf: event.target.files[0] });
+  };
   handleSubmit = (event) => {
     event.preventDefault();
-
-    const inputPdf = {
-        pdf: this.state.pdf,
-        title:this.state.title,
-        childId: this.state.childId
-        // firstname: this.state.firstname,
-        // lastname: this.state.lastname
-    }
-    axios.post(`${API}/api/users/pdf`, inputPdf)
-    .then((res)=> {
+    let data = new FormData();
+    data.append('data', this.state.pdf);
+    data.append('id', this.state.id);
+    axios
+      .post(`${API}/api/users/pdf`, data)
+      .then((res) => {
         console.log(res);
-        alert("PDF įkeltas."); 
-        this.props.history.push("/tevai");
-    })
-    .catch((error) => {
+        alert('PDF įkeltas.');
+        this.props.history.push('/tevai');
+      })
+      .catch((error) => {
         console.log(error.data);
-    })
+        if (error.response.data === 'Blogas failo formatas') {
+          alert('Pasitikrinkite ar įkėlėte tinkamo pdf formato failą.');
+        } else if (error.response.status === 400) {
+          alert(
+            'Nesėkmingas pdf įkelimas. Pasitikrinkite ar pažymėjote vaiką bei pasirinkote pdf failą.'
+          );
+        }
+      });
   };
 
   render() {
     return (
       <div>
-        {/* {this.state.children.map((child) => {
-          return ( */}
-            {/* <UploadPdfPresentation
-              children={this.state.children}
-            //   childId= {child.id}
-            //   key={child.id}
-              // firstname= {this.state.firstname}
-              // lastname={this.state.lastname}
-              pdf={this.state.pdf}
-              title={this.state.title}
-              handleSubmit={this.handleSubmit}
-              handleChange={this.handleChange}
-            /> */}
-          {/* ); */}
-        {/* })} */}
-  
-    <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
-      <div className="mb-4">
-        <h3>Įkelkite vaiko PDF formatu pažymas</h3>
-      </div>
-      <form onSubmit={this.handleSubmit} className="form-row ">
-        <div className="form-group mb-3 col-6">
-          <label htmlFor="selectChild" className="control-label">
-            Parinkite vaiką*:
-          </label>
-          <select
+    
+
+        <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
+          <div className="mb-4">
+            <h3>Įkelkite vaiko sveikatos pažymą PDF formatu</h3>
+            <p>Įkelti galite vienam vaikui vieną dokumentą. Jei įkelsite tam pačiam vaikui antrą dokumentą, ankstesnis dokumentas bus anuliuojamas.</p>
+          </div>
+          <form
+            onSubmit={this.handleSubmit}
+            className="form-row"
+            encType="multipart/form-data"
+          >
+            <div className="form-group mb-3 col-4">
+              <label htmlFor="selectChild" className="control-label">
+                Pasirinkite vaiką*:
+              </label>
+              <select
+                className="form-control"
+                id="selectChild"
+                name="childId"
+                onChange={this.handleChange}
+                required
+                onInvalid={(e) => {
+                  e.target.setCustomValidity('Pasirinkite vaiką.');
+                }}
+                onInput={(e) => e.target.setCustomValidity('')}
+              >
+                {/* <option defaultValue>-</option> */}
+                <option value=""> </option>
+                {this.state.children.map((child) => (
+                  <option key={child.id} value={child.id}>
+                    {child.firstname + ' ' + child.lastname}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className=" fileUpload form-group mt-4 ml-1 mb-1 col-12">
+              <label htmlFor="pdf" className="upload control-label">
+                Įkelti dokumentą*
+              </label>
+              <input
+                type="file"
+                accept=".pdf"
+                className=" file form-control"
+                name="pdf"
+                id="pdf"
+                onChange={this.handleFile}
+                // onChange={(e)=>this.handleFile(e)}
+                // style={{width: "90px"}}
+                //&&{style ={{"width: "100%"}}
+
+                required
+                onInvalid={(e) => {
+                  e.target.setCustomValidity('Įkelkite pažymą.');
+                }}
+                onInput={(e) => e.target.setCustomValidity('')}
+              />
+                <p className="mt-1">
+                  <b>{this.state.pdf.name} </b>
+                </p>
             
-            className="form-control"
-            id="selectChild"
-            name="childId"
-            onChange={this.handleChange}
-
-            //required
-          >
-              {/* <option defaultValue>-</option> */}
-            <option value=""> </option>
-            {this.state.children.map((child) => (
-                                    <option
-                                        key={child.id}
-                                        value={child.id}
-                                    >{child.firstname + ' ' + child.lastname}
-                                    </option>
-                                ))}
-          </select>
-        </div>
-        <div className="form-group mb-3 col-6">
-          <label htmlFor="" className="control-label">
-            Parinkite dokumento pavadinimą*:
-          </label>
-          <select
-            type="text"
-            className="form-control"
-            name="title"
-            onChange={this.handleChange}
-
-            //required
-          >
-            <option value=""></option>
-            <option value="Sveikatos medicininė pažyma">
-              Sveikatos medicininė pažyma
-            </option>
-          </select>
-        </div>
-        <div className="form-group mb-3 col-12">
-          <label htmlFor="pdf" className="control-label">
-            Įkelti dokumentą*:
-          </label>
-          <input
-            type="file"
-            accept=".pdf"
-            // className="form-control hidden"
-            className="hidden"
-            name="pdf"
-            id="pdf"
-            onChange={this.handleChange}
-
-            //required
-          />
-        </div>
-        <div className="form-group mb-3 col-12" > * - privalomi laukai</div>
-        <div>
+            </div>
+            <div className="form-group mb-3 col-12"> * - privalomi laukai</div>
+            <div>
               <button type="submit" className="btn btn-success">
                 Įkelti
               </button>
             </div>
-      </form>
-    </div>
+          </form>
+        </div>
       </div>
     );
   }

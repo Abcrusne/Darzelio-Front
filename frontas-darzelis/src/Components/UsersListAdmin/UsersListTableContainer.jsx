@@ -3,21 +3,22 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import UsersListTablePresentation from './UsersListTablePresentation';
-import LogoutPresentation from '../Utilities/LogoutPresentation';
-import NavigationComponent from '../SysAdminLanding/NavigationComponent';
+import Loading from '../Loading/Loading';
+
 
 export default class UsersListTableContainer extends Component {
   constructor() {
     super();
     this.state = {
       users: [],
+      searchTerm: "",
     //  isOpen: false,
       // searchQuery: '',
       // search: "",
       // newUsers: []
     };
   }
-
+  // const [searchTerm, setSearchTerm] = useState('');
   componentDidMount = () => {
     console.log('component did mount');
     axios
@@ -46,17 +47,7 @@ export default class UsersListTableContainer extends Component {
   //   });
   // };
 
-  // replaceModalItem=(id)=> {
-  //   this.setState({
-  //     requiredItem: this.state.users.id
-  //   });
-  // }
-
-  // toggleModal = () => {
-  //   this.setState({
-  //     isOpen: !this.state.isOpen,
-  //   });
-  // }
+ 
   deleteUser = (event) => {
     event.preventDefault();
     axios
@@ -74,12 +65,22 @@ export default class UsersListTableContainer extends Component {
   render() {
     return (
       <div className="container mt-5">
-        <NavigationComponent />
-        <LogoutPresentation />
+      
         <Link to={`/admin/registracija`} className="btn btn-primary mb-5">
           Pridėti naują vartotoją
         </Link>
         <div>
+        <input
+        className="form-control mt-3 col-4"
+        placeholder="Paieška"
+        type="text"
+        onChange={(event) => {
+          this.setState({searchTerm: event.target.value})
+          // console.log(this.state.searchTerm);
+         // setSearchTerm(event.target.value);
+        }}
+      />
+
           {/* <input
             type="text"
             className="form-control my-3"
@@ -105,11 +106,12 @@ export default class UsersListTableContainer extends Component {
 
             </tr>
           </thead>
-          {this.state.users.length > 0 && (
+          {this.state.users.length > 0 ? (
             <tbody>
               <UsersListTablePresentation
                 users={this.state.users}
                  deleteUser={this.deleteUser}
+                 searchTerm= {this.state.searchTerm}
                 //  toggleModal={this.toggleModal}
                 //  isOpen={this.isOpen}
 
@@ -119,7 +121,7 @@ export default class UsersListTableContainer extends Component {
                 // handleSearch={this.handleSearch}
               />
             </tbody>
-          )}
+          ) : <Loading/>}
         </table>
       </div>
     );

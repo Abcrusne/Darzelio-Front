@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
-import UserService from '../../Configuration/UserService';
+//import UserService from '../../Configuration/UserService';
 
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
 
@@ -71,7 +71,7 @@ export default class UpdateUserPasswordContainer extends Component {
         break;
     }
     this.setState({ errors, [name]: value }, () => {
-      console.log(errors);
+      // console.log(errors);
     });
   };
   handleSubmit = (event) => {
@@ -101,9 +101,9 @@ export default class UpdateUserPasswordContainer extends Component {
         .then((response) => {
           console.log(response);
           alert('Duomenys atnaujinti sėkmingai!');
-          if (this.state.role == 'PARENT') {
+          if (this.state.role === 'PARENT') {
             this.props.history.push('/tevai/naudotojo-duomenys');
-          } else if (this.state.role == 'EDU') {
+          } else if (this.state.role === 'EDU') {
             this.props.history.push('/admin/edu/naudotojo-duomenys');
           }
         })

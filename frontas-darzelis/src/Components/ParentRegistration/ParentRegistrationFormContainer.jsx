@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
-import LogoutPresentation from '../Utilities/LogoutPresentation';
 import { NavLink } from 'react-router-dom';
 import UserService from '../../Configuration/UserService';
-import UpdateParentRegistrationFormContainer from './UpdateParentRegistrationFormContainer';
+//import UpdateParentRegistrationFormContainer from './UpdateParentRegistrationFormContainer';
 
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
 
@@ -106,12 +105,12 @@ export default class ParentRegistrationFormContainer extends Component {
 
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
-    let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
-    let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,\.\- ]*$/;
+    //let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
+    let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,.\- ]*$/;
 
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
 
-    let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
+    let validPhone = /^[+][3][7][0][6|5]+[0-9]+$/;
     let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
     let numbers = /^[0-9]+$/;
     switch (name) {
@@ -139,7 +138,7 @@ export default class ParentRegistrationFormContainer extends Component {
           value.length < 12 ||
           value.length > 12 ||
           value.length === 0
-            ? 'Telefono numerio formatas +37061234567 '
+            ? 'Telefono numerio formatas +37061234567 arba +37051234567 '
             : '';
         break;
       case 'personalCode':
@@ -195,10 +194,10 @@ export default class ParentRegistrationFormContainer extends Component {
           [name]: value,
         },
         () => {
-          console.log(errors);
+          // console.log(errors);
         }
       );
-    console.log(this.state);
+    // console.log(this.state);
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -237,7 +236,12 @@ export default class ParentRegistrationFormContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(`${API}/api/users/${this.state.id}/parentdetails`, inputParent)
+        .post(`${API}/api/users/${this.state.id}/parentdetails`, inputParent
+        // ,
+        // {
+        //   headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+        // }
+        )
         .then((response) => {
           console.log(response);
           alert('Tėvo/Globėjo registracija sėkminga');

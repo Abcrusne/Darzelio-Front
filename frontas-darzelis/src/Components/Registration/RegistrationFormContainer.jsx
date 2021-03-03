@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
-import LogoutPresentation from '../Utilities/LogoutPresentation';
-import NavigationComponent from '../SysAdminLanding/NavigationComponent';
 
 export default class RegistrationFormContainer extends Component {
   constructor(props) {
@@ -14,7 +12,7 @@ export default class RegistrationFormContainer extends Component {
       email: '',
       role: '',
       password: '',
-      markedForDeletion:false,
+      markedForDeletion: false,
       errors: {
         firstname: '',
         lastname: '',
@@ -64,7 +62,7 @@ export default class RegistrationFormContainer extends Component {
     }
 
     this.setState({ errors, [name]: value }, () => {
-      console.log(errors);
+      // console.log(errors);
     });
   };
   handleSubmit = (event) => {
@@ -78,7 +76,7 @@ export default class RegistrationFormContainer extends Component {
       lastname: this.state.lastname,
       role: this.state.role,
       password: this.state.firstname,
-      markedForDeletion:this.state.markedForDeletion,
+      markedForDeletion: this.state.markedForDeletion,
       // confirmlastname: this.state.confirmlastname,
     };
     const validateForm = (errors) => {
@@ -92,10 +90,18 @@ export default class RegistrationFormContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(API + '/api/users', outputUser)
+        .post(
+          API + '/api/users',
+          outputUser
+          // ,
+          // {
+          //   headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+          // }
+        )
         .then((response) => {
-          console.log(response);
-          this.props.history.push('/admin/sekminga');
+          // console.log(response);
+          alert('Vartotojo registracija sėkminga!');
+          this.props.history.push('/admin/vartotojai');
         })
 
         .catch((error) => {
@@ -108,11 +114,8 @@ export default class RegistrationFormContainer extends Component {
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          // error.message
-          //Error.response.data.message
-          //error
+
           console.log(error);
-          // this.setState({error});
         });
     } else {
       console.error('Invalid Form');
@@ -125,8 +128,8 @@ export default class RegistrationFormContainer extends Component {
     const { errors } = this.state;
     return (
       <div className="container mt-5">
-        <NavigationComponent />
-        <LogoutPresentation />
+        {/* <NavigationForAllPages/> */}
+
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
             <h3>Užregistruoti naują vartotoją</h3>

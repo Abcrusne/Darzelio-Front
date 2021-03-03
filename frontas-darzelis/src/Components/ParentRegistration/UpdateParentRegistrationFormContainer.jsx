@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
-import LogoutPresentation from '../Utilities/LogoutPresentation';
-import UserService from '../../Configuration/UserService';
+
+//import UserService from '../../Configuration/UserService';
 
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
 
@@ -139,11 +139,11 @@ export default class UpdateParentRegistrationFormContainer extends Component {
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
     // let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
-    let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,\.\- ]*$/;
+    let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,.\- ]*$/;
 
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
 
-    let validPhone = /^[+][3][7][0][6]+[0-9]+$/;
+    let validPhone = /^[+][3][7][0][6|5]+[0-9]+$/;
     let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
     let numbers = /^[0-9]+$/;
     switch (name) {
@@ -171,7 +171,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
           value.length < 12 ||
           value.length > 12 ||
           value.length === 0
-            ? 'Telefono numerio formatas +37061234567 '
+            ? 'Telefono numerio formatas +37061234567 arba +37051234567 '
             : '';
         break;
       case 'personalCode':
@@ -227,10 +227,10 @@ export default class UpdateParentRegistrationFormContainer extends Component {
           [name]: value,
         },
         () => {
-          console.log(errors);
+          // console.log(errors);
         }
       );
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   handleSubmit = (event) => {

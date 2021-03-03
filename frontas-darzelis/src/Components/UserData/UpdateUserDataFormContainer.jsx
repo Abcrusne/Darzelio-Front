@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
-import LogoutPresentation from '../Utilities/LogoutPresentation';
+
 
 export default class UpdateUserDataFormContainer extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ export default class UpdateUserDataFormContainer extends Component {
       email: '',
       role: '',
       password: '',
-      markedForDeletion: false,
+      markedForDeletion: "",
 
       errors: {
         firstname: '',
@@ -105,10 +105,10 @@ export default class UpdateUserDataFormContainer extends Component {
           [name]: value,
         },
         () => {
-          console.log(errors);
+          // console.log(errors);
         }
       );
-    console.log(this.state);
+    // console.log(this.state);
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -134,16 +134,16 @@ export default class UpdateUserDataFormContainer extends Component {
             email: this.state.email,
             role: this.state.role,
             password: this.state.password,
-            markedForDeletion:this.state.markedForDeletion,
+            markedForDeletion: this.state.markedForDeletion,
             // requestedDelete: this.state.requestedDelete
           }
         )
         .then((response) => {
           console.log(response);
           alert('Duomenys atnaujinti sėkmingai!');
-          if (this.state.role =="PARENT") {
+          if (this.state.role ==="PARENT") {
           this.props.history.push('/tevai/naudotojo-duomenys');}
-          else if (this.state.role =="EDU"){
+          else if (this.state.role ==="EDU"){
             this.props.history.push('/admin/edu/naudotojo-duomenys')
           }
         })
@@ -155,7 +155,7 @@ export default class UpdateUserDataFormContainer extends Component {
             alert('Užpildykite visus laukus!');
           } else if (error.response.status === 400) {
             alert(
-              'RNepavyko pakeisti! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
+              'Nepavyko pakeisti! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
           console.log(error);
@@ -174,12 +174,12 @@ export default class UpdateUserDataFormContainer extends Component {
       <div className="container mt-5">
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
-            <h3>Atnaujinti vartotojo duomenis</h3>
+            <h3>Atnaujinti naudotojo duomenis</h3>
           </div>
           <form onSubmit={this.handleSubmit} noValidate className="form-group ">
             <div className="mb-3">
               <label htmlFor="firstname" className="control-label">
-                Vartotojo vardas*:
+                Naudotojo vardas*:
               </label>
               <input
                 type="text"
@@ -198,7 +198,7 @@ export default class UpdateUserDataFormContainer extends Component {
             </div>
             <div className="mb-3">
               <label htmlFor="lastname" className="control-label">
-                Vartotojo pavardė*:
+                Naudotojo pavardė*:
               </label>
               <input
                 type="text"
@@ -214,7 +214,7 @@ export default class UpdateUserDataFormContainer extends Component {
             </div>
             <div className="mb-3">
               <label htmlFor="email" className="control-label">
-                Vartotojo el.paštas*:
+                Naudotojo el.paštas*:
               </label>
               <input
                 type="email"
