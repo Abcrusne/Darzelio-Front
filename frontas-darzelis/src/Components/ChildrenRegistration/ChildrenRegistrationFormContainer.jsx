@@ -634,6 +634,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
               </div>
               {this.state.secondParent ? (
                 <div className="form-row">
+               <div><b>Pridėję antrąjį tėvą/globėją, vėliau jo duomenis galėsite redaguoti, bet pašalinti galima nebus.</b></div>
                   <div className="form-group mb-3 col-6 mt-3">
                     <label
                       htmlFor="secondParentFirstname"

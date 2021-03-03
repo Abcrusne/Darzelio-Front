@@ -58,19 +58,19 @@ export default class UpdateChildrenApplicationByParents extends Component {
       })
       .catch((err) => console.log(err));
   }
-  //   deleteApplication = (event) => {
-  //     //event.preventDefault();
-  //     axios
-  //       .delete(
-  //         `${API}/api/kindergartens/register/${this.state.childId}`
-  //       )
-  //       .then(() => {
-  //         alert('Prašymas buvo ištrintas');
-  //         this.props.history.push('/tevai/vaikai');
-  //       })
-  //       .catch((err) => console.log(err.data));
-  //     console.log('deleteChildrenApplication');
-  //   };
+    deleteApplication = (event) => {
+      //event.preventDefault();
+      axios
+        .delete(
+          `${API}/api/kindergartens/register/${this.state.childId}/delete`
+        )
+        .then(() => {
+          alert('Prašymas buvo ištrintas');
+          this.props.history.push('/tevai/vaikai');
+        })
+        .catch((err) => console.log(err.data));
+      console.log('deleteChildrenApplication');
+    };
 
   handleChange = (event) => {
     event.preventDefault();

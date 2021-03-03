@@ -20,6 +20,7 @@ import UploadPdfContainer from '../UploadPDF/UploadPdfContainer';
 import ChildrenListTableContainer from '../ChildrenRegistration/ChildrenListTableContainer';
 import UpdateChildrenRegistrationFormContainer from '../ChildrenRegistration/UpdateChildrenRegistrationFormContainer';
 import UpdateChildrenApplicationByParents from '../ChildrenRegistration/UpdateChildrenApplicationByParents';
+import ChildrenPdfTable from '../UploadPDF/ChildrenPdfTable';
 
 
 const ParentRoutes = () => {
@@ -109,7 +110,12 @@ const ParentRoutes = () => {
         component={UpdateChildrenApplicationByParents}
         role={'PARENT'}
       /> 
- 
+         <PrivateRoute
+        path="/tevai/pazymos/"
+        exact
+        component={ChildrenPdfTable}
+        role={'PARENT'}
+      /> 
 
       <PrivateRoute
         path="/tevai/*"
