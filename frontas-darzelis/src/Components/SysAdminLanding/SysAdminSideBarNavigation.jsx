@@ -46,9 +46,7 @@ export const SysAdminSideBarNavigation = () => {
         <li className="nav-item">
           <Link
             to="/admin/eiliutvarkymas"
-            className="nav-link active"
-         
-          >
+            className="nav-link active">
             <i className="fas fa-file-contract"></i>
             Eilių tvarkymas
           </Link>

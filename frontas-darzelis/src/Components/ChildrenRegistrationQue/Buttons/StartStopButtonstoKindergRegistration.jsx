@@ -3,16 +3,15 @@ import {ModalForStopRegToKindergButton} from "../../Modal/ModalForStopRegToKinde
 import axios from "axios";
 import {API} from "../../../Configuration/AppConfig";
 
-export const StartStopButtonstoKindergRegistration = () => {
+export const StartStopButtonstoKindergRegistration = ({isActive, fetchData}) => {
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(isActive);
 
     const handleStartClick = () => {
         axios
-            .post(`${API}//bean-app/api/kindergartens/admission/activate`)
-            .then(response => {
-                console.log(response.data);
-                setIsOpen(true);
+            .post(`${API}/bean-app/api/kindergartens/admission/activate`)
+            .then(() => {
+                fetchData();
                 alert('Sėkmingai paleista registracija į darželius.')
             })
             .catch(error => console.log(error))
@@ -20,14 +19,17 @@ export const StartStopButtonstoKindergRegistration = () => {
     const handleStopClick = () => {
         axios
             .post(`${API}/bean-app/api/kindergartens/admission/deactivate`)
-            .then(response => {
-                console.log(response.data);
-                setIsOpen(false);
+            .then(()=> {
+                fetchData();
+                console.log()
             })
             .catch(error => console.log(error))
     }
     return(
         <div className="pt-3">
+            <div>
+
+            </div>
             <button
                 type="button"
                 className="mr-4 btn text-nowrap"

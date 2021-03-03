@@ -11,6 +11,7 @@ import UsersListTableContainer from '../UsersListAdmin/UsersListTableContainer';
 import SysAdminLanding from './SysAdminLanding';
 import NotFoundPage from '../Utilities/NotFoundPage';
 import { SysAdminDashboard } from './SysAdminDashboard';
+import {ManageQueuesToKindergartens} from "./ManageQueuesToKindergartens";
 
 export const AdminRoutes = () => {
   return (
@@ -62,6 +63,11 @@ export const AdminRoutes = () => {
           component={UpdateKindergartenFormContainer}
           role={'ADMIN'}
         />
+        <PrivateRoute
+          path="/admin/eiliutvarkymas"
+          component={ManageQueuesToKindergartens}
+          role={'ADMIN'}
+          />
         <PrivateRoute
           path="/admin/*"
           exact

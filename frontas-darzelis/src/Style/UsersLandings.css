@@ -205,7 +205,7 @@ div.card-body {
     text-align: center;
 }
 
-div.card {
+div.card.col {
     border: 1px solid lightgray;
     border-radius: 5px;
     padding: 0;
@@ -215,4 +215,9 @@ div.card {
 
 .form-control {
     height: 43px;
+}
+
+div h5.card-title {
+    font-size: 2em;
+    font-weight: bolder;
 }

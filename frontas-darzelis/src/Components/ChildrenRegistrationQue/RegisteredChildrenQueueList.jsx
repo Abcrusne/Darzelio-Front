@@ -78,7 +78,7 @@ export default class RegisteredChildrenQueueList extends Component {
                 } else if (error.status === 403) {
                     alert('Neturite teisės atlikti veiksmo')
                 } else {
-                    alert('Duomenų nerasta')
+                    alert('Pašalinti vaiko iš eilės galimybės nėra, eilė jau patvirtinta.')
                 }
                 console.log(error)
             })
