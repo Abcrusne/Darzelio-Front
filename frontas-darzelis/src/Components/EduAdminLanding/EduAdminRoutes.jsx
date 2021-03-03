@@ -6,7 +6,7 @@ import { Route, Switch } from 'react-router';
 import PrivateRoute from '../../Configuration/PrivateRoute';
 import NotFoundPage from '../Utilities/NotFoundPage';
 import EduAdminDashboard from './EduAdminDashboard';
-import ListOfChildren from '../ChildrenRegistration/ListOfChildren';
+//import ListOfChildren from '../ChildrenRegistration/ListOfChildren';
 import ListOfRegistrations from '../MainRegistration/ListOfRegistrations';
 import KindergartenListTableContainer from '../KindergartenList/KindergartenListTableContainer';
 import KindergartenRegistrationContainer from '../KindergartenList/KindergartenRegistrationContainer';
@@ -29,6 +29,7 @@ const EduAdminRoutes = () => {
                 exact
                 component={EduAdminDashboard}
                 role={'EDU'}
+                />
    
             <PrivateRoute
                 path="/admin/edu/vaikai"

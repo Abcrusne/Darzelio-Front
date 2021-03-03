@@ -1,15 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-
 //our imports
-
 import NavigationForAllPages from "../Utilities/NavigationForAllPages";
 import "../../Style/UsersLandings.css"
 import EduAdminSideBarNavigation from "./EduAdminSideBarNavigation";
 import EduAdminRoutes from "./EduAdminRoutes";
 import EduAdminlandingFooter from "./EduAdminLandingFooter";
-import '../../Style/ParentLanding.css';
+// import '../../Style/ParentLanding.css';
 
+const EduAdminLanding = (props) => {
 
         return(
                 <div className="container-fluid">

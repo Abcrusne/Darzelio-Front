@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { MDBDataTable } from 'mdbreact';
 import '../../Style/style.css';
-import '../../Style/ParentLanding.css';
+//import '../../Style/ParentLanding.css';
 import '../../Style/LandingPage.css';
 
 const KindergartenTable = ({ kindergartens, admissionId }) => {
