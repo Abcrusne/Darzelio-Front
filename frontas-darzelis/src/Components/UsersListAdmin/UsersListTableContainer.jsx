@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import UsersListTablePresentation from './UsersListTablePresentation';
 import Loading from '../Loading/Loading';
+import ModalComponent from '../Modal/ModalComponent';
+import "../../Style/UsersLandings.css"
 
 
 export default class UsersListTableContainer extends Component {
@@ -31,7 +33,15 @@ export default class UsersListTableContainer extends Component {
       .catch((error) => console.log(error));
         // console.log('users: ' + this.state.users);
   };
+handleSearch= (event)=> {
+  event.preventDefault();
+        const searchTerm = event.target.value;
 
+        this.setState({
+            searchTerm: searchTerm,
+        });
+     
+}
   //   handleSearchChange = (e) => {
   //     this.setState({ search: e.target.value });
   //     axios
@@ -63,32 +73,29 @@ export default class UsersListTableContainer extends Component {
 
 
   render() {
+    let filteredUsers= this.state.users.filter(
+      (user) =>{
+        return user.email.toLowerCase().indexOf(this.state.searchTerm)
+        !== -1;
+      }
+    );
     return (
       <div className="container mt-5">
       
         <Link to={`/admin/registracija`} className="btn btn-primary mb-5">
           Pridėti naują vartotoją
         </Link>
-        <div>
+        <div className="mb-4">
         <input
         className="form-control mt-3 col-4"
-        placeholder="Paieška"
+        placeholder="Paieška pagal el.paštą"
         type="text"
-        onChange={(event) => {
-          this.setState({searchTerm: event.target.value})
-          // console.log(this.state.searchTerm);
-         // setSearchTerm(event.target.value);
-        }}
+        name= "searchTerm"
+value={this.state.searchTerm}
+onChange= {this.handleSearch}
+       
       />
 
-          {/* <input
-            type="text"
-            className="form-control my-3"
-            placeholder="Ieškoti pagal el.paštą..."
-            value={this.state.searchQuery}
-            onChange={this.handleSearch}
-        /> */}
-          {/* <input className='my-3' type='text' value={this.search} onChange={this.handleSearchChange} placeholder={'Ieškoti pagal el.paštą'} /> */}
         </div>
         <table className="table">
           <thead>
@@ -106,24 +113,76 @@ export default class UsersListTableContainer extends Component {
 
             </tr>
           </thead>
+          <tbody>
           {this.state.users.length > 0 ? (
-            <tbody>
-              <UsersListTablePresentation
-                users={this.state.users}
-                 deleteUser={this.deleteUser}
-                 searchTerm= {this.state.searchTerm}
-                //  toggleModal={this.toggleModal}
-                //  isOpen={this.isOpen}
+            
+              filteredUsers
+    .map(
+      ({ id, firstname, lastname, email, role, markedForDeletion }, index) => {
+        const roleLt =
+          role === 'PARENT'
+            ? 'Tėvas/Globėjas'
+            : role === 'EDU'
+            ? 'Švietimo specialistas'
+            : 'Nenurodyta';
 
-                // replaceModalItem={this.replaceModalItem}
-                // resetPassword={this.resetPassword}
-                // searchQuery={this.searchQuery}
-                // handleSearch={this.handleSearch}
+        const markedForDeletionLt =
+          markedForDeletion === true
+            ? 'Ištrinti'
+            : markedForDeletion === false
+            ? '-'
+            : 'nenurodyta';
+
+        return (
+          <tr key={id}>
+            <th scope="row">{index + 1}</th>
+            <td>{firstname}</td>
+            <td> {lastname}</td>
+            <td>{email}</td>
+            <td>{roleLt}</td>
+
+            <td>
+              <Link
+                className="text-decoration-none mr-3"
+                to={`/admin/vartotojai/${id}`}
+              >
+                Atnaujinti duomenis
+              </Link>
+            </td>
+            <td>{markedForDeletionLt}</td>
+            <td>
+              <button
+                className=" btn btn-light"
+                data-toggle="modal"
+                data-target={`#staticBackdrop${id}`}
+                value={id}
+              >
+                Ištrinti
+              </button>
+            </td>
+            <td>
+              <ModalComponent
+                userId={id}
+                email={email}
+                deleteUser={this.deleteUser}
               />
-            </tbody>
+            </td>
+          </tr>
+        );
+      }
+    )
+              // {/* <UsersListTablePresentation
+              //   users={this.state.users}
+              //    deleteUser={this.deleteUser}
+              //    searchTerm= {this.state.searchTerm}
+                
+              // /> */}
+            
           ) : <Loading/>}
+          </tbody>
         </table>
       </div>
     );
   }
 }
+
