@@ -73,6 +73,17 @@ const ParentSideBarNavigation = () => {
             <i className="fas fa-file-contract"></i>
             Įkelti PDF dokumentus
           </Link>
+        
+        </li>
+        <li className="nav-item">
+          <Link
+            to="/tevai/pazymos"
+            className="nav-link active"
+            id="mainRegForm"
+          >
+            <i className="fas fa-file-contract"></i>
+           Atsisiųsti ir/arba ištrinti PDF dokumentus
+          </Link>
           <hr />
         </li>
         <li className="nav-item">

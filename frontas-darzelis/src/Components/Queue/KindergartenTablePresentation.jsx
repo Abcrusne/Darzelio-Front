@@ -36,7 +36,7 @@ const KindergartenTable = ({ kindergartens, admissionId }) => {
         width: 150,
       },
       {
-        label: 'Laisvų vietų skaičius',
+        label: 'Viso vietų darželyje',
         field: 'freeSpots',
         sort: 'asc',
         width: 100,
