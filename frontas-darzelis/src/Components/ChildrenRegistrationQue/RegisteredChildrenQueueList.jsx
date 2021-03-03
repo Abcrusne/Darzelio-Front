@@ -186,7 +186,7 @@ export default class RegisteredChildrenQueueList extends Component {
                                     >
                                         <th scope="row">{index + 1}</th>
                                         <td>{firstname}</td>
-                                        <td>{lastname}</td>
+                                        <td><Link to={`/admin/edu/vaikai/${childId}`}>{lastname} </Link></td>
                                         <td>{personalCode}</td>
                                         <td>{rating}</td>
                                         {accepted ? <td>Priimtas</td> : <td>Laukiančiųjų eilėje</td>}
