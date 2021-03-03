@@ -23,7 +23,8 @@ export default class ChildrenPdfTable extends Component {
     axios
       .delete(`${API}/api/users/pdf/${event.target.value}/delete`)
       .then(() => {
-     this.props.history.push("/tevai/pazymos")
+        alert('Pažyma ištrinta');
+        this.props.history.push('/tevai/pazymos');
       })
       .catch((err) => console.log(err));
     console.log('deletePdf');
@@ -41,7 +42,6 @@ export default class ChildrenPdfTable extends Component {
       return 0;
     });
 
-
     return (
       <div>
         <table className="table">
@@ -55,39 +55,47 @@ export default class ChildrenPdfTable extends Component {
           </thead>
           <tbody>
             {this.state.children.length > 0 ? (
-              sortedChildren.map(({ id, firstname, lastname }, index) => {
-                return (
-                  <tr key={id}>
-                    <th scope="row">{index + 1}</th>
-                    <td>
-                      {firstname} {lastname}
-                    </td>
-                    <td>
-                      <a
-                        href={`${API}/api/users/pdf/${id}/download`}
-                        target="_blank"
-                      >
-                   Atsisiųsti vaiko pažymą
-                      </a>
-                    </td>
-                    <td>
-                        <button 
-                        className=" btn btn-light"
-                        data-toggle="modal"
-                        data-target={`#staticBackdrop${id}`}
-                        value={id}
+              sortedChildren.map(
+                ({ id, firstname, lastname, healthRecordId }, index) => {
+                  return (
+                    <tr key={id}>
+                      <th scope="row">{index + 1}</th>
+                      <td>
+                        {firstname} {lastname}
+                      </td>
+                      {healthRecordId > 0 ? (
+                        <td>
+                          <a
+                            href={`${API}/api/users/pdf/${id}/download`}
+                            target="_blank"
+                          >
+                            Atsisiųsti vaiko pažymą
+                          </a>
+                        </td>
+                      ) : (
+                        <td>Šiam vaikui neįkėlėte pažymos</td>
+                      )}
+   {healthRecordId > 0 ? (
+                      <td>
+                        <button
+                          className=" btn btn-light"
+                          data-toggle="modal"
+                          data-target={`#staticBackdrop${id}`}
+                          value={id}
                         >
-Ištrinti
+                          Ištrinti
                         </button>
                         <ModalComponentPdf
-                        id={id}
-                        firstname={firstname}
-                        lastname={lastname}
-                        deletePdf={this.deletePdf}/>
-                    </td>
-                  </tr>
-                );
-              })
+                          id={id}
+                          firstname={firstname}
+                          lastname={lastname}
+                          deletePdf={this.deletePdf}
+                        />
+                      </td> ): <td> Šiam vaikui neįkėlėte pažymos</td>}
+                    </tr>
+                  );
+                }
+              )
             ) : (
               <div> </div>
             )}
