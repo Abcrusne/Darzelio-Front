@@ -32,11 +32,11 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
       city: '',
       street: '',
       houseNumber: '',
-      flatNumber: '',
+      flatNumber: 0,
 
       //second parent id
       secondParentId: '',
-      secondParent: false,
+      secondParent: "",
       secondParentFirstname: '',
       secondParentLastname: '',
       secondParentEmail: '',
@@ -46,17 +46,17 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
       secondParentStreet: '',
 
       secondParentHouseNumber: '',
-      secondParentFlatNumber: '',
+      secondParentFlatNumber: 0,
       secondParentNumberOfKids: 0,
-      secondParentStudying: false,
+      secondParentStudying: "",
       secondParentStudyingInstitution: '',
-      secondParentHasDisability: false,
+      secondParentHasDisability: "",
 
-      secondParentDeclaredResidenceSameAsLiving: false,
+      secondParentDeclaredResidenceSameAsLiving: "",
       secondParentDeclaredCity: '',
       secondParentDeclaredStreet: '',
       secondParentDeclaredHouseNumber: '',
-      secondParentDeclaredFlatNumber: '',
+      secondParentDeclaredFlatNumber: 0,
       adopted: false,
 
       errors: {
@@ -311,7 +311,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
         break;
     }
     if (event.target.type === 'checkbox') {
-      // console.log(event.target.checked);
+       console.log(event.target.checked);
       this.setState({ [event.target.name]: event.target.checked });
     } else
       this.setState({ errors, [event.target.name]: event.target.value }, () => {
@@ -355,7 +355,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
             secondParentCity: this.state.secondParentCity,
             secondParentStreet: this.state.secondParentStreet,
             secondParentHouseNumber: this.state.secondParentHouseNumber,
-            secondParentFlatNumber: this.secondParentFlatNumber,
+            secondParentFlatNumber: this.state.secondParentFlatNumber,
             secondParentNumberOfKids: this.state.secondParentNumberOfKids,
             secondParentStudying: this.state.secondParentStudying,
             secondParentStudyingInstitution: this.state
@@ -616,16 +616,18 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                 className="form-check-input"
                 type="checkbox"
                 name="secondParent"
-                checked={this.state.secondParent}
+              
                 onChange={this.handleChange}
                 value={this.state.secondParent}
+                checked={this.state.secondParent}
               />
               <label htmlFor="secondParent" className="form-check-label">
                 Pridėti antrąjį šio vaiko tėvą/globėją
               </label>
             </div>
-            {this.state.secondParent ? (
+            {this.state.secondParent ===true ? (
               <div className="form-row">
+                 <div><p>Pridėję antrąjį tėvą/globėją, vėliau jo duomenis galėsite redaguoti, bet pašalinti nebus galima.</p></div>
                 <div className="form-group mb-3 col-6 mt-3">
                   <label
                     htmlFor="secondParentFirstname"
@@ -740,7 +742,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                       name="secondParentPersonalCode"
                       onChange={this.handleChange}
                       noValidate
-                      // value={this.state.secondParentPersonalCode}
+                       value={this.state.secondParentPersonalCode}
                     />
                     {errors.secondParentPersonalCode.length > 0 && (
                       <span className="error">
@@ -816,7 +818,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                   </label>
                   <input
                     type="number"
-                    min="0"
+                    min="1"
                     placeholder="Butas"
                     className="form-control"
                     name="secondParentFlatNumber"
@@ -928,7 +930,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                       required
                     />
                   </div>
-                ) : null}
+                ) : <div>  </div>}
                 <div className="ml-4 form-check mb-3 col-12">
                   <input
                     type="checkbox"
@@ -1084,7 +1086,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                   </div>
                 )}
               </div>
-            ) : null}
+            ) : <div> </div>}
 
             <div className="mt-3 form-group mb-3 col-6">
               {' '}
