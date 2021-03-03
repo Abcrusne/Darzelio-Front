@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import UserService from '../../Configuration/UserService';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import ModalComponentKindergarten from '../Modal/ModalComponentKindergarten';
+import '../../Style/UsersLandings.css'
 
 export const KindergartensListTablePresentation = ({
   kindergartens,
@@ -66,9 +67,10 @@ export const KindergartensListTablePresentation = ({
             <td> {spotsInFirstAgeGroup}</td>
             <td>{spotsInSecondAgeGroup}</td>
 
+
             <td>
               <Link
-                className="text-decoration-none mr-3"
+                className="btn btn-link-1"
                 to={`/admin/darzeliai/${id}`}
               >
                 Atnaujinti duomenis
@@ -76,7 +78,7 @@ export const KindergartensListTablePresentation = ({
             </td>
             <td>
               <button
-                className="btn btn-danger"
+                className="btn btn-light"
                 data-toggle="modal"
                 data-target={`#staticBackdrop${id}`}
                 value={id}
@@ -96,4 +98,5 @@ export const KindergartensListTablePresentation = ({
       }
     );
   }
+
 };

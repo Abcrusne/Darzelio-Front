@@ -2,6 +2,8 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import "../../Style/style.css"
 
+import '../../Style/UsersLandings.css'
+
 const NextPage = () => {
   const history = useHistory();
   const addAnotherChild = (e) => {
@@ -14,10 +16,12 @@ const NextPage = () => {
   };
 
   return (
-    <div className="mt-5 mr-5 ml-5">
+    <div className="m-5 d-block">
       <button
         type="submit"
+
         className="btn btn-success btn-lg btn-block next"
+
         onClick={addAnotherChild}
       >
         Pridėti kitą vaiką
@@ -25,7 +29,9 @@ const NextPage = () => {
 
       <button
         type="submit"
+
         className="btn btn-success btn-lg btn-block next"
+
         onClick={registerToKindergarten}
       >
         Tęsti

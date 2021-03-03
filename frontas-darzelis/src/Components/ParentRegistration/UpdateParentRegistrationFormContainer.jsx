@@ -693,7 +693,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
               <div>
                 <button
                   type="submit"
-                  className="btn btn-success btn-lg mt-5  
+                  className="btn mt-5
                 "
                 >
                   Atnaujinti

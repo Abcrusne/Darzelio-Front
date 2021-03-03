@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import '../../Style/UsersLandings.css'
 import Loading from '../Loading/Loading';
 //import ModalComponentChildren from '../Modal/ModalComponentChildren';
 
@@ -18,6 +19,7 @@ const ChildrenListTablePresentation = ({
       return 1;
     }
     return 0;
+
   });
 
   // if (children && children.length > 0) {

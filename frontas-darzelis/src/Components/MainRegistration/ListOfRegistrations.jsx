@@ -4,20 +4,20 @@ import axios from "axios";
 //our imports
 import {API} from "../../Configuration/AppConfig";
 import ListOfRegistrationsPresentation from "./ListOfRegistrationsPresentation";
-import "../../Style/ParentLanding.css"
+import "../../Style/UsersLandings.css"
 
 class ListOfRegistrations extends Component {
     constructor() {
         super();
         this.state = {
-            admissionQues: [],
+            admissionQueues: [],
         };
     }
     componentDidMount = () => {
         axios
             .get(`${API}/api/kindergartens/admissions`)
             .then((response) => {
-                this.setState({ admissionQues: response.data });
+                this.setState({ admissionQueues: response.data });
                 }
             )
             .catch((error) => console.log(error))
@@ -37,11 +37,10 @@ class ListOfRegistrations extends Component {
 
 
     render (){
-        const Ques = this.state.admissionQues;
+        const Queues = this.state.admissionQueues;
         return(
-            <div>
-                <div className="container mt-5">
-                    <div className="mb-4">
+                <div className="m-5">
+                    <div className="mb-5">
                         <h4>Registracijų į darželius sąrašas</h4>
                     </div>
                     <table className="table">
@@ -56,14 +55,13 @@ class ListOfRegistrations extends Component {
                             <th scope="col">Ar visos eilės patvirtintos</th>
                             <th scope="col">Peržiūrėti sąrašus</th>
                             <th scope="col"></th>
-                            <th scope="col"></th>
                         </tr>
                         </thead>
 
-                        {this.state.admissionQues.length > 0 ? (
+                        {Queues.length > 0 ? (
                             <tbody>
                             <ListOfRegistrationsPresentation
-                                admissionQues={this.state.admissionQues}
+                                admissionQueues={Queues}
                             />
                             </tbody>
                         ) : <h5>...</h5>}
@@ -79,7 +77,6 @@ class ListOfRegistrations extends Component {
                         </tfoot>
                     </table>
                 </div>
-            </div>
         )
     }
 

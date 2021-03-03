@@ -47,6 +47,7 @@ export default class KindergartenListTableContainer extends Component {
   };
 
   render() {
+
     if (this.state.role === 'EDU') {
       return (
         <div className="container mt-5">
@@ -99,7 +100,6 @@ export default class KindergartenListTableContainer extends Component {
                 <th scope="col">Adresas</th>
                 <th scope="col">Laisvos vietos 2-3m. amžiaus grupėje</th>
                 <th scope="col">Laisvos vietos 3-6m. amžiaus grupėje</th>
-
                 <th scope="col">Atnaujinti darželio duomenis</th>
                 <th scope="col">Ištrinti darželį</th>
                 <th scope="col"></th>

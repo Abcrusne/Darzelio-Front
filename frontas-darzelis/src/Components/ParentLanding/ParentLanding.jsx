@@ -5,7 +5,7 @@ import {withRouter} from "react-router";
 //our
 import ParentSideBarNavigation from "./ParentSideBarNavigation";
 import ParentlandingFooter from "./ParentLandingFooter";
-import "../../Style/ParentLanding.css"
+import "../../Style/UsersLandings.css"
 import ParentRoutes from "./ParentRoutes";
 
 const ParentLanding = (props) => {
@@ -23,7 +23,7 @@ const ParentLanding = (props) => {
                                 <ParentRoutes/>
                             </main>
                         </div>
-                        <footer className="footer pt-3">
+                        <footer className="footer pt-3 m-auto">
                             <ParentlandingFooter/>
                         </footer>
                     </div>

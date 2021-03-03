@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import ChildrenListTablePresentation from './ChildrenListTablePresentation';
+import '../../Style/UsersLandings.css'
 import Loading from '../Loading/Loading';
+
 
 export default class ChildrenListTableContainer extends Component {
   constructor() {
@@ -52,7 +54,13 @@ export default class ChildrenListTableContainer extends Component {
 
   render() {
     return (
-      <div>
+
+      <div className="mt-5">
+        <div className="mb-4">
+          <h4>Vaikai</h4>
+        </div>
+       
+  
     {this.state.children.length > 0 ? (
 <div>
           <table className="table">
@@ -67,6 +75,7 @@ export default class ChildrenListTableContainer extends Component {
               </tr>
             </thead>
             {/* {this.state.children.length > 0 &&  ( */}
+
             <tbody>
               <ChildrenListTablePresentation
                 children={this.state.children}

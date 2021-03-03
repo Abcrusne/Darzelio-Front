@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 
 //our imports
+
 import PrivateRoute from '../../Configuration/PrivateRoute';
 import NotFoundPage from '../Utilities/NotFoundPage';
 import EduAdminDashboard from './EduAdminDashboard';
@@ -16,53 +17,51 @@ import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer
 import KindergartenTableContainer from '../Queue/KindergartenTableContainer';
 import EduAdminChildInfoContainer from './EduAdminChildInfoContainer';
 import EduAdminUpdateChildApplicationContainer from './EduAdminUpdateChildApplicationContainer';
+import RegisteredChildrenQueueList from "../ChildrenRegistrationQue/RegisteredChildrenQueueList";
+
+
 
 const EduAdminRoutes = () => {
-  return (
-    <Switch>
-      <PrivateRoute
-        path="/admin/edu"
-        exact
-        component={EduAdminDashboard}
-        role={'EDU'}
-      />
-      {/*<PrivateRoute */}
-      {/*path="/admin/edu/naudotojo-duomenys"*/}
-      {/*exact*/}
-      {/*component={NaudotojoDuomenys}*/}
-      {/*role={'EDU'}*/}
-      {/*/>*/}
-      <PrivateRoute
-        path="/admin/edu/vaikai"
-        exact
-        component={ListOfChildren}
-        role={'EDU'}
-      />
-      <PrivateRoute
-        path="/admin/edu/registracijos"
-        exact
-        component={ListOfRegistrations}
-        role={'EDU'}
-      />
-      <PrivateRoute
-        path="/admin/edu/darzeliai"
-        exact
-        component={KindergartenListTableContainer}
-        role={'EDU'}
-      />
-      <PrivateRoute
-        path="/admin/edu/darzelioregistracija"
-        exact
-        component={KindergartenRegistrationContainer}
-        role={'EDU'}
-      />
-      <PrivateRoute
-        path="/admin/edu/darzeliai/:id"
-        exact
-        component={UpdateKindergartenFormContainer}
-        role={'EDU'}
-      />
-      <PrivateRoute
+    return (
+        <Switch>
+            <PrivateRoute
+                path="/admin/edu"
+                exact
+                component={EduAdminDashboard}
+                role={'EDU'}
+   
+            <PrivateRoute
+                path="/admin/edu/vaikai"
+                exact
+                component={RegisteredChildrenQueueList}
+                role={'EDU'}
+            />
+            <PrivateRoute
+                path="/admin/edu/registracijos"
+                exact
+                component={ListOfRegistrations}
+                role={'EDU'}
+            />
+
+            <PrivateRoute
+                path="/admin/edu/darzeliai"
+                exact
+                component={KindergartenListTableContainer}
+                role={'EDU'}
+            />
+           <PrivateRoute
+                path="/admin/edu/darzelioregistracija"
+                exact
+                component={KindergartenRegistrationContainer}
+                role={'EDU'}
+            />
+            <PrivateRoute
+                path="/admin/edu/darzeliai/:id"
+                exact
+                component={UpdateKindergartenFormContainer}
+                role={'EDU'}
+            />
+            <PrivateRoute
         path="/admin/edu/naudotojo-duomenys"
         exact
         component={UserData}
@@ -107,6 +106,7 @@ const EduAdminRoutes = () => {
         component={NotFoundPage}
         role={'EDU'}
       />
+
     </Switch>
   );
 };

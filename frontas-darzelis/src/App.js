@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 //our imports
@@ -10,23 +10,15 @@ import UsersListTableContainer from './Components/UsersListAdmin/UsersListTableC
 import NoMatch from './Components/NoMatch/NoMatchPresentation';
 import UpdateUserFormContainer from './Components/UsersListAdmin/UpdateUserFormContainer';
 import SysAdminLanding from './Components/SysAdminLanding/SysAdminLanding';
-import ParentRegistrationFormContainer from './Components/ParentRegistration/ParentRegistrationFormContainer';
-
 import PrivateRoute from "./Configuration/PrivateRoute";
-import ChildrenRegistrationFormContainer from './Components/ChildrenRegistration/ChildrenRegistrationFormContainer';
 import NextPage from './Components/ChildrenRegistration/NextPage';
 import ParentLanding from "./Components/ParentLanding/ParentLanding";
-import ParentRoutes from "./Components/ParentLanding/ParentRoutes";
-import ParentLandingDashboard from "./Components/ParentLanding/ParentLandingDashboard";
-import ParentUserdata from "./Components/ParentLanding/ParentUserdata";
-import MainRegistrationContainer from "./Components/MainRegistration/MainRegistrationContainer";
-import NotFoundPage from "./Components/Utilities/NotFoundPage";
 import KindergartenListTableContainer from './Components/KindergartenList/KindergartenListTableContainer';
 import KindergartenRegistrationContainer from './Components/KindergartenList/KindergartenRegistrationContainer';
 import UpdateKindergartenFormContainer from './Components/KindergartenList/UpdateKindergartenFormContainer';
-import EduAdminDashboard from "./Components/EduAdminLanding/EduAdminDashboard";
 
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter basename={process.env.PUBLIC_URL}>
@@ -86,7 +78,7 @@ function App() {
             role={'EDU'}
         />
     
-          <PrivateRoute exact path="/tevai/toliau" component={NextPage} />
+        
           <PrivateRoute
            exact
             path="/admin/edu/darzeliai"
@@ -119,7 +111,7 @@ function App() {
           component= {SysAdminLanding}
           role={'ADMIN'}
         />
-            <Route
+            <PrivateRoute
           exact
           path="/admin/registracija"
           // component={RegistrationFormContainer}
@@ -158,6 +150,7 @@ function App() {
         <Route component={NoMatch} />
         </Switch>
       </BrowserRouter>
+
     </div>
   );
 }

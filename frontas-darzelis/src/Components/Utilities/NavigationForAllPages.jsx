@@ -4,7 +4,7 @@ import LogoutPresentation from "./LogoutPresentation";
 import UserService from "../../Configuration/UserService";
 
 //style
-import "../../Style/ParentLanding.css"
+import "../../Style/UsersLandings.css"
 
 const NavigationForAllPages = (props) => {
     const currentRole = UserService.getRole();

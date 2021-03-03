@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../../Style/ParentLanding.css';
+import '../../Style/UsersLandings.css';
 
 const ParentSideBarNavigation = () => {
   return (
@@ -55,9 +55,11 @@ const ParentSideBarNavigation = () => {
           </Link>
         </li>
         <li className="nav-item">
+
           <Link to="/tevai/vaikai" className="nav-link active" id="childForm">
             <i className="fas fa-file-contract"></i>
             Peržiūrėti/Redaguoti vaikų duomenis ir prašymus
+
           </Link>
         </li>
         {/*<li className="nav-item">*/}

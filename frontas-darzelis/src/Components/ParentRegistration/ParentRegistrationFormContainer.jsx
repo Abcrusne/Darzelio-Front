@@ -645,7 +645,7 @@ export default class ParentRegistrationFormContainer extends Component {
             <div>
               <button
                 type="submit"
-                className="btn btn-success btn-lg mt-5  
+                className="btn btn-lg mt-5
                 "
                 // onSubmit={this.handleSubmit}
               >

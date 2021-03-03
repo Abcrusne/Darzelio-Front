@@ -1,11 +1,11 @@
 import React from 'react';
 
-export const ModalForStopButton = ({onClick, QueId }) => {
+export const ModalForStopRegToKindergButton = ({onClick, QueId }) => {
 
     return(
         <div
             className="modal fade"
-            id={`staticBackdrop${QueId}`}
+            id={`staticBackdrop`}
             data-backdrop="static"
             data-keyboard="false"
             tabIndex="-1"
@@ -28,7 +28,7 @@ export const ModalForStopButton = ({onClick, QueId }) => {
                         </button>
                     </div>
                     <div className="modal-body">
-                        Jei sustabdysite registraciją, jos paleisti iš naujo nebegalėsite.
+                        Kol registracija bus sustabdyta, sistemos vartotojai negalės registruoti vaikų į darželius.
                     </div>
                     <div className="modal-footer">
                         <button
@@ -37,7 +37,7 @@ export const ModalForStopButton = ({onClick, QueId }) => {
                             data-toggle="modal"
                             className="btn btn-danger"
                             data-dismiss="modal"
-                            value={QueId}
+                            // value={QueId}
                         >
                             Patvirtinti
                         </button>

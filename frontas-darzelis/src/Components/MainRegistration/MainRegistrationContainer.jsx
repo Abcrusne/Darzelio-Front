@@ -4,7 +4,7 @@ import {withRouter} from 'react-router';
 
 //our imports
 import {API} from "../../Configuration/AppConfig";
-import "../../Style/ParentLanding.css"
+import "../../Style/UsersLandings.css"
 
 class MainRegistrationContainer extends Component {
     constructor(props) {
@@ -118,7 +118,7 @@ class MainRegistrationContainer extends Component {
     }
 
     render() {
-        const {kindergartens, children, firstPriority, secondPriority, thirdPriority, fourthPriority} = this.state;
+        const {kindergartens, children} = this.state;
 
         return (
             <div className="container">
@@ -136,7 +136,7 @@ class MainRegistrationContainer extends Component {
                             <select className="form-control" id="selectChild" onChange={this.handleChange}
                                     name="childId">
                                 <option defaultValue>-</option>
-                                {this.state.children.map((child) => (
+                                {children.map((child) => (
                                     <option
                                         key={child.id}
                                         value={child.id}
@@ -156,14 +156,13 @@ class MainRegistrationContainer extends Component {
                                 name="firstPriority"
                             >
                                 <option defaultValue>-</option>
-                                {kindergartens
-                                    .map((kindergarten, index) => {
-                                        return <option
-                                            key={index}
-                                            value={kindergarten.name}
-                                        >{kindergarten.name}
-                                        </option>;
-                                    })}
+                                {kindergartens.map((kindergarten, index) => {
+                                    return <option
+                                        key={index}
+                                        value={kindergarten.name}
+                                    >{kindergarten.name}
+                                    </option>;
+                                })}
                             </select>
                         </div>
                         <div className="input-group mb-3">
@@ -177,16 +176,13 @@ class MainRegistrationContainer extends Component {
                                 onChange={this.handleChange}
                             >
                                 <option defaultValue>-</option>
-                                {kindergartens
-                                    .filter(kindergarten =>
-                                        kindergarten.name !== firstPriority)
-                                    .map((filteredKindergarten, index) => {
-                                        return <option
-                                            key={index}
-                                            value={filteredKindergarten.name}
-                                        >{filteredKindergarten.name}
-                                        </option>;
-                                    })}
+                                {kindergartens.map((kindergarten, index) => {
+                                    return <option
+                                        key={index}
+                                        value={kindergarten.name}
+                                    >{kindergarten.name}
+                                    </option>;
+                                })}
                             </select>
                         </div>
                         <div className="input-group mb-3">
@@ -200,17 +196,13 @@ class MainRegistrationContainer extends Component {
                                 onChange={this.handleChange}
                             >
                                 <option defaultValue>-</option>
-                                {kindergartens
-                                    .filter(kindergarten =>
-                                        kindergarten.name !== firstPriority &&
-                                        kindergarten.name !== secondPriority)
-                                    .map((filteredKindergarten, index) => {
-                                        return <option
-                                            key={index}
-                                            value={filteredKindergarten.name}
-                                        >{filteredKindergarten.name}
-                                        </option>;
-                                    })}
+                                {kindergartens.map((kindergarten, index) => {
+                                    return <option
+                                        key={index}
+                                        value={kindergarten.name}
+                                    >{kindergarten.name}
+                                    </option>;
+                                })}
                             </select>
                         </div>
                         <div className="input-group mb-3">
@@ -224,18 +216,13 @@ class MainRegistrationContainer extends Component {
                                 onChange={this.handleChange}
                             >
                                 <option defaultValue>-</option>
-                                {kindergartens
-                                    .filter(kindergarten =>
-                                        kindergarten.name !== firstPriority &&
-                                        kindergarten.name !== secondPriority &&
-                                        kindergarten.name !== thirdPriority)
-                                    .map((filteredKindergarten, index) => {
-                                        return <option
-                                            key={index}
-                                            value={filteredKindergarten.name}
-                                        >{filteredKindergarten.name}
-                                        </option>;
-                                    })}
+                                {kindergartens.map((kindergarten, index) => {
+                                    return <option
+                                        key={index}
+                                        value={kindergarten.name}
+                                    >{kindergarten.name}
+                                    </option>;
+                                })}
                             </select>
                         </div>
                         <div className="input-group mb-3">
@@ -249,19 +236,13 @@ class MainRegistrationContainer extends Component {
                                 onChange={this.handleChange}
                             >
                                 <option defaultValue>-</option>
-                                {kindergartens
-                                    .filter(kindergarten =>
-                                        kindergarten.name !== firstPriority &&
-                                        kindergarten.name !== secondPriority &&
-                                        kindergarten.name !== thirdPriority &&
-                                        kindergarten.name !== fourthPriority)
-                                    .map((filteredKindergarten, index) => {
-                                        return <option
-                                            key={index}
-                                            value={filteredKindergarten.name}
-                                        >{filteredKindergarten.name}
-                                        </option>;
-                                    })}
+                                {kindergartens.map((kindergarten, index) => {
+                                    return <option
+                                        key={index}
+                                        value={kindergarten.name}
+                                    >{kindergarten.name}
+                                    </option>;
+                                })}
                             </select>
                         </div>
                         <button type="submit" className="mr-4 btn">Pateikti</button>

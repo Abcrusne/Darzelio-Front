@@ -11,6 +11,11 @@ body {
   height: 100%;
   overflow: auto;
   padding: 0;
+  background-color: #fbf9f8;
+}
+
+div#root {
+  height: 100%;
 }
 
 code {

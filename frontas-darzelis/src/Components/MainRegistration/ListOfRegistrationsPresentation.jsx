@@ -5,10 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 //our imports
 import {API} from "../../Configuration/AppConfig";
-import "../../Style/ParentLanding.css"
-import {ModalForStopButton} from "../Modal/ModalForStopButton";
+import "../../Style/UsersLandings.css"
+import {ModalForStopRegToKindergButton} from "../Modal/ModalForStopRegToKindergButton";
 
-const ListOfRegistrationsPresentation = ({admissionQues, onClick}) => {
+const ListOfRegistrationsPresentation = ({ChildrenAdmissionQues, onClick}) => {
 
     const handleEndClick = () => {
         axios
@@ -20,7 +20,7 @@ const ListOfRegistrationsPresentation = ({admissionQues, onClick}) => {
     }
 
     return (
-            admissionQues.map(
+        ChildrenAdmissionQues.map(
             ({ id, active, allQuesConfirmed, startDate, endDate, registrationCount, totalSpotsInKindergartens },
             index) => {
             return (
@@ -54,7 +54,7 @@ const ListOfRegistrationsPresentation = ({admissionQues, onClick}) => {
                  : null}
             </td>
             <td>
-                <ModalForStopButton
+                <ModalForStopRegToKindergButton
                     QueId={id}
                     onClick={handleEndClick}
                 />
