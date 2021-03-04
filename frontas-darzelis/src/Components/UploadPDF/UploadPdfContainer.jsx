@@ -128,6 +128,18 @@ export default class UploadPdfContainer extends Component {
   };
 
   render() {
+    const sortedChildren = [...this.state.children];
+
+    sortedChildren.sort((a, b) => {
+      if (a.firstname < b.firstname) {
+        return -1;
+      }
+      if (a.firstname > b.firstname) {
+        return 1;
+      }
+      return 0;
+  
+    });
     return (
       <div>
         <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
@@ -161,7 +173,7 @@ export default class UploadPdfContainer extends Component {
               >
                 {/* <option defaultValue>-</option> */}
                 <option value=""> </option>
-                {this.state.children.map((child) => (
+                {sortedChildren.map((child) => (
                   <option key={child.id} value={child.id}>
                     {child.firstname + ' ' + child.lastname}
                   </option>
