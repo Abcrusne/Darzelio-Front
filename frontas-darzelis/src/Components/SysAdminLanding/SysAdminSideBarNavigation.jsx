@@ -6,7 +6,7 @@ export const SysAdminSideBarNavigation = () => {
     <nav className="sidebar pt-3 mt-3">
       <ul className="nav flex-column">
         <li className="nav-item">
-          <Link to="/admin/pradzia" className="nav-link active" >
+          <Link to="/admin/naudotojo-duomenys" className="nav-link active" >
             <i className="fas fa-user"></i>
             Sistemos administratorius
           </Link>

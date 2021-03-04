@@ -2,9 +2,9 @@ import React from 'react'
 
 export default function Loading() {
     return (
-        <div class="col text-center loading">
-        <div class="spinner-border" role="status">
-          <span class="sr-only">Loading...</span>
+        <div className="col text-center loading">
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
         </div>
       </div>
     )

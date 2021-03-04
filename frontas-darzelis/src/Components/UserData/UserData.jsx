@@ -46,6 +46,27 @@ const UserData = () => {
       </div>
     );
   }
+  else if (currentRole === '[ADMIN]') {
+    return (
+      <div>
+        <h5>
+          {' '}
+          <NavLink to="/admin/naudotojo-duomenys/redaguoti" className="nav-link">
+            Keisti duomenis
+          </NavLink>{' '}
+        </h5>
+        <h5>
+          {' '}
+          <NavLink
+            to="/admin/naudotojo-duomenys/redaguoti/slaptazodi"
+            className="nav-link"
+          >
+            Keisti slaptažodį
+          </NavLink>{' '}
+        </h5>
+      </div>
+    );
+  }
 };
 
 export default UserData;

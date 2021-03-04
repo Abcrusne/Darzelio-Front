@@ -103,7 +103,7 @@ const EduAdminChildInfoPresentation = ({
         <b>Vaiko deklaruotas adresas: </b> {childAddress}
       </p>
       <p> <b>Vaiko konkursinis balas: </b> { childRating}</p>
-      <p> <b>Darželio pavadinimas(jei vaikas priimtas): </b> { kindergartenName}</p>
+      <p> <b>Darželio pavadinimas (jei vaikas priimtas): </b> { kindergartenName}</p>
     
   
       <p>
@@ -210,7 +210,7 @@ const EduAdminChildInfoPresentation = ({
               <th scope="col">Trečiasis prioritetas</th>
               <th scope="col">Ketvirtasis prioritetas</th>
               <th scope="col">Penktasis prioritetas</th>
-              <th scope="col">Redaguoti</th>
+              {/* <th scope="col">Redaguoti</th> */}
             </tr>
           </thead>
           <tbody>
@@ -220,14 +220,14 @@ const EduAdminChildInfoPresentation = ({
               <td>{thirdPriority}</td>
               <td>{fourthPriority}</td>
               <td>{fifthPriority}</td>
-              <td>
+              {/* <td>
                 <Link
                   className="text-decoration-none mr-3"
                   to={`/admin/edu/vaikai/${childId}/redaguoti`}
                 >
                   Redaguoti prašymą į darželį
                 </Link>
-              </td>
+              </td> */}
             </tr>
           </tbody>
         </table>

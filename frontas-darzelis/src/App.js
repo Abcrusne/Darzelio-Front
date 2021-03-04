@@ -151,7 +151,22 @@ function App() {
                         component={SysAdminLanding}
                         role={'ADMIN'}
                     />
-
+ <PrivateRoute
+                        path="/admin/naudotojo-duomenys"
+                        // component={UpdateKindergartenFormContainer}
+                        component={SysAdminLanding}
+                        role={'ADMIN'}
+                    /> <PrivateRoute
+                    path="/admin/naudotojo-duomenys/redaguoti"
+                    // component={UpdateKindergartenFormContainer}
+                    component={SysAdminLanding}
+                    role={'ADMIN'}
+                /> <PrivateRoute
+                path="/admin/naudotojo-duomenys/redaguoti/slaptazodi"
+                // component={UpdateKindergartenFormContainer}
+                component={SysAdminLanding}
+                role={'ADMIN'}
+            />
                     <Route path="*" component={NoMatch}/>
                     <Route component={NoMatch}/>
                 </Switch>

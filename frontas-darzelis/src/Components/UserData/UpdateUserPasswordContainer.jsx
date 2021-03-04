@@ -106,6 +106,9 @@ export default class UpdateUserPasswordContainer extends Component {
           } else if (this.state.role === 'EDU') {
             this.props.history.push('/admin/edu/naudotojo-duomenys');
           }
+          else if (this.state.role === 'ADMIN') {
+            this.props.history.push('/admin/naudotojo-duomenys');
+          }
         })
         .catch((error) => {
           console.log(error.data);

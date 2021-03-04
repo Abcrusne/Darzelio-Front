@@ -95,12 +95,12 @@ const EduAdminRoutes = () => {
                 role={'EDU'}
             /> 
          
-            <PrivateRoute
+            {/* <PrivateRoute
                 path="/admin/edu/vaikai/:id/redaguoti"
                 exact
                 component={EduAdminUpdateChildApplicationContainer}
                 role={'EDU'}
-            /> 
+            />  */}
       <PrivateRoute
         path="/admin/edu/*"
         exact

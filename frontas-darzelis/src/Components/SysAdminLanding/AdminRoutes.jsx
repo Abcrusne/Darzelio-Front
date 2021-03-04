@@ -12,6 +12,9 @@ import SysAdminLanding from './SysAdminLanding';
 import NotFoundPage from '../Utilities/NotFoundPage';
 import { SysAdminDashboard } from './SysAdminDashboard';
 import {ManageQueuesToKindergartens} from "./ManageQueuesToKindergartens";
+import UpdateUserDataFormContainer from '../UserData/UpdateUserDataFormContainer';
+import UserData from '../UserData/UserData';
+import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
 
 export const AdminRoutes = () => {
   return (
@@ -68,6 +71,24 @@ export const AdminRoutes = () => {
           component={ManageQueuesToKindergartens}
           role={'ADMIN'}
           />
+          <PrivateRoute
+        path="/admin/naudotojo-duomenys"
+        exact
+        component={UserData}
+        role={'ADMIN'}
+      />
+          <PrivateRoute
+        path="/admin/naudotojo-duomenys/redaguoti"
+        exact
+        component={UpdateUserDataFormContainer}
+        role={'ADMIN'}
+      />
+      <PrivateRoute
+        path="/admin/naudotojo-duomenys/redaguoti/slaptazodi"
+        exact
+        component={UpdateUserPasswordContainer}
+        role={'ADMIN'}
+      />
         <PrivateRoute
           path="/admin/*"
           exact
