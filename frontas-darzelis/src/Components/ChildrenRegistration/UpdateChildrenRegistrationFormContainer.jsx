@@ -233,11 +233,11 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
             : '';
         break;
 
-      case 'flatNumber':
-        errors.flatNumber = !value.match(numbers)
-          ? 'Įrašykite buto numerį, pvz: 2'
-          : '';
-        break;
+      // case 'flatNumber':
+      //   errors.flatNumber = !value.match(numbers)
+      //     ? 'Įrašykite buto numerį, pvz: 2'
+      //     : '';
+      //   break;
       case 'secondParentFirstname':
         errors.secondParentFirstname =
           !value.match(letters) || value.length < 2 || value.length === 0
@@ -281,11 +281,11 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
             : '';
         break;
 
-      case 'secondParentFlatNumber':
-        errors.secondParentFlatNumber = !value.match(numbers)
-          ? 'Įrašykite buto numerį, pvz: 2'
-          : '';
-        break;
+      // case 'secondParentFlatNumber':
+      //   errors.secondParentFlatNumber = !value.match(numbers)
+      //     ? 'Įrašykite buto numerį, pvz: 2'
+      //     : '';
+      //   break;
       case 'secondParentEmail':
         errors.secondParentEmail =
           validEmailRegex.test(value) || value.length === 0
