@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import KindergartenTablePresentation from './KindergartenTablePresentation';
+import Loading from '../Loading/Loading';
 
 export default class KindergartenContainer extends Component {
   constructor(props) {
@@ -9,10 +10,8 @@ export default class KindergartenContainer extends Component {
     this.state = {
       // id: '',
       kindergartens: [],
-     
     };
   }
-
 
   // handleInputChange = event => {
   //   const query = event.target.value;
@@ -33,9 +32,7 @@ export default class KindergartenContainer extends Component {
     console.log('component did mount kindergartens');
 
     axios
-    .get(
-      `${API}/api/kindergartens/admission/queues`
-    )
+      .get(`${API}/api/kindergartens/admission/queues`)
       // .get(
       //   `${API}/api/kindergartens/admissions/${this.props.match.params.id}/queues`
       // )
@@ -71,15 +68,17 @@ export default class KindergartenContainer extends Component {
   render() {
     return (
       <div>
-        {this.state ? (
+        {this.state.kindergartens.length > 0 ? (
           <KindergartenTablePresentation
             kindergartens={this.state.kindergartens}
             // admissionId={this.state.id}
-          
+
             // handleConfirm={this.handleConfirm}
           />
         ) : (
-          <div>Loading</div>
+          <div>
+            <Loading />
+          </div>
         )}
       </div>
     );

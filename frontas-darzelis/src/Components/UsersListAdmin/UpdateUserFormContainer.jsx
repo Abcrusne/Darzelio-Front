@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 // import { Link } from 'react-router-dom';
-import LogoutPresentation from '../Utilities/LogoutPresentation';
+
+import "../../Style/style.css"
 
 
 export default class UpdateUserFormContainer extends Component {
@@ -162,7 +163,7 @@ export default class UpdateUserFormContainer extends Component {
       <div className="container mt-5">
       
 
-        <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
+        <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
         
           <div className="mb-4">
             <h3>Atnaujinti vartotojo duomenis</h3>
@@ -245,13 +246,13 @@ export default class UpdateUserFormContainer extends Component {
             <div> * - privalomi laukai</div>
 
             <div>
-              <button type="submit" className="btn btn-success">
+              <button type="submit" className="btn ">
                 Išsaugoti
               </button>
 
               <button
                 type="submit"
-                className="btn btn-warning ml-3"
+                className="btn ml-3"
                 onClick={this.resetPassword}
               >
                 Atstatyti slaptažodį į standartinį

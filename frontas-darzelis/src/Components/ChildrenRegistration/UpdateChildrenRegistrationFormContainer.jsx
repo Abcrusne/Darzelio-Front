@@ -742,7 +742,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                       name="secondParentPersonalCode"
                       onChange={this.handleChange}
                       noValidate
-                       value={this.state.secondParentPersonalCode}
+                       //value={this.state.secondParentPersonalCode}
                     />
                     {errors.secondParentPersonalCode.length > 0 && (
                       <span className="error">
