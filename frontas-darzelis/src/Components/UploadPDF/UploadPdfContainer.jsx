@@ -81,12 +81,13 @@ export default class UploadPdfContainer extends Component {
         alert(' PDF failo dydis negali viršyti 10 MB!');
         // this.setState({ pdf: "" });
       } 
-      else if (!event.target.files[0].type.match("pdf")){
+      else if ( event.target.files[0]  && !event.target.files[0].type.match("pdf")){
         alert("Tik PDF formatas yra priimamas")
         // this.setState({ pdf: "" });
-      } else if (!event.target.files[0]) {
-        alert("Įkelkite pdf failą")
-      }
+      } 
+      // else if (!event.target.files[0]) {
+      //   alert("Įkelkite pdf failą")
+      // }
       // else if (fileExtension.toLowerCase !== 'pdf') {
       //   alert('pdf');
       // }
