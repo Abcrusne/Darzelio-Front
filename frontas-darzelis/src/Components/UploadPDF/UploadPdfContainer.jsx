@@ -16,6 +16,7 @@ export default class UploadPdfContainer extends Component {
       firstname: '',
       lastname: '',
       pdf: '',
+
       // title: 'Sveikatos pažyma',
     };
   }
@@ -70,13 +71,37 @@ export default class UploadPdfContainer extends Component {
   handleFile = (event) => {
     //console.log(event.target.files +"files");
     //console.log(event.target.files[0] +"files[0]");
-    this.setState({ pdf: event.target.files[0] });
+    // var fileExtension = '';
+    // if (event.target.files[0].name.lastIndexOf('.') > 0) {
+    //   fileExtension = event.target.files[0].name.substring(
+    //     event.target.files[0].name.lastIndexOf('.') + 1,
+    //     event.target.files[0].name.length
+    //   ); }
+      if (event.target.files[0] && event.target.files[0].size > 10485760) {
+        alert(' PDF failo dydis negali viršyti 10 MB!');
+        // this.setState({ pdf: "" });
+      } 
+      else if (!event.target.files[0].type.match("pdf")){
+        alert("Tik PDF formatas yra priimamas")
+        // this.setState({ pdf: "" });
+      } else if (!event.target.files[0]) {
+        alert("Įkelkite pdf failą")
+      }
+      // else if (fileExtension.toLowerCase !== 'pdf') {
+      //   alert('pdf');
+      // }
+      else {
+        this.setState({ pdf: event.target.files[0] });
+      }
+    
+  
   };
   handleSubmit = (event) => {
     event.preventDefault();
     let data = new FormData();
     data.append('data', this.state.pdf);
     data.append('id', this.state.id);
+ 
     axios
       .post(`${API}/api/users/pdf`, data)
       .then((res) => {
@@ -85,26 +110,33 @@ export default class UploadPdfContainer extends Component {
         this.props.history.push('/tevai');
       })
       .catch((error) => {
-        console.log(error.data);
-        if (error.response.data === 'Blogas failo formatas') {
+        if (error.response === undefined) {
+          alert('PDF failo dydis negali viršyti 10 MB!');
+        } else if (error.response.data === 'Blogas failo formatas') {
           alert('Pasitikrinkite ar įkėlėte tinkamo pdf formato failą.');
         } else if (error.response.status === 400) {
           alert(
             'Nesėkmingas pdf įkelimas. Pasitikrinkite ar pažymėjote vaiką bei pasirinkote pdf failą.'
           );
-        }
+        } 
+        // else if (error.response.data === 'net::ERR_CONNECTION_ABORTED') {
+        //   alert('PDF failo dydis negali viršyti 10 MB!');
+        // }
+        console.log(error.data);
       });
   };
 
   render() {
     return (
       <div>
-    
-
         <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
             <h3>Įkelkite vaiko sveikatos pažymą PDF formatu</h3>
-            <p>Įkelti galite vienam vaikui vieną dokumentą. Jei įkelsite tam pačiam vaikui antrą dokumentą, ankstesnis dokumentas bus anuliuojamas.</p>
+            <p>
+              Įkelti galite vienam vaikui vieną dokumentą. Jei įkelsite tam
+              pačiam vaikui antrą dokumentą, ankstesnis dokumentas bus
+              anuliuojamas.
+            </p>
           </div>
           <form
             onSubmit={this.handleSubmit}
@@ -141,7 +173,8 @@ export default class UploadPdfContainer extends Component {
               </label>
               <input
                 type="file"
-                accept=".pdf"
+                // accept=".pdf"
+                accept="application/pdf"
                 className=" file form-control"
                 name="pdf"
                 id="pdf"
@@ -150,16 +183,19 @@ export default class UploadPdfContainer extends Component {
                 // style={{width: "90px"}}
                 //&&{style ={{"width: "100%"}}
 
-                required
-                onInvalid={(e) => {
-                  e.target.setCustomValidity('Įkelkite pažymą.');
-                }}
-                onInput={(e) => e.target.setCustomValidity('')}
+                // required
+                // onInvalid={(e) => {
+                //   e.target.setCustomValidity('Įkelkite pažymą.');
+                // }}
+                // onInput={(e) => e.target.setCustomValidity('')}
               />
+              {this.state.pdf ? (
                 <p className="mt-1">
                   <b>{this.state.pdf.name} </b>
                 </p>
-            
+              ) : (
+                <p></p>
+              )}
             </div>
             <div className="form-group mb-3 col-12"> * - privalomi laukai</div>
             <div>

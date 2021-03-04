@@ -9,6 +9,8 @@ export default class ChildrenPdfTable extends Component {
     super();
     this.state = {
       children: [],
+
+    
     };
   }
 
@@ -24,7 +26,8 @@ export default class ChildrenPdfTable extends Component {
       .delete(`${API}/api/users/pdf/${event.target.value}/delete`)
       .then(() => {
         alert('Pažyma ištrinta');
-        this.props.history.push('/tevai/pazymos');
+        window.location.reload()
+        // this.props.history.push('/tevai/pazymos');
       })
       .catch((err) => console.log(err));
     console.log('deletePdf');
