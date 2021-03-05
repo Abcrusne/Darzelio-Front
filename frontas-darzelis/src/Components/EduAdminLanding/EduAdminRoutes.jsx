@@ -19,6 +19,7 @@ import EduAdminChildInfoContainer from './EduAdminChildInfoContainer';
 import EduAdminUpdateChildApplicationContainer from './EduAdminUpdateChildApplicationContainer';
 import RegisteredChildrenQueueList from "../ChildrenRegistrationQue/RegisteredChildrenQueueList";
 import UpdateUserEmailContainer from '../UserData/UpdateUserEmailContainer';
+import HorizontalChart from '../Statistics/HorizontalChart';
 
 
 
@@ -106,6 +107,12 @@ const EduAdminRoutes = () => {
         path="/admin/edu/duomenys/redaguoti/pasta"
         exact
         component={UpdateUserEmailContainer}
+        role={'EDU'}
+      />
+                <PrivateRoute
+        path="/admin/edu/statistika"
+        exact
+        component={HorizontalChart}
         role={'EDU'}
       />
       <PrivateRoute
