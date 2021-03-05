@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
-import '../../Style/style.css';
 import ModalComponentChildren from '../Modal/ModalComponentChildren';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '../../Style/style.css';
