@@ -22,6 +22,7 @@ import UpdateChildrenRegistrationFormContainer from '../ChildrenRegistration/Upd
 import UpdateChildrenApplicationByParents from '../ChildrenRegistration/UpdateChildrenApplicationByParents';
 import ChildrenPdfTable from '../UploadPDF/ChildrenPdfTable';
 import UpdateUserEmailContainer from '../UserData/UpdateUserEmailContainer';
+import HorizontalChart  from '../Statistics/HorizontalChart';
 
 
 const ParentRoutes = () => {
@@ -121,6 +122,12 @@ const ParentRoutes = () => {
         path="/tevai/duomenys/redaguoti/pasta"
         exact
         component={UpdateUserEmailContainer}
+        role={'PARENT'}
+      />
+       <PrivateRoute
+        path="/tevai/statistika"
+        exact
+        component={HorizontalChart}
         role={'PARENT'}
       />
       <PrivateRoute

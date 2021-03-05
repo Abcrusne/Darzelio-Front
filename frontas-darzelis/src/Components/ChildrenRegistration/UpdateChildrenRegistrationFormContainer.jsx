@@ -447,6 +447,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
           <div className="mb-4">
             <h3>Atnaujinkite savo vaiko duomenis</h3>
           </div>
+          <form>
           <form onSubmit={this.handleSubmit} className="form-row ">
             <div className="form-group mb-3 col-6">
               <label htmlFor="firstname" className="control-label">
@@ -1102,7 +1103,9 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
             </div>
           </form>
 
-          <div className="col text-center delete">
+          <div 
+          className="col text-center delete"
+          >
             <button
               //onClick={this.deleteChild}
               id="deleteChildData"
@@ -1120,6 +1123,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
               deleteChild={this.deleteChild}
             />
           </div>
+          </form>
         </div>
       </div>
     );

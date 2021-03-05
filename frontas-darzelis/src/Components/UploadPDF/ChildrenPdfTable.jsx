@@ -47,7 +47,7 @@ export default class ChildrenPdfTable extends Component {
 
     return (
       <div>
-        <h4> Vaikų įkeltos sveikatos pažymos</h4>
+        <h4> Vaikų sveikatos pažymos</h4>
         <table className="table">
           <thead>
             <tr>
