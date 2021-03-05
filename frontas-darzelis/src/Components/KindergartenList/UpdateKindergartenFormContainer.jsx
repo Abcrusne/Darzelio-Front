@@ -114,7 +114,7 @@ export default class UpdateKindergartenFormContainer extends Component {
         })
         .then((response) => {
           console.log(response);
-          if (this.state.role === "'EDU'") {
+          if (this.state.role === 'EDU') {
             alert('Atnaujinta!');
             this.props.history.push('/admin/edu/darzeliai');
           } else if (this.state.role === 'ADMIN') {

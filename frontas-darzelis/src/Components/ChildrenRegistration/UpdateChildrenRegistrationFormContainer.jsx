@@ -624,10 +624,11 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
               <label htmlFor="secondParent" className="form-check-label">
                 Pridėti antrąjį šio vaiko tėvą/globėją
               </label>
+              <div className="mt-3 ml-0"><b>Pridėję antrąjį tėvą/globėją, vėliau jo duomenis galėsite redaguoti, bet pašalinti galima nebus.</b></div>
             </div>
             {this.state.secondParent ===true ? (
               <div className="form-row">
-                 <div><b>Pridėję antrąjį tėvą/globėją, vėliau jo duomenis galėsite redaguoti, bet pašalinti galima nebus.</b></div>
+                 {/* <div><b>Pridėję antrąjį tėvą/globėją, vėliau jo duomenis galėsite redaguoti, bet pašalinti galima nebus.</b></div> */}
                 <div className="form-group mb-3 col-6 mt-3">
                   <label
                     htmlFor="secondParentFirstname"
@@ -1086,7 +1087,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                   </div>
                 )}
               </div>
-            ) : <div> </div>}
+            ) :   <div></div>}
 
             <div className="mt-3 form-group mb-3 col-6">
               {' '}
