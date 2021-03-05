@@ -23,6 +23,15 @@ const UserData = () => {
             Keisti slaptažodį
           </NavLink>{' '}
         </h5>
+        <h5>
+          {' '}
+          <NavLink
+            to="/tevai/duomenys/redaguoti/pasta"
+            className="nav-link"
+          >
+            Keisti el.paštą
+          </NavLink>{' '}
+        </h5>
       </div>
     );
   } else if (currentRole === '[EDU]') {
@@ -43,6 +52,14 @@ const UserData = () => {
             Keisti slaptažodį
           </NavLink>{' '}
         </h5>
+        <h5>
+        <NavLink
+            to="/admin/edu/duomenys/redaguoti/pasta"
+            className="nav-link"
+          >
+            Keisti el.paštą
+          </NavLink>{' '}
+          </h5>
       </div>
     );
   }
@@ -64,6 +81,14 @@ const UserData = () => {
             Keisti slaptažodį
           </NavLink>{' '}
         </h5>
+        <h5>
+        <NavLink
+            to="/admin/naudotojo-duomenys/redaguoti/pasta"
+            className="nav-link"
+          >
+            Keisti el.paštą
+          </NavLink>{' '}
+          </h5>
       </div>
     );
   }

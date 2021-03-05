@@ -15,6 +15,7 @@ import {ManageQueuesToKindergartens} from "./ManageQueuesToKindergartens";
 import UpdateUserDataFormContainer from '../UserData/UpdateUserDataFormContainer';
 import UserData from '../UserData/UserData';
 import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
+import UpdateUserEmailContainer from '../UserData/UpdateUserEmailContainer';
 
 export const AdminRoutes = () => {
   return (
@@ -87,6 +88,12 @@ export const AdminRoutes = () => {
         path="/admin/naudotojo-duomenys/redaguoti/slaptazodi"
         exact
         component={UpdateUserPasswordContainer}
+        role={'ADMIN'}
+      />
+          <PrivateRoute
+        path="/admin/naudotojo-duomenys/redaguoti/pasta"
+        exact
+        component={UpdateUserEmailContainer}
         role={'ADMIN'}
       />
         <PrivateRoute

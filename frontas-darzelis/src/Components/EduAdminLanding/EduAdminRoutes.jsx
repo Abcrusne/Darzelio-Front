@@ -18,6 +18,7 @@ import KindergartenTableContainer from '../Queue/KindergartenTableContainer';
 import EduAdminChildInfoContainer from './EduAdminChildInfoContainer';
 import EduAdminUpdateChildApplicationContainer from './EduAdminUpdateChildApplicationContainer';
 import RegisteredChildrenQueueList from "../ChildrenRegistrationQue/RegisteredChildrenQueueList";
+import UpdateUserEmailContainer from '../UserData/UpdateUserEmailContainer';
 
 
 
@@ -101,6 +102,12 @@ const EduAdminRoutes = () => {
                 component={EduAdminUpdateChildApplicationContainer}
                 role={'EDU'}
             />  */}
+               <PrivateRoute
+        path="/admin/edu/duomenys/redaguoti/pasta"
+        exact
+        component={UpdateUserEmailContainer}
+        role={'EDU'}
+      />
       <PrivateRoute
         path="/admin/edu/*"
         exact
