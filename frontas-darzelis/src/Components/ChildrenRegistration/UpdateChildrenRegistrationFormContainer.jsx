@@ -139,7 +139,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
         });
         console.log('vaiko id: ' + this.state.id);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.data));
   }
 
   deleteChild = (event) => {
@@ -447,7 +447,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
           <div className="mb-4">
             <h3>Atnaujinkite savo vaiko duomenis</h3>
           </div>
-          <form>
+          
           <form onSubmit={this.handleSubmit} className="form-row ">
             <div className="form-group mb-3 col-6">
               <label htmlFor="firstname" className="control-label">
@@ -1123,7 +1123,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
               deleteChild={this.deleteChild}
             />
           </div>
-          </form>
+          
         </div>
       </div>
     );
