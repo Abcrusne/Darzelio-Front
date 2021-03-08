@@ -47,25 +47,44 @@ export default class HorizontalChart extends Component {
       const kindergarten = res.data;
       //   console.log("res data"+res.data.kindergartenName)
 
-      let labels = [];
-      let data = [];
-      kindergarten.map(({ kindergartenName, firstPriorityRegistrations }) => {
-        labels.push(kindergartenName);
-        data.push(firstPriorityRegistrations);
-      });
-      //   [...kindergarten].forEach(element => {
-      //       labels.push(element.kindergartenName);
-      //       data.push(element.firstPriorityRegistrations);
+      // let labels = [];
+      // let data = [];
+      // // const arrayOfKindergarten =
+      // kindergarten
+      //   .map(({ kindergartenName, firstPriorityRegistrations }) => {
+      //     labels.push(kindergartenName);
+      //     data.push(firstPriorityRegistrations);
       //   })
+
+        let sortedKindergarten = [...kindergarten];
+        let sortedLabels =[];
+        let sortedData=[];
+
+        const sorted= sortedKindergarten
+        .sort((a, b) => {
+          if (a.firstPriorityRegistrations > b.firstPriorityRegistrations) {
+            return -1;
+          }
+          if (a.firstPriorityRegistrations < b.firstPriorityRegistrations) {
+            return 1;
+          }
+          return 0;
+        });
+sorted.map(({ kindergartenName, firstPriorityRegistrations }) => {
+  sortedLabels.push(kindergartenName);
+  sortedData.push(firstPriorityRegistrations);
+})
+
+  
       console.log(kindergarten);
       this.setState({
         chartData: {
-          labels: labels,
+          labels: sortedLabels,
 
           datasets: [
             {
               label: 'Darželių populiarumas pirmu prioritetu',
-              data: data,
+              data: sortedData,
               backgroundColor: 'rgba(75, 192, 192, 0.6)',
               borderColor: 'rgba(15,15,15)',
               hoverBorderColor: true,
@@ -152,7 +171,6 @@ export default class HorizontalChart extends Component {
               <h6 className="card-subtitle mb-2 text-muted">
                 Laukiantieji eilėje į darželį 2-3m. amžiaus vaikų grupėse
               </h6>
-              <p>Viso vietų darželiuose</p>
             </div>
           </div>
           <div className="card col">
@@ -167,7 +185,6 @@ export default class HorizontalChart extends Component {
               <h6 className="card-subtitle mb-2 text-muted">
                 Laukiantieji vaikai eilėje į darželį 3-6m. amžiaus vaikų grupėse
               </h6>
-              <p>Viso vietų darželiuose</p>
             </div>
           </div>
         </div>
