@@ -4,6 +4,7 @@ import axios from "axios";
 import {withRouter} from "react-router";
 
 import {API} from "../../Configuration/AppConfig";
+import PasswordChangeModal from "../Modal/PasswordChangeModal"
 // import "../../Style/UsersLandings.css"
 import "../../Style/ParentLandingDashboard.css"
 
@@ -13,7 +14,8 @@ class ParentLandingDashboard extends Component {
         childRegistered: false,
         passwordChanged: true,
         admissionActive: true,
-        children: []
+        children: [],
+        modalState: true
     }
 
     componentDidMount = () => {
@@ -36,27 +38,39 @@ class ParentLandingDashboard extends Component {
             })
     }
 
+    handleShow = () => {
+        this.setState({ modalState: !this.state.modalState });
+    }
+
     render() {
         const {
             passwordChanged,
             parentDetailsFilled,
             childRegistered,
             children,
-            admissionActive
+            admissionActive,
+            modalState
         } = this.state
         return (
             <div className="mt-5 ml-3">
                 {passwordChanged ? (''
                     ) :
                     (
-                        <div className="alert alert-warning alert-dismissible fade show shadow rounded mb-5"
-                             role="alert">
-                            <strong>Dėmesio!</strong> Jūsų slaptažodis nesaugus, rekomenduojame
-                            <a href={`/tevai/duomenys/redaguoti/slaptazodi`} className="alert-link"> pasikeisti. </a>
-                            {/*<button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close">*/}
-                            {/*</button>*/}
-                        </div>
-                    )}
+                        <PasswordChangeModal
+                        modalState={modalState}
+                        onClick={this.handleShow}/>
+                    )
+                    // (
+                    //     <div className="alert alert-warning alert-dismissible fade show shadow rounded mb-5"
+                    //          role="alert">
+                    //         <strong>Dėmesio!</strong> Jūsų slaptažodis nesaugus, rekomenduojame
+                    //         <a href={`/bean-app/tevai/duomenys/redaguoti/slaptazodi`} className="alert-link"> pasikeisti. </a>
+                    //         {/*<button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close">*/}
+                    //         {/*</button>*/}
+                    //     </div>
+                    // )
+                }
+
                 {admissionActive ? (''
                     ) :
                     (
@@ -81,8 +95,8 @@ class ParentLandingDashboard extends Component {
                                     className="col-sm-9 card shadow-sm bg-white border-0 rounded m-auto">
                                     <h6>Tėvo (globėjo) anketa</h6>
                                     {!parentDetailsFilled ?
-                                        (<Link to={`/tevai/registracija`} className="btn">Pildyti</Link>) :
-                                        (<Link to={`/tevai/registracija/redaguoti`} className="btn">Redaguoti</Link>)}
+                                        (<a href={`/bean-app/tevai/registracija`} className="btn">Pildyti</a>) :
+                                        (<a href={`/bean-app/tevai/registracija/redaguoti`} className="btn">Redaguoti</a>)}
                                 </div>
                                 <div className="col-sm-3 d-flex arrow  m-auto">
                                     <i className="fas fa-chevron-right "></i>
@@ -106,7 +120,7 @@ class ParentLandingDashboard extends Component {
                                         shadow-sm bg-white border-0 rounded m-auto">
                                             <h6>Vaiko duomenų anketa</h6>
                                             <button className="btn">
-                                                <a href={`/tevai/vaikai/${child.childId}`}>Redaguoti</a>
+                                                <a href={`/bean-app/tevai/vaikai/${child.childId}`}>Redaguoti</a>
                                             </button>
                                         </div>
                                         <div className="col-sm-2 d-flex pb-3 arrow  m-auto">
@@ -118,10 +132,10 @@ class ParentLandingDashboard extends Component {
                                             <h6>Prašymas registruoti į darželį</h6>
                                             {child.applicationFilled ?
                                                 (<button className="btn">
-                                                    <a href={`tevai/vaikai/registracijos/${child.childId}`}>Redaguoti</a>
+                                                    <a href={`/bean-apptevai/vaikai/registracijos/${child.childId}`} className={admissionActive ? "btn" : "btn disabled"}>Redaguoti</a>
                                                 </button>) :
-                                                (<a href={`/tevai/registracija-i-darzeli`}
-                                                    className={childRegistered ? "btn" : "btn disabled"}>Pildyti</a>)
+                                                (<a href={`/bean-app/tevai/registracija-i-darzeli`}
+                                                    className={childRegistered || admissionActive ? "btn" : "btn disabled"}>Pildyti</a>)
                                             }
                                         </div>
                                         <div className="col-sm-2 d-flex pb-3 arrow  m-auto">
@@ -131,7 +145,7 @@ class ParentLandingDashboard extends Component {
                                             className="col-sm-2 d-flex pb-3 card
                                             shadow-sm bg-white border-0 rounded m-auto">
                                             <h6>Prašymo statusas</h6>
-                                            <p><strong>{child.applicationAccepted ? " prašymas priimtas" : " prašymas nepriimtas"}</strong></p>
+                                            <p><strong>{child.applicationAccepted ? " prašymas priimtas" : (child.applicationFilled ? " prašymas nepriimtas" : " ")}</strong></p>
                                         </div>
                                         <div className="col-sm-2 d-flex pb-3 arrow m-auto">
                                             <i className="fas fa-chevron-right"></i>
@@ -150,20 +164,24 @@ class ParentLandingDashboard extends Component {
                                                             <p>Vaiko vieta eilėje darželiuose pagal prioritetus:</p>
                                                             <ol type="1">
                                                                 {child.fifthPriority ? (
-                                                                    <li>{child.firstPriority}: {child.placeInFirstPriority} vieta</li>) : ''}
+                                                                    <li>{child.firstPriority}: {child.placeInFirstQueue} vieta</li>) : ''}
                                                                 {child.secondPriority ? (
-                                                                    <li>{child.secondPriority}: {child.placeInSecondPriority} vieta</li>) : ''}
+                                                                    <li>{child.secondPriority}: {child.placeInSecondQueue} vieta</li>) : ''}
                                                                 {child.thirdPriority ? (
-                                                                    <li>{child.thirdPriority}: {child.placeInThirdPriority} vieta</li>) : ''}
+                                                                    <li>{child.thirdPriority}: {child.placeInThirdQueue} vieta</li>) : ''}
                                                                 {child.fourthPriority ? (
-                                                                    <li>{child.fourthPriority}: {child.placeInFourthPriority} vieta</li>) : ''}
+                                                                    <li>{child.fourthPriority}: {child.placeInFourthQueue} vieta</li>) : ''}
                                                                 {child.fifthPriority ? (
-                                                                    <li>{child.fifthPriority}: {child.placeInFifthPriority} vieta</li>) : ''}
+                                                                    <li>{child.fifthPriority}: {child.placeInFifthQueue} vieta</li>) : ''}
                                                             </ol>
                                                         </div>))
                                                 }
                                             </div>
-                                        ) : ("")}
+                                        ) : (<div
+                                                className="col-sm-2 d-flex pb-3 card
+													shadow-sm bg-white border-0 rounded m-auto">
+                                            <h6>Vaiko registracijos į darželį statusas</h6>
+                                        </div>)}
 
                                     </div>
                                 )) :
@@ -172,8 +190,8 @@ class ParentLandingDashboard extends Component {
                                 <div
                                     className="col-sm-2 d-flex pb-3 card shadow-sm bg-white border-0 rounded m-auto">
                                     <p>Vaiko duomenų anketa</p>
-                                    <Link to={`/tevai/vaikoregistracija`}
-                                          className={parentDetailsFilled ? "btn" : "btn disabled"}>Pildyti</Link>
+                                    <a href={`/bean-app/tevai/vaikoregistracija`}
+                                          className={parentDetailsFilled ? "btn" : "btn disabled"}>Pildyti</a>
                                 </div>
                                 <div
                                     className="col-sm-2 d-flex pb-3 d-flex align-items-center arrow  m-auto">
@@ -182,7 +200,7 @@ class ParentLandingDashboard extends Component {
                                 <div
                                     className="col-sm-2 d-flex pb-3 card shadow-sm bg-white border-0 rounded m-auto">
                                     <p>Prašymas registruoti į darželį</p>
-                                    <a href={`/api/apitevai/registracija-i-darzeli`}
+                                    <a href={`/bean-app/tevai/registracija-i-darzeli`}
                                        className={childRegistered ? "btn" : "btn disabled"}>Pildyti</a>
                                 </div>
                                 <div
@@ -203,7 +221,7 @@ class ParentLandingDashboard extends Component {
                                 </div>
                             </div>)}
                         <div className="col-12 mt-2 ml-2">
-                            <a href={`/api/tevai/vaikoregistracija`}
+                            <a href={`/bean-app/tevai/vaikoregistracija`}
                                className={parentDetailsFilled ? "btn" : "btn disabled"}>Pridėti dar vieną vaiką</a>
                         </div>
                     </div>

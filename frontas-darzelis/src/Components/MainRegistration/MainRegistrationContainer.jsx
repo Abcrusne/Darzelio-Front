@@ -110,6 +110,8 @@ class MainRegistrationContainer extends Component {
                         alert(
                             'Šio vaiko registracija jau užpildyta!'
                         )
+                    } else if (error.response.data === "Registracijos šiuo metu užrakintos") {
+                        alert('Registracija šiuo metu nevyksta. Bandykite vėliau.')
                     }
                 })
         } else {
