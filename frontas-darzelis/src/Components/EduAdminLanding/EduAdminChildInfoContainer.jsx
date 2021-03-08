@@ -23,6 +23,10 @@ export default class EduAdminChildInfoContainer extends Component {
       childLastname: '',
       childAddress: '',
       childAdopted: '',
+      childBirthdate: '',
+      childRating: '',
+      kindergartenName: '',
+
       secondParent: '',
       secondParentFirstname: '',
       secondParentLastname: '',
@@ -41,10 +45,8 @@ export default class EduAdminChildInfoContainer extends Component {
       rating: 0,
       secondPriority: '',
       thirdPriority: '',
-      accepted_kindergarten: "",
-      admission_id: "",
-     
-
+      accepted_kindergarten: '',
+      admission_id: '',
     };
   }
 
@@ -70,6 +72,9 @@ export default class EduAdminChildInfoContainer extends Component {
           childLastname: res.data.childLastname,
           childAddress: res.data.childAddress,
           childAdopted: res.data.childAdopted,
+          childBirthdate: res.data.childBirthdate,
+          childRating: res.data.childRating,
+          kindergartenName: res.data.kindergartenName,
           secondParent: res.data.secondParent,
           secondParentFirstname: res.data.secondParentFirstname,
           secondParentLastname: res.data.secondParentLastname,
@@ -80,7 +85,9 @@ export default class EduAdminChildInfoContainer extends Component {
           secondParentDisabled: res.data.secondParentDisabled,
         });
         console.log('child id: ' + this.state.childId);
-return axios.get(`${API}/api/kindergartens/register/${this.state.childId}`);
+        return axios.get(
+          `${API}/api/kindergartens/register/${this.state.childId}`
+        );
       })
       .then((res) => {
         this.setState({
@@ -120,6 +127,9 @@ return axios.get(`${API}/api/kindergartens/register/${this.state.childId}`);
           childLastname={this.state.childLastname}
           childAddress={this.state.childAddress}
           childAdopted={this.state.childAdopted}
+          childBirthdate ={this.state.childBirthdate}
+          childRating={this.state.childRating}
+          kindergartenName={this.state.kindergartenName}
           secondParent={this.state.secondParent}
           secondParentFirstname={this.state.secondParentFirstname}
           secondParentLastname={this.state.secondParentLastname}

@@ -3,8 +3,7 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
 
-
-export default class UpdateUserDataFormContainer extends Component {
+export default class UpdateUserEmailContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,11 +13,9 @@ export default class UpdateUserDataFormContainer extends Component {
       email: '',
       role: '',
       password: '',
-      markedForDeletion: "",
+      markedForDeletion: '',
 
       errors: {
-        firstname: '',
-        lastname: '',
         email: '',
       },
     };
@@ -41,7 +38,7 @@ export default class UpdateUserDataFormContainer extends Component {
           email: res.data.email,
           role: res.data.role,
           password: res.data.password,
-          markedForDeletion:res.data.markedForDeletion
+          markedForDeletion: res.data.markedForDeletion,
         })
       )
       .catch((err) => console.log(err));
@@ -73,41 +70,24 @@ export default class UpdateUserDataFormContainer extends Component {
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ]+$/;
     switch (name) {
-      case 'firstname':
-        errors.firstname =
-          !value.match(letters) || value.length < 2
-            ? 'Vardas turi būti iš raidžių ir ilgesnis nei 1 raidė!'
-            : '';
-        break;
-
       case 'email':
         errors.email = validEmailRegex.test(value)
           ? ''
           : 'El.paštas netinkamas!';
         break;
-      case 'lastname':
-        errors.lastname =
-          !value.match(letters) || value.length < 2
-            ? 'Pavardė turi būti iš raidžių ir ilgesnė nei 1 raidė!'
-            : '';
-        break;
       default:
         break;
     }
 
-    if (event.target.type === 'checkbox') {
-      // console.log(event.target.checked);
-      this.setState({ [event.target.name]: event.target.checked });
-    } else
-      this.setState(
-        {
-          errors,
-          [name]: value,
-        },
-        () => {
-          // console.log(errors);
-        }
-      );
+    this.setState(
+      {
+        errors,
+        [name]: value,
+      },
+      () => {
+        // console.log(errors);
+      }
+    );
     // console.log(this.state);
   };
   handleSubmit = (event) => {
@@ -141,13 +121,12 @@ export default class UpdateUserDataFormContainer extends Component {
         .then((response) => {
           console.log(response);
           alert('Duomenys atnaujinti sėkmingai!');
-          if (this.state.role ==="PARENT") {
-          this.props.history.push('/tevai/naudotojo-duomenys');}
-          else if (this.state.role ==="EDU"){
-            this.props.history.push('/admin/edu/naudotojo-duomenys')
-          }
-          else if (this.state.role ==="ADMIN"){
-            this.props.history.push('/admin/edu/naudotojo-duomenys')
+          if (this.state.role === 'PARENT') {
+            this.props.history.push('/login');
+          } else if (this.state.role === 'EDU') {
+            this.props.history.push('/login');
+          } else if (this.state.role === 'ADMIN') {
+            this.props.history.push('/login');
           }
         })
 
@@ -177,45 +156,10 @@ export default class UpdateUserDataFormContainer extends Component {
       <div className="container mt-5">
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
-            <h3>Atnaujinti naudotojo duomenis</h3>
+            <h3>Atnaujinti naudotojo el.paštą</h3>
           </div>
           <form onSubmit={this.handleSubmit} noValidate className="form-group ">
             <div className="mb-3">
-              <label htmlFor="firstname" className="control-label">
-                Naudotojo vardas*:
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                name="firstname"
-                onChange={this.handleChange}
-                noValidate
-                value={this.state.firstname}
-                // required
-              />
-              {errors.firstname.length > 0 && (
-                <span className="error">{errors.firstname}</span>
-              )}
-              {/* <div className="invalid-feedback">Įrašykite vardą.</div>
-          <div className="valid-feedback"></div> */}
-            </div>
-            <div className="mb-3">
-              <label htmlFor="lastname" className="control-label">
-                Naudotojo pavardė*:
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                name="lastname"
-                onChange={this.handleChange}
-                noValidate
-                value={this.state.lastname}
-              />
-              {errors.lastname.length > 0 && (
-                <span className="error">{errors.lastname}</span>
-              )}
-            </div>
-            {/* <div className="mb-3">
               <label htmlFor="email" className="control-label">
                 Naudotojo el.paštas*:
               </label>
@@ -230,34 +174,7 @@ export default class UpdateUserDataFormContainer extends Component {
               {errors.email.length > 0 && (
                 <span className="error">{errors.email}</span>
               )}
-            </div> */}
-
-            <div className="form-check form-group mb-3 col-10">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                name="markedForDeletion"
-                id="markedForDeletion"
-                checked={this.state.markedForDeletion}
-                onChange={this.handleChange}
-                noValidate
-              />
-              <label htmlFor="markedForDeletion" className="form-check-label">
-                Pažymėkite jei norite, kad Jūsų anketa ir duomenys būtų ištrinti
-                iš sistemos
-              </label>
             </div>
-            {this.state.markedForDeletion ? (
-              <div>
-                <p>
-                  {' '}
-                  <i>
-                    {' '}
-                    <b>Anketa ir duomenys bus ištrinti per 14 d.d. dienų</b>
-                  </i>
-                </p>
-              </div>
-            ) : null}
 
             <div> * - privalomi laukai</div>
 

@@ -18,7 +18,7 @@ const LoginSuccess = (props) => {
             </div>
             <button
                 type="button"
-                class="btn btn-success"
+                className="btn btn-success"
                 onClick={logOut}
             >
                 Atsijungti

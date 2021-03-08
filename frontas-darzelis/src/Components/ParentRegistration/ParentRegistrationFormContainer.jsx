@@ -169,11 +169,11 @@ export default class ParentRegistrationFormContainer extends Component {
             : '';
         break;
 
-      case 'flatNumber':
-        errors.flatNumber = !value.match(numbers)
-          ? 'Įrašykite buto numerį, pvz: 2'
-          : '';
-        break;
+      // case 'flatNumber':
+      //   errors.flatNumber = !value.match(numbers)
+      //     ? 'Įrašykite buto numerį, pvz: 2'
+      //     : '';
+      //   break;
       case 'numberOfKids':
         errors.numberOfKids =
           !value.match(numbers) || value.length < 0
@@ -454,11 +454,11 @@ export default class ParentRegistrationFormContainer extends Component {
                 className="form-control"
                 name="flatNumber"
                 onChange={this.handleChange}
-                noValidate
+                // noValidate
               />
-              {errors.flatNumber.length > 0 && (
+              {/* {errors.flatNumber.length > 0 && (
                 <span className="error">{errors.flatNumber}</span>
-              )}
+              )} */}
             </div>
             <div className="form-group mb-3 col-6">
               <label htmlFor="numberOfKids" className="control-label">

@@ -20,6 +20,8 @@ export default class UpdateChildrenApplicationByParents extends Component {
       //child info
       childFirstname: '',
       childLastname: '',
+      kindergartenName: '',
+      childRating: '',
 
       kindergartens: [],
       //   kindergarten_name: '',
@@ -54,23 +56,23 @@ export default class UpdateChildrenApplicationByParents extends Component {
         this.setState({
           childFirstname: res.data.childFirstname,
           childLastname: res.data.childLastname,
+          kindergartenName: res.data.kindergartenName,
+          childRating: res.data.childRating,
         });
       })
       .catch((err) => console.log(err));
   }
-    deleteApplication = (event) => {
-      //event.preventDefault();
-      axios
-        .delete(
-          `${API}/api/kindergartens/register/${this.state.childId}/delete`
-        )
-        .then(() => {
-          alert('Prašymas buvo ištrintas');
-          this.props.history.push('/tevai/vaikai');
-        })
-        .catch((err) => console.log(err.data));
-      console.log('deleteChildrenApplication');
-    };
+  deleteApplication = (event) => {
+    //event.preventDefault();
+    axios
+      .delete(`${API}/api/kindergartens/register/${this.state.childId}/delete`)
+      .then(() => {
+        alert('Prašymas buvo ištrintas');
+        this.props.history.push('/tevai/vaikai');
+      })
+      .catch((err) => console.log(err.data));
+    console.log('deleteChildrenApplication');
+  };
 
   handleChange = (event) => {
     event.preventDefault();
@@ -100,10 +102,13 @@ export default class UpdateChildrenApplicationByParents extends Component {
         console.log(error.data);
       });
   };
+  // {this.state.kindergartenName !== "" ? (
+  //   <div></div>
+  //             ) : <div> <p> Prašymo redaguoti negalite. Jūsų vaikas priimtas į darželį: <b>{kindergartenName}</b>, vaiko balas: <b>{childRating}</b></p></div>}
   render() {
-    return (
-      <div className="container">
-        {this.state.id > 0 ? (
+    if (this.state.id > 0) {
+      if (this.state.kindergartenName === '') {
+        return (
           <div>
             <div className=" container  m-auto shadow p-3 mb-5 bg-white rounded">
               <form className=" p-3 mt-5 " onSubmit={this.handleSubmit}>
@@ -245,13 +250,13 @@ export default class UpdateChildrenApplicationByParents extends Component {
                     })}
                   </select>
                 </div>
-                <button type="submit" className="mr-4 btn">
+                <button type="submit" className="mr-4 btn update">
                   Atnaujinti
                 </button>
               </form>
               <div className="deleteApplication ">
                 <button
-                  className=" btn btn-danger deleteApplication"
+                  className=" btn  deleteApplication"
                   id="deleteChildApplication"
                   className="btn mt-3"
                   data-toggle="modal"
@@ -269,15 +274,28 @@ export default class UpdateChildrenApplicationByParents extends Component {
               </div>
             </div>
           </div>
-        ) : (
-          <p>
+        );
+      } else {
+        return (
+          <div>
             {' '}
-            Šiam vaikui dar neužpildėte prašymo. Jei norite užpildyti prašymą į
-            darželį{' '}
-            <Link to="/tevai/registracija-i-darzeli">spauskite čia.</Link>
-          </p>
-        )}
-      </div>
-    );
+            <p>
+              {' '}
+              Prašymo redaguoti negalite. Jūsų vaikas priimtas į darželį:{' '}
+              <b>{this.state.kindergartenName}</b>, vaiko balas:{' '}
+              <b>{this.state.childRating}</b>
+            </p>
+          </div>
+        );
+      }
+    } else {
+      return (
+        <p>
+          {' '}
+          Šiam vaikui dar neužpildėte prašymo. Jei norite užpildyti prašymą į
+          darželį <Link to="/tevai/registracija-i-darzeli">spauskite čia.</Link>
+        </p>
+      );
+    }
   }
 }

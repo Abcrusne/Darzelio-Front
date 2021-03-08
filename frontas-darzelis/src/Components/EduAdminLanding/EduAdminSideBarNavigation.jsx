@@ -23,7 +23,7 @@ const EduAdminSideBarNavigation = () => {
                             className="nav-link active"
                             id="parentForm"
                         >
-                            <i class="fas fa-list-ol"></i>
+                            <i className="fas fa-list-ol"></i>
                             Vaikų registracijų sąrašas
                         </Link>
                     </li>
@@ -43,7 +43,7 @@ const EduAdminSideBarNavigation = () => {
                             className="nav-link active"
                             id="mainRegForm"
                         >
-                            <i class="fas fa-list-ol"></i>
+                            <i className="fas fa-list-ol"></i>
                             Darželių sąrašas
                         </Link>
                         <hr />
@@ -54,7 +54,7 @@ const EduAdminSideBarNavigation = () => {
                             className="nav-link active"
                             id="mainRegForm"
                         >
-                            <i class="fas fa-list-ol"></i>
+                            <i className="fas fa-list-ol"></i>
                             Darželių eilės
                         </Link>
                         <hr />

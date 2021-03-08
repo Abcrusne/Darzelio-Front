@@ -18,6 +18,8 @@ import KindergartenTableContainer from '../Queue/KindergartenTableContainer';
 import EduAdminChildInfoContainer from './EduAdminChildInfoContainer';
 import EduAdminUpdateChildApplicationContainer from './EduAdminUpdateChildApplicationContainer';
 import RegisteredChildrenQueueList from "../ChildrenRegistrationQue/RegisteredChildrenQueueList";
+import UpdateUserEmailContainer from '../UserData/UpdateUserEmailContainer';
+import HorizontalChart from '../Statistics/HorizontalChart';
 
 
 
@@ -95,12 +97,24 @@ const EduAdminRoutes = () => {
                 role={'EDU'}
             /> 
          
-            <PrivateRoute
+            {/* <PrivateRoute
                 path="/admin/edu/vaikai/:id/redaguoti"
                 exact
                 component={EduAdminUpdateChildApplicationContainer}
                 role={'EDU'}
-            /> 
+            />  */}
+               <PrivateRoute
+        path="/admin/edu/duomenys/redaguoti/pasta"
+        exact
+        component={UpdateUserEmailContainer}
+        role={'EDU'}
+      />
+                <PrivateRoute
+        path="/admin/edu/statistika"
+        exact
+        component={HorizontalChart}
+        role={'EDU'}
+      />
       <PrivateRoute
         path="/admin/edu/*"
         exact

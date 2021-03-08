@@ -224,11 +224,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
             : '';
         break;
 
-      case 'flatNumber':
-        errors.flatNumber = !value.match(numbers)
-          ? 'Įrašykite buto numerį, pvz: 2'
-          : '';
-        break;
+      // case 'flatNumber':
+      //   errors.flatNumber = !value.match(numbers)
+      //     ? 'Įrašykite buto numerį, pvz: 2'
+      //     : '';
+      //   break;
       case 'secondParentFirstname':
         errors.secondParentFirstname =
           !value.match(letters) || value.length < 2 || value.length === 0
@@ -272,11 +272,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
             : '';
         break;
 
-      case 'secondParentFlatNumber':
-        errors.secondParentFlatNumber = !value.match(numbers)
-          ? 'Įrašykite buto numerį, pvz: 2'
-          : '';
-        break;
+      // case 'secondParentFlatNumber':
+      //   errors.secondParentFlatNumber = !value.match(numbers)
+      //     ? 'Įrašykite buto numerį, pvz: 2'
+      //     : '';
+      //   break;
       case 'secondParentEmail':
         errors.secondParentEmail =
           validEmailRegex.test(value) || value.length === 0
@@ -598,7 +598,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                   className="form-control"
                   name="flatNumber"
                   onChange={this.handleChange}
-                  noValidate
+                 // noValidate
                 />
                 {/* {errors.flatNumber.length > 0 && (
                 <span className="error">{errors.flatNumber}</span>
@@ -631,10 +631,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
                 <label htmlFor="secondParent" className="form-check-label">
                   Pridėti antrąjį šio vaiko tėvą/globėją
                 </label>
+                <div className="mt-3 ml-0"><b>Pridėję antrąjį tėvą/globėją, vėliau jo duomenis galėsite redaguoti, bet pašalinti galima nebus.</b></div>
               </div>
               {this.state.secondParent ? (
                 <div className="form-row">
-               <div><b>Pridėję antrąjį tėvą/globėją, vėliau jo duomenis galėsite redaguoti, bet pašalinti galima nebus.</b></div>
+               {/* <div><b>Pridėję antrąjį tėvą/globėją, vėliau jo duomenis galėsite redaguoti, bet pašalinti galima nebus.</b></div> */}
                   <div className="form-group mb-3 col-6 mt-3">
                     <label
                       htmlFor="secondParentFirstname"
@@ -807,7 +808,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                       className="form-control"
                       name="secondParentFlatNumber"
                       onChange={this.handleChange}
-                      noValidate
+                      //noValidate
                     />
                     {/* {errors.secondParentFlatNumber.length > 0 && (
                     <span className="error">
@@ -1040,7 +1041,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     </div>
                   )}
                 </div>
-              ) : null}
+              ) : <div></div>}
 
               <div className="mt-3 form-group mb-3 col-6">
                 {' '}

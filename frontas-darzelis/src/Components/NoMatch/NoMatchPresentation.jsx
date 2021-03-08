@@ -27,7 +27,7 @@ const NoMatch = (props) => {
         </div>
       ) : currentRole === '[ADMIN]' ? (
         <div className=" m-5 text-center ">
-          Neteisingas maršrutas. <Link to="/admin/edu"> Atgal</Link> 
+          Neteisingas maršrutas. <Link to="/admin/pradzia"> Atgal</Link> 
         </div>
       ) : (
         <div className=" m-5 text-center ">Neteisingas maršrutas  <Link to="/login"> Grįžti į prisijungimo puslapį</Link></div>

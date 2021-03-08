@@ -11,7 +11,7 @@ export default class UpdateKindergartenFormContainer extends Component {
       address: '',
       spotsInFirstAgeGroup: '',
       spotsInSecondAgeGroup: '',
-
+      role: '',
       errors: {
         name: '',
         address: '',
@@ -24,15 +24,21 @@ export default class UpdateKindergartenFormContainer extends Component {
     console.log('component did mount update');
     axios
       .get(`${API}/api/kindergartens/${this.props.match.params.id}`)
-      .then((res) =>
+      .then((res) => {
         this.setState({
           id: res.data.id,
           name: res.data.name,
           address: res.data.address,
           spotsInFirstAgeGroup: res.data.spotsInFirstAgeGroup,
           spotsInSecondAgeGroup: res.data.spotsInSecondAgeGroup,
-        })
-      )
+        });
+        return axios.get(`${API}/api/users/loggedrole`);
+      })
+      .then((res) => {
+        this.setState({
+          role: res.data,
+        });
+      })
       .catch((err) => console.log(err));
     console.log(this.state);
   }
@@ -108,7 +114,13 @@ export default class UpdateKindergartenFormContainer extends Component {
         })
         .then((response) => {
           console.log(response);
-          this.props.history.push('/admin/edu/darzeliai');
+          if (this.state.role === 'EDU') {
+            alert('Atnaujinta!');
+            this.props.history.push('/admin/edu/darzeliai');
+          } else if (this.state.role === 'ADMIN') {
+            alert('Atnaujinta!');
+            this.props.history.push('/admin/darzeliai');
+          }
         })
 
         .catch((error) => {

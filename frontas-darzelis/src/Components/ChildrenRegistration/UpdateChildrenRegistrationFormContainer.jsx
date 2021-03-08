@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
-import '../../Style/style.css';
 import ModalComponentChildren from '../Modal/ModalComponentChildren';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '../../Style/style.css';
@@ -140,7 +139,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
         });
         console.log('vaiko id: ' + this.state.id);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.data));
   }
 
   deleteChild = (event) => {
@@ -233,11 +232,11 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
             : '';
         break;
 
-      case 'flatNumber':
-        errors.flatNumber = !value.match(numbers)
-          ? 'Įrašykite buto numerį, pvz: 2'
-          : '';
-        break;
+      // case 'flatNumber':
+      //   errors.flatNumber = !value.match(numbers)
+      //     ? 'Įrašykite buto numerį, pvz: 2'
+      //     : '';
+      //   break;
       case 'secondParentFirstname':
         errors.secondParentFirstname =
           !value.match(letters) || value.length < 2 || value.length === 0
@@ -281,11 +280,11 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
             : '';
         break;
 
-      case 'secondParentFlatNumber':
-        errors.secondParentFlatNumber = !value.match(numbers)
-          ? 'Įrašykite buto numerį, pvz: 2'
-          : '';
-        break;
+      // case 'secondParentFlatNumber':
+      //   errors.secondParentFlatNumber = !value.match(numbers)
+      //     ? 'Įrašykite buto numerį, pvz: 2'
+      //     : '';
+      //   break;
       case 'secondParentEmail':
         errors.secondParentEmail =
           validEmailRegex.test(value) || value.length === 0
@@ -448,6 +447,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
           <div className="mb-4">
             <h3>Atnaujinkite savo vaiko duomenis</h3>
           </div>
+          
           <form onSubmit={this.handleSubmit} className="form-row ">
             <div className="form-group mb-3 col-6">
               <label htmlFor="firstname" className="control-label">
@@ -624,10 +624,11 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
               <label htmlFor="secondParent" className="form-check-label">
                 Pridėti antrąjį šio vaiko tėvą/globėją
               </label>
+              <div className="mt-3 ml-0"><b>Pridėję antrąjį tėvą/globėją, vėliau jo duomenis galėsite redaguoti, bet pašalinti galima nebus.</b></div>
             </div>
             {this.state.secondParent ===true ? (
               <div className="form-row">
-                 <div><b>Pridėję antrąjį tėvą/globėją, vėliau jo duomenis galėsite redaguoti, bet pašalinti galima nebus.</b></div>
+                 {/* <div><b>Pridėję antrąjį tėvą/globėją, vėliau jo duomenis galėsite redaguoti, bet pašalinti galima nebus.</b></div> */}
                 <div className="form-group mb-3 col-6 mt-3">
                   <label
                     htmlFor="secondParentFirstname"
@@ -742,7 +743,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                       name="secondParentPersonalCode"
                       onChange={this.handleChange}
                       noValidate
-                       value={this.state.secondParentPersonalCode}
+                       //value={this.state.secondParentPersonalCode}
                     />
                     {errors.secondParentPersonalCode.length > 0 && (
                       <span className="error">
@@ -1086,7 +1087,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                   </div>
                 )}
               </div>
-            ) : <div> </div>}
+            ) :   <div></div>}
 
             <div className="mt-3 form-group mb-3 col-6">
               {' '}
@@ -1102,7 +1103,9 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
             </div>
           </form>
 
-          <div className="col text-center delete">
+          <div 
+          className="col text-center delete"
+          >
             <button
               //onClick={this.deleteChild}
               id="deleteChildData"
@@ -1120,6 +1123,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
               deleteChild={this.deleteChild}
             />
           </div>
+          
         </div>
       </div>
     );

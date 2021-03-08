@@ -113,7 +113,7 @@ onChange= {this.handleSearch}
 
             </tr>
           </thead>
-          <tbody>
+         
           {this.state.users.length > 0 ? (
             
               filteredUsers
@@ -134,6 +134,7 @@ onChange= {this.handleSearch}
             : 'nenurodyta';
 
         return (
+          <tbody>
           <tr key={id}>
             <th scope="row">{index + 1}</th>
             <td>{firstname}</td>
@@ -168,7 +169,7 @@ onChange= {this.handleSearch}
               />
             </td>
           </tr>
-        );
+        </tbody>);
       }
     )
               // {/* <UsersListTablePresentation
@@ -179,7 +180,7 @@ onChange= {this.handleSearch}
               // /> */}
             
           ) : <Loading/>}
-          </tbody>
+          
         </table>
       </div>
     );

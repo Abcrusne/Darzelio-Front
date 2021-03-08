@@ -11,7 +11,12 @@ import UsersListTableContainer from '../UsersListAdmin/UsersListTableContainer';
 import SysAdminLanding from './SysAdminLanding';
 import NotFoundPage from '../Utilities/NotFoundPage';
 import { SysAdminDashboard } from './SysAdminDashboard';
-import {ManageQueuesToKindergartens} from "./ManageQueuesToKindergartens";
+import { ManageQueuesToKindergartens } from './ManageQueuesToKindergartens';
+import UpdateUserDataFormContainer from '../UserData/UpdateUserDataFormContainer';
+import UserData from '../UserData/UserData';
+import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
+import UpdateUserEmailContainer from '../UserData/UpdateUserEmailContainer';
+import HorizontalChart from '../Statistics/HorizontalChart';
 
 export const AdminRoutes = () => {
   return (
@@ -67,7 +72,37 @@ export const AdminRoutes = () => {
           path="/admin/eiliutvarkymas"
           component={ManageQueuesToKindergartens}
           role={'ADMIN'}
-          />
+        />
+        <PrivateRoute
+          path="/admin/naudotojo-duomenys"
+          exact
+          component={UserData}
+          role={'ADMIN'}
+        />
+        <PrivateRoute
+          path="/admin/naudotojo-duomenys/redaguoti"
+          exact
+          component={UpdateUserDataFormContainer}
+          role={'ADMIN'}
+        />
+        <PrivateRoute
+          path="/admin/naudotojo-duomenys/redaguoti/slaptazodi"
+          exact
+          component={UpdateUserPasswordContainer}
+          role={'ADMIN'}
+        />
+        <PrivateRoute
+          path="/admin/naudotojo-duomenys/redaguoti/pasta"
+          exact
+          component={UpdateUserEmailContainer}
+          role={'ADMIN'}
+        />
+        <PrivateRoute
+          path="/admin/statistika"
+          exact
+          component={HorizontalChart}
+          role={'ADMIN'}
+        />
         <PrivateRoute
           path="/admin/*"
           exact
