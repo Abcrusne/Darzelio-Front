@@ -4,7 +4,7 @@ import axios from "axios";
 import {withRouter} from "react-router";
 
 import {API} from "../../Configuration/AppConfig";
-import PasswordChangeModal from "../Modal/PasswordChangeModal"
+import ParentPasswordChangeModal from "../Modal/ParentPasswordChangeModal"
 // import "../../Style/UsersLandings.css"
 import "../../Style/ParentLandingDashboard.css"
 
@@ -56,7 +56,7 @@ class ParentLandingDashboard extends Component {
                 {passwordChanged ? (''
                     ) :
                     (
-                        <PasswordChangeModal
+                        <ParentPasswordChangeModal
                         modalState={modalState}
                         onClick={this.handleShow}/>
                     )

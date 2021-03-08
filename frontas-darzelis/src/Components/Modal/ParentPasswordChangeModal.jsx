@@ -1,6 +1,6 @@
 import React from "react";
 
-const PasswordChangeModal = ({modalState, onClick}) => {
+const ParentPasswordChangeModal = ({modalState, onClick}) => {
 
     return (
         <div className={"modal fade" + (modalState ? " show d-block" : "d-none")} tabIndex="-1" role="dialog" id="myModal">
@@ -23,4 +23,4 @@ const PasswordChangeModal = ({modalState, onClick}) => {
         </div>
     )
 }
-export default PasswordChangeModal
+export default ParentPasswordChangeModal
