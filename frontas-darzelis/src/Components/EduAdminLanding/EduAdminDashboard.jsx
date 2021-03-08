@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {API} from "../../Configuration/AppConfig";
 import {ModalForStopRegToKindergButton} from "../Modal/ModalForStopRegToKindergButton";
+import EduPasswordChangeModal from "../Modal/EduPasswordChangeModal";
 
 const EduAdminDashboard = () => {
     const [littleGroupsRegistrations, setLittleGroupsRegistrations] = useState(null);
@@ -10,6 +11,8 @@ const EduAdminDashboard = () => {
     const [totalSpotsInBigGroups, setTotalSpotsInBigGroups] = useState(null);
     const [isLocked, setIsLocked] = useState('');
     const [isActive, setIsActive] = useState('');
+    const [passwordChanged, setPasswordChanged] = useState(true);
+    const [modalState, setModalState] = useState(true);
 
     useEffect(() => {
         fetchData();
@@ -26,6 +29,7 @@ const EduAdminDashboard = () => {
                 setTotalSpotsInBigGroups(response.data.spotsInSecondAgeGroups);
                 setIsLocked(response.data.locked);
                 setIsActive(response.data.active);
+                setPasswordChanged(response.data.passwordChanged);
             })
             .catch(error => console.log(error))
     }
@@ -53,8 +57,20 @@ const EduAdminDashboard = () => {
             .catch(error => console.log(error))
     }
 
+
+const handleModalShow = () => {
+    setModalState(false);
+}
+
     return (
         <div className='container mt-5'>
+            {passwordChanged ? (''
+                ) :
+                (
+                    <EduPasswordChangeModal
+                        modalState={modalState}
+                        onClick={handleModalShow}/>
+                )}
             <div className="row">
                 <div className="card col">
                     <div className="card-body">

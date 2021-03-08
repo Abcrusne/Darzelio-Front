@@ -9,7 +9,7 @@ export const StartStopButtonstoKindergRegistration = ({isActive, fetchData}) => 
 
     const handleStartClick = () => {
         axios
-            .post(`${API}/bean-app/api/kindergartens/admission/activate`)
+            .post(`${API}/api/kindergartens/admission/activate`)
             .then(() => {
                 fetchData();
                 alert('Sėkmingai paleista registracija į darželius.')
@@ -18,7 +18,7 @@ export const StartStopButtonstoKindergRegistration = ({isActive, fetchData}) => 
     }
     const handleStopClick = () => {
         axios
-            .post(`${API}/bean-app/api/kindergartens/admission/deactivate`)
+            .post(`${API}/api/kindergartens/admission/deactivate`)
             .then(()=> {
                 fetchData();
                 console.log()
