@@ -374,7 +374,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
         .then((response) => {
           console.log(response);
           alert('Vaiko duomenys atnaujinti sėkmingai');
-          this.props.history.push('/tevai/vaikai');
+          this.props.history.push(`/tevai/vaikai/registracijos/${this.props.match.params.id}`);
         })
 
         .catch((error) => {
