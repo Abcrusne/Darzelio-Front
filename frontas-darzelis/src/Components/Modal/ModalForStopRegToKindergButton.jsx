@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
-export const ModalForStopRegToKindergButton = ({onClick, QueId }) => {
+export const ModalForStopRegToKindergButton = ({onClick}) => {
 
     return(
         <div
@@ -35,9 +35,8 @@ export const ModalForStopRegToKindergButton = ({onClick, QueId }) => {
                             onClick={onClick}
                             type="button"
                             data-toggle="modal"
-                            className="btn btn-danger"
+                            className="btn"
                             data-dismiss="modal"
-                            // value={QueId}
                         >
                             Patvirtinti
                         </button>

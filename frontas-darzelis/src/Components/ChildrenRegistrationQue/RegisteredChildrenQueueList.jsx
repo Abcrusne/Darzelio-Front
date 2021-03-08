@@ -122,7 +122,7 @@ export default class RegisteredChildrenQueueList extends Component {
                 alert('Eilė patvirtinta sėkmingai')
             })
             .then(() => this.retrieveChildrenQueueList())
-            .catch(error => console.log(error))
+            .catch(error => alert('Sistema užrakinta. Kreipkitės į sistemos administratorių dėl atrakinimo.'))
     }
 
     render() {
@@ -204,7 +204,7 @@ export default class RegisteredChildrenQueueList extends Component {
                                             <ModalForChildQueueDeleteButton
                                                 childId={childId}
                                                 onClick={this.deleteChild}
-                                                firstName={firstname}
+                                                firstname={firstname}
                                                 lastname={lastname}
                                             />
                                         </td>

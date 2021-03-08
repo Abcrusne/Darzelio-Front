@@ -63,6 +63,8 @@ div .card {
     max-width: 450px;
     min-width: 180px;
     padding: 1em;
+    align-content: center;
+    vertical-align: center;
 }
 
 div {
@@ -117,7 +119,7 @@ a.btn:hover {
     vertical-align: bottom;
 }
 
-a.btn.active {
+a.btn:active {
     background-color: #1baaa0; /* lightseagreen */
     color: #ffffff;
     font-weight: bolder;
@@ -221,3 +223,5 @@ div h5.card-title {
     font-size: 2em;
     font-weight: bolder;
 }
+
+

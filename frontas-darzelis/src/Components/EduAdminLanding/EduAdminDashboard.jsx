@@ -36,7 +36,7 @@ const EduAdminDashboard = () => {
             .then((response) => {
                 console.log(response.data)
                 setIsActive(response.data);
-                alert('Sėkmingai paleista registracija į darželius.')
+                alert('Registracija į darželius paleista.')
             })
             .catch(error => console.log(error))
     }
@@ -47,7 +47,9 @@ const EduAdminDashboard = () => {
                 console.log(response.data)
                 setIsActive(response.data);
                 alert('Registracija į darželius sustabdyta.')
+                window.location.reload();
             })
+
             .catch(error => console.log(error))
     }
 
@@ -108,7 +110,6 @@ const EduAdminDashboard = () => {
                             className="mr-4 btn"
                             data-toggle="modal"
                             data-target={`#staticBackdrop`}
-                            onClick={handleStopClick}
                         >Stabdyti registraciją į darželius
                         </button>
                         <ModalForStopRegToKindergButton
