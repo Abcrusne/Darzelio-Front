@@ -23,3 +23,8 @@ button.btn a:active {
     border-radius: 8px;
     vertical-align: bottom;
 }
+
+div.card {
+    height: 100%;
+    width: 18rem;
+}

@@ -12,6 +12,7 @@ class ParentLandingDashboard extends Component {
         parentDetailsFilled: false,
         childRegistered: false,
         passwordChanged: true,
+        admissionActive: true,
         children: []
     }
 
@@ -26,6 +27,7 @@ class ParentLandingDashboard extends Component {
                     childRegistered: response.data.childRegistered,
                     children: response.data.children,
                     passwordChanged: response.data.passwordChanged,
+                    admissionActive: response.data.admissionActive
                 })
                 console.log(this.state.children)
             })
@@ -39,7 +41,8 @@ class ParentLandingDashboard extends Component {
             passwordChanged,
             parentDetailsFilled,
             childRegistered,
-            children
+            children,
+            admissionActive
         } = this.state
         return (
             <div className="mt-5 ml-3">
@@ -49,108 +52,128 @@ class ParentLandingDashboard extends Component {
                         <div className="alert alert-warning alert-dismissible fade show shadow rounded mb-5"
                              role="alert">
                             <strong>Dėmesio!</strong> Jūsų slaptažodis nesaugus, rekomenduojame
-                            <a href="/tevai/duomenys/redaguoti/slaptazodi" className="alert-link"> pasikeisti. </a>
-                            <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                            </button>
+                            <a href={`/tevai/duomenys/redaguoti/slaptazodi`} className="alert-link"> pasikeisti. </a>
+                            {/*<button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close">*/}
+                            {/*</button>*/}
+                        </div>
+                    )}
+                {admissionActive ? (''
+                    ) :
+                    (
+                        <div className="alert alert-warning alert-dismissible fade show shadow rounded mb-5"
+                             role="alert">
+                            <p><strong>DĖMESIO!</strong> Šiuo metu registracija į darželius negalima, bandykite vėliau.
+                            </p>
+                            <p>Apgailestaujame dėl nepatogumų.</p>
                         </div>
                     )}
                 <div>
                     <div className="row mb-3">
-                        <h5>Vaiko registracijos į darželius statusas</h5>
+                        <h3>Vaiko registracijos į darželius eiga ir statusas</h3>
                     </div>
 
-                    <div className="row">
+                    <div className="">
+
                         {/*Parent card + arrow*/}
-                        <div className="col-2">
-                            <div className="row mb-3">
+                        <div className="row equal mb-3 pb-3 pt-3 shadow-sm border-0 rounded d-flex align-items-center">
+                            <div className="d-flex">
                                 <div
                                     className="col-sm-9 card shadow-sm bg-white border-0 rounded m-auto">
-                                    <p>Tėvo (globėjo) anketa</p>
+                                    <h6>Tėvo (globėjo) anketa</h6>
                                     {!parentDetailsFilled ?
-                                        (<Link to="/tevai/registracija" className="btn">Pildyti</Link>) :
-                                        (<Link to="/tevai/registracija/redaguoti" className="btn">Redaguoti</Link>)}
+                                        (<Link to={`/tevai/registracija`} className="btn">Pildyti</Link>) :
+                                        (<Link to={`/tevai/registracija/redaguoti`} className="btn">Redaguoti</Link>)}
                                 </div>
-                                <div className="col-sm-3 d-flex align-items-center arrow  m-auto">
+                                <div className="col-sm-3 d-flex arrow  m-auto">
                                     <i className="fas fa-chevron-right "></i>
                                 </div>
                             </div>
                         </div>
+
                         {/*Child cards + arrows*/}
                         {childRegistered ? (
                                 children.map(child =>
                                     // <div className="col-10">
-                                        <div className="row equal mb-3">
+                                    <div
+                                        className="row equal mb-3 pb-3 pt-3 shadow-sm border-0 rounded d-flex align-content-stretch">
 
-                                            <div className="col-12">
-                                                <h5>Vaikas:
-                                                    {' ' + child.firstname + ' ' + child.lastname + ' '} </h5>
-                                            </div>
-                                            <div
-                                                className="col-sm-2 d-flex pb-3 card
+                                        <div className="col-12">
+                                            <h5>Vaikas:
+                                                {' ' + child.firstname + ' ' + child.lastname + ' '} </h5>
+                                        </div>
+                                        <div
+                                            className="col-sm-2 d-flex pb-3 card
                                         shadow-sm bg-white border-0 rounded m-auto">
-                                                <p>Vaiko
-                                                    {/*<em>{' ' + child.firstname + ' ' + child.lastname + ' '} </em>*/}
-                                                    duomenų anketa</p>
-                                                <button className="btn" >
-                                                    <a href={`/tevai/vaikai/${child.childId}`}>Redaguoti</a>
-                                                </button>
-                                            </div>
-                                            <div className="col-sm-2 d-flex pb-3 arrow  m-auto">
-                                                <i className="fas fa-chevron-right"></i>
-                                            </div>
-                                            <div
-                                                className="col-sm-2 d-flex pb-3 card
+                                            <h6>Vaiko duomenų anketa</h6>
+                                            <button className="btn">
+                                                <a href={`/tevai/vaikai/${child.childId}`}>Redaguoti</a>
+                                            </button>
+                                        </div>
+                                        <div className="col-sm-2 d-flex pb-3 arrow  m-auto">
+                                            <i className="fas fa-chevron-right"></i>
+                                        </div>
+                                        <div
+                                            className="col-sm-2 d-flex pb-3 card
                                         shadow-sm bg-white border-0 rounded m-auto">
-                                                <p>Prašymas registruoti į darželį</p>
-                                                {child.applicationFilled ?
-                                                    (<button className="btn">
-                                                        <a href={`/tevai/vaikai/registracijos/${child.childId}`}>Redaguoti</a>
-                                                    </button>) :
-                                                    (<button className="btn" disabled={!childRegistered}>
-                                                        <a href="/tevai/registracija-i-darzeli" disabled={!childRegistered}>Pildyti</a>
-                                                    </button>)}
-                                            </div>
-                                            <div className="col-sm-2 d-flex pb-3 arrow  m-auto">
-                                                <i className="fas fa-chevron-right"></i>
-                                            </div>
-                                            <div
-                                                className="col-sm-2 d-flex pb-3 card
+                                            <h6>Prašymas registruoti į darželį</h6>
+                                            {child.applicationFilled ?
+                                                (<button className="btn">
+                                                    <a href={`tevai/vaikai/registracijos/${child.childId}`}>Redaguoti</a>
+                                                </button>) :
+                                                (<a href={`/tevai/registracija-i-darzeli`}
+                                                    className={childRegistered ? "btn" : "btn disabled"}>Pildyti</a>)
+                                            }
+                                        </div>
+                                        <div className="col-sm-2 d-flex pb-3 arrow  m-auto">
+                                            <i className="fas fa-chevron-right"></i>
+                                        </div>
+                                        <div
+                                            className="col-sm-2 d-flex pb-3 card
                                             shadow-sm bg-white border-0 rounded m-auto">
-                                                <p>Prašymo statusas:
-                                                    <strong>{child.applicationAccepted ? " priimtas" : "nepriimtas"}</strong>
-                                                </p>
-                                            </div>
-                                            <div className="col-sm-2 d-flex pb-3 arrow m-auto">
-                                                <i className="fas fa-chevron-right"></i>
-                                            </div>
+                                            <h6>Prašymo statusas</h6>
+                                            <p><strong>{child.applicationAccepted ? " prašymas priimtas" : " prašymas nepriimtas"}</strong></p>
+                                        </div>
+                                        <div className="col-sm-2 d-flex pb-3 arrow m-auto">
+                                            <i className="fas fa-chevron-right"></i>
+                                        </div>
+                                        {child.applicationFilled ? (
                                             <div
                                                 className="col-sm-2 d-flex pb-3 card
 													shadow-sm bg-white border-0 rounded m-auto">
+                                                <h6>Vaiko registracijos į darželį statusas</h6>
                                                 {!child.applicationAccepted ?
-                                                    (<p>(child.notAcceptedReason)</p>): (child.acceptedKindergarten !== null? (<p>
-                                                        {/*{child.firstname} {child.lastname} */}
-                                                        pateko
-                                                        į <strong>{child.acceptedKindergarten}</strong> darželį</p>):
-                                                    (<div>
-                                                        <p>Vaiko vieta eilėje darželiuose pagal prioritetus:</p>
-                                                        <ol type="1">
-                                                            <li>{child.firstPriority}: {child.placeInFirstPriority} vieta</li>
-                                                            <li>{child.secondPriority}: {child.placeInSecondPriority} vieta</li>
-                                                            <li>{child.thirdPriority}: {child.placeInThirdPriority} vieta</li>
-                                                            <li>{child.fourthPriority}: {child.placeInFourthPriority} vieta</li>
-                                                            <li>{child.fifthPriority}: {child.placeInFifthPriority} vieta</li>
-                                                        </ol>
-                                                    </div>))
+                                                    (
+                                                        <p>{child.notAcceptedReason}</p>) : (child.acceptedKindergarten !== null ?
+                                                        (<p>pateko
+                                                            į <strong>{child.acceptedKindergarten}</strong> darželį</p>) :
+                                                        (<div>
+                                                            <p>Vaiko vieta eilėje darželiuose pagal prioritetus:</p>
+                                                            <ol type="1">
+                                                                {child.fifthPriority ? (
+                                                                    <li>{child.firstPriority}: {child.placeInFirstPriority} vieta</li>) : ''}
+                                                                {child.secondPriority ? (
+                                                                    <li>{child.secondPriority}: {child.placeInSecondPriority} vieta</li>) : ''}
+                                                                {child.thirdPriority ? (
+                                                                    <li>{child.thirdPriority}: {child.placeInThirdPriority} vieta</li>) : ''}
+                                                                {child.fourthPriority ? (
+                                                                    <li>{child.fourthPriority}: {child.placeInFourthPriority} vieta</li>) : ''}
+                                                                {child.fifthPriority ? (
+                                                                    <li>{child.fifthPriority}: {child.placeInFifthPriority} vieta</li>) : ''}
+                                                            </ol>
+                                                        </div>))
                                                 }
                                             </div>
-                                        </div>
+                                        ) : ("")}
 
-                            )) :
-                            (<div className="row equal mb-3">
+                                    </div>
+                                )) :
+                            (<div
+                                className="row equal mb-3 pb-3 pt-3 shadow-sm border-0 rounded d-flex align-content-stretch">
                                 <div
                                     className="col-sm-2 d-flex pb-3 card shadow-sm bg-white border-0 rounded m-auto">
                                     <p>Vaiko duomenų anketa</p>
-                                    <Link to="/tevai/vaikoregistracija" className="btn" disabled={!parentDetailsFilled}>Pildyti</Link>
+                                    <Link to={`/tevai/vaikoregistracija`}
+                                          className={parentDetailsFilled ? "btn" : "btn disabled"}>Pildyti</Link>
                                 </div>
                                 <div
                                     className="col-sm-2 d-flex pb-3 d-flex align-items-center arrow  m-auto">
@@ -159,9 +182,8 @@ class ParentLandingDashboard extends Component {
                                 <div
                                     className="col-sm-2 d-flex pb-3 card shadow-sm bg-white border-0 rounded m-auto">
                                     <p>Prašymas registruoti į darželį</p>
-                                    <button className="btn" disabled={!childRegistered}>
-                                        <a href="tevai/registracija-i-darzeli">Pildyti</a>
-                                    </button>
+                                    <a href={`/api/apitevai/registracija-i-darzeli`}
+                                       className={childRegistered ? "btn" : "btn disabled"}>Pildyti</a>
                                 </div>
                                 <div
                                     className="col-sm-2 d-flex pb-3 align-items-center arrow  m-auto">
@@ -180,10 +202,9 @@ class ParentLandingDashboard extends Component {
                                     <p>Vaiko vieta eilėje</p>
                                 </div>
                             </div>)}
-                        <div className="col-12 mt-2 ml-2 card shadow-sm bg-white border-0 rounded">
-                            <button className="btn" disabled={!parentDetailsFilled}>
-                                <a href="tevai/vaikoregistracija">Pridėti dar vieną vaiką</a>
-                            </button>
+                        <div className="col-12 mt-2 ml-2">
+                            <a href={`/api/tevai/vaikoregistracija`}
+                               className={parentDetailsFilled ? "btn" : "btn disabled"}>Pridėti dar vieną vaiką</a>
                         </div>
                     </div>
                 </div>
