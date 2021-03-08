@@ -120,7 +120,7 @@ export default class UpdateUserEmailContainer extends Component {
         )
         .then((response) => {
           console.log(response);
-          alert('Duomenys atnaujinti sėkmingai!');
+          alert('Duomenys atnaujinti sėkmingai! Dabar turėsite prie sistemos prisijungti iš naujo su pakeistu el.paštu.');
           if (this.state.role === 'PARENT') {
             this.props.history.push('/login');
           } else if (this.state.role === 'EDU') {
