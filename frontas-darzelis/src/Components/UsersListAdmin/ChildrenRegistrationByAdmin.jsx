@@ -94,6 +94,10 @@ export default class ChildrenRegistrationByAdmin extends Component {
         this.setState({
           parentId: res.data.id,
           userId: this.props.match.params.id,
+          city: res.data.city,
+          street: res.data.street,
+          houseNumber: res.data.houseNumber,
+          flatNumber: res.data.flatNumber,
         })
         console.log("parentId "+ this.state.parentId);
         console.log("userId "+ this.state.userId);
@@ -495,6 +499,7 @@ export default class ChildrenRegistrationByAdmin extends Component {
                   placeholder="Miestas"
                   className="form-control"
                   name="city"
+                  value={this.state.city}
                   onChange={this.handleChange}
                   noValidate
                 />
@@ -511,6 +516,7 @@ export default class ChildrenRegistrationByAdmin extends Component {
                   placeholder="Gatvė"
                   className="form-control"
                   name="street"
+                  value={this.state.street}
                   onChange={this.handleChange}
                   noValidate
                 />
@@ -528,6 +534,7 @@ export default class ChildrenRegistrationByAdmin extends Component {
                   placeholder="Namo numeris"
                   className="form-control"
                   name="houseNumber"
+                  value={this.state.houseNumber}
                   onChange={this.handleChange}
                   noValidate
                 />
@@ -545,6 +552,7 @@ export default class ChildrenRegistrationByAdmin extends Component {
                   placeholder="Butas"
                   className="form-control"
                   name="flatNumber"
+                  value={this.state.flatNumber}
                   onChange={this.handleChange}
                   // noValidate
                 />

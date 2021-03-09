@@ -120,6 +120,10 @@ export default class ChildrenRegistrationFormContainer extends Component {
       .then((res) => {
         this.setState({
           parentId: res.data.id,
+          city: res.data.city,
+          street: res.data.street,
+          houseNumber: res.data.houseNumber,
+          flatNumber: res.data.flatNumber,
         });
         console.log('parent id: ' + this.state.parentId);
 
@@ -547,6 +551,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                   placeholder="Miestas"
                   className="form-control"
                   name="city"
+                  value={this.state.city}
                   onChange={this.handleChange}
                   noValidate
                 />
@@ -563,6 +568,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                   placeholder="Gatvė"
                   className="form-control"
                   name="street"
+                  value={this.state.street}
                   onChange={this.handleChange}
                   noValidate
                 />
@@ -581,6 +587,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                   className="form-control"
                   name="houseNumber"
                   onChange={this.handleChange}
+                  value={this.state.houseNumber}
                   noValidate
                 />
                 {errors.houseNumber.length > 0 && (
@@ -597,6 +604,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                   placeholder="Butas"
                   className="form-control"
                   name="flatNumber"
+                  value={this.state.flatNumber}
                   onChange={this.handleChange}
                  // noValidate
                 />
