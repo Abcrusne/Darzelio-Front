@@ -17,6 +17,7 @@ import KindergartenListTableContainer from './Components/KindergartenList/Kinder
 import KindergartenRegistrationContainer from './Components/KindergartenList/KindergartenRegistrationContainer';
 import UpdateKindergartenFormContainer from './Components/KindergartenList/UpdateKindergartenFormContainer';
 import { ManageQueuesToKindergartens } from './Components/SysAdminLanding/ManageQueuesToKindergartens';
+import RegistrationToSystem from './Components/RegistrationToSystem/RegistrationToSystem';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route path="/login" component={LandingPage} />
+          <Route path="/registracija" component={RegistrationToSystem} />
           <PrivateRoute
             exact
             path="/tevai"

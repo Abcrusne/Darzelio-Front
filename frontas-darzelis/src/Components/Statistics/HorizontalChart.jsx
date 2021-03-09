@@ -169,8 +169,10 @@ sorted.map(({ kindergartenName, firstPriorityRegistrations }) => {
                 <p className="card-text">Nėra vaikų laukiančiųjų eilėje </p>
               )}
               <h6 className="card-subtitle mb-2 text-muted">
-                Laukiantieji eilėje į darželį 2-3m. amžiaus vaikų grupėse
+                Laukiantieji vaikai eilėje į darželį 2-3m. amžiaus vaikų grupėse
               </h6>
+              <br/>
+              
             </div>
           </div>
           <div className="card col">
@@ -185,6 +187,7 @@ sorted.map(({ kindergartenName, firstPriorityRegistrations }) => {
               <h6 className="card-subtitle mb-2 text-muted">
                 Laukiantieji vaikai eilėje į darželį 3-6m. amžiaus vaikų grupėse
               </h6>
+              <br/>
             </div>
           </div>
         </div>
