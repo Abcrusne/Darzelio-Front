@@ -223,6 +223,54 @@ function App() {
             component={SysAdminLanding}
             role={'ADMIN'}
           />
+           <PrivateRoute
+          path="/admin/duomenys/:id"
+          exact
+          component={SysAdminLanding}
+          role={'ADMIN'}
+        />
+           <PrivateRoute
+          path="/admin/duomenys/tevo/:id"
+          exact
+          component={SysAdminLanding}
+          role={'ADMIN'}
+        />
+            <PrivateRoute
+          path="/admin/duomenys/vaikai/:id"
+          exact
+          component={SysAdminLanding}
+          role={'ADMIN'}
+        />
+        <PrivateRoute
+          path="/admin/:id/vaikai/:id"
+          exact
+          component={SysAdminLanding}
+          role={'ADMIN'}
+        />
+             <PrivateRoute
+          path="/admin/:id/vaikai/registracijos/:type"
+          exact
+          component={SysAdminLanding}
+          role={'ADMIN'}
+        />
+          <PrivateRoute
+          path="/admin/vaiko-registracija/:id"
+          exact
+          component={SysAdminLanding}
+          role={'ADMIN'}
+        />
+            <PrivateRoute
+          path="/admin/:id/registracija-i-darzeli/:type"
+          exact
+          component={SysAdminLanding}
+          role={'ADMIN'}
+        />
+            <PrivateRoute
+          path="/admin/tevo-registracija/:id"
+          exact
+          component={SysAdminLanding}
+          role={'ADMIN'}
+        />
           <Route path="*" component={NoMatch} />
           <Route component={NoMatch} />
         </Switch>

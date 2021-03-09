@@ -12,6 +12,8 @@ const UsersListTablePresentation = ({ users, deleteUser, searchTerm }) => {
             ? 'Tėvas/Globėjas'
             : role === 'EDU'
             ? 'Švietimo specialistas'
+            : role ==="ADMIN"
+            ? "Sistemos administratorius"
             : 'Nenurodyta';
 
         const markedForDeletionLt =
@@ -56,6 +58,8 @@ const UsersListTablePresentation = ({ users, deleteUser, searchTerm }) => {
             ? 'Tėvas/Globėjas'
             : role === 'EDU'
             ? 'Švietimo specialistas'
+            : role ==="ADMIN"
+            ? "Sistemos administratorius"
             : 'Nenurodyta';
 
         const markedForDeletionLt =

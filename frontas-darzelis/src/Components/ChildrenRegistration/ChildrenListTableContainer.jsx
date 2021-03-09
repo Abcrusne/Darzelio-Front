@@ -79,7 +79,7 @@ export default class ChildrenListTableContainer extends Component {
             <tbody>
               <ChildrenListTablePresentation
                 children={this.state.children}
-                deleteChild={this.state.deleteChild}
+                //deleteChild={this.state.deleteChild}
               />
             </tbody>
             {/* )}  */}

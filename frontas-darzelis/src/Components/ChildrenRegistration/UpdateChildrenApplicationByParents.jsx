@@ -140,7 +140,7 @@ export default class UpdateChildrenApplicationByParents extends Component {
                     {this.state.kindergartens.map((kindergarten, index) => {
                       return (
                         <option key={index} value={kindergarten.name}>
-                          {kindergarten.name}
+                          {kindergarten.name}, {kindergarten.address}
                         </option>
                       );
                     })}
@@ -166,7 +166,7 @@ export default class UpdateChildrenApplicationByParents extends Component {
                     {this.state.kindergartens.map((kindergarten, index) => {
                       return (
                         <option key={index} value={kindergarten.name}>
-                          {kindergarten.name}
+                          {kindergarten.name}, {kindergarten.address}
                         </option>
                       );
                     })}
@@ -192,7 +192,7 @@ export default class UpdateChildrenApplicationByParents extends Component {
                     {this.state.kindergartens.map((kindergarten, index) => {
                       return (
                         <option key={index} value={kindergarten.name}>
-                          {kindergarten.name}
+                          {kindergarten.name}, {kindergarten.address}
                         </option>
                       );
                     })}
@@ -218,7 +218,7 @@ export default class UpdateChildrenApplicationByParents extends Component {
                     {this.state.kindergartens.map((kindergarten, index) => {
                       return (
                         <option key={index} value={kindergarten.name}>
-                          {kindergarten.name}
+                          {kindergarten.name}, {kindergarten.address}
                         </option>
                       );
                     })}
@@ -244,7 +244,7 @@ export default class UpdateChildrenApplicationByParents extends Component {
                     {this.state.kindergartens.map((kindergarten, index) => {
                       return (
                         <option key={index} value={kindergarten.name}>
-                          {kindergarten.name}
+                          {kindergarten.name}, {kindergarten.address}
                         </option>
                       );
                     })}
