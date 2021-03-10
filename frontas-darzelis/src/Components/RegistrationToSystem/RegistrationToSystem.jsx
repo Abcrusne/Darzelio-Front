@@ -9,9 +9,9 @@ export default class RegistrationToSystem extends Component {
       firstname: '',
       lastname: '',
       email: '',
-      role: 'PARENT',
-      markedForDeletion: false,
-      password: '',
+      // role: 'PARENT',
+      // markedForDeletion: false,
+      // password: '',
 
       //   confirmPassword: '',
 
@@ -34,7 +34,7 @@ export default class RegistrationToSystem extends Component {
     const errors = this.state.errors;
     const letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ -]+$/;
     //min 1 lowercase letter, min 1 uppercase letter,min 1 number, length min=8
-    const newPasswordValidation = /^(?=.*[a-ząčęėįšųūž])(?=.*[A-ZĄČĘĖĮŠŲŪŽ])(?=.*\d)[a-ząčęėįšųūžA-ZĄČĘĖĮŠŲŪŽ\d]{8,}$/;
+    //const newPasswordValidation = /^(?=.*[a-ząčęėįšųūž])(?=.*[A-ZĄČĘĖĮŠŲŪŽ])(?=.*\d)[a-ząčęėįšųūžA-ZĄČĘĖĮŠŲŪŽ\d]{8,}$/;
 
     switch (name) {
       case 'firstname':
@@ -85,12 +85,12 @@ export default class RegistrationToSystem extends Component {
     const outputUser = {
       email: this.state.email,
       firstname: this.state.firstname,
-      id: this.state.id,
+      // id: this.state.id,
       lastname: this.state.lastname,
-      role: this.state.role,
-      password: this.state.firstname,
+      // role: this.state.role,
+      // password: this.state.firstname,
       //   password: this.state.confirmPassword,
-      markedForDeletion: this.state.markedForDeletion,
+      //markedForDeletion: this.state.markedForDeletion,
     };
     const validateForm = (errors) => {
       let valid = true;
@@ -103,10 +103,10 @@ export default class RegistrationToSystem extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(API + '/api/users', outputUser)
+        .post(API + '/api/users/register', outputUser)
         .then((response) => {
           alert(
-            'Registracija sėkminga! Prisijungimo slaptažodis išsiųstas el.paštu'
+            'Registracija sėkminga! Prisijungimo duomenys išsiųsti el.paštu'
           );
           this.props.history.push('/login');
         })
