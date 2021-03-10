@@ -40,10 +40,9 @@ const LoginFormPresentation = ({email, password, onPasswdChange, onEmailChange, 
                         value={password}
                         required/>
                 </div>
-                {/*<div className="mb-3 form-check">*/}
-                {/*    <input type="checkbox" className="form-check-input" id="prisiminti" required/>*/}
-                {/*    <label className="form-check-label" htmlFor="prisiminti">Prisiminti mane</label>*/}
-                {/*</div>*/}
+                <div className="mb-3">
+                    <Link className="btn btn-link" to="/atstatytiSlaptazodi">Pamiršau slaptažodį</Link>
+                </div>
                 <div className="align-items-center">
                     <button type="submit" className="mr-4 btn">Prisijungti</button>
                     <Link className="btn btn-link" to="/registracija">Naujo vartotojo registracija</Link>

@@ -131,11 +131,11 @@ class ParentLandingDashboard extends Component {
                                         shadow-sm bg-white border-0 rounded m-auto">
                                             <h6>Prašymas registruoti į darželį</h6>
                                             {child.applicationFilled ?
-                                                (<button className="btn">
-                                                    <a href={`/bean-apptevai/vaikai/registracijos/${child.childId}`} className={admissionActive ? "btn" : "btn disabled"}>Redaguoti</a>
-                                                </button>) :
+                                                (<a href={`/bean-apptevai/vaikai/registracijos/${child.childId}`}
+                                                    className={admissionActive ? "btn" : "btn disabled"}>Redaguoti</a>) :
                                                 (<a href={`/bean-app/tevai/registracija-i-darzeli`}
-                                                    className={childRegistered || admissionActive ? "btn" : "btn disabled"}>Pildyti</a>)
+                                                    className={childRegistered || admissionActive ? "btn" :
+                                                        "btn disabled"}>Pildyti</a>)
                                             }
                                         </div>
                                         <div className="col-sm-2 d-flex pb-3 arrow  m-auto">
@@ -145,7 +145,9 @@ class ParentLandingDashboard extends Component {
                                             className="col-sm-2 d-flex pb-3 card
                                             shadow-sm bg-white border-0 rounded m-auto">
                                             <h6>Prašymo statusas</h6>
-                                            <p><strong>{child.applicationAccepted ? " prašymas priimtas" : (child.applicationFilled ? " prašymas nepriimtas" : " ")}</strong></p>
+                                            <p><strong>{child.applicationAccepted ? " prašymas priimtas" :
+                                                (child.applicationFilled ? " prašymas nepriimtas" : " ")}
+                                            </strong></p>
                                         </div>
                                         <div className="col-sm-2 d-flex pb-3 arrow m-auto">
                                             <i className="fas fa-chevron-right"></i>
@@ -163,7 +165,7 @@ class ParentLandingDashboard extends Component {
                                                         (<div>
                                                             <p>Vaiko vieta eilėje darželiuose pagal prioritetus:</p>
                                                             <ol type="1">
-                                                                {child.fifthPriority ? (
+                                                                {child.firstPriority ? (
                                                                     <li>{child.firstPriority}: {child.placeInFirstQueue} vieta</li>) : ''}
                                                                 {child.secondPriority ? (
                                                                     <li>{child.secondPriority}: {child.placeInSecondQueue} vieta</li>) : ''}

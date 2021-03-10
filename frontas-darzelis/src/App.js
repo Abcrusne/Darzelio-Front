@@ -2,22 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 //our imports
-import RegistrationFormContainer from './Components/Registration/RegistrationFormContainer';
-import RegistrationSuccessPresentation from './Components/Registration/RegistrationSuccessPresentation';
 import EduAdminLanding from './Components/EduAdminLanding/EduAdminLanding';
 import LandingPage from './Components/LandingPage';
-import UsersListTableContainer from './Components/UsersListAdmin/UsersListTableContainer';
 import NoMatch from './Components/NoMatch/NoMatchPresentation';
-import UpdateUserFormContainer from './Components/UsersListAdmin/UpdateUserFormContainer';
 import SysAdminLanding from './Components/SysAdminLanding/SysAdminLanding';
 import PrivateRoute from './Configuration/PrivateRoute';
-import NextPage from './Components/ChildrenRegistration/NextPage';
 import ParentLanding from './Components/ParentLanding/ParentLanding';
 import KindergartenListTableContainer from './Components/KindergartenList/KindergartenListTableContainer';
 import KindergartenRegistrationContainer from './Components/KindergartenList/KindergartenRegistrationContainer';
 import UpdateKindergartenFormContainer from './Components/KindergartenList/UpdateKindergartenFormContainer';
-import { ManageQueuesToKindergartens } from './Components/SysAdminLanding/ManageQueuesToKindergartens';
 import RegistrationToSystem from './Components/RegistrationToSystem/RegistrationToSystem';
+import PasswordReminder from "./Components/Login/ResetPassword/PasswordReminder";
+import AddNewPassword from "./Components/Login/ResetPassword/AddNewPassword";
 
 function App() {
   return (
@@ -27,6 +23,8 @@ function App() {
           <Route exact path="/" component={LandingPage} />
           <Route path="/login" component={LandingPage} />
           <Route path="/registracija" component={RegistrationToSystem} />
+          <Route exact path="/atstatytiSlaptazodi" component={PasswordReminder} />
+          <Route exact path="/keistislaptazodi" component={AddNewPassword}/>
           <PrivateRoute
             exact
             path="/tevai"
