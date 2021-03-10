@@ -132,7 +132,7 @@ class ParentLandingDashboard extends Component {
                                             <h6>Prašymas registruoti į darželį</h6>
                                             {child.applicationFilled ?
                                                 (<button className="btn">
-                                                    <a href={`/bean-apptevai/vaikai/registracijos/${child.childId}`} className={admissionActive ? "btn" : "btn disabled"}>Redaguoti</a>
+                                                    <a href={`/bean-app/tevai/vaikai/registracijos/${child.childId}`} className={admissionActive ? "btn" : "btn disabled"}>Redaguoti</a>
                                                 </button>) :
                                                 (<a href={`/bean-app/tevai/registracija-i-darzeli`}
                                                     className={childRegistered || admissionActive ? "btn" : "btn disabled"}>Pildyti</a>)
