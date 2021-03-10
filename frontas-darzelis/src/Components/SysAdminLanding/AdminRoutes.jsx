@@ -26,6 +26,7 @@ import UpdateChildApplicationByAdmin from '../UsersListAdmin/UpdateChildApplicat
 import ChildrenRegistrationByAdmin from '../UsersListAdmin/ChildrenRegistrationByAdmin';
 import ChildRegistrationToKindergartenByAdmin from '../UsersListAdmin/ChildRegistrationToKindergartenByAdmin';
 import ParentRegistrationByAdmin from '../UsersListAdmin/ParentRegistrationByAdmin';
+import UserLogsList from '../Logs/UserLogsList';
 
 export const AdminRoutes = () => {
   return (
@@ -160,6 +161,12 @@ export const AdminRoutes = () => {
           path="/admin/tevo-registracija/:id"
           exact
           component={ParentRegistrationByAdmin}
+          role={'ADMIN'}
+        />
+           <PrivateRoute
+          path="/admin/logs"
+          exact
+          component={UserLogsList}
           role={'ADMIN'}
         />
         <PrivateRoute
