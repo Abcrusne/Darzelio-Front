@@ -3,14 +3,14 @@ import { Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
 //our imports
-import PrivateRoute from "../../Configuration/PrivateRoute";
-import ParentLandingDashboard from "./ParentLandingDashboard";
-import ParentUserdata from "./ParentUserdata";
-import ParentRegistrationFormContainer from "../ParentRegistration/ParentRegistrationFormContainer";
-import ChildrenRegistrationFormContainer from "../ChildrenRegistration/ChildrenRegistrationFormContainer";
-import MainRegistrationContainer from "../MainRegistration/MainRegistrationContainer";
-import NotFoundPage from "../Utilities/NotFoundPage";
-import UpdateParentRegistrationFormContainer from "../ParentRegistration/UpdateParentRegistrationFormContainer";
+import PrivateRoute from '../../Configuration/PrivateRoute';
+import ParentLandingDashboard from './ParentLandingDashboard';
+import ParentUserdata from './ParentUserdata';
+import ParentRegistrationFormContainer from '../ParentRegistration/ParentRegistrationFormContainer';
+import ChildrenRegistrationFormContainer from '../ChildrenRegistration/ChildrenRegistrationFormContainer';
+import MainRegistrationContainer from '../MainRegistration/MainRegistrationContainer';
+import NotFoundPage from '../Utilities/NotFoundPage';
+import UpdateParentRegistrationFormContainer from '../ParentRegistration/UpdateParentRegistrationFormContainer';
 import NextPage from '../ChildrenRegistration/NextPage';
 
 import UpdateUserDataFormContainer from '../UserData/UpdateUserDataFormContainer';
@@ -22,8 +22,8 @@ import UpdateChildrenRegistrationFormContainer from '../ChildrenRegistration/Upd
 import UpdateChildrenApplicationByParents from '../ChildrenRegistration/UpdateChildrenApplicationByParents';
 import ChildrenPdfTable from '../UploadPDF/ChildrenPdfTable';
 import UpdateUserEmailContainer from '../UserData/UpdateUserEmailContainer';
-import HorizontalChart  from '../Statistics/HorizontalChart';
-
+import HorizontalChart from '../Statistics/HorizontalChart';
+import ConditionsPage from '../Conditions/ConditionsPage';
 
 const ParentRoutes = () => {
   return (
@@ -88,46 +88,52 @@ const ParentRoutes = () => {
         component={UpdateUserPasswordContainer}
         role={'PARENT'}
       />
-       <PrivateRoute
+      <PrivateRoute
         path="/tevai/ikelti"
         exact
         component={UploadPdfContainer}
         role={'PARENT'}
       />
-       <PrivateRoute
+      <PrivateRoute
         path="/tevai/vaikai"
         exact
         component={ChildrenListTableContainer}
         role={'PARENT'}
       />
-       <PrivateRoute
+      <PrivateRoute
         path="/tevai/vaikai/:id"
         exact
         component={UpdateChildrenRegistrationFormContainer}
         role={'PARENT'}
-      /> 
-        <PrivateRoute
+      />
+      <PrivateRoute
         path="/tevai/vaikai/registracijos/:id"
         exact
         component={UpdateChildrenApplicationByParents}
         role={'PARENT'}
-      /> 
-         <PrivateRoute
+      />
+      <PrivateRoute
         path="/tevai/pazymos/"
         exact
         component={ChildrenPdfTable}
         role={'PARENT'}
-      /> 
+      />
       <PrivateRoute
         path="/tevai/duomenys/redaguoti/pasta"
         exact
         component={UpdateUserEmailContainer}
         role={'PARENT'}
       />
-       <PrivateRoute
+      <PrivateRoute
         path="/tevai/statistika"
         exact
         component={HorizontalChart}
+        role={'PARENT'}
+      />
+      <PrivateRoute
+        path="/tevai/salygos"
+        exact
+        component={ConditionsPage}
         role={'PARENT'}
       />
       <PrivateRoute

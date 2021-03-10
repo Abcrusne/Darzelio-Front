@@ -5,7 +5,7 @@ import '../../Style/style.css';
 import { NavLink } from 'react-router-dom';
 import UserService from '../../Configuration/UserService';
 //import UpdateParentRegistrationFormContainer from './UpdateParentRegistrationFormContainer';
-
+import { Link } from 'react-router-dom';
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
 
 export default class ParentRegistrationFormContainer extends Component {
@@ -32,6 +32,8 @@ export default class ParentRegistrationFormContainer extends Component {
       declaredStreet: '',
       declaredHouseNumber: '',
       declaredFlatNumber: '',
+
+      agree: false,
 
       errors: {
         firstname: '',
@@ -236,11 +238,13 @@ export default class ParentRegistrationFormContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(`${API}/api/users/${this.state.id}/parentdetails`, inputParent
-        // ,
-        // {
-        //   headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-        // }
+        .post(
+          `${API}/api/users/${this.state.id}/parentdetails`,
+          inputParent
+          // ,
+          // {
+          //   headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+          // }
         )
         .then((response) => {
           console.log(response);
@@ -641,12 +645,33 @@ export default class ParentRegistrationFormContainer extends Component {
                 </div>
               </div>
             )}
+            <div className="ml-4 form-check mb-3 col-12">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                name="agree"
+                checked={this.state.agree}
+                onChange={this.handleChange}
+                required
+                onInvalid={(e) => {
+                  e.target.setCustomValidity('Su sąlygomis sutikti būtina!');
+                }}
+                onInput={(e) => e.target.setCustomValidity('')}
+              />
+              <label htmlFor="agree" className="form-check-label">
+                <b>
+                  Sutinku su sąlygomis <Link to="/tevai/salygos"> Sąlygos</Link>
+                </b>
+                *
+              </label>
+            </div>
             <div className="form-group mb-3 col-6"> * - privalomi laukai</div>
             <div>
+              {/* {this.state.agree ? ( */}
               <button
                 type="submit"
                 className="btn btn-lg mt-5
-                "
+  "
                 // onSubmit={this.handleSubmit}
               >
                 Tęsti
