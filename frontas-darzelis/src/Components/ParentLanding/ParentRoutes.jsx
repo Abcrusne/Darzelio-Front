@@ -23,6 +23,7 @@ import UpdateChildrenApplicationByParents from '../ChildrenRegistration/UpdateCh
 import ChildrenPdfTable from '../UploadPDF/ChildrenPdfTable';
 import UpdateUserEmailContainer from '../UserData/UpdateUserEmailContainer';
 import HorizontalChart  from '../Statistics/HorizontalChart';
+import ConditionsPage from '../Conditions/ConditionsPage';
 
 
 const ParentRoutes = () => {
@@ -128,6 +129,12 @@ const ParentRoutes = () => {
         path="/tevai/statistika"
         exact
         component={HorizontalChart}
+        role={'PARENT'}
+      />
+          <PrivateRoute
+        path="/tevai/salygos"
+        exact
+        component={ConditionsPage}
         role={'PARENT'}
       />
       <PrivateRoute

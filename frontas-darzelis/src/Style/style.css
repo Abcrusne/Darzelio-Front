@@ -140,3 +140,10 @@
 .dataTables_empty {
   display: none;
 }
+.conditions{
+  line-height: 2;
+  letter-spacing: 0.6px;
+  text-align: justify;
+  margin-right: 10em;
+  margin-left: 5em;
+}
