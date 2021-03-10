@@ -3,6 +3,7 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
 
+
 export default class UpdateUserEmailContainer extends Component {
   constructor(props) {
     super(props);
@@ -122,10 +123,13 @@ export default class UpdateUserEmailContainer extends Component {
           console.log(response);
           alert('Duomenys atnaujinti sėkmingai! Dabar turėsite prie sistemos prisijungti iš naujo su pakeistu el.paštu.');
           if (this.state.role === 'PARENT') {
+            localStorage.clear();
             this.props.history.push('/login');
           } else if (this.state.role === 'EDU') {
+            localStorage.clear();
             this.props.history.push('/login');
           } else if (this.state.role === 'ADMIN') {
+            localStorage.clear();
             this.props.history.push('/login');
           }
         })
