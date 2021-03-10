@@ -12,21 +12,33 @@ export default class ChildrenTable extends Component {
     super();
     this.state = {
       children: [],
-      //parent id
-      parentId: "",
+      //(user id)
+      userId: '',
+      parentDetailsId: '',
     };
   }
   componentDidMount() {
     axios
-      .get(`${API}/api/users/${this.props.match.params.id}/parentdetails/children`)
+      .get(
+        `${API}/api/users/${this.props.match.params.id}/parentdetails/children`
+      )
       .then((res) => {
         this.setState({
           children: res.data,
-          parentId: this.props.match.params.id,
+          userId: this.props.match.params.id,
         });
-        // console.log('parent id ' + this.state.id);
-        // console.log('user parent id ' + this.state.userId);
+        return axios.get(
+          `${API}/api/users/${this.props.match.params.id}/parentdetails`
+        );
       })
+      .then((res) => {
+        this.setState({
+          parentDetailsId: res.data.id,
+        });
+      })
+      // console.log('parent id ' + this.state.id);
+      // console.log('user parent id ' + this.state.userId);
+
       .catch((err) => console.log(err));
   }
   render() {
@@ -35,41 +47,41 @@ export default class ChildrenTable extends Component {
         <div className="mb-4">
           <h4>Vaikai</h4>
         </div>
-        <NavLink to={`/admin/vaiko-registracija/${this.props.match.params.id}`} className="btn btn-primary mb-5">
+        <NavLink
+          to={`/admin/vaiko-registracija/${this.props.match.params.id}`}
+          className="btn btn-primary mb-5"
+        >
           Pridėti šiam tėvui/globėjui vaiką
         </NavLink>
-        {
-          this.state.children.length > 0 ? (
-            <div>
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Vardas</th>
-                    <th scope="col">Pavardė</th>
-                    <th scope="col">Peržiūrėti/Atnaujinti vaiko duomenis</th>
-                    <th scope="col">
-                      Peržiūrėti/Atnaujinti prašymą į darželį{' '}
-                    </th>
-                  </tr>
-                </thead>
-                {/* {this.state.children.length > 0 &&  ( */}
+        {this.state.children.length > 0 &&
+        this.state.children &&
+        this.state.parentDetailsId > 0 ? (
+          <div>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Vardas</th>
+                  <th scope="col">Pavardė</th>
+                  <th scope="col">Peržiūrėti/Atnaujinti vaiko duomenis</th>
+                  <th scope="col">Peržiūrėti/Atnaujinti prašymą į darželį </th>
+                </tr>
+              </thead>
+              {/* {this.state.children.length > 0 &&  ( */}
 
-                <tbody>
-                  <ChildrenTablePresentation children={this.state.children} parentId={this.state.parentId} />
-                </tbody>
-                {/* )}  */}
-              </table>
-            </div>
-          ) : (
-                   //<Loading/>
-            <p>
-              {' '}
-              Tėvas/Globėjas dar nepateikė jokių duomenų apie savo vaikus.
-            </p>
-          )
-     
-        }
+              <tbody>
+                <ChildrenTablePresentation
+                  children={this.state.children}
+                  parentId={this.state.userId}
+                />
+              </tbody>
+              {/* )}  */}
+            </table>
+          </div>
+        ) : (
+          //<Loading/>
+          <p> Tėvas/Globėjas dar nepateikė jokių duomenų apie savo vaikus.</p>
+        )}
       </div>
     );
   }
