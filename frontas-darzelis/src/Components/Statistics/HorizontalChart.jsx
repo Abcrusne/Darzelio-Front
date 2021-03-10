@@ -56,26 +56,24 @@ export default class HorizontalChart extends Component {
       //     data.push(firstPriorityRegistrations);
       //   })
 
-        let sortedKindergarten = [...kindergarten];
-        let sortedLabels =[];
-        let sortedData=[];
+      let sortedKindergarten = [...kindergarten];
+      let sortedLabels = [];
+      let sortedData = [];
 
-        const sorted= sortedKindergarten
-        .sort((a, b) => {
-          if (a.firstPriorityRegistrations > b.firstPriorityRegistrations) {
-            return -1;
-          }
-          if (a.firstPriorityRegistrations < b.firstPriorityRegistrations) {
-            return 1;
-          }
-          return 0;
-        });
-sorted.map(({ kindergartenName, firstPriorityRegistrations }) => {
-  sortedLabels.push(kindergartenName);
-  sortedData.push(firstPriorityRegistrations);
-})
+      const sorted = sortedKindergarten.sort((a, b) => {
+        if (a.firstPriorityRegistrations > b.firstPriorityRegistrations) {
+          return -1;
+        }
+        if (a.firstPriorityRegistrations < b.firstPriorityRegistrations) {
+          return 1;
+        }
+        return 0;
+      });
+      sorted.map(({ kindergartenName, firstPriorityRegistrations }) => {
+        sortedLabels.push(kindergartenName);
+        sortedData.push(firstPriorityRegistrations);
+      });
 
-  
       console.log(kindergarten);
       this.setState({
         chartData: {
@@ -159,37 +157,76 @@ sorted.map(({ kindergartenName, firstPriorityRegistrations }) => {
               <p>Viso vietų darželiuose</p>
             </div>
           </div>
-          <div className="card col">
-            <div className="card-body">
-              {this.state.waitingInFirstAgeGroup > 0 ? (
-                <h5 className="card-title pb-3">
-                  {this.state.waitingInFirstAgeGroup}
-                </h5>
-              ) : (
-                <p className="card-text">Nėra vaikų laukiančiųjų eilėje </p>
-              )}
-              <h6 className="card-subtitle mb-2 text-muted">
-                Laukiantieji vaikai eilėje į darželį 2-3m. amžiaus vaikų grupėse
-              </h6>
-              <br/>
-              
+          {this.state.locked ? (
+            <div className="card col">
+              <div className="card-body">
+                {this.state.waitingInFirstAgeGroup > 0 ? (
+                  <h5 className="card-title pb-3">
+                    {this.state.waitingInFirstAgeGroup}
+                  </h5>
+                ) : (
+                  <p className="card-text">Nėra vaikų laukiančiųjų eilėje </p>
+                )}
+                <h6 className="card-subtitle mb-2 text-muted">
+                  Laukiantieji vaikai eilėje į darželį 2-3m. amžiaus vaikų
+                  grupėse
+                </h6>
+                <br />
+              </div>
             </div>
-          </div>
-          <div className="card col">
-            <div className="card-body">
-              {this.state.waitingInSecondAgeGroup > 0 ? (
+          ) : (
+            <div className="card col">
+              <div className="card-body">
                 <h5 className="card-title pb-3">
-                  {this.state.waitingInSecondAgeGroup}
+                  {this.state.registrationsInFirstAgeGroup}
                 </h5>
-              ) : (
-                <p className="card-text">Nėra vaikų laukiančiųjų eilėje </p>
-              )}
-              <h6 className="card-subtitle mb-2 text-muted">
-                Laukiantieji vaikai eilėje į darželį 3-6m. amžiaus vaikų grupėse
-              </h6>
-              <br/>
+
+                <h6 className="card-subtitle mb-2 text-muted">
+                  Laukiantieji vaikai eilėje į darželį 2-3m. amžiaus vaikų
+                  grupėse
+                </h6>
+                <p className="card-text">
+                  Eilė nepatvirtinta, visi vaikai laukia{' '}
+                </p>
+                <br />
+              </div>
             </div>
-          </div>
+          )}
+          {this.state.locked ? (
+            <div className="card col">
+              <div className="card-body">
+                {this.state.waitingInSecondAgeGroup > 0 ? (
+                  <h5 className="card-title pb-3">
+                    {this.state.waitingInSecondAgeGroup}
+                  </h5>
+                ) : (
+                  <p className="card-text">Nėra vaikų laukiančiųjų eilėje </p>
+                )}
+                <h6 className="card-subtitle mb-2 text-muted">
+                  Laukiantieji vaikai eilėje į darželį 3-6m. amžiaus vaikų
+                  grupėse
+                </h6>
+
+                <br />
+              </div>
+            </div>
+          ) : (
+            <div className="card col">
+              <div className="card-body">
+                <h5 className="card-title pb-3">
+                  {this.state.registrationsInSecondAgeGroup}
+                </h5>
+                <h6 className="card-subtitle mb-2 text-muted">
+                  Laukiantieji vaikai eilėje į darželį 3-6m. amžiaus vaikų
+                  grupėse
+                </h6>
+                <p className="card-text">
+                  Eilė nepatvirtinta, visi vaikai laukia{' '}
+                </p>
+                <br />
+              </div>
+            </div>
+          )}
         </div>
         <div>
           {Object.keys(this.state.chartData).length ? (

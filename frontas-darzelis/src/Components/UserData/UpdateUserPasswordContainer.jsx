@@ -102,12 +102,12 @@ export default class UpdateUserPasswordContainer extends Component {
           console.log(response);
           alert('Duomenys atnaujinti sėkmingai!');
           if (this.state.role === 'PARENT') {
-            this.props.history.push('/tevai/naudotojo-duomenys');
+            this.props.history.push('/tevai');
           } else if (this.state.role === 'EDU') {
-            this.props.history.push('/admin/edu/naudotojo-duomenys');
+            this.props.history.push('/admin/edu/');
           }
           else if (this.state.role === 'ADMIN') {
-            this.props.history.push('/admin/naudotojo-duomenys');
+            this.props.history.push('/admin/pradzia');
           }
         })
         .catch((error) => {

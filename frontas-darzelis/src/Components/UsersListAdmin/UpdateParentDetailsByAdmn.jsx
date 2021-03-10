@@ -3,11 +3,7 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import UserService from '../../Configuration/UserService';
-
-
-axios.defaults.withCredentials = true; // leidžia dalintis cookies
-
-export default class UpdateParentRegistrationFormContainer extends Component {
+export default class UpdateParentDetailsByAdmn extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,48 +48,13 @@ export default class UpdateParentRegistrationFormContainer extends Component {
     };
   }
 
-  // getUserId = () =>
-  //   axios.get(`${API}/api/users/loggeduserid`).catch((err) => null);
-
-  //  getParentDetails = () => axios.get(`${API}/api/users/${this.state.userId}/parentdetails`).catch(err => null);
-
-  // async componentDidMount() {
-  //   try {
-  //     const [user, parent] = await axios.all([
-  //       this.getUserId(),
-  //       this.getParentDetails(),
-  //     ]);
-  //     this.setState({
-  //       userId: user.data,
-  //       parentDetails: parent.data,
-  //     });
-  //     console.log('userId:' + this.state.userId);
-  //     console.log('parentDetails:' + this.state.parentDetails.firstname);
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // }
-
-  // componentDidMount() {
-
-  //   axios
-  //     .get(`${API}/api/users/loggeduserid`)
-  //     .then((res) => {
-  //       UserService.setId(res.data);
-  //       this.setState({
-  //         userId: res.data,
-  //       });
-  //       console.log('user id: ' + this.state.userId);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
 
   componentDidMount() {
     axios
-      .get(`${API}/api/users/getparentdetails`)
+      .get(`${API}/api/users/${this.props.match.params.id}/parentdetails`)
       .then((res) => {
         this.setState({
-          //userId: res.data.userId,
+          userId: this.props.match.params.id,
           id: res.data.id,
           email: res.data.email,
           firstname: res.data.firstname,
@@ -116,13 +77,8 @@ export default class UpdateParentRegistrationFormContainer extends Component {
           // userId: res.data.userId,
         });
         console.log('parent id ' + this.state.id);
-        return axios.get(`${API}/api/users/loggeduserid`);
-      })
-      .then((res) => {
-        this.setState({
-          userId: res.data,
-        });
-        console.log('user id: ' + this.state.userId);
+        console.log('user parent id ' + this.state.userId);
+        
       })
       .catch((err) => console.log(err));
   }
@@ -277,13 +233,12 @@ export default class UpdateParentRegistrationFormContainer extends Component {
           // if (currentRole === '[PARENT]') {
 
             alert('Tėvo/Globėjo duomenys atnaujinti sėkmingai');
-            this.props.history.push('/tevai');
+              this.props.history.push(`/admin/duomenys/${this.state.userId}`);
           // }
           // else      if (currentRole === '[ADMIN]') {
           //   alert('Tėvo/Globėjo duomenys atnaujinti sėkmingai');
           //   this.props.history.push(`/admin/duomenys/${this.state.userId}`);
           // }
-         
         })
 
         .catch((error) => {
@@ -509,8 +464,8 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                   // noValidate
                 />
                 {/* {errors.flatNumber.length > 0 && (
-                  <span className="error">{errors.flatNumber}</span>
-                )} */}
+                      <span className="error">{errors.flatNumber}</span>
+                    )} */}
               </div>
               <div className="form-group mb-3 col-6">
                 <label htmlFor="numberOfKids" className="control-label">
@@ -703,7 +658,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                 <button
                   type="submit"
                   className="btn mt-5
-                "
+                    "
                 >
                   Atnaujinti
                 </button>
@@ -716,8 +671,9 @@ export default class UpdateParentRegistrationFormContainer extends Component {
       return (
         <div>
           <h5>
-            Pirma užpildykite tėvo/globėjo duomenis:
-            <NavLink to="/tevai/registracija" className="nav-link">
+            Šis tėvas dar neužpildė tėvo/globėjo duomenų, jei norite užpildyti
+            tėvo/globėjo duomenis:
+            <NavLink to={`/admin/tevo-registracija/${this.props.match.params.id}`} className="nav-link">
               spauskite čia
             </NavLink>
           </h5>

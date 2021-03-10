@@ -17,6 +17,16 @@ import UserData from '../UserData/UserData';
 import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
 import UpdateUserEmailContainer from '../UserData/UpdateUserEmailContainer';
 import HorizontalChart from '../Statistics/HorizontalChart';
+import UserInformation from '../UsersListAdmin/UserInformation';
+import UpdateParentRegistrationFormContainer from '../ParentRegistration/UpdateParentRegistrationFormContainer';
+import UpdateParentDetailsByAdmn from '../UsersListAdmin/UpdateParentDetailsByAdmn';
+import ChildrenTable from '../UsersListAdmin/ChildrenTableByAdmin';
+import UpdateChildDataByAdmin from '../UsersListAdmin/UpdateChildDataByAdmin';
+import UpdateChildApplicationByAdmin from '../UsersListAdmin/UpdateChildApplicationByAdmin';
+import ChildrenRegistrationByAdmin from '../UsersListAdmin/ChildrenRegistrationByAdmin';
+import ChildRegistrationToKindergartenByAdmin from '../UsersListAdmin/ChildRegistrationToKindergartenByAdmin';
+import ParentRegistrationByAdmin from '../UsersListAdmin/ParentRegistrationByAdmin';
+import UserLogsList from '../Logs/UserLogsList';
 
 export const AdminRoutes = () => {
   return (
@@ -101,6 +111,62 @@ export const AdminRoutes = () => {
           path="/admin/statistika"
           exact
           component={HorizontalChart}
+          role={'ADMIN'}
+        />
+        <PrivateRoute
+          path="/admin/duomenys/:id"
+          exact
+          component={UserInformation}
+          role={'ADMIN'}
+        />
+      
+        <PrivateRoute
+          path="/admin/duomenys/tevo/:id"
+          exact
+          component={UpdateParentDetailsByAdmn}
+          role={'ADMIN'}
+        />
+           <PrivateRoute
+          path="/admin/duomenys/vaikai/:id"
+          exact
+          component={ChildrenTable}
+          role={'ADMIN'}
+        />
+        
+        <PrivateRoute
+          path="/admin/:id/vaikai/:type"
+          exact
+          component={UpdateChildDataByAdmin}
+          role={'ADMIN'}
+        />
+           <PrivateRoute
+          path="/admin/:id/vaikai/registracijos/:type"
+          exact
+          component={UpdateChildApplicationByAdmin}
+          role={'ADMIN'}
+        />
+          <PrivateRoute
+          path="/admin/vaiko-registracija/:id"
+          exact
+          component={ChildrenRegistrationByAdmin}
+          role={'ADMIN'}
+        />
+         <PrivateRoute
+          path="/admin/:id/registracija-i-darzeli/:type"
+          exact
+          component={ChildRegistrationToKindergartenByAdmin}
+          role={'ADMIN'}
+        />
+           <PrivateRoute
+          path="/admin/tevo-registracija/:id"
+          exact
+          component={ParentRegistrationByAdmin}
+          role={'ADMIN'}
+        />
+           <PrivateRoute
+          path="/admin/logs"
+          exact
+          component={UserLogsList}
           role={'ADMIN'}
         />
         <PrivateRoute
