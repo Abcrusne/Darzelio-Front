@@ -137,6 +137,7 @@ export default class UpdateChildrenApplicationByParents extends Component {
                       {' '}
                       {this.state.firstPriority}
                     </option>
+
                     {this.state.kindergartens.map((kindergarten, index) => {
                       return (
                         <option key={index} value={kindergarten.name}>
@@ -163,6 +164,7 @@ export default class UpdateChildrenApplicationByParents extends Component {
                       {' '}
                       {this.state.secondPriority}
                     </option>
+                    <option defaultValue> - </option>
                     {this.state.kindergartens.map((kindergarten, index) => {
                       return (
                         <option key={index} value={kindergarten.name}>
@@ -177,7 +179,7 @@ export default class UpdateChildrenApplicationByParents extends Component {
                     className="input-group-text form-control"
                     htmlFor="selectKindergarten3"
                   >
-                    IIi prioriteto darželis
+                    III prioriteto darželis
                   </label>
                   <select
                     className="form-control"
@@ -189,6 +191,7 @@ export default class UpdateChildrenApplicationByParents extends Component {
                       {' '}
                       {this.state.thirdPriority}
                     </option>
+                    <option defaultValue> - </option>
                     {this.state.kindergartens.map((kindergarten, index) => {
                       return (
                         <option key={index} value={kindergarten.name}>
@@ -215,6 +218,7 @@ export default class UpdateChildrenApplicationByParents extends Component {
                       {' '}
                       {this.state.fourthPriority}
                     </option>
+                    <option defaultValue> - </option>
                     {this.state.kindergartens.map((kindergarten, index) => {
                       return (
                         <option key={index} value={kindergarten.name}>
@@ -241,6 +245,7 @@ export default class UpdateChildrenApplicationByParents extends Component {
                       {' '}
                       {this.state.fifthPriority}
                     </option>
+                    <option defaultValue> - </option>
                     {this.state.kindergartens.map((kindergarten, index) => {
                       return (
                         <option key={index} value={kindergarten.name}>
