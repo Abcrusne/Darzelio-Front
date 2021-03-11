@@ -34,7 +34,7 @@ export default class ParentRegistrationFormContainer extends Component {
       declaredFlatNumber: '',
 
       agree: false,
-
+      agreeWihRules: false,
       errors: {
         firstname: '',
         lastname: '',
@@ -447,7 +447,7 @@ export default class ParentRegistrationFormContainer extends Component {
                 <span className="error">{errors.houseNumber}</span>
               )}
             </div>
-            <div className="form-group mb-3 col-6">
+            <div className="form-group mb-3 col-4">
               <label htmlFor="flatNumber" className="control-label">
                 Butas:
               </label>
@@ -464,9 +464,9 @@ export default class ParentRegistrationFormContainer extends Component {
                 <span className="error">{errors.flatNumber}</span>
               )} */}
             </div>
-            <div className="form-group mb-3 col-6">
+            <div className="form-group mb-3 col-8">
               <label htmlFor="numberOfKids" className="control-label">
-                Kiek turite nepilnamečių vaikų?*:
+                Kiek turite vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo programas?*:
               </label>
               <input
                 type="number"
@@ -660,7 +660,27 @@ export default class ParentRegistrationFormContainer extends Component {
               />
               <label htmlFor="agree" className="form-check-label">
                 <b>
-                  Sutinku su sąlygomis <Link to="/tevai/salygos"> Sąlygos</Link>
+                  Susipažinau ir sutinku su sąlygomis. <Link to="/tevai/salygos" target="_blank" > Sąlygos</Link>
+                </b>
+                *
+              </label>
+            </div>
+            <div className="ml-4 form-check mb-3 col-12">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                name="agreeWihRules"
+                checked={this.state.agreeWihRules}
+                onChange={this.handleChange}
+                required
+                onInvalid={(e) => {
+                  e.target.setCustomValidity('Su vaikų priėmimo tvarka sutikti būtina!');
+                }}
+                onInput={(e) => e.target.setCustomValidity('')}
+              />
+              <label htmlFor="agreeWihRules" className="form-check-label">
+                <b>
+                  Susipažinau ir sutinku su vaikų priėmimo tvarka bei duomenų rinkimu. <Link to="/tevai/tvarka"  target="_blank"  > Vaikų priėmimo tvarka</Link>
                 </b>
                 *
               </label>

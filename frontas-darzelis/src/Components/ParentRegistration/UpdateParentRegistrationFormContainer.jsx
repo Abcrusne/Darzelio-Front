@@ -494,7 +494,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                   <span className="error">{errors.houseNumber}</span>
                 )}
               </div>
-              <div className="form-group mb-3 col-6">
+              <div className="form-group mb-3 col-4">
                 <label htmlFor="flatNumber" className="control-label">
                   Butas:
                 </label>
@@ -512,9 +512,9 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                   <span className="error">{errors.flatNumber}</span>
                 )} */}
               </div>
-              <div className="form-group mb-3 col-6">
+              <div className="form-group mb-3 col-8">
                 <label htmlFor="numberOfKids" className="control-label">
-                  Kiek turite nepilnamečių vaikų?*:
+                Kiek turite vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo programas?*:
                 </label>
                 <input
                   type="number"

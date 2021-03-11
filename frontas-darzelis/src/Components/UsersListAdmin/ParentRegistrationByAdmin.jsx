@@ -410,7 +410,7 @@ handleChange = (event) => {
               </div>
               <div className="form-group mb-3 col-6">
                 <label htmlFor="numberOfKids" className="control-label">
-                  Kiek turite nepilnamečių vaikų?*:
+                  Kiek turite vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo programas?*:
                 </label>
                 <input
                   type="number"

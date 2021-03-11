@@ -810,7 +810,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                     </span>
                   )}
                 </div>
-                <div className="form-group mb-3 col-6">
+                <div className="form-group mb-3 col-4">
                   <label
                     htmlFor="secondParentFlatNumber"
                     className="control-label"
@@ -829,12 +829,12 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                   />
                 </div>
                 {this.state.secondParentNumberOfKids > 0 ? (
-                  <div className="form-group mb-3 col-6">
+                  <div className="form-group mb-3 col-8">
                     <label
                       htmlFor="secondParentNumberOfKids"
                       className="control-label"
                     >
-                      Kiek antrasis Tėvas/Globėjas turi nepilnamečių vaikų?*
+                     Kiek antrasis tėvas/globėjas turi vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo programas?*
                     </label>
                     <input
                       type="number"
@@ -858,12 +858,12 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                     )}
                   </div>
                 ) : (
-                  <div className="form-group mb-3 col-6">
+                  <div className="form-group mb-3 col-8">
                     <label
                       htmlFor="secondParentNumberOfKids"
                       className="control-label"
                     >
-                      Kiek antrasis Tėvas/Globėjas turi nepilnamečių vaikų?*
+                       Kiek antrasis tėvas/globėjas turi vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo programas?*
                     </label>
                     <input
                       type="number"

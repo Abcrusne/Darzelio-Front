@@ -3,6 +3,7 @@ import { Pagination } from '@material-ui/lab';
 import { Link } from 'react-router-dom';
 import LogsService from '../Utilities/LogsService';
 import '../../Style/UsersLandings.css';
+import '../../Style/style.css';
 
 export default class UserLogsList extends Component {
   constructor(props) {
@@ -19,30 +20,30 @@ export default class UserLogsList extends Component {
   }
 
   componentDidMount = () => {
-    console.log('component did mount');
+    //console.log('component did mount');
     this.retrieveUsersLogsList();
   };
 
   retrieveUsersLogsList = () => {
     const { pageNumber, searchEmail, sortByDate } = this.state;
-    console.log('retrieveUsersLogsList');
-    console.log(
-      'pagenumber: ' +
-        pageNumber +
-        ' searchEmail: ' +
-        searchEmail +
-        ' sort: ' +
-        sortByDate
-    );
+    //console.log('retrieveUsersLogsList');
+    //console.log(
+    //   'pagenumber: ' +
+    //     pageNumber +
+    //     ' searchEmail: ' +
+    //     searchEmail +
+    //     ' sort: ' +
+    //     sortByDate
+    // );
     LogsService.getAll(pageNumber, searchEmail, sortByDate)
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         this.setState({
           logs: res.data.logs,
           totalPages: res.data.totalPages,
           totalLogs: res.data.totalLogs,
         });
-        console.log('userLogsList' + this.state.logs);
+        //console.log('userLogsList' + this.state.logs);
         //    LogsService.sortByDate(sort)
         //    .then((res)=>{
         //        this.setState({
@@ -57,7 +58,7 @@ export default class UserLogsList extends Component {
       });
   };
   onChange = (event) => {
-    console.log(event.target.value);
+    //console.log(event.target.value);
     const searchEmail = event.target.value;
     this.setState(
       {
@@ -128,14 +129,9 @@ export default class UserLogsList extends Component {
               <th scope="col">Vartotojas</th>
               <th scope="col">Rolė</th>
               <th scope="col">Veiksmas</th>
-              <th scope="col">
-                {' '}
-                <Link
-                  onClick={this.handleSortByDate}
-                  // onClick={()=> (this.setState({sortByDate:"dateasc"}))}
-                >
-                  Data ir laikas
-                </Link>
+              <th scope="col" onClick={this.handleSortByDate} className="dateTime">
+                {/* onClick={()=> (this.setState({sortByDate:"dateasc"}))} */}
+                Data ir laikas
               </th>
             </tr>
           </thead>

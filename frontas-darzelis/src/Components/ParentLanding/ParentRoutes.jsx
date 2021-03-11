@@ -24,6 +24,7 @@ import ChildrenPdfTable from '../UploadPDF/ChildrenPdfTable';
 import UpdateUserEmailContainer from '../UserData/UpdateUserEmailContainer';
 import HorizontalChart from '../Statistics/HorizontalChart';
 import ConditionsPage from '../Conditions/ConditionsPage';
+import AdmissionRules from '../Conditions/AdmissionRules';
 
 const ParentRoutes = () => {
   return (
@@ -134,6 +135,12 @@ const ParentRoutes = () => {
         path="/tevai/salygos"
         exact
         component={ConditionsPage}
+        role={'PARENT'}
+      />
+        <PrivateRoute
+        path="/tevai/tvarka"
+        exact
+        component={AdmissionRules}
         role={'PARENT'}
       />
       <PrivateRoute

@@ -185,8 +185,6 @@ export default class UpdateUserFormContainer extends Component {
               {errors.firstname.length > 0 && (
                 <span className="error">{errors.firstname}</span>
               )}
-              {/* <div className="invalid-feedback">Įrašykite vardą.</div>
-          <div className="valid-feedback"></div> */}
             </div>
             <div className="mb-3">
               <label htmlFor="lastname" className="control-label">

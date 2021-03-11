@@ -392,14 +392,14 @@ export default class UpdateChildDataByAdmin extends Component {
           } else if (error.response.data.message === `Bad birthdate format`) {
             alert('Netinkamas datos formatas!');
           } else if (
-            error.response.data === 'Tėvas/globėjas neregistruotas sistemoje'
+            error.response.data === 'tėvas/globėjas neregistruotas sistemoje'
           ) {
             alert(
               'Registracija nesėkminga. Pirminė tėvo registracijos forma turi būti užpildyta pirma'
             );
           } else if (
             error.response.data.message ===
-            'Tėvas/globėjas neregistruotas sistemoje!'
+            'tėvas/globėjas neregistruotas sistemoje!'
           ) {
             alert(
               'Registracija nesėkminga. Pirminė tėvo/globėjo registracijos forma neužpildyta'
@@ -432,7 +432,7 @@ export default class UpdateChildDataByAdmin extends Component {
           <form onSubmit={this.handleSubmit} className="form-row ">
             <div className="form-group mb-3 col-6">
               <label htmlFor="firstname" className="control-label">
-                Vaiko Vardas*:
+                Vaiko vardas*:
               </label>
               <input
                 type="text"
@@ -449,7 +449,7 @@ export default class UpdateChildDataByAdmin extends Component {
             </div>
             <div className="form-group mb-3 col-6">
               <label htmlFor="lastname" className="control-label">
-                Vaiko Pavardė*:
+                Vaiko pavardė*:
               </label>
               <input
                 type="text"
@@ -492,7 +492,7 @@ export default class UpdateChildDataByAdmin extends Component {
 
             <div className="form-group mb-3 col-6">
               <label htmlFor="personalCode" className="control-label">
-                Vaiko Asmens Kodas*:
+                Vaiko asmens kodas*:
               </label>
               <input
                 type="text"
@@ -531,7 +531,7 @@ export default class UpdateChildDataByAdmin extends Component {
               </label>
               <input
                 type="text"
-                placeholder="Gatvė"
+                placeholder="gatvė"
                 className="form-control"
                 name="street"
                 onChange={this.handleChange}
@@ -545,11 +545,11 @@ export default class UpdateChildDataByAdmin extends Component {
 
             <div className="form-group mb-3 col-6">
               <label htmlFor="houseNumber" className="control-label">
-                Namo Numeris*:
+                Namo numeris*:
               </label>
               <input
                 type="text"
-                placeholder="Namo numeris"
+                placeholder="namo numeris"
                 className="form-control"
                 name="houseNumber"
                 onChange={this.handleChange}
@@ -590,7 +590,7 @@ export default class UpdateChildDataByAdmin extends Component {
             </div>
             <h5 className="mt-4 form-group mb-3 col-12">
               {' '}
-              Antrojo Tėvo/Globėjo duomenys
+              Antrojo tėvo/globėjo duomenys
             </h5>
             <div className="ml-4 form-check mb-3 col-12">
               <input
@@ -619,7 +619,7 @@ export default class UpdateChildDataByAdmin extends Component {
                     htmlFor="secondParentFirstname"
                     className="control-label"
                   >
-                    Antrojo Tėvo/Globėjo Vardas*:
+                    Antrojo tėvo/globėjo vardas*:
                   </label>
                   <input
                     type="text"
@@ -641,7 +641,7 @@ export default class UpdateChildDataByAdmin extends Component {
                     htmlFor="secondParentLastname"
                     className="control-label"
                   >
-                    Antrojo Tėvo/Globėjo Pavardė*:
+                    Antrojo tėvo/globėjo pavardė*:
                   </label>
                   <input
                     type="text"
@@ -675,7 +675,7 @@ export default class UpdateChildDataByAdmin extends Component {
                 </div>
                 <div className="form-group mb-3 col-6">
                   <label htmlFor="secondParentPhone" className="control-label">
-                    Antrojo Tėvo/Globėjo Tel.nr*:
+                    Antrojo tėvo/globėjo tel.nr*:
                   </label>
                   <input
                     type="tel"
@@ -696,7 +696,7 @@ export default class UpdateChildDataByAdmin extends Component {
                       htmlFor="secondParentPersonalCode"
                       className="control-label"
                     >
-                      Antrojo Tėvo/Globėjo Asmens Kodas*:
+                      Antrojo tėvo/globėjo asmens kodas*:
                     </label>
                     <input
                       type="text"
@@ -719,7 +719,7 @@ export default class UpdateChildDataByAdmin extends Component {
                       htmlFor="secondParentPersonalCode"
                       className="control-label"
                     >
-                      Antrojo Tėvo/Globėjo Asmens Kodas*:
+                      Antrojo tėvo/globėjo asmens kodas*:
                     </label>
                     <input
                       type="text"
@@ -740,7 +740,7 @@ export default class UpdateChildDataByAdmin extends Component {
 
                 <div className="form-group mb-3 col-6">
                   <label htmlFor="secondParentCity" className="control-label">
-                    Antrojo Tėvo/Globėjo Miestas*:
+                    Antrojo tėvo/globėjo miestas*:
                   </label>
                   <input
                     type="text"
@@ -757,11 +757,11 @@ export default class UpdateChildDataByAdmin extends Component {
                 </div>
                 <div className="form-group mb-3 col-6">
                   <label htmlFor="secondParentStreet" className="control-label">
-                    Antrojo Tėvo/Globėjo Gatvė*:
+                    Antrojo tėvo/globėjo gatvė*:
                   </label>
                   <input
                     type="text"
-                    placeholder="Gatvė"
+                    placeholder="gatvė"
                     className="form-control"
                     name="secondParentStreet"
                     onChange={this.handleChange}
@@ -778,11 +778,11 @@ export default class UpdateChildDataByAdmin extends Component {
                     htmlFor="secondParentHouseNumber"
                     className="control-label"
                   >
-                    Antrojo Tėvo/Globėjo Namo Numeris*:
+                    Antrojo tėvo/globėjo namo numeris*:
                   </label>
                   <input
                     type="text"
-                    placeholder="Namo numeris"
+                    placeholder="namo numeris"
                     className="form-control"
                     name="secondParentHouseNumber"
                     onChange={this.handleChange}
@@ -795,12 +795,12 @@ export default class UpdateChildDataByAdmin extends Component {
                     </span>
                   )}
                 </div>
-                <div className="form-group mb-3 col-6">
+                <div className="form-group mb-3 col-4">
                   <label
                     htmlFor="secondParentFlatNumber"
                     className="control-label"
                   >
-                    Antrojo Tėvo/Globėjo Butas:
+                    Antrojo tėvo/globėjo butas:
                   </label>
                   <input
                     type="number"
@@ -814,12 +814,13 @@ export default class UpdateChildDataByAdmin extends Component {
                   />
                 </div>
                 {this.state.secondParentNumberOfKids > 0 ? (
-                  <div className="form-group mb-3 col-6">
+                  <div className="form-group mb-3 col-8">
                     <label
                       htmlFor="secondParentNumberOfKids"
                       className="control-label"
                     >
-                      Kiek antrasis Tėvas/Globėjas turi nepilnamečių vaikų?*
+                      Kiek antrasis tėvas/globėjas turi vaikų, kurie mokosi
+                      pagal bendrojo ugdymo lavinimo programas?*
                     </label>
                     <input
                       type="number"
@@ -843,12 +844,13 @@ export default class UpdateChildDataByAdmin extends Component {
                     )}
                   </div>
                 ) : (
-                  <div className="form-group mb-3 col-6">
+                  <div className="form-group mb-3 col-4">
                     <label
                       htmlFor="secondParentNumberOfKids"
                       className="control-label"
                     >
-                      Kiek antrasis Tėvas/Globėjas turi nepilnamečių vaikų?*
+                      Kiek antrasis tėvas/globėjas turi vaikų, kurie mokosi
+                      pagal bendrojo ugdymo lavinimo programas?*
                     </label>
                     <input
                       type="number"
@@ -886,7 +888,7 @@ export default class UpdateChildDataByAdmin extends Component {
                     htmlFor="secondParentStudying"
                     className="form-check-label"
                   >
-                    Antrasis Tėvas/Globėjas mokosi bendrojo lavinimo mokykloje
+                    Antrasis tėvas/globėjas mokosi bendrojo lavinimo mokykloje
                   </label>
                 </div>
 
@@ -934,7 +936,7 @@ export default class UpdateChildDataByAdmin extends Component {
                     htmlFor="secondParentHasDisability"
                     className="form-check-label"
                   >
-                    Antrasis Tėvas/Globėjas mažesnį nei 40% darbingumo lygį
+                    Antrasis tėvas/globėjas mažesnį nei 40% darbingumo lygį
                   </label>
                 </div>
 
@@ -964,11 +966,11 @@ export default class UpdateChildDataByAdmin extends Component {
                         htmlFor="secondParentDeclaredCity"
                         className="control-label"
                       >
-                        Antrojo Tėvo/Globėjo Deklaruotas Miestas*:
+                        Antrojo tėvo/globėjo deklaruotas miestas*:
                       </label>
                       <input
                         type="text"
-                        placeholder="Deklaruotas Miestas"
+                        placeholder="deklaruotas Miestas"
                         className="form-control"
                         name="secondParentDeclaredCity"
                         onChange={this.handleChange}
@@ -994,11 +996,11 @@ export default class UpdateChildDataByAdmin extends Component {
                         htmlFor="secondParentDeclaredStreet"
                         className="control-label"
                       >
-                        Antrojo Tėvo/Globėjo Deklaruota Gatvė*:
+                        Antrojo tėvo/globėjo deklaruota gatvė*:
                       </label>
                       <input
                         type="text"
-                        placeholder="Deklaruota Gatvė"
+                        placeholder="deklaruota gatvė"
                         className="form-control"
                         name="secondParentDeclaredStreet"
                         onChange={this.handleChange}
@@ -1026,11 +1028,11 @@ export default class UpdateChildDataByAdmin extends Component {
                         htmlFor="secondParentDeclaredHouseNumber"
                         className="control-label"
                       >
-                        Antrojo Tėvo/Globėjo Deklaruotas Namo Numeris*:
+                        Antrojo tėvo/globėjo deklaruotas namo numeris*:
                       </label>
                       <input
                         type="text"
-                        placeholder="Deklaruotas Namo Numeris"
+                        placeholder="deklaruotas namo numeris"
                         className="form-control"
                         name="secondParentDeclaredHouseNumber"
                         onChange={this.handleChange}
@@ -1059,12 +1061,12 @@ export default class UpdateChildDataByAdmin extends Component {
                         htmlFor="secondParentDeclaredFlatNumber"
                         className="control-label"
                       >
-                        Antrojo Tėvo/Globėjo Deklaruotas Butas:
+                        Antrojo tėvo/globėjo deklaruotas butas:
                       </label>
                       <input
                         type="number"
                         min="1"
-                        placeholder="Deklaruotas Butas"
+                        placeholder="deklaruotas butas"
                         className="form-control"
                         name="secondParentDeclaredFlatNumber"
                         onChange={this.handleChange}

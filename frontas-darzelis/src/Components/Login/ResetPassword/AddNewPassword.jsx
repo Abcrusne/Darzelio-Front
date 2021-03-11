@@ -88,7 +88,7 @@ export default class AddNewPassword extends Component {
                 .catch((error) => {
                     console.log(error.request.data);
                     if (error.request.status === 400) {
-                        alert('Slaptažodžio pakeiti nepavyko, bandykite iš naujo');
+                        alert('Slaptažodžio pakeisti nepavyko, bandykite iš naujo');
                     } else if (
                         error.request.data === 'Baigėsi slaptažodžio žymės (token) galiojimo laikas. Sukurkite naują prašymą atstatyti slaptažodį'
                     ) {

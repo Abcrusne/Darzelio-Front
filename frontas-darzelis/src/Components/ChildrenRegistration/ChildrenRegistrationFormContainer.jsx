@@ -465,11 +465,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
             >
               <div className="form-group mb-3 col-6">
                 <label htmlFor="firstname" className="control-label">
-                  Vaiko Vardas*:
+                  Vaiko vardas*:
                 </label>
                 <input
                   type="text"
-                  placeholder="Vaiko Vardas"
+                  placeholder="Vaiko vardas"
                   className="form-control"
                   name="firstname"
                   onChange={this.handleChange}
@@ -482,11 +482,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
               </div>
               <div className="form-group mb-3 col-6">
                 <label htmlFor="lastname" className="control-label">
-                  Vaiko Pavardė*:
+                  Vaiko pavardė*:
                 </label>
                 <input
                   type="text"
-                  placeholder="Vaiko Pavardė"
+                  placeholder="Vaiko pavardė"
                   className="form-control"
                   name="lastname"
                   onChange={this.handleChange}
@@ -516,7 +516,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
 
               <div className="form-group mb-3 col-6">
                 <label htmlFor="personalCode" className="control-label">
-                  Vaiko Asmens Kodas*:
+                  Vaiko asmens kodas*:
                 </label>
                 <input
                   type="text"
@@ -579,7 +579,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
 
               <div className="form-group mb-3 col-6">
                 <label htmlFor="houseNumber" className="control-label">
-                  Namo Numeris*:
+                  Namo numeris*:
                 </label>
                 <input
                   type="text"
@@ -626,7 +626,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
               </div>
               <h5 className="mt-4 form-group mb-3 col-12">
                 {' '}
-                Antrojo Tėvo/Globėjo duomenys
+                Antrojo tėvo/globėjo duomenys
               </h5>
               <div className="ml-4 form-check mb-3 col-12">
                 <input
@@ -649,7 +649,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                       htmlFor="secondParentFirstname"
                       className="control-label"
                     >
-                      Antrojo Tėvo/Globėjo Vardas*:
+                      Antrojo tėvo/globėjo vardas*:
                     </label>
                     <input
                       type="text"
@@ -670,7 +670,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                       htmlFor="secondParentLastname"
                       className="control-label"
                     >
-                      Antrojo Tėvo/Globėjo Pavardė*:
+                      Antrojo tėvo/globėjo pavardė*:
                     </label>
                     <input
                       type="text"
@@ -710,10 +710,10 @@ export default class ChildrenRegistrationFormContainer extends Component {
                       htmlFor="secondParentPhone"
                       className="control-label"
                     >
-                      Antrojo Tėvo/Globėjo Tel.nr*:
+                      Antrojo tėvo/globėjo tel.nr*:
                     </label>
                     <input
-                      type="tel"
+                      type="text"
                       placeholder="Tel.nr"
                       className="form-control"
                       name="secondParentPhone"
@@ -729,11 +729,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
                       htmlFor="secondParentPersonalCode"
                       className="control-label"
                     >
-                      Antrojo Tėvo/Globėjo Asmens Kodas*:
+                      Antrojo tėvo/globėjo asmens kodas*:
                     </label>
                     <input
                       type="text"
-                      placeholder="Asmens kodas"
+                      placeholder="asmens kodas"
                       className="form-control"
                       name="secondParentPersonalCode"
                       onChange={this.handleChange}
@@ -747,7 +747,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                   </div>
                   <div className="form-group mb-3 col-6">
                     <label htmlFor="secondParentCity" className="control-label">
-                      Antrojo Tėvo/Globėjo Miestas*:
+                      Antrojo tėvo/globėjo miestas*:
                     </label>
                     <input
                       type="text"
@@ -766,7 +766,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                       htmlFor="secondParentStreet"
                       className="control-label"
                     >
-                      Antrojo Tėvo/Globėjo Gatvė*:
+                      Antrojo tėvo/globėjo gatvė*:
                     </label>
                     <input
                       type="text"
@@ -786,7 +786,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                       htmlFor="secondParentHouseNumber"
                       className="control-label"
                     >
-                      Antrojo Tėvo/Globėjo Namo Numeris*:
+                      Antrojo tėvo/globėjo namo numeris*:
                     </label>
                     <input
                       type="text"
@@ -802,12 +802,12 @@ export default class ChildrenRegistrationFormContainer extends Component {
                       </span>
                     )}
                   </div>
-                  <div className="form-group mb-3 col-6">
+                  <div className="form-group mb-3 col-4">
                     <label
                       htmlFor="secondParentFlatNumber"
                       className="control-label"
                     >
-                      Antrojo Tėvo/Globėjo Butas:
+                      Antrojo tėvo/globėjo butas:
                     </label>
                     <input
                       type="number"
@@ -824,12 +824,12 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     </span>
                   )} */}
                   </div>
-                  <div className="form-group mb-3 col-6">
+                  <div className="form-group mb-3 col-8">
                     <label
                       htmlFor="secondParentNumberOfKids"
                       className="control-label"
                     >
-                      Kiek antrasis Tėvas/Globėjas turi nepilnamečių vaikų?*
+                      Kiek antrasis tėvas/globėjas turi vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo programas?*
                     </label>
                     <input
                       type="number"
@@ -943,11 +943,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
                           htmlFor="secondParentDeclaredCity"
                           className="control-label"
                         >
-                          Antrojo Tėvo/Globėjo Deklaruotas Miestas*:
+                          Antrojo tėvo/globėjo deklaruotas miestas*:
                         </label>
                         <input
                           type="text"
-                          placeholder="Deklaruotas Miestas"
+                          placeholder="deklaruotas miestas"
                           className="form-control"
                           name="secondParentDeclaredCity"
                           onChange={this.handleChange}
@@ -972,11 +972,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
                           htmlFor="secondParentDeclaredStreet"
                           className="control-label"
                         >
-                          Antrojo Tėvo/Globėjo Deklaruota Gatvė*:
+                          Antrojo tėvo/globėjo deklaruota gatvė*:
                         </label>
                         <input
                           type="text"
-                          placeholder="Deklaruota Gatvė"
+                          placeholder="deklaruota gatvė"
                           className="form-control"
                           name="secondParentDeclaredStreet"
                           onChange={this.handleChange}
@@ -1003,11 +1003,11 @@ export default class ChildrenRegistrationFormContainer extends Component {
                           htmlFor="secondParentDeclaredHouseNumber"
                           className="control-label"
                         >
-                          Antrojo Tėvo/Globėjo Deklaruotas Namo Numeris*:
+                          Antrojo tėvo/globėjo deklaruotas namo numeris*:
                         </label>
                         <input
                           type="text"
-                          placeholder="Deklaruotas Namo Numeris"
+                          placeholder="Deklaruotas namo numeris"
                           className="form-control"
                           name="secondParentDeclaredHouseNumber"
                           onChange={this.handleChange}
@@ -1035,12 +1035,12 @@ export default class ChildrenRegistrationFormContainer extends Component {
                           htmlFor="secondParentDeclaredFlatNumber"
                           className="control-label"
                         >
-                          Antrojo Tėvo/Globėjo Deklaruotas Butas:
+                          Antrojo tėvo/globėjo deklaruotas butas:
                         </label>
                         <input
                           type="number"
                           min="1"
-                          placeholder="Deklaruotas Butas"
+                          placeholder="Deklaruotas butas"
                           className="form-control"
                           name="secondParentDeclaredFlatNumber"
                           onChange={this.handleChange}

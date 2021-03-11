@@ -170,3 +170,7 @@
   margin-right: 10em;
   margin-left: 5em;
 }
+.dateTime {
+  cursor: pointer;
+  text-decoration: underline;
+}
