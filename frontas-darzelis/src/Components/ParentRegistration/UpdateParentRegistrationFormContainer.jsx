@@ -115,14 +115,14 @@ export default class UpdateParentRegistrationFormContainer extends Component {
           declaredFlatNumber: res.data.declaredFlatNumber,
           // userId: res.data.userId,
         });
-        console.log('parent id ' + this.state.id);
+        //console.log('parent id ' + this.state.id);
         return axios.get(`${API}/api/users/loggeduserid`);
       })
       .then((res) => {
         this.setState({
           userId: res.data,
         });
-        console.log('user id: ' + this.state.userId);
+        //console.log('user id: ' + this.state.userId);
       })
       .catch((err) => console.log(err));
   }
@@ -273,7 +273,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
           // userId: this.state.userId,
         })
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           // if (currentRole === '[PARENT]') {
 
             alert('Tėvo/Globėjo duomenys atnaujinti sėkmingai');
@@ -336,7 +336,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
           console.log(error.response);
         });
     } else {
-      console.error('Invalid Form');
+     // console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );

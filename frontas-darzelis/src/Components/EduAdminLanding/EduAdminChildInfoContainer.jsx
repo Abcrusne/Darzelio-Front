@@ -51,7 +51,7 @@ export default class EduAdminChildInfoContainer extends Component {
   }
 
   componentDidMount() {
-    console.log('component did mount ');
+    //console.log('component did mount ');
     axios
       .get(
         `${API}/api/kindergartens/admission/registrations/${this.props.match.params.id}`
@@ -84,7 +84,7 @@ export default class EduAdminChildInfoContainer extends Component {
             res.data.secondParentStudyingInstitution,
           secondParentDisabled: res.data.secondParentDisabled,
         });
-        console.log('child id: ' + this.state.childId);
+        //console.log('child id: ' + this.state.childId);
         return axios.get(
           `${API}/api/kindergartens/register/${this.state.childId}`
         );

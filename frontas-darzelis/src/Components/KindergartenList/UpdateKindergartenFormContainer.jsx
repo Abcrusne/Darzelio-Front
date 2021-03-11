@@ -21,7 +21,7 @@ export default class UpdateKindergartenFormContainer extends Component {
     };
   }
   componentDidMount() {
-    console.log('component did mount update');
+    //console.log('component did mount update');
     axios
       .get(`${API}/api/kindergartens/${this.props.match.params.id}`)
       .then((res) => {
@@ -40,7 +40,7 @@ export default class UpdateKindergartenFormContainer extends Component {
         });
       })
       .catch((err) => console.log(err));
-    console.log(this.state);
+    //console.log(this.state);
   }
   handleChange = (event) => {
     event.preventDefault();
@@ -113,7 +113,7 @@ export default class UpdateKindergartenFormContainer extends Component {
           spotsInSecondAgeGroup: this.state.spotsInSecondAgeGroup,
         })
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           if (this.state.role === 'EDU') {
             alert('Atnaujinta!');
             this.props.history.push('/admin/edu/darzeliai');
@@ -137,7 +137,7 @@ export default class UpdateKindergartenFormContainer extends Component {
           console.log(error);
         });
     } else {
-      console.error('Invalid Form');
+     // console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );

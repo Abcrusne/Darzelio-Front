@@ -106,7 +106,7 @@ export default class UploadPdfContainer extends Component {
     axios
       .post(`${API}/api/users/pdf`, data)
       .then((res) => {
-        console.log(res);
+       // console.log(res);
         alert('PDF įkeltas.');
         this.props.history.push('/tevai');
       })

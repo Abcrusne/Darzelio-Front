@@ -29,7 +29,7 @@ export default class KindergartenContainer extends Component {
   // };
 
   componentDidMount() {
-    console.log('component did mount kindergartens');
+    //console.log('component did mount kindergartens');
 
     axios
       .get(`${API}/api/kindergartens/admission/queues`)

@@ -118,7 +118,7 @@ export default class RegistrationFormContainer extends Component {
           console.log(error);
         });
     } else {
-      console.error('Invalid Form');
+     // console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );

@@ -99,8 +99,8 @@ export default class ChildrenRegistrationByAdmin extends Component {
           houseNumber: res.data.houseNumber,
           flatNumber: res.data.flatNumber,
         })
-        console.log("parentId "+ this.state.parentId);
-        console.log("userId "+ this.state.userId);
+        //console.log("parentId "+ this.state.parentId);
+        //console.log("userId "+ this.state.userId);
     })
     .catch((err) => console.log(err));
   }
@@ -264,7 +264,7 @@ export default class ChildrenRegistrationByAdmin extends Component {
       this.setState({ errors, [event.target.name]: event.target.value }, () => {
         // console.log(errors);
       });
-    console.log(this.state);
+    //console.log(this.state);
   };
 
   handleSubmit = (event) => {
@@ -328,7 +328,7 @@ export default class ChildrenRegistrationByAdmin extends Component {
           childrenInput
         )
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           alert('Vaiko duomenų registracija sėkminga');
           this.props.history.push(`/admin/duomenys/vaikai/${this.props.match.params.id}`);
         })
@@ -385,10 +385,10 @@ export default class ChildrenRegistrationByAdmin extends Component {
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          console.log(error.response);
+          //console.log(error.response);
         });
     } else {
-      console.error('Invalid Form');
+      //console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );

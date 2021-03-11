@@ -48,8 +48,8 @@ export default class ChildRegistrationToKindergartenByAdmin extends Component {
   async componentDidMount() {
     const kindergartensData = await this.getKindergartens();
     const childrenData = await this.getChildren();
-    console.log(kindergartensData);
-    console.log(childrenData);
+    //console.log(kindergartensData);
+    //console.log(childrenData);
     let kindergartens = kindergartensData.map((kindergarten) => ({
       name: kindergarten.name,
       id: kindergarten.id,
@@ -97,7 +97,7 @@ export default class ChildRegistrationToKindergartenByAdmin extends Component {
       axios
         .post(`${API}/api/kindergartens/register`, dataLoad)
         .then((response) => {
-          console.log(response.data);
+          //console.log(response.data);
           alert('Registracija sėkminga!');
           this.props.history.push(`/admin/duomenys/vaikai/${this.props.match.params.id}`);
         })

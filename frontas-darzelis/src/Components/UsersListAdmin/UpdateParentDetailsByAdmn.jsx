@@ -76,8 +76,8 @@ export default class UpdateParentDetailsByAdmn extends Component {
           declaredFlatNumber: res.data.declaredFlatNumber,
           // userId: res.data.userId,
         });
-        console.log('parent id ' + this.state.id);
-        console.log('user parent id ' + this.state.userId);
+        //console.log('parent id ' + this.state.id);
+       // console.log('user parent id ' + this.state.userId);
         
       })
       .catch((err) => console.log(err));
@@ -288,10 +288,10 @@ export default class UpdateParentDetailsByAdmn extends Component {
               'Atnaujinti duomenų nepavyko! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          console.log(error.response);
+          //console.log(error.response);
         });
     } else {
-      console.error('Invalid Form');
+      //console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );

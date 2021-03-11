@@ -198,7 +198,7 @@ handleChange = (event) => {
  
         )
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           alert('Tėvo/Globėjo registracija sėkminga');
           this.props.history.push(`/admin/duomenys/${this.props.match.params.id}`);
         })
@@ -226,10 +226,10 @@ handleChange = (event) => {
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          console.log(error.response);
+          //console.log(error.response);
         });
     } else {
-      console.error('Invalid Form');
+      //console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );

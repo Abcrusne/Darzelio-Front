@@ -16,14 +16,14 @@ export default class ChildrenListTableContainer extends Component {
   }
 
   componentDidMount() {
-    console.log('component did mount');
+    //console.log('component did mount');
     axios
       .get(`${API}/api/users/loggeduserid`)
       .then((response) => {
         this.setState({
           id: response.data,
         });
-        console.log('user id: ' + this.state.id);
+        //console.log('user id: ' + this.state.id);
         return axios.get(`${API}/api/users/getloggeduserchildren`);
       })
       .then((response) => {

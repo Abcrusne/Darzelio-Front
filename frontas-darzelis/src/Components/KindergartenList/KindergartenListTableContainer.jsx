@@ -18,21 +18,21 @@ export default class KindergartenListTableContainer extends Component {
     };
   }
   componentDidMount() {
-    console.log('component did mount');
+    //console.log('component did mount');
     axios
       .get(API + '/api/kindergartens')
       .then((res) => {
         this.setState({
           kindergartens: res.data,
         });
-        console.log();
+        //console.log();
         return axios.get(`${API}/api/users/loggedrole`);
       })
       .then((res) => {
         this.setState({
           role: res.data,
         });
-        console.log('role: ' + this.state.role);
+        //console.log('role: ' + this.state.role);
       })
       .catch((error) => console.log(error));
   }
@@ -55,7 +55,7 @@ export default class KindergartenListTableContainer extends Component {
           .then((response) => this.setState({ kindergartens: response.data }));
       })
       .catch((err) => console.log(err));
-    console.log('deleteKindergarten');
+    //console.log('deleteKindergarten');
   };
 
 
@@ -103,8 +103,8 @@ onChange= {this.handleSearch}
               </tr>
             </thead>
 
-            <tbody>
-              {' '}
+        
+     
               {this.state.kindergartens.length > 0 &&
                 filteredKindergartens.map(
                   (
@@ -118,6 +118,7 @@ onChange= {this.handleSearch}
                     index
                   ) => {
                     return (
+                      <tbody key ={id}>
                       <tr key={id}>
                         <th scope="row">{index + 1}</th>
                         <td>{name}</td>
@@ -151,7 +152,7 @@ onChange= {this.handleSearch}
                           />
                         </td>
                       </tr>
-                    );
+                      </tbody> );
                   }
                 )}
         
@@ -159,7 +160,7 @@ onChange= {this.handleSearch}
                 //   kindergartens={this.state.kindergartens}
                 //   deleteKindergarten={this.deleteKindergarten}
                 // /> */}
-            </tbody>
+         
           </table>
         </div>
       );

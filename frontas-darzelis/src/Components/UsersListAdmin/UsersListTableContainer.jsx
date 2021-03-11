@@ -17,7 +17,7 @@ export default class UsersListTableContainer extends Component {
   }
 
   componentDidMount = () => {
-    console.log('component did mount');
+    //console.log('component did mount');
     axios
       .get(API + '/api/users')
       .then((response) => this.setState({ users: response.data }))
@@ -44,7 +44,7 @@ export default class UsersListTableContainer extends Component {
           .then((response) => this.setState({ users: response.data }));
       })
       .catch((err) => console.log(err));
-    console.log('deleteUser');
+    //console.log('deleteUser');
   };
 
   render() {

@@ -28,7 +28,7 @@ export default class UpdateUserEmailContainer extends Component {
         this.setState({
           id: res.data,
         });
-        console.log('user id:' + this.state.id);
+        //console.log('user id:' + this.state.id);
         return axios.get(`${API}/api/users/${this.state.id}`);
       })
       .then((res) =>
@@ -120,7 +120,7 @@ export default class UpdateUserEmailContainer extends Component {
           }
         )
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           alert('Duomenys atnaujinti sėkmingai! Dabar turėsite prie sistemos prisijungti iš naujo su pakeistu el.paštu.');
           if (this.state.role === 'PARENT') {
             localStorage.clear();
@@ -147,7 +147,7 @@ export default class UpdateUserEmailContainer extends Component {
           console.log(error);
         });
     } else {
-      console.error('Invalid Form');
+      //console.error('Invalid Form');
       alert(
         'Nepavyko pakeisti! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );

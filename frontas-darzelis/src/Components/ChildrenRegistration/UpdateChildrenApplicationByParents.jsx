@@ -71,7 +71,7 @@ export default class UpdateChildrenApplicationByParents extends Component {
         this.props.history.push('/tevai/vaikai');
       })
       .catch((err) => console.log(err.data));
-    console.log('deleteChildrenApplication');
+   //console.log('deleteChildrenApplication');
   };
 
   handleChange = (event) => {
@@ -94,7 +94,7 @@ export default class UpdateChildrenApplicationByParents extends Component {
         thirdPriority: this.state.thirdPriority,
       })
       .then((res) => {
-        console.log(res);
+        //console.log(res);
         alert('Vaiko prašymas atnaujintas!');
         this.props.history.push(`/tevai/vaikai`);
       })

@@ -26,7 +26,7 @@ export default class UpdateUserFormContainer extends Component {
     };
   }
   componentDidMount() {
-    console.log('component did mount');
+    //console.log('component did mount');
     axios
       .get(`${API}/api/users/${this.props.match.params.id}`)
       .then((res) =>
@@ -55,7 +55,7 @@ export default class UpdateUserFormContainer extends Component {
         markedForDeletion: this.state.markedForDeletion,
       })
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         alert(
           'Vartotojo slaptažodis atsatatytas į pirminį (toks kaip vardas dabar)'
         );
@@ -133,7 +133,7 @@ export default class UpdateUserFormContainer extends Component {
           }
         )
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           this.props.history.push('/admin/vartotojai');
         })
 
@@ -150,7 +150,7 @@ export default class UpdateUserFormContainer extends Component {
           console.log(error);
         });
     } else {
-      console.error('Invalid Form');
+      //console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );

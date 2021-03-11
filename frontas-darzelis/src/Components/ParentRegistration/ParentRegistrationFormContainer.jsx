@@ -55,14 +55,14 @@ export default class ParentRegistrationFormContainer extends Component {
     };
   }
   componentDidMount() {
-    console.log('component did mount');
+    //console.log('component did mount');
     axios
       .get(`${API}/api/users/getparentdetails`)
       .then((res) => {
         this.setState({
           parentId: res.data.id,
         });
-        console.log('parent id: ' + this.state.parentId);
+        //console.log('parent id: ' + this.state.parentId);
 
         return axios.get(`${API}/api/users/loggeduserid`);
       })
@@ -71,7 +71,7 @@ export default class ParentRegistrationFormContainer extends Component {
         this.setState({
           id: res.data,
         });
-        console.log('user id: ' + this.state.id);
+        //console.log('user id: ' + this.state.id);
       })
       .catch((err) => console.log(err));
   }
@@ -247,7 +247,7 @@ export default class ParentRegistrationFormContainer extends Component {
           // }
         )
         .then((response) => {
-          console.log(response);
+         // console.log(response);
           alert('Tėvo/Globėjo registracija sėkminga');
           this.props.history.push('/tevai/vaikoregistracija');
         })
@@ -278,7 +278,7 @@ export default class ParentRegistrationFormContainer extends Component {
           console.log(error.response);
         });
     } else {
-      console.error('Invalid Form');
+      //console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );

@@ -84,8 +84,8 @@ const KindergartenTable = ({ kindergartens, admissionId }) => {
       searchLabel="Paieška"
       paginationLabel={['Atgal', 'Kitas']}
       infoLabel={['Rodyti nuo', 'iki', 'rezultatų', '']}
-      messageLabel=""
-      emptyTable="ii"
+      // messageLabel=""
+      // emptytable="ii"
     />
   );
 

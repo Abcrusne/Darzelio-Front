@@ -6,7 +6,7 @@ const ModalComponentChildren = ({
   lastname,
   deleteChild,
 }) => {
-  console.log('modal child id: ' + childId);
+  //console.log('modal child id: ' + childId);
 
   return (
     <div

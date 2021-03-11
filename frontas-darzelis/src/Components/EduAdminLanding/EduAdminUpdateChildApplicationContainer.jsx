@@ -77,7 +77,7 @@ export default class EduAdminUpdateChildApplicationContainer extends Component {
         thirdPriority: this.state.thirdPriority,
       })
       .then((res) => {
-        console.log(res);
+        //console.log(res);
         alert('Vaiko prašymas atnaujintas!');
         this.props.history.push(`/admin/edu/vaikai/${this.state.childId}`);
       })

@@ -5,7 +5,7 @@ const ModalComponentKindergarten = ({
   name,
   deleteKindergarten,
 }) => {
-  console.log(' kindergarten id: ' + kindergartenId);
+  //console.log(' kindergarten id: ' + kindergartenId);
 
   return (
     <div

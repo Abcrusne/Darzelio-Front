@@ -99,7 +99,7 @@ export default class UpdateUserPasswordContainer extends Component {
           }
         )
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           alert('Duomenys atnaujinti sėkmingai!');
           if (this.state.role === 'PARENT') {
             this.props.history.push('/tevai');
@@ -124,7 +124,7 @@ export default class UpdateUserPasswordContainer extends Component {
           console.log(error.data);
         });
     } else {
-      console.error('Invalid Form');
+      //console.error('Invalid Form');
 
       alert('Nepavyko pakeisti slaptažodžio! ');
     }

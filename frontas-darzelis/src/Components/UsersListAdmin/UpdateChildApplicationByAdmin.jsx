@@ -73,7 +73,7 @@ export default class UpdateChildApplicationByAdmin extends Component {
             this.props.history.push(`/admin/duomenys/vaikai/${this.state.parentId}`);
           })
           .catch((err) => console.log(err.data));
-        console.log('deleteChildrenApplication');
+        //console.log('deleteChildrenApplication');
       };
       handleChange = (event) => {
         event.preventDefault();
@@ -95,7 +95,7 @@ export default class UpdateChildApplicationByAdmin extends Component {
             thirdPriority: this.state.thirdPriority,
           })
           .then((res) => {
-            console.log(res);
+            //console.log(res);
             alert('Vaiko prašymas atnaujintas!');
             this.props.history.push(`/admin/duomenys/vaikai/${this.state.parentId}`);
           })

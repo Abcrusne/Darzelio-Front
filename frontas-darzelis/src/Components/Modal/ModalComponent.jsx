@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ModalComponent = ({ userId, email, deleteUser }) => {
-  console.log(" id: " + userId);
+ // console.log(" id: " + userId);
 
   return (
     <div

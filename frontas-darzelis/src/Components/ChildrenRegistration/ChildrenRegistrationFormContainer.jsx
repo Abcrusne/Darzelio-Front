@@ -33,12 +33,12 @@ export default class ChildrenRegistrationFormContainer extends Component {
 
     today = yyyy + '-' + mm + '-' + dd;
     eighteenYearsAgo = minYear + '-' + mm + '-' + dd;
-    console.log('today ' + today);
-    console.log('18 years ago: ' + eighteenYearsAgo);
+    //console.log('today ' + today);
+    //console.log('18 years ago: ' + eighteenYearsAgo);
 
     var data = new Date();
     data = moment(data).format('YYYY-MM-DD');
-    console.log('data: ' + data);
+    //console.log('data: ' + data);
 
     this.state = {
       birthdate: new Date(),
@@ -114,7 +114,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
   }
 
   componentDidMount() {
-    console.log('component did mount');
+   // console.log('component did mount');
     axios
       .get(`${API}/api/users/getparentdetails`)
       .then((res) => {
@@ -125,7 +125,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
           houseNumber: res.data.houseNumber,
           flatNumber: res.data.flatNumber,
         });
-        console.log('parent id: ' + this.state.parentId);
+        //console.log('parent id: ' + this.state.parentId);
 
         return axios.get(`${API}/api/users/loggeduserid`);
       })
@@ -134,7 +134,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
         this.setState({
           userId: res.data,
         });
-        console.log('user id: ' + this.state.userId);
+        //console.log('user id: ' + this.state.userId);
       })
       .catch((err) => console.log(err));
   }
@@ -312,7 +312,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
       this.setState({ errors, [event.target.name]: event.target.value }, () => {
         // console.log(errors);
       });
-    console.log(this.state);
+    //console.log(this.state);
   };
 
   handleSubmit = (event) => {
@@ -380,7 +380,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
           // }
         )
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           alert('Vaiko duomenų registracija sėkminga');
           this.props.history.push('/tevai/toliau');
         })
@@ -440,7 +440,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
           console.log(error.response);
         });
     } else {
-      console.error('Invalid Form');
+     // console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );

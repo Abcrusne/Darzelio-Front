@@ -5,7 +5,7 @@ const ModalComponentConfirm = ({
   kindergartenName,
   handleConfirm,
 }) => {
-  console.log(' kindergartenId: ' + kindergartenId);
+  //console.log(' kindergartenId: ' + kindergartenId);
 
   return (
     <div

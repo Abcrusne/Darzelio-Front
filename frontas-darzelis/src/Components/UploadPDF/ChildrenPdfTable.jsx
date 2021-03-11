@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import { Link } from 'react-router-dom';
 import ModalComponentPdf from '../Modal/ModalComponentPdf';
+import Loading from '../Loading/Loading';
 
 export default class ChildrenPdfTable extends Component {
   constructor() {
@@ -30,7 +31,7 @@ export default class ChildrenPdfTable extends Component {
         // this.props.history.push('/tevai/pazymos');
       })
       .catch((err) => console.log(err));
-    console.log('deletePdf');
+   // console.log('deletePdf');
   };
 
   render() {
@@ -57,11 +58,12 @@ export default class ChildrenPdfTable extends Component {
               <th scope="col">Ištrinti</th>
             </tr>
           </thead>
-          <tbody>
+         
             {this.state.children.length > 0 ? (
               sortedChildren.map(
                 ({ id, firstname, lastname, healthRecordId }, index) => {
                   return (
+                    <tbody key={id}>
                     <tr key={id}>
                       <th scope="row">{index + 1}</th>
                       <td>
@@ -97,13 +99,13 @@ export default class ChildrenPdfTable extends Component {
                         />
                       </td> ): <td> Šiam vaikui neįkėlėte pažymos</td>}
                     </tr>
-                  );
+                    </tbody>);
                 }
               )
             ) : (
-              <div> </div>
+           null
             )}
-          </tbody>
+         
         </table>
       </div>
     );

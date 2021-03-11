@@ -74,7 +74,7 @@ export default class HorizontalChart extends Component {
         sortedData.push(firstPriorityRegistrations);
       });
 
-      console.log(kindergarten);
+     // console.log(kindergarten);
       this.setState({
         chartData: {
           labels: sortedLabels,

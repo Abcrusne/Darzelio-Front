@@ -26,7 +26,7 @@ export default class KindergartenRegistrationContainer extends Component {
     };
   }
   componentDidMount() {
-    console.log('component did mount darzeliu registracija');
+    //console.log('component did mount darzeliu registracija');
     axios
       .get(`${API}/api/users/loggedrole`)
       .then((res) =>
@@ -114,7 +114,7 @@ export default class KindergartenRegistrationContainer extends Component {
         // }
         )
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           if (this.state.role === 'EDU') {
             alert('Darželio registracija sėkminga');
             this.props.history.push('/admin/edu/darzeliai');
@@ -138,7 +138,7 @@ export default class KindergartenRegistrationContainer extends Component {
           console.log(error);
         });
     } else {
-      console.error('Invalid Form');
+      //console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );

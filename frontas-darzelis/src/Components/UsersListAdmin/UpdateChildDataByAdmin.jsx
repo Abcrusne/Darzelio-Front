@@ -79,7 +79,7 @@ export default class UpdateChildDataByAdmin extends Component {
   }
 
   componentDidMount() {
-    console.log('component did mount');
+    //console.log('component did mount');
     axios
       .get(
         `${API}/api/users/${this.props.match.params.id}/parentdetails/children/${this.props.match.params.type}`
@@ -123,8 +123,8 @@ export default class UpdateChildDataByAdmin extends Component {
             res.data.secondParentDeclaredFlatNumber,
           adopted: res.data.adopted,
         });
-        console.log('vaiko id: ' + this.state.id);
-        console.log('parent user id: ' + this.props.match.params.id);
+        //console.log('vaiko id: ' + this.state.id);
+        //console.log('parent user id: ' + this.props.match.params.id);
       })
       .catch((err) => console.log(err.data));
   }
@@ -141,7 +141,7 @@ export default class UpdateChildDataByAdmin extends Component {
         );
       })
       .catch((err) => console.log(err.data));
-    console.log('deleteChildren');
+    //console.log('deleteChildren');
   };
 
   handleChangeDate = (date) => {
@@ -288,13 +288,13 @@ export default class UpdateChildDataByAdmin extends Component {
         break;
     }
     if (event.target.type === 'checkbox') {
-      console.log(event.target.checked);
+      //console.log(event.target.checked);
       this.setState({ [event.target.name]: event.target.checked });
     } else
       this.setState({ errors, [event.target.name]: event.target.value }, () => {
         // console.log(errors);
       });
-    console.log(this.state);
+    //console.log(this.state);
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -350,7 +350,7 @@ export default class UpdateChildDataByAdmin extends Component {
           }
         )
         .then((response) => {
-          console.log(response);
+         // console.log(response);
           alert('Vaiko duomenys atnaujinti sėkmingai');
           this.props.history.push(
             `/admin/duomenys/vaikai/${this.state.parentId}`
@@ -409,10 +409,10 @@ export default class UpdateChildDataByAdmin extends Component {
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          console.log(error.response);
+          //console.log(error.response);
         });
     } else {
-      console.error('Invalid Form');
+      //console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );

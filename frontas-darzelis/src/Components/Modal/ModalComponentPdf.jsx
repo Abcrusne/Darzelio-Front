@@ -6,7 +6,7 @@ const ModalComponentPdf = ({
   lastname,
   deletePdf,
 }) => {
-  console.log('modal  id: ' + id);
+  //console.log('modal  id: ' + id);
 
   return (
     <div

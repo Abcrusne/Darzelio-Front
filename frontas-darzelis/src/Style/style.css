@@ -160,9 +160,9 @@
 .sort:hover {
   color: #1baaa0;
 }
-.dataTables_empty {
+/* .dataTables_empty {
   display: none;
-}
+} */
 .conditions {
   line-height: 2;
   letter-spacing: 0.6px;

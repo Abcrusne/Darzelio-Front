@@ -87,14 +87,14 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
     };
   }
   componentDidMount() {
-    console.log('component did mount');
+   // console.log('component did mount');
     axios
       .get(`${API}/api/users/loggeduserid`)
       .then((res) => {
         this.setState({
           userId: res.data,
         });
-        console.log('user id: ' + this.state.userId);
+        //console.log('user id: ' + this.state.userId);
 
         return axios.get(
           `${API}/api/users/${this.state.userId}/parentdetails/children/${this.props.match.params.id}`
@@ -137,7 +137,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
             res.data.secondParentDeclaredFlatNumber,
           adopted: res.data.adopted,
         });
-        console.log('vaiko id: ' + this.state.id);
+       // console.log('vaiko id: ' + this.state.id);
       })
       .catch((err) => console.log(err.data));
   }
@@ -153,7 +153,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
         this.props.history.push('/tevai/vaikai');
       })
       .catch((err) => console.log(err.data));
-    console.log('deleteChildren');
+   // console.log('deleteChildren');
   };
 
   handleChangeDate = (date) => {
@@ -310,13 +310,13 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
         break;
     }
     if (event.target.type === 'checkbox') {
-       console.log(event.target.checked);
+      // console.log(event.target.checked);
       this.setState({ [event.target.name]: event.target.checked });
     } else
       this.setState({ errors, [event.target.name]: event.target.value }, () => {
         // console.log(errors);
       });
-    console.log(this.state);
+    //console.log(this.state);
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -372,7 +372,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
           }
         )
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           alert('Vaiko duomenys atnaujinti sėkmingai');
           this.props.history.push(`/tevai/vaikai/registracijos/${this.props.match.params.id}`);
         })
@@ -432,7 +432,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
           console.log(error.response);
         });
     } else {
-      console.error('Invalid Form');
+      //console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );
