@@ -157,7 +157,7 @@ export default class HorizontalChart extends Component {
               <p>Viso vietų darželiuose</p>
             </div>
           </div>
-          {this.state.locked ? (
+          {/* {this.state.locked ? ( */}
             <div className="card col">
               <div className="card-body">
                 {this.state.waitingInFirstAgeGroup > 0 ? (
@@ -174,7 +174,7 @@ export default class HorizontalChart extends Component {
                 <br />
               </div>
             </div>
-          ) : (
+          {/* ) : (
             <div className="card col">
               <div className="card-body">
                 <h5 className="card-title pb-3">
@@ -191,8 +191,8 @@ export default class HorizontalChart extends Component {
                 <br />
               </div>
             </div>
-          )}
-          {this.state.locked ? (
+          )} */}
+          {/* {this.state.locked ? ( */}
             <div className="card col">
               <div className="card-body">
                 {this.state.waitingInSecondAgeGroup > 0 ? (
@@ -210,7 +210,7 @@ export default class HorizontalChart extends Component {
                 <br />
               </div>
             </div>
-          ) : (
+          {/* ) : (
             <div className="card col">
               <div className="card-body">
                 <h5 className="card-title pb-3">
@@ -226,7 +226,7 @@ export default class HorizontalChart extends Component {
                 <br />
               </div>
             </div>
-          )}
+          )} */}
         </div>
         <div>
           {Object.keys(this.state.chartData).length ? (
