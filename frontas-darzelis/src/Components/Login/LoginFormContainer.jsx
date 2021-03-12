@@ -42,8 +42,8 @@ class LoginFormContainer extends Component {
           UserService.setRole(response.data.role);
           this.setState({ role: response.data.role });
           console.log(response.data);
-          const currentDate = Date.now();
-          UserService.setRoleExpiration(currentDate);
+          // const currentDate = Date.now();
+          // UserService.setRoleExpiration(currentDate);
           const currentRole = this.state.role;
           switch (currentRole) {
             case "[PARENT]":

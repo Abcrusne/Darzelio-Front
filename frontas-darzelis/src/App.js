@@ -14,11 +14,13 @@ import UpdateKindergartenFormContainer from './Components/KindergartenList/Updat
 import RegistrationToSystem from './Components/RegistrationToSystem/RegistrationToSystem';
 import PasswordReminder from "./Components/Login/ResetPassword/PasswordReminder";
 import AddNewPassword from "./Components/Login/ResetPassword/AddNewPassword";
+import IdleTimerContainer from "./Configuration/IdleTimer";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <IdleTimerContainer />
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route path="/login" component={LandingPage} />

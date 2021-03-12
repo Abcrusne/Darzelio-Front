@@ -38,14 +38,18 @@ const LoginFormPresentation = ({email, password, onPasswdChange, onEmailChange, 
                         placeholder="********"
                         onChange={onPasswdChange}
                         value={password}
+                        onInvalid={(e) => {
+                            e.target.setCustomValidity('Pamiršote įvesti slaptažodį.');
+                        }}
                         required/>
                 </div>
-                <div className="mb-3">
-                    <Link className="btn btn-link" to="/atstatytiSlaptazodi">Pamiršau slaptažodį</Link>
-                </div>
+
                 <div className="align-items-center">
                     <button type="submit" className="mr-4 btn">Prisijungti</button>
                     <Link className="btn btn-link" to="/registracija">Naujo vartotojo registracija</Link>
+                </div>
+                <div className="mt-3">
+                    <Link to="/atstatytiSlaptazodi">Pamiršote slaptažodį?</Link>
                 </div>
             </form>
         </div>
