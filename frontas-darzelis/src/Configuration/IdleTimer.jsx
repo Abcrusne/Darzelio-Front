@@ -13,20 +13,11 @@ function IdleTimerContainer () {
         history.push("/login")
     }
 
-    // const logOut = () => {
-    //     clearTimeout(sessionTimeoutRef.current)
-    //     console.log('User has been logged out')
-    // }
-    // const stayActive = () => {
-    //     clearTimeout(sessionTimeoutRef.current)
-    //     console.log('User is active')
-    // }
-
     return (
         <div>
             <IdleTimer
                 ref={idleTimerRef}
-                timeout={1000 * 5}
+                timeout={120 * 60 * 1000}
                 data-toggle="modal"
                 data-target={`#staticBackdrop`}
                 onIdle={onIdle}

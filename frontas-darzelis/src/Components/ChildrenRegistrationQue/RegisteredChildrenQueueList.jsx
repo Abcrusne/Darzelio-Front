@@ -6,13 +6,14 @@ import {Link} from "react-router-dom"
 import {ModalForChildQueueDeleteButton} from "../Modal/ModalForChildQueueDeleteButton";
 import DataService from "../Utilities/DataService";
 import "../../Style/UsersLandings.css"
+import userService from "../../Configuration/UserService";
 
 export default class RegisteredChildrenQueueList extends Component {
     constructor(props) {
         super(props);
         this.state = {
             childrenQueueList: [],
-            sort:'',
+            sort: '',
             sortAccepted: [],
             searchLastname: '',
             sortLastname: [],
@@ -28,10 +29,10 @@ export default class RegisteredChildrenQueueList extends Component {
         this.retrieveChildrenQueueList();
     }
 
-        retrieveChildrenQueueList = () => {
-        const { pageNumber, searchLastname, sort } = this.state;
+    retrieveChildrenQueueList = () => {
+        const {pageNumber, searchLastname, sort} = this.state;
         console.log("retrieveChildrenQueue")
-        console.log(pageNumber + '' + searchLastname + '' + sort );
+        console.log(pageNumber + '' + searchLastname + '' + sort);
         DataService.getAll(pageNumber, sort, searchLastname)
             .then((response) => {
                 const {registrations, totalPages} = response.data;
@@ -85,7 +86,7 @@ export default class RegisteredChildrenQueueList extends Component {
     }
 
     handlePageChange = (event, value) => {
-       const {sortAccepted, sortLastName} = this.state
+        const {sortAccepted, sortLastName} = this.state
         this.setState({
                 pageNumber: value,
             },
@@ -169,7 +170,8 @@ export default class RegisteredChildrenQueueList extends Component {
                         <th scope="col"><Link onClick={this.handleLastnameSort}>Pavardė</Link></th>
                         <th scope="col">Asmens kodas</th>
                         <th scope="col">Reitingas</th>
-                        <th scope="col" onClick={this.handleAcceptedSort}><Link>Statusas(priimtas/ laukiantis)</Link></th>
+                        <th scope="col" onClick={this.handleAcceptedSort}><Link>Statusas(priimtas/ laukiantis)</Link>
+                        </th>
                         <th scope="col">Darželio pavadinimas (jei vaikas priimtas)</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
@@ -192,13 +194,16 @@ export default class RegisteredChildrenQueueList extends Component {
                                         {accepted ? <td>Priimtas</td> : <td>Laukiančiųjų eilėje</td>}
                                         <td>{kindergartenName}</td>
                                         <td>
-                                            <button
-                                                className="mr-4 btn btn-light"
-                                                data-toggle="modal"
-                                                data-target={`#staticBackdrop${childId}`}
-                                                value={childId}
-                                            >Pašalinti iš eilės
-                                            </button>
+                                            {userService.getRole() === "[EDU]" ?
+                                                (
+                                                    <button
+                                                        className="mr-4 btn btn-light"
+                                                        data-toggle="modal"
+                                                        data-target={`#staticBackdrop${childId}`}
+                                                        value={childId}
+                                                    >Pašalinti iš eilės
+                                                    </button>
+                                                ) : ''}
                                         </td>
                                         <td>
                                             <ModalForChildQueueDeleteButton
@@ -225,12 +230,14 @@ export default class RegisteredChildrenQueueList extends Component {
                     onChange={this.handlePageChange}
                 />
                 <div>
-                    <button
-                        type="button"
-                        className="mr-4 btn text-nowrap"
-                        onClick={this.handleConfirmClick}
-                    >Patvirtinti vaikų eilę į darželius
-                    </button>
+                    {userService.getRole() === "[EDU]" ? (
+                        <button
+                            type="button"
+                            className="mr-4 btn text-nowrap"
+                            onClick={this.handleConfirmClick}
+                        >Patvirtinti vaikų eilę į darželius
+                        </button>) : ''}
+
                 </div>
             </div>
         )

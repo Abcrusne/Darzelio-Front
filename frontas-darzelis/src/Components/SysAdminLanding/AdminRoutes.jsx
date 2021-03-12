@@ -27,6 +27,7 @@ import ChildrenRegistrationByAdmin from '../UsersListAdmin/ChildrenRegistrationB
 import ChildRegistrationToKindergartenByAdmin from '../UsersListAdmin/ChildRegistrationToKindergartenByAdmin';
 import ParentRegistrationByAdmin from '../UsersListAdmin/ParentRegistrationByAdmin';
 import UserLogsList from '../Logs/UserLogsList';
+import RegisteredChildrenQueueList from "../ChildrenRegistrationQue/RegisteredChildrenQueueList";
 
 export const AdminRoutes = () => {
   return (
@@ -66,6 +67,12 @@ export const AdminRoutes = () => {
           path="/admin/darzelioregistracija"
           component={KindergartenRegistrationContainer}
           role={'ADMIN'}
+        />
+        <PrivateRoute
+            path="/admin/edu/vaikai"
+            exact
+            component={RegisteredChildrenQueueList}
+            role={'ADMIN'}
         />
         <PrivateRoute
           exact

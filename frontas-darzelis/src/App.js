@@ -187,6 +187,12 @@ function App() {
             role={'ADMIN'}
           />
           <PrivateRoute
+              path="/admin/edu/vaikai"
+              exact
+              component={SysAdminLanding}
+              role={'ADMIN'}
+          />
+          <PrivateRoute
             exact
             path="/admin/darzeliai"
             // component={KindergartenListTableContainer}

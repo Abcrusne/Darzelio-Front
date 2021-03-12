@@ -39,7 +39,7 @@ export const LockButton = () => {
             .catch(error => console.log(error))
     }
     return (
-        <div className="col-8 shadow border rounded p-5">
+        <div>
             <div >
                 <h5 className="pb-3">Eilės statusas: {isLocked? "Eilė Užrakinta" : "Eilė atrakinta"}</h5>
             </div>
