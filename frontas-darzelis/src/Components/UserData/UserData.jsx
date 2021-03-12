@@ -73,6 +73,21 @@ const UserData = () => {
             Keisti el.paštą
           </NavLink>{' '}
         </h5>
+        <h5>
+          <a
+            href={`${API}/api/users/userdata/download`}
+            target="_blank"
+            className="nav-link"
+          >
+            Atsisiųsti savo paskyros duomenis
+          </a>{' '}
+        </h5>
+        <h5>
+          {' '}
+          <NavLink to="/tevai/duomenys/istrinti" className="nav-link">
+            Ištrinti paskyrą
+          </NavLink>{' '}
+        </h5>
       </div>
     );
   } else if (currentRole === '[ADMIN]') {
