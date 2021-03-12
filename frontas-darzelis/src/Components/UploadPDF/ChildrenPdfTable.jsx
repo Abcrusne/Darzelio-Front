@@ -1,9 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
-import { Link } from 'react-router-dom';
 import ModalComponentPdf from '../Modal/ModalComponentPdf';
-import Loading from '../Loading/Loading';
+
 
 export default class ChildrenPdfTable extends Component {
   constructor() {

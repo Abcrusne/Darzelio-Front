@@ -187,7 +187,7 @@ export default class UpdateUserDataFormContainer extends Component {
                 <span className="error">{errors.lastname}</span>
               )}
             </div>
-            {this.state.role === 'ADMIN' ? (
+            {/* {this.state.role === 'ADMIN' ? (
               <div></div>
             ) : (
               <div className="form-check form-group mb-3 col-10">
@@ -205,9 +205,8 @@ export default class UpdateUserDataFormContainer extends Component {
                   ištrinti iš sistemos
                 </label>
               </div>
-            )}
-
-            {this.state.markedForDeletion ? (
+            )} */}
+    {/* {this.state.markedForDeletion ? (
               <div>
                 <p>
                   {' '}
@@ -217,7 +216,8 @@ export default class UpdateUserDataFormContainer extends Component {
                   </i>
                 </p>
               </div>
-            ) : null}
+            ) : null} */}
+        
 
             <div> * - privalomi laukai</div>
 

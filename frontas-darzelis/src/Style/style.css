@@ -177,4 +177,8 @@
 .pdfGuide {
   margin: 5em 28em;
 }
-
+.next {
+  /* margin-left: 10rem; */
+  margin-right: 30em;
+  margin-top: 5em;
+}
