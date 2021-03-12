@@ -3,7 +3,6 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
 
-
 export default class UpdateUserDataFormContainer extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +13,7 @@ export default class UpdateUserDataFormContainer extends Component {
       email: '',
       role: '',
       password: '',
-      markedForDeletion: "",
+      markedForDeletion: '',
 
       errors: {
         firstname: '',
@@ -30,7 +29,7 @@ export default class UpdateUserDataFormContainer extends Component {
         this.setState({
           id: res.data,
         });
-        //console.log('user id:' + this.state.id);
+
         return axios.get(`${API}/api/users/${this.state.id}`);
       })
       .then((res) =>
@@ -41,31 +40,13 @@ export default class UpdateUserDataFormContainer extends Component {
           email: res.data.email,
           role: res.data.role,
           password: res.data.password,
-          markedForDeletion:res.data.markedForDeletion
+          markedForDeletion: res.data.markedForDeletion,
         })
       )
       .catch((err) => console.log(err));
   }
-  // componentDidMount() {
-  //   console.log('component did mount');
-  //   axios
-  //     .get(`${API}/api/users/${this.props.match.params.id}`)
-  //     .then((res) =>
-  //       this.setState({
-  //         id: res.data.id,
-  //         firstname: res.data.firstname,
-  //         lastname: res.data.lastname,
-  //         email: res.data.email,
-  //         role: res.data.role,
-  //         password: res.data.password,
-  //       })
-  //     )
-  //     .catch((err) => console.log(err));
-  // }
 
   handleChange = (event) => {
-    // event.preventDefault();
-
     const validEmailRegex = RegExp(
       /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
     );
@@ -96,7 +77,6 @@ export default class UpdateUserDataFormContainer extends Component {
     }
 
     if (event.target.type === 'checkbox') {
-      // console.log(event.target.checked);
       this.setState({ [event.target.name]: event.target.checked });
     } else
       this.setState(
@@ -108,7 +88,6 @@ export default class UpdateUserDataFormContainer extends Component {
           // console.log(errors);
         }
       );
-    // console.log(this.state);
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -135,19 +114,16 @@ export default class UpdateUserDataFormContainer extends Component {
             role: this.state.role,
             password: this.state.password,
             markedForDeletion: this.state.markedForDeletion,
-            // requestedDelete: this.state.requestedDelete
           }
         )
         .then((response) => {
-         // console.log(response);
           alert('Duomenys atnaujinti sėkmingai!');
-          if (this.state.role ==="PARENT") {
-          this.props.history.push('/tevai/naudotojo-duomenys');}
-          else if (this.state.role ==="EDU"){
-            this.props.history.push('/admin/edu/naudotojo-duomenys')
-          }
-          else if (this.state.role ==="ADMIN"){
-            this.props.history.push('/admin/edu/naudotojo-duomenys')
+          if (this.state.role === 'PARENT') {
+            this.props.history.push('/tevai/naudotojo-duomenys');
+          } else if (this.state.role === 'EDU') {
+            this.props.history.push('/admin/edu/naudotojo-duomenys');
+          } else if (this.state.role === 'ADMIN') {
+            this.props.history.push('/admin/edu/naudotojo-duomenys');
           }
         })
 
@@ -164,7 +140,6 @@ export default class UpdateUserDataFormContainer extends Component {
           console.log(error);
         });
     } else {
-      //console.error('Invalid Form');
       alert(
         'Nepavyko pakeisti! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );
@@ -191,13 +166,10 @@ export default class UpdateUserDataFormContainer extends Component {
                 onChange={this.handleChange}
                 noValidate
                 value={this.state.firstname}
-                // required
               />
               {errors.firstname.length > 0 && (
                 <span className="error">{errors.firstname}</span>
               )}
-              {/* <div className="invalid-feedback">Įrašykite vardą.</div>
-          <div className="valid-feedback"></div> */}
             </div>
             <div className="mb-3">
               <label htmlFor="lastname" className="control-label">
@@ -215,22 +187,6 @@ export default class UpdateUserDataFormContainer extends Component {
                 <span className="error">{errors.lastname}</span>
               )}
             </div>
-            {/* <div className="mb-3">
-              <label htmlFor="email" className="control-label">
-                Naudotojo el.paštas*:
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                name="email"
-                onChange={this.handleChange}
-                noValidate
-                value={this.state.email}
-              />
-              {errors.email.length > 0 && (
-                <span className="error">{errors.email}</span>
-              )}
-            </div> */}
 
             <div className="form-check form-group mb-3 col-10">
               <input

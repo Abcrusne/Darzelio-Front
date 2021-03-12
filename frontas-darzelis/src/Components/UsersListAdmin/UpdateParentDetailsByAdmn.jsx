@@ -48,7 +48,6 @@ export default class UpdateParentDetailsByAdmn extends Component {
     };
   }
 
-
   componentDidMount() {
     axios
       .get(`${API}/api/users/${this.props.match.params.id}/parentdetails`)
@@ -76,29 +75,19 @@ export default class UpdateParentDetailsByAdmn extends Component {
           declaredFlatNumber: res.data.declaredFlatNumber,
           // userId: res.data.userId,
         });
-        //console.log('parent id ' + this.state.id);
-       // console.log('user parent id ' + this.state.userId);
-        
       })
       .catch((err) => console.log(err));
   }
 
   handleChange = (event) => {
-    //event.preventDefault();
-    //console.log(event.target.checked);
-
     const validEmailRegex = RegExp(
       /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
     );
     const { name, value } = event.target;
-
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
-    // let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
     let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,.\- ]*$/;
-
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
-
     let validPhone = /^[+][3][7][0][6|5]+[0-9]+$/;
     let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
     let numbers = /^[0-9]+$/;
@@ -158,11 +147,6 @@ export default class UpdateParentDetailsByAdmn extends Component {
             : '';
         break;
 
-      // case 'flatNumber':
-      //   errors.flatNumber = !value.match(numbers)
-      //     ? 'Įrašykite buto numerį, pvz: 2'
-      //     : '';
-      //   break;
       case 'numberOfKids':
         errors.numberOfKids =
           !value.match(numbers) || value.length < 0
@@ -174,7 +158,6 @@ export default class UpdateParentDetailsByAdmn extends Component {
         break;
     }
     if (event.target.type === 'checkbox') {
-      // console.log(event.target.checked);
       this.setState({ [event.target.name]: event.target.checked });
     } else
       this.setState(
@@ -186,13 +169,10 @@ export default class UpdateParentDetailsByAdmn extends Component {
           // console.log(errors);
         }
       );
-    // console.log(this.state);
   };
 
   handleSubmit = (event) => {
-    const currentRole = UserService.getRole();
     event.preventDefault();
-
     const validateForm = (errors) => {
       let valid = true;
       Object.values(errors).forEach(
@@ -225,20 +205,12 @@ export default class UpdateParentDetailsByAdmn extends Component {
           declaredStreet: this.state.declaredStreet,
           declaredHouseNumber: this.state.declaredHouseNumber,
           declaredFlatNumber: this.state.declaredFlatNumber,
-
-          // userId: this.state.userId,
         })
         .then((response) => {
           console.log(response);
-          // if (currentRole === '[PARENT]') {
 
-            alert('Tėvo/Globėjo duomenys atnaujinti sėkmingai');
-              this.props.history.push(`/admin/duomenys/${this.state.userId}`);
-          // }
-          // else      if (currentRole === '[ADMIN]') {
-          //   alert('Tėvo/Globėjo duomenys atnaujinti sėkmingai');
-          //   this.props.history.push(`/admin/duomenys/${this.state.userId}`);
-          // }
+          alert('Tėvo/Globėjo duomenys atnaujinti sėkmingai');
+          this.props.history.push(`/admin/duomenys/${this.state.userId}`);
         })
 
         .catch((error) => {
@@ -291,14 +263,12 @@ export default class UpdateParentDetailsByAdmn extends Component {
           //console.log(error.response);
         });
     } else {
-      //console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );
     }
   };
   render() {
-    // console.log('this.state length: ' + this.state.length);
     const { errors } = this.state;
     if (this.state.id > 0) {
       return (
@@ -307,11 +277,7 @@ export default class UpdateParentDetailsByAdmn extends Component {
             <div className="mb-4">
               <h3>Anaujinkite savo tėvo/globėjo duomenis</h3>
             </div>
-            <form
-              onSubmit={this.handleSubmit}
-              // noValidate
-              className="form-row "
-            >
+            <form onSubmit={this.handleSubmit} className="form-row ">
               <div className=" form-group mb-3 col-6">
                 <label htmlFor="firstname" className="control-label">
                   Vardas*:
@@ -461,15 +427,12 @@ export default class UpdateParentDetailsByAdmn extends Component {
                   name="flatNumber"
                   onChange={this.handleChange}
                   value={this.state.flatNumber}
-                  // noValidate
                 />
-                {/* {errors.flatNumber.length > 0 && (
-                      <span className="error">{errors.flatNumber}</span>
-                    )} */}
               </div>
               <div className="form-group mb-3 col-8">
                 <label htmlFor="numberOfKids" className="control-label">
-                Kiek turite vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo programas?*:
+                  Kiek turite vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo
+                  programas?*:
                 </label>
                 <input
                   type="number"
@@ -515,7 +478,6 @@ export default class UpdateParentDetailsByAdmn extends Component {
                     name="studyingInstitution"
                     onChange={this.handleChange}
                     value={this.state.studyingInstitution}
-                    // noValidate
                     pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
@@ -573,7 +535,6 @@ export default class UpdateParentDetailsByAdmn extends Component {
                       name="declaredCity"
                       onChange={this.handleChange}
                       value={this.state.declaredCity}
-                      // noValidate
                       pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ - ]+"
                       onInvalid={(e) => {
                         e.target.setCustomValidity(
@@ -595,8 +556,6 @@ export default class UpdateParentDetailsByAdmn extends Component {
                       name="declaredStreet"
                       onChange={this.handleChange}
                       value={this.state.declaredStreet}
-                      // noValidate
-                      // pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
                       pattern="^[a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+[- a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 . -  ]*"
                       onInvalid={(e) => {
                         e.target.setCustomValidity(
@@ -621,7 +580,6 @@ export default class UpdateParentDetailsByAdmn extends Component {
                       className="form-control"
                       name="declaredHouseNumber"
                       onChange={this.handleChange}
-                      // noValidate
                       value={this.state.declaredHouseNumber}
                       pattern="^[1-9]+[ a-zA-Z 0-9 ]*"
                       onInvalid={(e) => {
@@ -648,7 +606,6 @@ export default class UpdateParentDetailsByAdmn extends Component {
                       name="declaredFlatNumber"
                       onChange={this.handleChange}
                       value={this.state.declaredFlatNumber}
-                      // noValidate
                     />
                   </div>
                 </div>
@@ -673,7 +630,10 @@ export default class UpdateParentDetailsByAdmn extends Component {
           <h5>
             Šis tėvas dar neužpildė tėvo/globėjo duomenų, jei norite užpildyti
             tėvo/globėjo duomenis:
-            <NavLink to={`/admin/tevo-registracija/${this.props.match.params.id}`} className="nav-link">
+            <NavLink
+              to={`/admin/tevo-registracija/${this.props.match.params.id}`}
+              className="nav-link"
+            >
               spauskite čia
             </NavLink>
           </h5>

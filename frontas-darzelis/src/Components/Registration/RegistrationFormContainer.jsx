@@ -21,9 +21,7 @@ export default class RegistrationFormContainer extends Component {
       },
     };
   }
-  // componentDidCatch(error, errorInfo){
-  //   logErrorToMyService(error,errorInfo);
-  // }
+
   handleChange = (event) => {
     event.preventDefault();
 
@@ -67,8 +65,6 @@ export default class RegistrationFormContainer extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    // event.target.className += ' was-validated';
-
     const outputUser = {
       email: this.state.email,
       firstname: this.state.firstname,
@@ -77,7 +73,6 @@ export default class RegistrationFormContainer extends Component {
       role: this.state.role,
       password: this.state.firstname,
       markedForDeletion: this.state.markedForDeletion,
-      // confirmlastname: this.state.confirmlastname,
     };
     const validateForm = (errors) => {
       let valid = true;
@@ -90,16 +85,8 @@ export default class RegistrationFormContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(
-          API + '/api/users',
-          outputUser
-          // ,
-          // {
-          //   headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-          // }
-        )
+        .post(API + '/api/users', outputUser)
         .then((response) => {
-          // console.log(response);
           alert('Vartotojo registracija sėkminga!');
           this.props.history.push('/admin/vartotojai');
         })
@@ -118,7 +105,6 @@ export default class RegistrationFormContainer extends Component {
           console.log(error);
         });
     } else {
-     // console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );
@@ -128,8 +114,6 @@ export default class RegistrationFormContainer extends Component {
     const { errors } = this.state;
     return (
       <div className="container mt-5">
-        {/* <NavigationForAllPages/> */}
-
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
             <h3>Užregistruoti naują vartotoją</h3>
@@ -145,13 +129,10 @@ export default class RegistrationFormContainer extends Component {
                 name="firstname"
                 onChange={this.handleChange}
                 noValidate
-                //required
               />
               {errors.firstname.length > 0 && (
                 <span className="error">{errors.firstname}</span>
               )}
-              {/* <div className="invalid-feedback">Įrašykite vardą.</div>
-          <div className="valid-feedback"></div> */}
             </div>
             <div className="mb-3">
               <label htmlFor="lastname" className="control-label">
@@ -163,7 +144,6 @@ export default class RegistrationFormContainer extends Component {
                 name="lastname"
                 onChange={this.handleChange}
                 noValidate
-                //required
               />
               {errors.lastname.length > 0 && (
                 <span className="error">{errors.lastname}</span>
@@ -179,7 +159,6 @@ export default class RegistrationFormContainer extends Component {
                 name="email"
                 onChange={this.handleChange}
                 noValidate
-                //required
               />
               {errors.email.length > 0 && (
                 <span className="error">{errors.email}</span>
@@ -195,7 +174,6 @@ export default class RegistrationFormContainer extends Component {
                 name="role"
                 onChange={this.handleChange}
                 noValidate
-                //required
               >
                 <option value=""></option>
                 <option value="PARENT">Tėvas/globėjas</option>
@@ -204,7 +182,6 @@ export default class RegistrationFormContainer extends Component {
               {errors.role.length > 0 && (
                 <span className="error">{errors.role}</span>
               )}
-              {/* <span className="invalid-feedback error">Pasirinkite rolę.</span> */}
             </div>
             <div> * - privalomi laukai</div>
             <div>
@@ -212,7 +189,6 @@ export default class RegistrationFormContainer extends Component {
                 Registruoti
               </button>
             </div>
-            {/* {this.state.errorCount !== null ? <p className="form-status">Form is {formValid ? 'valid ✅' : 'invalid ❌'}</p> : 'Form not submitted'} */}
           </form>
         </div>
       </div>

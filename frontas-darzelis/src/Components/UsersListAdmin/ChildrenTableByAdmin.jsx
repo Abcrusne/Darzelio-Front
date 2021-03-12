@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
-// import ChildrenListTablePresentation from './ChildrenListTablePresentation';
 import '../../Style/UsersLandings.css';
-import Loading from '../Loading/Loading';
 import ChildrenTablePresentation from './ChildrenTablePresentationByAdmin';
 
 export default class ChildrenTable extends Component {
@@ -36,9 +34,6 @@ export default class ChildrenTable extends Component {
           parentDetailsId: res.data.id,
         });
       })
-      // console.log('parent id ' + this.state.id);
-      // console.log('user parent id ' + this.state.userId);
-
       .catch((err) => console.log(err));
   }
   render() {
@@ -67,7 +62,6 @@ export default class ChildrenTable extends Component {
                   <th scope="col">Peržiūrėti/Atnaujinti prašymą į darželį </th>
                 </tr>
               </thead>
-              {/* {this.state.children.length > 0 &&  ( */}
 
               <tbody>
                 <ChildrenTablePresentation
@@ -79,7 +73,6 @@ export default class ChildrenTable extends Component {
             </table>
           </div>
         ) : (
-          //<Loading/>
           <p> Tėvas/Globėjas dar nepateikė jokių duomenų apie savo vaikus.</p>
         )}
       </div>

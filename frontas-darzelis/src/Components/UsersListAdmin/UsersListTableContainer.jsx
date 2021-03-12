@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import UsersListTablePresentation from './UsersListTablePresentation';
-import Loading from '../Loading/Loading';
 import ModalComponent from '../Modal/ModalComponent';
 import '../../Style/UsersLandings.css';
-import { Pagination } from '@material-ui/lab';
 
 export default class UsersListTableContainer extends Component {
   constructor() {
@@ -19,7 +16,6 @@ export default class UsersListTableContainer extends Component {
   }
 
   componentDidMount = () => {
-    //console.log('component did mount');
     let isMounted = true;
     axios
       .get(API + '/api/users')
@@ -27,7 +23,6 @@ export default class UsersListTableContainer extends Component {
 
       .catch((error) => console.log(error));
     isMounted = false;
-    // console.log('users: ' + this.state.users);
   };
   handleSearch = (event) => {
     event.preventDefault();
@@ -48,17 +43,7 @@ export default class UsersListTableContainer extends Component {
           .then((response) => this.setState({ users: response.data }));
       })
       .catch((err) => console.log(err));
-    //console.log('deleteUser');
   };
-
-  //   handlePageChange =(event, value)=> {
-  // this.setState({
-  //   pageNumber: value,
-  // }, () => {
-  //   this.componentDidMount();
-  // }
-  // )
-  //   }
 
   render() {
     let filteredUsers = this.state.users.filter((user) => {
@@ -175,13 +160,6 @@ export default class UsersListTableContainer extends Component {
               }
             )
           ) : (
-            // {/* <UsersListTablePresentation
-            //   users={this.state.users}
-            //    deleteUser={this.deleteUser}
-            //    searchTerm= {this.state.searchTerm}
-
-            // /> */}
-
             <tbody>
               <tr>
                 <td>Loading...</td>
@@ -189,16 +167,6 @@ export default class UsersListTableContainer extends Component {
             </tbody>
           )}
         </table>
-        {/* <Pagination
-           className="my-3"
-           count={this.state.users.size}
-           page = {3}
-           siblingCount={1}
-           boundaryCount={1}
-           variant="outlined"
-           shape="rounded"
-           onChange={this.handlePageChange}
-          /> */}
       </div>
     );
   }

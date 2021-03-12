@@ -3,7 +3,6 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
 
-
 export default class UpdateUserEmailContainer extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +27,7 @@ export default class UpdateUserEmailContainer extends Component {
         this.setState({
           id: res.data,
         });
-        //console.log('user id:' + this.state.id);
+
         return axios.get(`${API}/api/users/${this.state.id}`);
       })
       .then((res) =>
@@ -44,26 +43,8 @@ export default class UpdateUserEmailContainer extends Component {
       )
       .catch((err) => console.log(err));
   }
-  // componentDidMount() {
-  //   console.log('component did mount');
-  //   axios
-  //     .get(`${API}/api/users/${this.props.match.params.id}`)
-  //     .then((res) =>
-  //       this.setState({
-  //         id: res.data.id,
-  //         firstname: res.data.firstname,
-  //         lastname: res.data.lastname,
-  //         email: res.data.email,
-  //         role: res.data.role,
-  //         password: res.data.password,
-  //       })
-  //     )
-  //     .catch((err) => console.log(err));
-  // }
 
   handleChange = (event) => {
-    // event.preventDefault();
-
     const validEmailRegex = RegExp(
       /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
     );
@@ -89,7 +70,6 @@ export default class UpdateUserEmailContainer extends Component {
         // console.log(errors);
       }
     );
-    // console.log(this.state);
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -116,12 +96,12 @@ export default class UpdateUserEmailContainer extends Component {
             role: this.state.role,
             password: this.state.password,
             markedForDeletion: this.state.markedForDeletion,
-            // requestedDelete: this.state.requestedDelete
           }
         )
         .then((response) => {
-          //console.log(response);
-          alert('Duomenys atnaujinti sėkmingai! Dabar turėsite prie sistemos prisijungti iš naujo su pakeistu el.paštu.');
+          alert(
+            'Duomenys atnaujinti sėkmingai! Dabar turėsite prie sistemos prisijungti iš naujo su pakeistu el.paštu.'
+          );
           if (this.state.role === 'PARENT') {
             localStorage.clear();
             this.props.history.push('/login');
@@ -147,7 +127,6 @@ export default class UpdateUserEmailContainer extends Component {
           console.log(error);
         });
     } else {
-      //console.error('Invalid Form');
       alert(
         'Nepavyko pakeisti! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );

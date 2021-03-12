@@ -24,7 +24,6 @@ export default class UpdateChildrenApplicationByParents extends Component {
       childRating: '',
 
       kindergartens: [],
-      //   kindergarten_name: '',
     };
   }
 
@@ -63,7 +62,6 @@ export default class UpdateChildrenApplicationByParents extends Component {
       .catch((err) => console.log(err));
   }
   deleteApplication = (event) => {
-    //event.preventDefault();
     axios
       .delete(`${API}/api/kindergartens/register/${this.state.childId}/delete`)
       .then(() => {
@@ -71,7 +69,6 @@ export default class UpdateChildrenApplicationByParents extends Component {
         this.props.history.push('/tevai/vaikai');
       })
       .catch((err) => console.log(err.data));
-   //console.log('deleteChildrenApplication');
   };
 
   handleChange = (event) => {
@@ -94,7 +91,6 @@ export default class UpdateChildrenApplicationByParents extends Component {
         thirdPriority: this.state.thirdPriority,
       })
       .then((res) => {
-        //console.log(res);
         alert('Vaiko prašymas atnaujintas!');
         this.props.history.push(`/tevai/vaikai`);
       })
@@ -102,9 +98,6 @@ export default class UpdateChildrenApplicationByParents extends Component {
         console.log(error.data);
       });
   };
-  // {this.state.kindergartenName !== "" ? (
-  //   <div></div>
-  //             ) : <div> <p> Prašymo redaguoti negalite. Jūsų vaikas priimtas į darželį: <b>{kindergartenName}</b>, vaiko balas: <b>{childRating}</b></p></div>}
   render() {
     if (this.state.id > 0) {
       if (this.state.kindergartenName === '') {

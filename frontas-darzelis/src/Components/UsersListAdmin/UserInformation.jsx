@@ -17,12 +17,6 @@ export default class UserInformation extends Component {
             Vaikų duomenys
           </NavLink>{' '}
         </h5> 
-        {/* <h5>
-          {' '}
-          <NavLink to={`/admin/duomenys/vaikai/prasymai/${this.props.match.params.id}`} className="nav-link">
-            Vaikų prašymų duomenys
-          </NavLink>{' '}
-        </h5>  */}
             </div>
         )
     }

@@ -8,7 +8,7 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import lt from 'date-fns/locale/lt';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
-//import ParentRegistrationFormContainer from '../ParentRegistration/ParentRegistrationFormContainer';
+
 registerLocale('lt', lt);
 
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
@@ -18,7 +18,7 @@ export default class ChildrenRegistrationByAdmin extends Component {
     super(props);
     this.state = {
       birthdate: new Date(),
-    
+
       //parent id ar jau egzistuoja toks tevas
       parentId: '',
       //vaiko id
@@ -89,8 +89,8 @@ export default class ChildrenRegistrationByAdmin extends Component {
   }
   componentDidMount() {
     axios
-    .get(`${API}/api/users/${this.props.match.params.id}/parentdetails`)
-    .then((res) => {
+      .get(`${API}/api/users/${this.props.match.params.id}/parentdetails`)
+      .then((res) => {
         this.setState({
           parentId: res.data.id,
           userId: this.props.match.params.id,
@@ -98,23 +98,16 @@ export default class ChildrenRegistrationByAdmin extends Component {
           street: res.data.street,
           houseNumber: res.data.houseNumber,
           flatNumber: res.data.flatNumber,
-        })
-        //console.log("parentId "+ this.state.parentId);
-        //console.log("userId "+ this.state.userId);
-    })
-    .catch((err) => console.log(err));
+        });
+      })
+      .catch((err) => console.log(err));
   }
   handleChangeDate = (date) => {
-    //this.dd = moment(date).format("YYYY-MM-DD");
-    //  date = moment(date).format("YYYY-MM-DD");
     this.setState({
       birthdate: date,
     });
   };
   handleChange = (event) => {
-    // event.preventDefault();
-    //console.log(event.target.checked);
-
     const validEmailRegex = RegExp(
       /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
     );
@@ -122,7 +115,7 @@ export default class ChildrenRegistrationByAdmin extends Component {
     const { name, value } = event.target;
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
-    // let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 ,/./-]+$/;
+
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
     let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,.\- ]*$/;
     let date = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
@@ -180,11 +173,6 @@ export default class ChildrenRegistrationByAdmin extends Component {
             : '';
         break;
 
-      // case 'flatNumber':
-      //   errors.flatNumber = !value.match(numbers)
-      //     ? 'Įrašykite buto numerį, pvz: 2'
-      //     : '';
-      //   break;
       case 'secondParentFirstname':
         errors.secondParentFirstname =
           !value.match(letters) || value.length < 2 || value.length === 0
@@ -228,11 +216,6 @@ export default class ChildrenRegistrationByAdmin extends Component {
             : '';
         break;
 
-      // case 'secondParentFlatNumber':
-      //   errors.secondParentFlatNumber = !value.match(numbers)
-      //     ? 'Įrašykite buto numerį, pvz: 2'
-      //     : '';
-      //   break;
       case 'secondParentEmail':
         errors.secondParentEmail =
           validEmailRegex.test(value) || value.length === 0
@@ -258,20 +241,17 @@ export default class ChildrenRegistrationByAdmin extends Component {
         break;
     }
     if (event.target.type === 'checkbox') {
-      // console.log(event.target.checked);
       this.setState({ [event.target.name]: event.target.checked });
     } else
       this.setState({ errors, [event.target.name]: event.target.value }, () => {
         // console.log(errors);
       });
-    //console.log(this.state);
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
 
     const childrenInput = {
-      // birthdate: moment(this.state.birthdate, 'YYYY-MM-DD'),
       birthdate: this.state.birthdate,
       id: this.state.id,
 
@@ -328,9 +308,10 @@ export default class ChildrenRegistrationByAdmin extends Component {
           childrenInput
         )
         .then((response) => {
-          //console.log(response);
           alert('Vaiko duomenų registracija sėkminga');
-          this.props.history.push(`/admin/duomenys/vaikai/${this.props.match.params.id}`);
+          this.props.history.push(
+            `/admin/duomenys/vaikai/${this.props.match.params.id}`
+          );
         })
 
         .catch((error) => {
@@ -385,7 +366,6 @@ export default class ChildrenRegistrationByAdmin extends Component {
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          //console.log(error.response);
         });
     } else {
       //console.error('Invalid Form');
@@ -405,12 +385,7 @@ export default class ChildrenRegistrationByAdmin extends Component {
             <div className="mb-4">
               <h3>Vaiko duomenų registracija</h3>
             </div>
-            <form
-              onSubmit={this.handleSubmit}
-              //  noValidate
-              // className="form-group "
-              className="form-row "
-            >
+            <form onSubmit={this.handleSubmit} className="form-row ">
               <div className="form-group mb-3 col-6">
                 <label htmlFor="firstname" className="control-label">
                   Vaiko Vardas*:
@@ -455,7 +430,6 @@ export default class ChildrenRegistrationByAdmin extends Component {
                     locale="lt"
                     name="birthdate"
                     maxDate={new Date()}
-                    // minDate= "- 1"
                     selected={this.state.birthdate}
                     onChange={this.handleChangeDate}
                   />
@@ -478,18 +452,7 @@ export default class ChildrenRegistrationByAdmin extends Component {
                   <span className="error">{errors.personalCode}</span>
                 )}
               </div>
-              {/* <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        name="adopted"
-                        checked={this.state.adopted}
-                        onChange={this.handleChange}
-                      />
-                      <label htmlFor="adopted" className="form-check-label">
-                        Esu šio vaiko globėjas
-                      </label>
-                    </div> */}
+
               <div className="form-group mb-3 col-6">
                 <label htmlFor="city" className="control-label">
                   Miestas*:
@@ -554,11 +517,7 @@ export default class ChildrenRegistrationByAdmin extends Component {
                   name="flatNumber"
                   value={this.state.flatNumber}
                   onChange={this.handleChange}
-                  // noValidate
                 />
-                {/* {errors.flatNumber.length > 0 && (
-                        <span className="error">{errors.flatNumber}</span>
-                      )} */}
               </div>
               <div className="ml-4 form-check mb-3 col-12">
                 <input
@@ -596,7 +555,6 @@ export default class ChildrenRegistrationByAdmin extends Component {
               </div>
               {this.state.secondParent ? (
                 <div className="form-row">
-                  {/* <div><b>Pridėję antrąjį tėvą/globėją, vėliau jo duomenis galėsite redaguoti, bet pašalinti galima nebus.</b></div> */}
                   <div className="form-group mb-3 col-6 mt-3">
                     <label
                       htmlFor="secondParentFirstname"
@@ -769,20 +727,15 @@ export default class ChildrenRegistrationByAdmin extends Component {
                       className="form-control"
                       name="secondParentFlatNumber"
                       onChange={this.handleChange}
-                      //noValidate
                     />
-                    {/* {errors.secondParentFlatNumber.length > 0 && (
-                            <span className="error">
-                              {errors.secondParentFlatNumber}
-                            </span>
-                          )} */}
                   </div>
                   <div className="form-group mb-3 col-8">
                     <label
                       htmlFor="secondParentNumberOfKids"
                       className="control-label"
                     >
-                       Kiek antrasis tėvas/globėjas turi vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo programas?*
+                      Kiek antrasis tėvas/globėjas turi vaikų, kurie mokosi
+                      pagal bendrojo ugdymo lavinimo programas?*
                     </label>
                     <input
                       type="number"
@@ -835,7 +788,6 @@ export default class ChildrenRegistrationByAdmin extends Component {
                         className="form-control"
                         name="secondParentStudyingInstitution"
                         onChange={this.handleChange}
-                        // noValidate
                         pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
                         onInvalid={(e) => {
                           e.target.setCustomValidity(
@@ -845,11 +797,6 @@ export default class ChildrenRegistrationByAdmin extends Component {
                         onInput={(e) => e.target.setCustomValidity('')}
                         required
                       />
-                      {/* {errors.secondParentStudyingInstitution.length > 0 && (
-                              <span className="error">
-                                {errors.secondParentStudyingInstitution}
-                              </span>
-                            )} */}
                     </div>
                   ) : null}
                   <div className="ml-4 form-check mb-3 col-12">
@@ -904,7 +851,6 @@ export default class ChildrenRegistrationByAdmin extends Component {
                           className="form-control"
                           name="secondParentDeclaredCity"
                           onChange={this.handleChange}
-                          //  noValidate
                           pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ -]+"
                           onInvalid={(e) => {
                             e.target.setCustomValidity(
@@ -914,11 +860,6 @@ export default class ChildrenRegistrationByAdmin extends Component {
                           onInput={(e) => e.target.setCustomValidity('')}
                           required
                         />
-                        {/* {errors.secondParentDeclaredCity.length > 0 && (
-                                <span className="error">
-                                  {errors.secondParentDeclaredCity}
-                                </span>
-                              )} */}
                       </div>
                       <div className="form-group mb-3 col-6 mt-3">
                         <label
@@ -933,8 +874,6 @@ export default class ChildrenRegistrationByAdmin extends Component {
                           className="form-control"
                           name="secondParentDeclaredStreet"
                           onChange={this.handleChange}
-                          // noValidate
-                          // pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
                           pattern="^[a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+[- a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 . -  ]*"
                           onInvalid={(e) => {
                             e.target.setCustomValidity(
@@ -964,15 +903,6 @@ export default class ChildrenRegistrationByAdmin extends Component {
                           className="form-control"
                           name="secondParentDeclaredHouseNumber"
                           onChange={this.handleChange}
-                          // noValidate
-
-                          // pattern="[a-zA-Z-z - 0-9-]+"
-                          // onInvalid={(e) => {
-                          //   e.target.setCustomValidity(
-                          //     'Įveskite deklaruotą namo numerį tinkamu formatu.'
-                          //   );
-                          // }}
-                          // onInput={(e) => e.target.setCustomValidity('')}
                           pattern="^[1-9]+[ a-zA-Z 0-9 ]*"
                           onInvalid={(e) => {
                             e.target.setCustomValidity(

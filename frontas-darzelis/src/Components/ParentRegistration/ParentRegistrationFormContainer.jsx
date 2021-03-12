@@ -4,7 +4,6 @@ import axios from 'axios';
 import '../../Style/style.css';
 import { NavLink } from 'react-router-dom';
 import UserService from '../../Configuration/UserService';
-//import UpdateParentRegistrationFormContainer from './UpdateParentRegistrationFormContainer';
 import { Link } from 'react-router-dom';
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
 
@@ -55,14 +54,12 @@ export default class ParentRegistrationFormContainer extends Component {
     };
   }
   componentDidMount() {
-    //console.log('component did mount');
     axios
       .get(`${API}/api/users/getparentdetails`)
       .then((res) => {
         this.setState({
           parentId: res.data.id,
         });
-        //console.log('parent id: ' + this.state.parentId);
 
         return axios.get(`${API}/api/users/loggeduserid`);
       })
@@ -71,35 +68,11 @@ export default class ParentRegistrationFormContainer extends Component {
         this.setState({
           id: res.data,
         });
-        //console.log('user id: ' + this.state.id);
       })
       .catch((err) => console.log(err));
   }
-  // componentDidMount() {
-  //   console.log('component did mount');
-  //   axios
-  //     .get(`${API}/api/users/loggeduserid`)
-  //     .then((res) => {
-  //       UserService.setId(res.data);
-  //       this.setState({
-  //         id: res.data,
-  //       });
-  //       console.log('user id: ' + this.state.id);
-  //       return axios.get(`${API}/api/users/getparentdetails`);
-  //     })
-  //     .then((res) => {
-  //       this.setState({
-  //         parentId: res.data.id,
-  //       });
-  //       console.log("parent id: "+ this.state.parentId);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
 
   handleChange = (event) => {
-    //event.preventDefault();
-    //console.log(event.target.checked);
-
     const validEmailRegex = RegExp(
       /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
     );
@@ -107,7 +80,6 @@ export default class ParentRegistrationFormContainer extends Component {
 
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
-    //let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
     let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,.\- ]*$/;
 
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
@@ -170,12 +142,6 @@ export default class ParentRegistrationFormContainer extends Component {
             ? 'Įrašykite namo numerį'
             : '';
         break;
-
-      // case 'flatNumber':
-      //   errors.flatNumber = !value.match(numbers)
-      //     ? 'Įrašykite buto numerį, pvz: 2'
-      //     : '';
-      //   break;
       case 'numberOfKids':
         errors.numberOfKids =
           !value.match(numbers) || value.length < 0
@@ -187,7 +153,6 @@ export default class ParentRegistrationFormContainer extends Component {
         break;
     }
     if (event.target.type === 'checkbox') {
-      // console.log(event.target.checked);
       this.setState({ [event.target.name]: event.target.checked });
     } else
       this.setState(
@@ -199,7 +164,6 @@ export default class ParentRegistrationFormContainer extends Component {
           // console.log(errors);
         }
       );
-    // console.log(this.state);
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -224,8 +188,6 @@ export default class ParentRegistrationFormContainer extends Component {
       declaredStreet: this.state.declaredStreet,
       declaredHouseNumber: this.state.declaredHouseNumber,
       declaredFlatNumber: this.state.declaredFlatNumber,
-
-      // userId: this.state.userId,
     };
     const validateForm = (errors) => {
       let valid = true;
@@ -238,16 +200,8 @@ export default class ParentRegistrationFormContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(
-          `${API}/api/users/${this.state.id}/parentdetails`,
-          inputParent
-          // ,
-          // {
-          //   headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-          // }
-        )
+        .post(`${API}/api/users/${this.state.id}/parentdetails`, inputParent)
         .then((response) => {
-         // console.log(response);
           alert('Tėvo/Globėjo registracija sėkminga');
           this.props.history.push('/tevai/vaikoregistracija');
         })
@@ -278,7 +232,6 @@ export default class ParentRegistrationFormContainer extends Component {
           console.log(error.response);
         });
     } else {
-      //console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );
@@ -286,12 +239,7 @@ export default class ParentRegistrationFormContainer extends Component {
   };
 
   render() {
-    // console.log('this.state length: ' + this.state.length);
     const { errors } = this.state;
-    // return (
-    // <div>
-    // {/* <NavigationComponent /> */}
-    // {/*<LogoutPresentation />*/}
 
     if (this.state.parentId > 0) {
       return (
@@ -303,8 +251,6 @@ export default class ParentRegistrationFormContainer extends Component {
               spauskite čia
             </NavLink>
           </h5>
-
-          {/* <UpdateParentRegistrationFormContainer /> */}
         </div>
       );
     } else {
@@ -313,11 +259,7 @@ export default class ParentRegistrationFormContainer extends Component {
           <div className="mb-4">
             <h3>Užpildykite tėvo/globėjo duomenis</h3>
           </div>
-          <form
-            onSubmit={this.handleSubmit}
-            // noValidate
-            className="form-row "
-          >
+          <form onSubmit={this.handleSubmit} className="form-row ">
             <div className=" form-group mb-3 col-6">
               <label htmlFor="firstname" className="control-label">
                 Vardas*:
@@ -458,15 +400,12 @@ export default class ParentRegistrationFormContainer extends Component {
                 className="form-control"
                 name="flatNumber"
                 onChange={this.handleChange}
-                // noValidate
               />
-              {/* {errors.flatNumber.length > 0 && (
-                <span className="error">{errors.flatNumber}</span>
-              )} */}
             </div>
             <div className="form-group mb-3 col-8">
               <label htmlFor="numberOfKids" className="control-label">
-                Kiek turite vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo programas?*:
+                Kiek turite vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo
+                programas?*:
               </label>
               <input
                 type="number"
@@ -511,7 +450,6 @@ export default class ParentRegistrationFormContainer extends Component {
                   className="form-control"
                   name="studyingInstitution"
                   onChange={this.handleChange}
-                  // noValidate
                   pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
                   onInvalid={(e) => {
                     e.target.setCustomValidity(
@@ -521,9 +459,6 @@ export default class ParentRegistrationFormContainer extends Component {
                   onInput={(e) => e.target.setCustomValidity('')}
                   required
                 />
-                {/* {errors.studyingInstitution.length > 0 && (
-                  <span className="error">{errors.studyingInstitution}</span>
-                )} */}
               </div>
             ) : null}
             <div className=" ml-4 form-check form-group mb-3 col-10">
@@ -569,7 +504,6 @@ export default class ParentRegistrationFormContainer extends Component {
                     className="form-control"
                     name="declaredCity"
                     onChange={this.handleChange}
-                    // noValidate
                     pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ -]+"
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
@@ -590,9 +524,6 @@ export default class ParentRegistrationFormContainer extends Component {
                     className="form-control"
                     name="declaredStreet"
                     onChange={this.handleChange}
-                    // noValidate
-                    // pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
-                    // pattern ="^\[a-zA-z]+[0-9 . -  ]*"
                     pattern="^[a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+[- a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 . -  ]*"
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
@@ -617,9 +548,6 @@ export default class ParentRegistrationFormContainer extends Component {
                     className="form-control"
                     name="declaredHouseNumber"
                     onChange={this.handleChange}
-                    // noValidate
-                    // pattern="[0-9][a-zA-Z0-9- - ]*?{1,7}"
-
                     pattern="^[1-9]+[ a-zA-Z 0-9 ]*"
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
@@ -660,7 +588,11 @@ export default class ParentRegistrationFormContainer extends Component {
               />
               <label htmlFor="agree" className="form-check-label">
                 <b>
-                  Susipažinau ir sutinku su sąlygomis. <Link to="/tevai/salygos" target="_blank" > Sąlygos</Link>
+                  Susipažinau ir sutinku su sąlygomis.{' '}
+                  <Link to="/tevai/salygos" target="_blank">
+                    {' '}
+                    Sąlygos
+                  </Link>
                 </b>
                 *
               </label>
@@ -674,26 +606,27 @@ export default class ParentRegistrationFormContainer extends Component {
                 onChange={this.handleChange}
                 required
                 onInvalid={(e) => {
-                  e.target.setCustomValidity('Su vaikų priėmimo tvarka sutikti būtina!');
+                  e.target.setCustomValidity(
+                    'Su vaikų priėmimo tvarka sutikti būtina!'
+                  );
                 }}
                 onInput={(e) => e.target.setCustomValidity('')}
               />
               <label htmlFor="agreeWihRules" className="form-check-label">
                 <b>
-                  Susipažinau ir sutinku su vaikų priėmimo tvarka bei duomenų rinkimu. <Link to="/tevai/tvarka"  target="_blank"  > Vaikų priėmimo tvarka</Link>
+                  Susipažinau ir sutinku su vaikų priėmimo tvarka bei duomenų
+                  rinkimu.{' '}
+                  <Link to="/tevai/tvarka" target="_blank">
+                    {' '}
+                    Vaikų priėmimo tvarka
+                  </Link>
                 </b>
                 *
               </label>
             </div>
             <div className="form-group mb-3 col-6"> * - privalomi laukai</div>
             <div>
-              {/* {this.state.agree ? ( */}
-              <button
-                type="submit"
-                className="btn btn-lg mt-5
-  "
-                // onSubmit={this.handleSubmit}
-              >
+              <button type="submit" className="btn btn-lg mt-5 ">
                 Tęsti
               </button>
             </div>
@@ -701,7 +634,5 @@ export default class ParentRegistrationFormContainer extends Component {
         </div>
       );
     }
-    // </div>
-    //     );
   }
 }

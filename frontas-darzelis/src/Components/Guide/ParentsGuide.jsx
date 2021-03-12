@@ -8,9 +8,6 @@ const Guide = () => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
-  //   const onDocumentLoadSuccess =({ numPages })  =>{
-  //     setNumPages(numPages);
-  //   };
   return (
     <div className="pdfGuide">
       <Document

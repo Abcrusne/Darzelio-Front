@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
-//import UserService from '../../Configuration/UserService';
 
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
 
@@ -60,19 +58,13 @@ export default class UpdateUserPasswordContainer extends Component {
             : '';
         break;
       case 'oldPassword':
-        errors.oldPassword =
-          value.length < 1
-            ? //  || !value.match(letters)
-              'Slaptažodis per trumpas'
-            : '';
+        errors.oldPassword = value.length < 1 ? 'Slaptažodis per trumpas' : '';
         break;
 
       default:
         break;
     }
-    this.setState({ errors, [name]: value }, () => {
-      // console.log(errors);
-    });
+    this.setState({ errors, [name]: value }, () => {});
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -83,9 +75,6 @@ export default class UpdateUserPasswordContainer extends Component {
       return valid;
     };
 
-    // if (this.state.password !== this.state.oldPassword){
-    //   alert("Senas slaptažodis neteisingas")
-    // }
     if (validateForm(this.state.errors)) {
       axios
         .post(
@@ -99,14 +88,12 @@ export default class UpdateUserPasswordContainer extends Component {
           }
         )
         .then((response) => {
-          //console.log(response);
           alert('Duomenys atnaujinti sėkmingai!');
           if (this.state.role === 'PARENT') {
             this.props.history.push('/tevai');
           } else if (this.state.role === 'EDU') {
             this.props.history.push('/admin/edu/');
-          }
-          else if (this.state.role === 'ADMIN') {
+          } else if (this.state.role === 'ADMIN') {
             this.props.history.push('/admin/pradzia');
           }
         })
@@ -124,8 +111,6 @@ export default class UpdateUserPasswordContainer extends Component {
           console.log(error.data);
         });
     } else {
-      //console.error('Invalid Form');
-
       alert('Nepavyko pakeisti slaptažodžio! ');
     }
   };
@@ -202,4 +187,3 @@ export default class UpdateUserPasswordContainer extends Component {
     );
   }
 }
-

@@ -26,7 +26,6 @@ export default class KindergartenRegistrationContainer extends Component {
     };
   }
   componentDidMount() {
-    //console.log('component did mount darzeliu registracija');
     axios
       .get(`${API}/api/users/loggedrole`)
       .then((res) =>
@@ -38,10 +37,6 @@ export default class KindergartenRegistrationContainer extends Component {
   }
   handleChange = (event) => {
     event.preventDefault();
-
-    // const validspotsInFirstAgeGroupRegex = RegExp(
-    //   /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
-    // );
     const { name, value } = event.target;
     const errors = this.state.errors;
     const lettersAndNumbers = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
@@ -81,14 +76,10 @@ export default class KindergartenRegistrationContainer extends Component {
         break;
     }
 
-    this.setState({ errors, [name]: value }, () => {
-      // console.log(errors);
-    });
+    this.setState({ errors, [name]: value }, () => {});
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    // event.target.className += ' was-validated';
-
     const inputKindergarten = {
       name: this.state.name,
       address: this.state.address,
@@ -107,14 +98,8 @@ export default class KindergartenRegistrationContainer extends Component {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(API + '/api/kindergartens', inputKindergarten
-        // ,
-        // {
-        //   headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-        // }
-        )
+        .post(API + '/api/kindergartens', inputKindergarten)
         .then((response) => {
-          //console.log(response);
           if (this.state.role === 'EDU') {
             alert('Darželio registracija sėkminga');
             this.props.history.push('/admin/edu/darzeliai');
@@ -138,7 +123,6 @@ export default class KindergartenRegistrationContainer extends Component {
           console.log(error);
         });
     } else {
-      //console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );
@@ -148,8 +132,6 @@ export default class KindergartenRegistrationContainer extends Component {
     const { errors } = this.state;
     return (
       <div className="container mt-5">
-        {/* <NavigationForAllPages /> */}
-        {/* <LogoutPresentation /> */}
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
             <h3>Užregistruoti naują darželį</h3>
@@ -165,7 +147,6 @@ export default class KindergartenRegistrationContainer extends Component {
                 name="name"
                 onChange={this.handleChange}
                 noValidate
-                //required
               />
               {errors.name.length > 0 && (
                 <span className="error">{errors.name}</span>
@@ -181,7 +162,6 @@ export default class KindergartenRegistrationContainer extends Component {
                 name="address"
                 onChange={this.handleChange}
                 noValidate
-                //required
               />
               {errors.address.length > 0 && (
                 <span className="error">{errors.address}</span>
@@ -198,7 +178,6 @@ export default class KindergartenRegistrationContainer extends Component {
                 name="spotsInFirstAgeGroup"
                 onChange={this.handleChange}
                 noValidate
-                //required
               />
               {errors.spotsInFirstAgeGroup.length > 0 && (
                 <span className="error">{errors.spotsInFirstAgeGroup}</span>
@@ -215,7 +194,6 @@ export default class KindergartenRegistrationContainer extends Component {
                 name="spotsInSecondAgeGroup"
                 onChange={this.handleChange}
                 noValidate
-                //required
               />
               {errors.spotsInSecondAgeGroup.length > 0 && (
                 <span className="error">{errors.spotsInSecondAgeGroup}</span>
