@@ -187,22 +187,26 @@ export default class UpdateUserDataFormContainer extends Component {
                 <span className="error">{errors.lastname}</span>
               )}
             </div>
+            {this.state.role === 'ADMIN' ? (
+              <div></div>
+            ) : (
+              <div className="form-check form-group mb-3 col-10">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  name="markedForDeletion"
+                  id="markedForDeletion"
+                  checked={this.state.markedForDeletion}
+                  onChange={this.handleChange}
+                  noValidate
+                />
+                <label htmlFor="markedForDeletion" className="form-check-label">
+                  Pažymėkite jei norite, kad Jūsų anketa ir duomenys būtų
+                  ištrinti iš sistemos
+                </label>
+              </div>
+            )}
 
-            <div className="form-check form-group mb-3 col-10">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                name="markedForDeletion"
-                id="markedForDeletion"
-                checked={this.state.markedForDeletion}
-                onChange={this.handleChange}
-                noValidate
-              />
-              <label htmlFor="markedForDeletion" className="form-check-label">
-                Pažymėkite jei norite, kad Jūsų anketa ir duomenys būtų ištrinti
-                iš sistemos
-              </label>
-            </div>
             {this.state.markedForDeletion ? (
               <div>
                 <p>

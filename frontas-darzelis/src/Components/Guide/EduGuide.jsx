@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import pdf from '../Guide/Tevu.pdf';
+import pdf from '../Guide/Edu.pdf';
 import '../../Style/style.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const Guide = () => {
+const EduGuide = () => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -34,4 +34,4 @@ const Guide = () => {
     </div>
   );
 };
-export default Guide;
+export default EduGuide;
