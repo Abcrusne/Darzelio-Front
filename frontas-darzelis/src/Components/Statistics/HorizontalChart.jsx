@@ -181,7 +181,10 @@ export default class HorizontalChart extends Component {
         </div>
         <div>
           {Object.keys(this.state.chartData).length ? (
-            <HorizontalBar data={this.state.chartData} />
+            <HorizontalBar data={this.state.chartData}
+            // width={100}
+            // height={50} 
+            />
           ) : (
             <Loading />
           )}

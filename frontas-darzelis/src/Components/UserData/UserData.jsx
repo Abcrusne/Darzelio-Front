@@ -84,7 +84,7 @@ const UserData = () => {
         </h5>
         <h5>
           {' '}
-          <NavLink to="/tevai/duomenys/istrinti" className="nav-link">
+          <NavLink to="/admin/edu/duomenys/istrinti" className="nav-link">
             Ištrinti paskyrą
           </NavLink>{' '}
         </h5>
