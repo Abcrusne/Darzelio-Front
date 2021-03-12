@@ -20,7 +20,8 @@ export default class RegisteredChildrenQueueList extends Component {
             currentChild: null,
             currentIndex: -1,
             pageNumber: 1,
-            count: 0
+            count: 0,
+            currentPage: 1
         };
     }
 
@@ -126,7 +127,10 @@ export default class RegisteredChildrenQueueList extends Component {
             .catch(error => alert('Sistema užrakinta. Kreipkitės į sistemos administratorių dėl atrakinimo.'))
     }
 
+
+
     render() {
+        let rowNumber = 15 * this.state.currentPage - 14;
         console.log("render")
         const {
             searchLastName,
@@ -186,7 +190,8 @@ export default class RegisteredChildrenQueueList extends Component {
                                 return (
                                     <tr key={childId}
                                     >
-                                        <th scope="row">{index + 1}</th>
+                                        <th scope="row">{rowNumber++}</th>
+                                        {/*<th scope="row">{index + 1}</th>*/}
                                         <td>{firstname}</td>
                                         <td><Link to={`/admin/edu/vaikai/${childId}`}>{lastname} </Link></td>
                                         <td>{personalCode}</td>
