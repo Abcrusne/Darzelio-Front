@@ -11,7 +11,7 @@ export default class UserLogsList extends Component {
       logs: [],
       pageNumber: 1,
       totalPages: 0,
-      totalLogs: '',
+      totalLogs: 0,
       searchEmail: '',
       //   sortDate: [],
       sortByDate: 'datedesc',

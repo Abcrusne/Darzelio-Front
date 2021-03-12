@@ -14,6 +14,7 @@ export default class UsersListTableContainer extends Component {
     this.state = {
       users: [],
       searchTerm: '',
+      pageNumber: 0,
     };
   }
 
@@ -49,6 +50,15 @@ export default class UsersListTableContainer extends Component {
       .catch((err) => console.log(err));
     //console.log('deleteUser');
   };
+
+  //   handlePageChange =(event, value)=> {
+  // this.setState({
+  //   pageNumber: value,
+  // }, () => {
+  //   this.componentDidMount();
+  // }
+  // )
+  //   }
 
   render() {
     let filteredUsers = this.state.users.filter((user) => {
@@ -137,16 +147,21 @@ export default class UsersListTableContainer extends Component {
                         </Link>
                       </td>
                       <td>{markedForDeletionLt}</td>
-                      <td>
-                        <button
-                          className=" btn btn-light"
-                          data-toggle="modal"
-                          data-target={`#staticBackdrop${id}`}
-                          value={id}
-                        >
-                          Ištrinti
-                        </button>
-                      </td>
+                      {role === 'ADMIN' ? (
+                        <td></td>
+                      ) : (
+                        <td>
+                          <button
+                            className=" btn btn-light"
+                            data-toggle="modal"
+                            data-target={`#staticBackdrop${id}`}
+                            value={id}
+                          >
+                            Ištrinti
+                          </button>
+                        </td>
+                      )}
+
                       <td>
                         <ModalComponent
                           userId={id}
@@ -173,16 +188,17 @@ export default class UsersListTableContainer extends Component {
               </tr>
             </tbody>
           )}
-          {/* <Pagination
+        </table>
+        {/* <Pagination
            className="my-3"
-           count={this.state.users.length}
-           page = {10}
+           count={this.state.users.size}
+           page = {3}
            siblingCount={1}
            boundaryCount={1}
            variant="outlined"
            shape="rounded"
+           onChange={this.handlePageChange}
           /> */}
-        </table>
       </div>
     );
   }
