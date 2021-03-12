@@ -25,6 +25,7 @@ import UpdateUserEmailContainer from '../UserData/UpdateUserEmailContainer';
 import HorizontalChart from '../Statistics/HorizontalChart';
 import ConditionsPage from '../Conditions/ConditionsPage';
 import AdmissionRules from '../Conditions/AdmissionRules';
+import Guide from '../Guide/ParentsGuide';
 
 const ParentRoutes = () => {
   return (
@@ -141,6 +142,12 @@ const ParentRoutes = () => {
         path="/tevai/tvarka"
         exact
         component={AdmissionRules}
+        role={'PARENT'}
+      />
+         <PrivateRoute
+        path="/tevai/instrukcija"
+        exact
+        component={Guide}
         role={'PARENT'}
       />
       <PrivateRoute
