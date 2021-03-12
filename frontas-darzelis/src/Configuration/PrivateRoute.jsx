@@ -5,7 +5,9 @@ import UserService from "./UserService";
 
 const PrivateRoute = ({ component: Component, role, ...rest }) => {
     const isAuthenticated = () => {
-        if (UserService.getRole().includes(role) && UserService.getRoleExpiration() > Date.now()) {
+        if (UserService.getRole().includes(role)
+            // && UserService.getRoleExpiration() > Date.now()
+        ) {
             return true;
         } else {
             UserService.deleteRole();
