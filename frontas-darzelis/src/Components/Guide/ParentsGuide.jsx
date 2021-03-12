@@ -9,8 +9,14 @@ const Guide = () => {
   const [pageNumber, setPageNumber] = useState(1);
 
   return (
-    <div className="pdfGuide">
-      <Document
+    <div >
+      <iframe
+        src={pdf}
+        title="Naudojimosi instrukcija"
+        style={{  marginRight: 0, marginLeft: 170, height: 800, width: 1200}}
+allowfullscreen
+      ></iframe>
+      {/* <Document
         file={pdf}
         onLoadSuccess={({ numPages }) => {
           setNumPages(numPages);
@@ -20,17 +26,15 @@ const Guide = () => {
         error="Nepavyko pakrauti PDF failo!"
         noData="Nėra duomenų!"
       >
-        {/* <Page pageNumber={pageNumber} /> */}
+   
         {Array.apply(null, Array(numPages))
           .map((x, i) => i + 1)
           .map((page) => (
             <Page pageNumber={page} key={page} />
           ))}
       </Document>
-      <p>Iš viso puslapių: {numPages}</p>
-      {/* <p>
-        Puslapis {pageNumber} iš {numPages}
-      </p> */}
+      <p>Iš viso puslapių: {numPages}</p> */}
+      
     </div>
   );
 };

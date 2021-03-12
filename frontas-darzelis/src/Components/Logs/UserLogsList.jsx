@@ -13,7 +13,6 @@ export default class UserLogsList extends Component {
       totalPages: 0,
       totalLogs: 0,
       searchEmail: '',
-
       sortByDate: 'datedesc',
     };
   }
@@ -83,6 +82,7 @@ export default class UserLogsList extends Component {
   };
 
   render() {
+    let rowNumber = 20 * this.state.pageNumber - 19;
     return (
       <div className="m-5">
         <div className="mb-4">
@@ -122,7 +122,8 @@ export default class UserLogsList extends Component {
               this.state.logs.map(({ id, user, role, action, date }, index) => {
                 return (
                   <tr key={id}>
-                    <th scope="row">{index + 1}</th>
+                    <th scope="row">{rowNumber++}</th>
+                    {/* <th scope="row">{index + 1}</th> */}
                     <td>{user}</td>
                     <td>{role}</td>
                     <td>{action}</td>
