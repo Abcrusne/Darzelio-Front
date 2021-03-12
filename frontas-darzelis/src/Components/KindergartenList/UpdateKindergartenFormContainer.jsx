@@ -21,7 +21,6 @@ export default class UpdateKindergartenFormContainer extends Component {
     };
   }
   componentDidMount() {
-    //console.log('component did mount update');
     axios
       .get(`${API}/api/kindergartens/${this.props.match.params.id}`)
       .then((res) => {
@@ -40,14 +39,9 @@ export default class UpdateKindergartenFormContainer extends Component {
         });
       })
       .catch((err) => console.log(err));
-    //console.log(this.state);
   }
   handleChange = (event) => {
     event.preventDefault();
-
-    // const validemailRegex = RegExp(
-    //   /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
-    // );
     const { name, value } = event.target;
     const errors = this.state.errors;
     const lettersAndNumbers = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
@@ -113,7 +107,6 @@ export default class UpdateKindergartenFormContainer extends Component {
           spotsInSecondAgeGroup: this.state.spotsInSecondAgeGroup,
         })
         .then((response) => {
-          //console.log(response);
           if (this.state.role === 'EDU') {
             alert('Atnaujinta!');
             this.props.history.push('/admin/edu/darzeliai');
@@ -137,7 +130,6 @@ export default class UpdateKindergartenFormContainer extends Component {
           console.log(error);
         });
     } else {
-     // console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );
@@ -163,7 +155,6 @@ export default class UpdateKindergartenFormContainer extends Component {
                 onChange={this.handleChange}
                 noValidate
                 value={this.state.name}
-                //required
               />
               {errors.name.length > 0 && (
                 <span className="error">{errors.name}</span>
@@ -180,7 +171,6 @@ export default class UpdateKindergartenFormContainer extends Component {
                 onChange={this.handleChange}
                 noValidate
                 value={this.state.address}
-                //required
               />
               {errors.address.length > 0 && (
                 <span className="error">{errors.address}</span>
@@ -198,7 +188,6 @@ export default class UpdateKindergartenFormContainer extends Component {
                 onChange={this.handleChange}
                 noValidate
                 value={this.state.spotsInFirstAgeGroup}
-                //required
               />
               {errors.spotsInFirstAgeGroup.length > 0 && (
                 <span className="error">{errors.spotsInFirstAgeGroup}</span>
@@ -216,7 +205,6 @@ export default class UpdateKindergartenFormContainer extends Component {
                 onChange={this.handleChange}
                 noValidate
                 value={this.state.spotsInSecondAgeGroup}
-                //required
               />
               {errors.spotsInSecondAgeGroup.length > 0 && (
                 <span className="error">{errors.spotsInSecondAgeGroup}</span>

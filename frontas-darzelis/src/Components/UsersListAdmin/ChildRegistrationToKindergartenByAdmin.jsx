@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import axios from "axios";
-import {withRouter} from 'react-router';
-
+import axios from 'axios';
+import { withRouter } from 'react-router';
 //our imports
-import {API} from "../../Configuration/AppConfig";
-import "../../Style/UsersLandings.css"
+import { API } from '../../Configuration/AppConfig';
+import '../../Style/UsersLandings.css';
 
 export default class ChildRegistrationToKindergartenByAdmin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    //   children: [],
-      childId: "",
+      //   children: [],
+      childId: '',
       firstname: '',
       lastname: '',
       kindergartens: [],
@@ -48,23 +47,17 @@ export default class ChildRegistrationToKindergartenByAdmin extends Component {
   async componentDidMount() {
     const kindergartensData = await this.getKindergartens();
     const childrenData = await this.getChildren();
-    //console.log(kindergartensData);
-    //console.log(childrenData);
+
     let kindergartens = kindergartensData.map((kindergarten) => ({
       name: kindergarten.name,
       id: kindergarten.id,
     }));
-    // let children = childrenData.map((child) => ({
-    //   firstname: child.firstname,
-    //   lastname: child.lastname,
-    //   id: child.id,
-    // }));
+
     this.setState({
       kindergartens: kindergartens,
       firstname: childrenData.firstname,
       lastname: childrenData.lastname,
-      childId: childrenData.id
-    //   children: children,
+      childId: childrenData.id,
     });
   }
   handleChange = (event) => {
@@ -97,9 +90,10 @@ export default class ChildRegistrationToKindergartenByAdmin extends Component {
       axios
         .post(`${API}/api/kindergartens/register`, dataLoad)
         .then((response) => {
-          //console.log(response.data);
           alert('Registracija sėkminga!');
-          this.props.history.push(`/admin/duomenys/vaikai/${this.props.match.params.id}`);
+          this.props.history.push(
+            `/admin/duomenys/vaikai/${this.props.match.params.id}`
+          );
         })
         .catch((error) => {
           console.log(error.response.data);
@@ -125,11 +119,7 @@ export default class ChildRegistrationToKindergartenByAdmin extends Component {
 
     return (
       <div className="container">
-        {
-        // children &&
-        // children.length > 0 &&
-        kindergartens &&
-        kindergartens.length > 0 ? (
+        {kindergartens && kindergartens.length > 0 ? (
           <form
             className="shadow p-3 mt-5 bg-white rounded"
             onSubmit={this.handleSubmit}
@@ -141,22 +131,7 @@ export default class ChildRegistrationToKindergartenByAdmin extends Component {
               {' '}
               Vaikas: {this.state.firstname} {this.state.lastname}
             </h5>
-            {/* <div className="input-group mb-3">
-                            <label className="input-group-text form-control" htmlFor="selectChild">
-                                Vaikas
-                            </label>
-                            <select className="form-control" id="selectChild" onChange={this.handleChange}
-                                    name="childId">
-                                <option defaultValue>-</option>
-                                {children.map((child) => (
-                                    <option
-                                        key={child.id}
-                                        value={child.id}
-                                    >{child.firstname + ' ' + child.lastname}
-                                    </option>
-                                ))}
-                            </select>
-                        </div> */}
+
             <div className="input-group mb-3">
               <label
                 className="input-group-text form-control"
@@ -175,7 +150,6 @@ export default class ChildRegistrationToKindergartenByAdmin extends Component {
                   return (
                     <option key={index} value={kindergarten.name}>
                       {kindergarten.name}
-                      {/* , {kindergarten.address} */}
                     </option>
                   );
                 })}
@@ -199,7 +173,6 @@ export default class ChildRegistrationToKindergartenByAdmin extends Component {
                   return (
                     <option key={index} value={kindergarten.name}>
                       {kindergarten.name}
-                      {/* , {kindergarten.address} */}
                     </option>
                   );
                 })}
@@ -223,7 +196,6 @@ export default class ChildRegistrationToKindergartenByAdmin extends Component {
                   return (
                     <option key={index} value={kindergarten.name}>
                       {kindergarten.name}
-                      {/* , {kindergarten.address} */}
                     </option>
                   );
                 })}
@@ -247,7 +219,6 @@ export default class ChildRegistrationToKindergartenByAdmin extends Component {
                   return (
                     <option key={index} value={kindergarten.name}>
                       {kindergarten.name}
-                      {/* , {kindergarten.address} */}
                     </option>
                   );
                 })}
@@ -271,7 +242,6 @@ export default class ChildRegistrationToKindergartenByAdmin extends Component {
                   return (
                     <option key={index} value={kindergarten.name}>
                       {kindergarten.name}
-                      {/* , {kindergarten.address} */}
                     </option>
                   );
                 })}

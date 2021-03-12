@@ -3,8 +3,7 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 // import { Link } from 'react-router-dom';
 
-import "../../Style/style.css"
-
+import '../../Style/style.css';
 
 export default class UpdateUserFormContainer extends Component {
   constructor(props) {
@@ -16,7 +15,7 @@ export default class UpdateUserFormContainer extends Component {
       email: '',
       role: '',
       password: '',
-      markedForDeletion: "",
+      markedForDeletion: '',
       errors: {
         firstname: '',
         lastname: '',
@@ -26,7 +25,6 @@ export default class UpdateUserFormContainer extends Component {
     };
   }
   componentDidMount() {
-    //console.log('component did mount');
     axios
       .get(`${API}/api/users/${this.props.match.params.id}`)
       .then((res) =>
@@ -55,7 +53,6 @@ export default class UpdateUserFormContainer extends Component {
         markedForDeletion: this.state.markedForDeletion,
       })
       .then((response) => {
-        //console.log(response);
         alert(
           'Vartotojo slaptažodis atsatatytas į pirminį (toks kaip vardas dabar)'
         );
@@ -106,8 +103,6 @@ export default class UpdateUserFormContainer extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    // event.target.className += ' was-validated';
-
     const validateForm = (errors) => {
       let valid = true;
       Object.values(errors).forEach(
@@ -129,11 +124,10 @@ export default class UpdateUserFormContainer extends Component {
             email: this.state.email,
             role: this.state.role,
             password: this.state.password,
-            markedForDeletion:this.state.markedForDeletion,
+            markedForDeletion: this.state.markedForDeletion,
           }
         )
         .then((response) => {
-          //console.log(response);
           this.props.history.push('/admin/vartotojai');
         })
 
@@ -150,7 +144,6 @@ export default class UpdateUserFormContainer extends Component {
           console.log(error);
         });
     } else {
-      //console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );
@@ -161,10 +154,7 @@ export default class UpdateUserFormContainer extends Component {
     const { errors } = this.state;
     return (
       <div className="container mt-5">
-      
-
         <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
-        
           <div className="mb-4">
             <h3>Atnaujinti vartotojo duomenis</h3>
           </div>
@@ -180,7 +170,6 @@ export default class UpdateUserFormContainer extends Component {
                 onChange={this.handleChange}
                 noValidate
                 value={this.state.firstname}
-                // required
               />
               {errors.firstname.length > 0 && (
                 <span className="error">{errors.firstname}</span>
@@ -229,7 +218,6 @@ export default class UpdateUserFormContainer extends Component {
                 onChange={this.handleChange}
                 noValidate
                 value={this.state.role}
-                // required
               >
                 <option value=""></option>
                 <option value="PARENT">Tėvas/globėjas</option>
@@ -238,7 +226,6 @@ export default class UpdateUserFormContainer extends Component {
               {errors.role.length > 0 && (
                 <span className="error">{errors.role}</span>
               )}
-              {/* <span className="invalid-feedback error">Pasirinkite rolę.</span> */}
             </div>
 
             <div> * - privalomi laukai</div>
@@ -256,7 +243,6 @@ export default class UpdateUserFormContainer extends Component {
                 Atstatyti slaptažodį į standartinį
               </button>
             </div>
-            {/* {this.state.errorCount !== null ? <p className="form-status">Form is {formValid ? 'valid ✅' : 'invalid ❌'}</p> : 'Form not submitted'} */}
           </form>
         </div>
       </div>

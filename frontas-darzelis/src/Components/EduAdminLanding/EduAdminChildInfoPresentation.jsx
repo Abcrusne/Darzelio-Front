@@ -48,20 +48,6 @@ const EduAdminChildInfoPresentation = ({
       ? ' Ne'
       : ' Nenurodyta';
 
-  // const nurodytasAntrasis =
-  // secondParent === true
-  //   ? 'Nurodytas'
-  //   : secondParent === false
-  //   ? 'Nenurodytas'
-  //   : 'Nenurodyta';
-
-  // const deklaruotaVietaSutampa =
-  // declaredResidenceSameAsLiving === true
-  //   ? 'Taip'
-  //   : declaredResidenceSameAsLiving === false
-  //   ? 'Ne'
-  //   : 'Nenurodyta';
-
   const ivaikintas =
     childAdopted === true
       ? ' Taip'
@@ -82,13 +68,6 @@ const EduAdminChildInfoPresentation = ({
       : secondParentDisabled === false
       ? ' Ne'
       : ' Nenurodyta';
-
-  // const deklaruotaVietaSutampa =
-  // secondParentDeclaredResidenceSameAsLiving === true
-  //   ? 'Taip'
-  //   : secondParentDeclaredResidenceSameAsLiving === false
-  //   ? 'Ne'
-  //   : 'Nenurodyta';
   return (
     <div>
       <h3 className="mb-4"> Vaiko duomenys:</h3>
@@ -96,16 +75,23 @@ const EduAdminChildInfoPresentation = ({
         {' '}
         <b> Vaiko vardas: </b> {childFirstname} {childLastname}
       </p>
-      {/* <p> Vaiko asmens kodas: {}</p> */}
-      <p> <b>Vaiko gimimo data: </b> { childBirthdate}</p>
+      <p>
+        {' '}
+        <b>Vaiko gimimo data: </b> {childBirthdate}
+      </p>
       <p>
         {' '}
         <b>Vaiko deklaruotas adresas: </b> {childAddress}
       </p>
-      <p> <b>Vaiko konkursinis balas: </b> { childRating}</p>
-      <p> <b>Darželio pavadinimas (jei vaikas priimtas): </b> { kindergartenName}</p>
-    
-  
+      <p>
+        {' '}
+        <b>Vaiko konkursinis balas: </b> {childRating}
+      </p>
+      <p>
+        {' '}
+        <b>Darželio pavadinimas (jei vaikas priimtas): </b> {kindergartenName}
+      </p>
+
       <p>
         <b>Šis vaikas yra įvaikintas: </b>
         {ivaikintas}
@@ -149,15 +135,11 @@ const EduAdminChildInfoPresentation = ({
         <b>Tėvas/Globėjas turi mažesnį nei 40% darbingumo lygį: </b>{' '}
         {nedarbingumas}
       </p>
-
-      {/* <p>Antrasis tėvas: {nurodytasAntrasis}</p> */}
       {secondParent ? (
         <div>
           <h5 className="mb-4 mt-4">Vaiko antrojo tėvo/globėjo duomenys: </h5>
           <p>
-            <b>
-              Vaiko antrojo tėvo/globėjo vardas: {' '}
-            </b>
+            <b>Vaiko antrojo tėvo/globėjo vardas: </b>
             {secondParentFirstname} {secondParentLastname}
           </p>
           <p>

@@ -4,8 +4,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { KindergartensListTablePresentation } from './KindergartensListTablePresentation';
 import ModalComponentKindergarten from '../Modal/ModalComponentKindergarten';
-import "../../Style/UsersLandings.css"
-import "../../Style/style.css"
+import '../../Style/UsersLandings.css';
+import '../../Style/style.css';
 
 export default class KindergartenListTableContainer extends Component {
   constructor() {
@@ -14,25 +14,21 @@ export default class KindergartenListTableContainer extends Component {
       kindergartens: [],
       searchTerm: '',
       role: '',
-     
     };
   }
   componentDidMount() {
-    //console.log('component did mount');
     axios
       .get(API + '/api/kindergartens')
       .then((res) => {
         this.setState({
           kindergartens: res.data,
         });
-        //console.log();
         return axios.get(`${API}/api/users/loggedrole`);
       })
       .then((res) => {
         this.setState({
           role: res.data,
         });
-        //console.log('role: ' + this.state.role);
       })
       .catch((error) => console.log(error));
   }
@@ -55,16 +51,14 @@ export default class KindergartenListTableContainer extends Component {
           .then((response) => this.setState({ kindergartens: response.data }));
       })
       .catch((err) => console.log(err));
-    //console.log('deleteKindergarten');
   };
 
-
-
   render() {
-    let filteredKindergartens= this.state.kindergartens.filter(
-      (kindergarten) =>{
-        return kindergarten.name.toLowerCase().indexOf(this.state.searchTerm)
-        !== -1;
+    let filteredKindergartens = this.state.kindergartens.filter(
+      (kindergarten) => {
+        return (
+          kindergarten.name.toLowerCase().indexOf(this.state.searchTerm) !== -1
+        );
       }
     );
     if (this.state.role === 'EDU') {
@@ -77,17 +71,15 @@ export default class KindergartenListTableContainer extends Component {
             Pridėti naują darželį
           </Link>
           <div className="mb-4">
-        <input
-        className="form-control mt-3 col-4"
-        placeholder="Paieška pagal darželio pavadinimą"
-        type="text"
-        name= "searchTerm"
-value={this.state.searchTerm}
-onChange= {this.handleSearch}
-       
-      />
-
-        </div>
+            <input
+              className="form-control mt-3 col-4"
+              placeholder="Paieška pagal darželio pavadinimą"
+              type="text"
+              name="searchTerm"
+              value={this.state.searchTerm}
+              onChange={this.handleSearch}
+            />
+          </div>
           <table className="table">
             <thead>
               <tr>
@@ -103,22 +95,20 @@ onChange= {this.handleSearch}
               </tr>
             </thead>
 
-        
-     
-              {this.state.kindergartens.length > 0 &&
-                filteredKindergartens.map(
-                  (
-                    {
-                      id,
-                      address,
-                      name,
-                      spotsInFirstAgeGroup,
-                      spotsInSecondAgeGroup,
-                    },
-                    index
-                  ) => {
-                    return (
-                      <tbody key ={id}>
+            {this.state.kindergartens.length > 0 &&
+              filteredKindergartens.map(
+                (
+                  {
+                    id,
+                    address,
+                    name,
+                    spotsInFirstAgeGroup,
+                    spotsInSecondAgeGroup,
+                  },
+                  index
+                ) => {
+                  return (
+                    <tbody key={id}>
                       <tr key={id}>
                         <th scope="row">{index + 1}</th>
                         <td>{name}</td>
@@ -152,15 +142,10 @@ onChange= {this.handleSearch}
                           />
                         </td>
                       </tr>
-                      </tbody> );
-                  }
-                )}
-        
-              {/* <KindergartensListTablePresentation
-                //   kindergartens={this.state.kindergartens}
-                //   deleteKindergarten={this.deleteKindergarten}
-                // /> */}
-         
+                    </tbody>
+                  );
+                }
+              )}
           </table>
         </div>
       );
@@ -174,17 +159,15 @@ onChange= {this.handleSearch}
             Pridėti naują darželį
           </Link>
           <div className="mb-4">
-        <input
-        className="form-control mt-3 col-4"
-        placeholder="Paieška pagal darželio pavadinimą"
-        type="text"
-        name= "searchTerm"
-value={this.state.searchTerm}
-onChange= {this.handleSearch}
-       
-      />
-
-        </div>
+            <input
+              className="form-control mt-3 col-4"
+              placeholder="Paieška pagal darželio pavadinimą"
+              type="text"
+              name="searchTerm"
+              value={this.state.searchTerm}
+              onChange={this.handleSearch}
+            />
+          </div>
           <table className="table">
             <thead>
               <tr>
@@ -249,11 +232,6 @@ onChange= {this.handleSearch}
                     );
                   }
                 )}
-            
-              {/* <KindergartensListTablePresentation
-                //   kindergartens={this.state.kindergartens}
-                //   deleteKindergarten={this.deleteKindergarten}
-                // /> */}
             </tbody>
           </table>
         </div>

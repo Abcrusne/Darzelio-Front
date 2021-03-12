@@ -10,8 +10,6 @@ export default class ChildrenPdfTable extends Component {
     super();
     this.state = {
       children: [],
-
-    
     };
   }
 
@@ -27,11 +25,9 @@ export default class ChildrenPdfTable extends Component {
       .delete(`${API}/api/users/pdf/${event.target.value}/delete`)
       .then(() => {
         alert('Pažyma ištrinta');
-        window.location.reload()
-        // this.props.history.push('/tevai/pazymos');
+        window.location.reload();
       })
       .catch((err) => console.log(err));
-   // console.log('deletePdf');
   };
 
   render() {
@@ -58,54 +54,55 @@ export default class ChildrenPdfTable extends Component {
               <th scope="col">Ištrinti</th>
             </tr>
           </thead>
-         
-            {this.state.children.length > 0 ? (
-              sortedChildren.map(
+
+          {this.state.children.length > 0
+            ? sortedChildren.map(
                 ({ id, firstname, lastname, healthRecordId }, index) => {
                   return (
                     <tbody key={id}>
-                    <tr key={id}>
-                      <th scope="row">{index + 1}</th>
-                      <td>
-                        {firstname} {lastname}
-                      </td>
-                      {healthRecordId > 0 ? (
+                      <tr key={id}>
+                        <th scope="row">{index + 1}</th>
                         <td>
-                          <a
-                            href={`${API}/api/users/pdf/${id}/download`}
-                            target="_blank"
-                          >
-                            Atsisiųsti vaiko pažymą
-                          </a>
+                          {firstname} {lastname}
                         </td>
-                      ) : (
-                        <td>Šiam vaikui neįkėlėte pažymos</td>
-                      )}
-   {healthRecordId > 0 ? (
-                      <td>
-                        <button
-                          className=" btn btn-light"
-                          data-toggle="modal"
-                          data-target={`#staticBackdrop${id}`}
-                          value={id}
-                        >
-                          Ištrinti
-                        </button>
-                        <ModalComponentPdf
-                          id={id}
-                          firstname={firstname}
-                          lastname={lastname}
-                          deletePdf={this.deletePdf}
-                        />
-                      </td> ): <td> Šiam vaikui neįkėlėte pažymos</td>}
-                    </tr>
-                    </tbody>);
+                        {healthRecordId > 0 ? (
+                          <td>
+                            <a
+                              href={`${API}/api/users/pdf/${id}/download`}
+                              target="_blank"
+                            >
+                              Atsisiųsti vaiko pažymą
+                            </a>
+                          </td>
+                        ) : (
+                          <td>Šiam vaikui neįkėlėte pažymos</td>
+                        )}
+                        {healthRecordId > 0 ? (
+                          <td>
+                            <button
+                              className=" btn btn-light"
+                              data-toggle="modal"
+                              data-target={`#staticBackdrop${id}`}
+                              value={id}
+                            >
+                              Ištrinti
+                            </button>
+                            <ModalComponentPdf
+                              id={id}
+                              firstname={firstname}
+                              lastname={lastname}
+                              deletePdf={this.deletePdf}
+                            />
+                          </td>
+                        ) : (
+                          <td> Šiam vaikui neįkėlėte pažymos</td>
+                        )}
+                      </tr>
+                    </tbody>
+                  );
                 }
               )
-            ) : (
-           null
-            )}
-         
+            : null}
         </table>
       </div>
     );

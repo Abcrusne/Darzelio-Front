@@ -9,18 +9,11 @@ export default class RegistrationToSystem extends Component {
       firstname: '',
       lastname: '',
       email: '',
-      // role: 'PARENT',
-      // markedForDeletion: false,
-      // password: '',
-
-      //   confirmPassword: '',
 
       errors: {
         firstname: '',
         lastname: '',
         email: '',
-        // confirmPassword: '',
-        // password: '',
       },
     };
   }
@@ -33,8 +26,6 @@ export default class RegistrationToSystem extends Component {
     const { name, value } = event.target;
     const errors = this.state.errors;
     const letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ -]+$/;
-    //min 1 lowercase letter, min 1 uppercase letter,min 1 number, length min=8
-    //const newPasswordValidation = /^(?=.*[a-ząčęėįšųūž])(?=.*[A-ZĄČĘĖĮŠŲŪŽ])(?=.*\d)[a-ząčęėįšųūžA-ZĄČĘĖĮŠŲŪŽ\d]{8,}$/;
 
     switch (name) {
       case 'firstname':
@@ -56,19 +47,6 @@ export default class RegistrationToSystem extends Component {
             ? 'Pavardė turi būti iš raidžių ir ilgesnė nei 1 raidė! '
             : '';
         break;
-
-      //   case 'password':
-      //     errors.password =
-      //       !value.match(newPasswordValidation) || value.length < 8
-      //         ? 'Naują slaptažodį turi sudaryti bent 1 mažoji raidė, bent 1 didžioji raidė, bent 1 skaičius, slaptažodžio ilgis ne trumpesnis nei 8 simboliai'
-      //         : '';
-      //     break;
-      //   case 'confirmPassword':
-      //     errors.confirmPassword =
-      //       value !== this.state.password || value.length < 8
-      //         ? 'Slaptažodiai nesutampa'
-      //         : '';
-      //     break;
       default:
         break;
     }
@@ -80,17 +58,11 @@ export default class RegistrationToSystem extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // event.target.className += ' was-validated';
-
     const outputUser = {
       email: this.state.email,
       firstname: this.state.firstname,
-      // id: this.state.id,
+
       lastname: this.state.lastname,
-      // role: this.state.role,
-      // password: this.state.firstname,
-      //   password: this.state.confirmPassword,
-      //markedForDeletion: this.state.markedForDeletion,
     };
     const validateForm = (errors) => {
       let valid = true;
@@ -118,16 +90,15 @@ export default class RegistrationToSystem extends Component {
             alert('Užpildykite visus laukus!');
           } else if (error.response.status === 400) {
             alert(
-              'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
+              'Registracija nesėkminga! Pasitikrinkite ar užpildėte laukus teisingai!'
             );
           }
 
           console.log(error);
         });
     } else {
-      //console.error('Invalid Form');
       alert(
-        'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
+        'Registracija nesėkminga! Pasitikrinkite ar  užpildėte laukus teisingai. '
       );
     }
   };
@@ -150,7 +121,6 @@ export default class RegistrationToSystem extends Component {
                 name="firstname"
                 onChange={this.handleChange}
                 noValidate
-                //required
               />
               {errors.firstname.length > 0 && (
                 <span className="error">{errors.firstname}</span>
@@ -166,7 +136,6 @@ export default class RegistrationToSystem extends Component {
                 name="lastname"
                 onChange={this.handleChange}
                 noValidate
-                //required
               />
               {errors.lastname.length > 0 && (
                 <span className="error">{errors.lastname}</span>
@@ -182,51 +151,18 @@ export default class RegistrationToSystem extends Component {
                 name="email"
                 onChange={this.handleChange}
                 noValidate
-                //required
               />
               {errors.email.length > 0 && (
                 <span className="error">{errors.email}</span>
               )}
             </div>
-            {/* <div className="mb-3">
-              <label htmlFor="password" className="control-label">
-                Slaptažodis*:
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                onChange={this.handleChange}
-                noValidate
-                value={this.state.password}
-              />
-              {errors.password.length > 0 && (
-                <span className="error">{errors.password}</span>
-              )}
-            </div>
-            <div className="mb-3">
-              <label htmlFor="confirmPassword" className="control-label">
-                Patvirtinkite naują slaptažodį*:
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                name="confirmPassword"
-                onChange={this.handleChange}
-                noValidate
-                value={this.state.confirmPassword}
-              />
-              {errors.confirmPassword.length > 0 && (
-                <span className="error">{errors.confirmPassword}</span>
-              )}
-            </div> */}
+
             <div> * - privalomi laukai</div>
             <div>
               <button type="submit" className="btn btn-success">
                 Registruotis
               </button>
             </div>
-            {/* {this.state.errorCount !== null ? <p className="form-status">Form is {formValid ? 'valid ✅' : 'invalid ❌'}</p> : 'Form not submitted'} */}
           </form>
         </div>
       </div>

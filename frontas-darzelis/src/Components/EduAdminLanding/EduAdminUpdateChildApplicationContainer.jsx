@@ -77,7 +77,6 @@ export default class EduAdminUpdateChildApplicationContainer extends Component {
         thirdPriority: this.state.thirdPriority,
       })
       .then((res) => {
-        //console.log(res);
         alert('Vaiko prašymas atnaujintas!');
         this.props.history.push(`/admin/edu/vaikai/${this.state.childId}`);
       })
@@ -113,13 +112,13 @@ export default class EduAdminUpdateChildApplicationContainer extends Component {
               onChange={this.handleChange}
               name="firstPriority"
             >
-              <option value={this.state.firstPriority}> {this.state.firstPriority}</option>
+              <option value={this.state.firstPriority}>
+                {' '}
+                {this.state.firstPriority}
+              </option>
               {this.state.kindergartens.map((kindergarten, index) => {
                 return (
-                  <option
-                    key={index}
-                    value={kindergarten.name}
-                  >
+                  <option key={index} value={kindergarten.name}>
                     {kindergarten.name}
                   </option>
                 );
@@ -139,13 +138,13 @@ export default class EduAdminUpdateChildApplicationContainer extends Component {
               onChange={this.handleChange}
               name="secondPriority"
             >
-              <option value={this.state.secondPriority}> {this.state.secondPriority}</option>
+              <option value={this.state.secondPriority}>
+                {' '}
+                {this.state.secondPriority}
+              </option>
               {this.state.kindergartens.map((kindergarten, index) => {
                 return (
-                  <option
-                    key={index}
-                    value={kindergarten.name}
-                  >
+                  <option key={index} value={kindergarten.name}>
                     {kindergarten.name}
                   </option>
                 );
@@ -165,13 +164,13 @@ export default class EduAdminUpdateChildApplicationContainer extends Component {
               onChange={this.handleChange}
               name="thirdPriority"
             >
-              <option value={this.state.thirdPriority}> {this.state.thirdPriority}</option>
+              <option value={this.state.thirdPriority}>
+                {' '}
+                {this.state.thirdPriority}
+              </option>
               {this.state.kindergartens.map((kindergarten, index) => {
                 return (
-                  <option
-                    key={index}
-                    value={kindergarten.name}
-                  >
+                  <option key={index} value={kindergarten.name}>
                     {kindergarten.name}
                   </option>
                 );
@@ -191,13 +190,13 @@ export default class EduAdminUpdateChildApplicationContainer extends Component {
               onChange={this.handleChange}
               name="fourthPriority"
             >
-              <option value={this.state.fourthPriority}> {this.state.fourthPriority}</option>
+              <option value={this.state.fourthPriority}>
+                {' '}
+                {this.state.fourthPriority}
+              </option>
               {this.state.kindergartens.map((kindergarten, index) => {
                 return (
-                  <option
-                    key={index}
-                    value={kindergarten.name}
-                  >
+                  <option key={index} value={kindergarten.name}>
                     {kindergarten.name}
                   </option>
                 );
@@ -217,20 +216,22 @@ export default class EduAdminUpdateChildApplicationContainer extends Component {
               onChange={this.handleChange}
               name="fifthPriority"
             >
-              <option value={this.state.fifthPriority}> {this.state.fifthPriority}</option>
+              <option value={this.state.fifthPriority}>
+                {' '}
+                {this.state.fifthPriority}
+              </option>
               {this.state.kindergartens.map((kindergarten, index) => {
                 return (
-                  <option
-                    key={index}
-                    value={kindergarten.name}
-                  >
+                  <option key={index} value={kindergarten.name}>
                     {kindergarten.name}
                   </option>
                 );
               })}
             </select>
           </div>
-          <button type="submit" className="mr-4 btn">Atnaujinti</button>
+          <button type="submit" className="mr-4 btn">
+            Atnaujinti
+          </button>
         </form>
       </div>
     );

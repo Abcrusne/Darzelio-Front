@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import '../../Style/style.css';
-//import UploadPdfPresentation from './UploadPdfPresentation';
 
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
 
@@ -16,22 +15,9 @@ export default class UploadPdfContainer extends Component {
       firstname: '',
       lastname: '',
       pdf: '',
-
-      // title: 'Sveikatos pažyma',
     };
   }
-  //   componentDidMount() {
-  //     console.log('component did mount');
-  //     axios.get(`${API}/api/users/getloggeduserchildren`).then((res) => {
-  //       this.setState({
-  //         children: res.data,
-  //         // id: res.data.id,
-  //         // firstname: res.data.firstname,
-  //         // lastname: res.data.lastname
-  //       });
-  //       console.log("children "+ this.state.children);
-  //     });
-  //   }
+
   getChildren = async () => {
     try {
       const { data } = await axios.get(
@@ -44,7 +30,7 @@ export default class UploadPdfContainer extends Component {
   };
   async componentDidMount() {
     const childrenData = await this.getChildren();
-    // console.log(childrenData);
+
     let children = childrenData.map((child) => ({
       firstname: child.firstname,
       lastname: child.lastname,
@@ -59,54 +45,29 @@ export default class UploadPdfContainer extends Component {
     this.setState({
       id: event.target.value,
     });
-    // this.setState({
-    //         ...this.state,
-    //         [event.target.name]: event.target.name === "childId"
-    //             ? parseInt(event.target.value, 10)
-    //             : (event.target.value === '-' ? '' : event.target.value)
-    //     }
-    // )
   };
 
   handleFile = (event) => {
-    //console.log(event.target.files +"files");
-    //console.log(event.target.files[0] +"files[0]");
-    // var fileExtension = '';
-    // if (event.target.files[0].name.lastIndexOf('.') > 0) {
-    //   fileExtension = event.target.files[0].name.substring(
-    //     event.target.files[0].name.lastIndexOf('.') + 1,
-    //     event.target.files[0].name.length
-    //   ); }
-      if (event.target.files[0] && event.target.files[0].size > 10485760) {
-        alert(' PDF failo dydis negali viršyti 10 MB!');
-        // this.setState({ pdf: "" });
-      } 
-      else if ( event.target.files[0]  && !event.target.files[0].type.match("pdf")){
-        alert("Tik PDF formatas yra priimamas")
-        // this.setState({ pdf: "" });
-      } 
-      // else if (!event.target.files[0]) {
-      //   alert("Įkelkite pdf failą")
-      // }
-      // else if (fileExtension.toLowerCase !== 'pdf') {
-      //   alert('pdf');
-      // }
-      else {
-        this.setState({ pdf: event.target.files[0] });
-      }
-    
-  
+    if (event.target.files[0] && event.target.files[0].size > 10485760) {
+      alert(' PDF failo dydis negali viršyti 10 MB!');
+    } else if (
+      event.target.files[0] &&
+      !event.target.files[0].type.match('pdf')
+    ) {
+      alert('Tik PDF formatas yra priimamas');
+    } else {
+      this.setState({ pdf: event.target.files[0] });
+    }
   };
   handleSubmit = (event) => {
     event.preventDefault();
     let data = new FormData();
     data.append('data', this.state.pdf);
     data.append('id', this.state.id);
- 
+
     axios
       .post(`${API}/api/users/pdf`, data)
       .then((res) => {
-       // console.log(res);
         alert('PDF įkeltas.');
         this.props.history.push('/tevai');
       })
@@ -119,10 +80,8 @@ export default class UploadPdfContainer extends Component {
           alert(
             'Nesėkmingas pdf įkelimas. Pasitikrinkite ar pažymėjote vaiką bei pasirinkote pdf failą.'
           );
-        } 
-        // else if (error.response.data === 'net::ERR_CONNECTION_ABORTED') {
-        //   alert('PDF failo dydis negali viršyti 10 MB!');
-        // }
+        }
+
         console.log(error.data);
       });
   };
@@ -138,7 +97,6 @@ export default class UploadPdfContainer extends Component {
         return 1;
       }
       return 0;
-  
     });
     return (
       <div>
@@ -171,7 +129,6 @@ export default class UploadPdfContainer extends Component {
                 }}
                 onInput={(e) => e.target.setCustomValidity('')}
               >
-                {/* <option defaultValue>-</option> */}
                 <option value=""> </option>
                 {sortedChildren.map((child) => (
                   <option key={child.id} value={child.id}>
@@ -192,15 +149,6 @@ export default class UploadPdfContainer extends Component {
                 name="pdf"
                 id="pdf"
                 onChange={this.handleFile}
-                // onChange={(e)=>this.handleFile(e)}
-                // style={{width: "90px"}}
-                //&&{style ={{"width: "100%"}}
-
-                // required
-                // onInvalid={(e) => {
-                //   e.target.setCustomValidity('Įkelkite pažymą.');
-                // }}
-                // onInput={(e) => e.target.setCustomValidity('')}
               />
               {this.state.pdf ? (
                 <p className="mt-1">

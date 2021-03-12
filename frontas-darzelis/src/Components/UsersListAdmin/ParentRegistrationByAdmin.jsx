@@ -48,14 +48,8 @@ export default class ParentRegistrationByAdmin extends Component {
       },
     };
   }
-//   componentDidMount() {
-//     axios
-//     .get(`${API}/api/users/${this.props.match.params.id/parentdetails}`)
-//   }
-handleChange = (event) => {
-    //event.preventDefault();
-    //console.log(event.target.checked);
 
+  handleChange = (event) => {
     const validEmailRegex = RegExp(
       /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
     );
@@ -63,11 +57,8 @@ handleChange = (event) => {
 
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
-    //let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
     let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,.\- ]*$/;
-
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
-
     let validPhone = /^[+][3][7][0][6|5]+[0-9]+$/;
     let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
     let numbers = /^[0-9]+$/;
@@ -126,24 +117,16 @@ handleChange = (event) => {
             ? 'Įrašykite namo numerį'
             : '';
         break;
-
-      // case 'flatNumber':
-      //   errors.flatNumber = !value.match(numbers)
-      //     ? 'Įrašykite buto numerį, pvz: 2'
-      //     : '';
-      //   break;
       case 'numberOfKids':
         errors.numberOfKids =
           !value.match(numbers) || value.length < 0
             ? 'Įrašykite vaikų skaičių'
             : '';
         break;
-
       default:
         break;
     }
     if (event.target.type === 'checkbox') {
-      // console.log(event.target.checked);
       this.setState({ [event.target.name]: event.target.checked });
     } else
       this.setState(
@@ -155,7 +138,6 @@ handleChange = (event) => {
           // console.log(errors);
         }
       );
-    // console.log(this.state);
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -180,8 +162,6 @@ handleChange = (event) => {
       declaredStreet: this.state.declaredStreet,
       declaredHouseNumber: this.state.declaredHouseNumber,
       declaredFlatNumber: this.state.declaredFlatNumber,
-
-      // userId: this.state.userId,
     };
     const validateForm = (errors) => {
       let valid = true;
@@ -194,13 +174,15 @@ handleChange = (event) => {
 
     if (validateForm(this.state.errors)) {
       axios
-        .post(`${API}/api/users/${this.props.match.params.id}/parentdetails`, inputParent
- 
+        .post(
+          `${API}/api/users/${this.props.match.params.id}/parentdetails`,
+          inputParent
         )
         .then((response) => {
-          //console.log(response);
           alert('Tėvo/Globėjo registracija sėkminga');
-          this.props.history.push(`/admin/duomenys/${this.props.match.params.id}`);
+          this.props.history.push(
+            `/admin/duomenys/${this.props.match.params.id}`
+          );
         })
         .catch((error) => {
           if (error.response.data.message === 'Item already exists') {
@@ -229,7 +211,6 @@ handleChange = (event) => {
           //console.log(error.response);
         });
     } else {
-      //console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );
@@ -238,374 +219,349 @@ handleChange = (event) => {
   render() {
     const { errors } = this.state;
     if (this.state.id > 0) {
-        return (
-          <div>
-            <h5>
-              Jūs jau užpildėte duomenis, jei norite juos peržiūrėti ir/arba
-              redaguoti
-              <NavLink to={`/admin/duomenys/tevo/${this.props.match.params.id}`} className="nav-link ">
-                spauskite čia
-              </NavLink>
-            </h5>
-  
-            {/* <UpdateParentRegistrationFormContainer /> */}
-          </div>
-        );
-      } else {
-        return (
-          <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
-            <div className="mb-4">
-              <h3>Užpildykite tėvo/globėjo duomenis</h3>
-            </div>
-            <form
-              onSubmit={this.handleSubmit}
-              // noValidate
-              className="form-row "
+      return (
+        <div>
+          <h5>
+            Jūs jau užpildėte duomenis, jei norite juos peržiūrėti ir/arba
+            redaguoti
+            <NavLink
+              to={`/admin/duomenys/tevo/${this.props.match.params.id}`}
+              className="nav-link "
             >
-              <div className=" form-group mb-3 col-6">
-                <label htmlFor="firstname" className="control-label">
-                  Vardas*:
+              spauskite čia
+            </NavLink>
+          </h5>
+        </div>
+      );
+    } else {
+      return (
+        <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
+          <div className="mb-4">
+            <h3>Užpildykite tėvo/globėjo duomenis</h3>
+          </div>
+          <form onSubmit={this.handleSubmit} className="form-row ">
+            <div className=" form-group mb-3 col-6">
+              <label htmlFor="firstname" className="control-label">
+                Vardas*:
+              </label>
+              <input
+                type="text"
+                placeholder="Vardas"
+                className="form-control"
+                name="firstname"
+                onChange={this.handleChange}
+                noValidate
+              />
+              {errors.firstname.length > 0 && (
+                <span className="error">{errors.firstname}</span>
+              )}
+            </div>
+            <div className=" form-group mb-3 col-6">
+              <label htmlFor="lastname" className="control-label">
+                Pavardė*:
+              </label>
+              <input
+                type="text"
+                placeholder="Pavardė"
+                className="form-control"
+                name="lastname"
+                onChange={this.handleChange}
+                noValidate
+              />
+              {errors.lastname.length > 0 && (
+                <span className="error">{errors.lastname}</span>
+              )}
+            </div>
+            <div className="form-group mb-3 col-6">
+              <label htmlFor="email" className="control-label">
+                El.paštas*:
+              </label>
+              <input
+                type="email"
+                placeholder="El.paštas"
+                className="form-control"
+                name="email"
+                onChange={this.handleChange}
+                noValidate
+              />
+              {errors.email.length > 0 && (
+                <span className="error">{errors.email}</span>
+              )}
+            </div>
+            <div className="form-group mb-3 col-6">
+              <label htmlFor="phone" className="control-label">
+                Tel.nr*:
+              </label>
+              <input
+                type="tel"
+                placeholder="Tel.nr"
+                className="form-control"
+                name="phone"
+                onChange={this.handleChange}
+                noValidate
+              />
+              {errors.phone.length > 0 && (
+                <span className="error">{errors.phone}</span>
+              )}
+            </div>
+            <div className="form-group mb-3 col-6">
+              <label htmlFor="personalCode" className="control-label">
+                Asmens Kodas*:
+              </label>
+              <input
+                type="text"
+                placeholder="Asmens kodas"
+                className="form-control"
+                name="personalCode"
+                onChange={this.handleChange}
+                noValidate
+              />
+              {errors.personalCode.length > 0 && (
+                <span className="error">{errors.personalCode}</span>
+              )}
+            </div>
+            <div className="form-group mb-3 col-6">
+              <label htmlFor="city" className="control-label">
+                Miestas*:
+              </label>
+              <input
+                type="text"
+                placeholder="Miestas"
+                className="form-control"
+                name="city"
+                onChange={this.handleChange}
+                noValidate
+              />
+              {errors.city.length > 0 && (
+                <span className="error">{errors.city}</span>
+              )}
+            </div>
+            <div className="form-group mb-3 col-6">
+              <label htmlFor="street" className="control-label">
+                Gatvė*:
+              </label>
+              <input
+                type="text"
+                placeholder="Gatvė"
+                className="form-control"
+                name="street"
+                onChange={this.handleChange}
+                noValidate
+              />
+              {errors.street.length > 0 && (
+                <span className="error">{errors.street}</span>
+              )}
+            </div>
+
+            <div className="form-group mb-3 col-6">
+              <label htmlFor="houseNumber" className="control-label">
+                Namo Numeris*:
+              </label>
+              <input
+                type="text"
+                placeholder="Namo numeris"
+                className="form-control"
+                name="houseNumber"
+                onChange={this.handleChange}
+                noValidate
+              />
+              {errors.houseNumber.length > 0 && (
+                <span className="error">{errors.houseNumber}</span>
+              )}
+            </div>
+            <div className="form-group mb-3 col-6">
+              <label htmlFor="flatNumber" className="control-label">
+                Butas:
+              </label>
+              <input
+                type="number"
+                min="0"
+                placeholder="Butas"
+                className="form-control"
+                name="flatNumber"
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="form-group mb-3 col-6">
+              <label htmlFor="numberOfKids" className="control-label">
+                Kiek turite vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo
+                programas?*:
+              </label>
+              <input
+                type="number"
+                min="1"
+                placeholder="Skaičius"
+                className="form-control"
+                name="numberOfKids"
+                onChange={this.handleChange}
+                noValidate
+                onInvalid={(e) => {
+                  e.target.setCustomValidity('Įveskite vaikų skaičių.');
+                }}
+                onInput={(e) => e.target.setCustomValidity('')}
+                required
+              />
+              {errors.numberOfKids.length > 0 && (
+                <span className="error">{errors.numberOfKids}</span>
+              )}
+            </div>
+
+            <div className="ml-4 form-check mb-3 col-12">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                name="studying"
+                checked={this.state.studying}
+                onChange={this.handleChange}
+              />
+              <label htmlFor="studying" className="form-check-label">
+                Mokausi bendrojo lavinimo mokykloje
+              </label>
+            </div>
+
+            {this.state.studying ? (
+              <div className="form-group mb-3 col-6">
+                <label htmlFor="studyingInstitution" className="control-label">
+                  Mokymosi įstaigos pavadinimas*:
                 </label>
                 <input
                   type="text"
-                  placeholder="Vardas"
+                  placeholder="Mokymosi įstaiga"
                   className="form-control"
-                  name="firstname"
+                  name="studyingInstitution"
                   onChange={this.handleChange}
-                  noValidate
-                />
-                {errors.firstname.length > 0 && (
-                  <span className="error">{errors.firstname}</span>
-                )}
-              </div>
-              <div className=" form-group mb-3 col-6">
-                <label htmlFor="lastname" className="control-label">
-                  Pavardė*:
-                </label>
-                <input
-                  type="text"
-                  placeholder="Pavardė"
-                  className="form-control"
-                  name="lastname"
-                  onChange={this.handleChange}
-                  noValidate
-                />
-                {errors.lastname.length > 0 && (
-                  <span className="error">{errors.lastname}</span>
-                )}
-              </div>
-              <div className="form-group mb-3 col-6">
-                <label htmlFor="email" className="control-label">
-                  El.paštas*:
-                </label>
-                <input
-                  type="email"
-                  placeholder="El.paštas"
-                  className="form-control"
-                  name="email"
-                  onChange={this.handleChange}
-                  noValidate
-                />
-                {errors.email.length > 0 && (
-                  <span className="error">{errors.email}</span>
-                )}
-              </div>
-              <div className="form-group mb-3 col-6">
-                <label htmlFor="phone" className="control-label">
-                  Tel.nr*:
-                </label>
-                <input
-                  type="tel"
-                  placeholder="Tel.nr"
-                  className="form-control"
-                  name="phone"
-                  onChange={this.handleChange}
-                  noValidate
-                />
-                {errors.phone.length > 0 && (
-                  <span className="error">{errors.phone}</span>
-                )}
-              </div>
-              <div className="form-group mb-3 col-6">
-                <label htmlFor="personalCode" className="control-label">
-                  Asmens Kodas*:
-                </label>
-                <input
-                  type="text"
-                  placeholder="Asmens kodas"
-                  className="form-control"
-                  name="personalCode"
-                  onChange={this.handleChange}
-                  noValidate
-                />
-                {errors.personalCode.length > 0 && (
-                  <span className="error">{errors.personalCode}</span>
-                )}
-              </div>
-              <div className="form-group mb-3 col-6">
-                <label htmlFor="city" className="control-label">
-                  Miestas*:
-                </label>
-                <input
-                  type="text"
-                  placeholder="Miestas"
-                  className="form-control"
-                  name="city"
-                  onChange={this.handleChange}
-                  noValidate
-                />
-                {errors.city.length > 0 && (
-                  <span className="error">{errors.city}</span>
-                )}
-              </div>
-              <div className="form-group mb-3 col-6">
-                <label htmlFor="street" className="control-label">
-                  Gatvė*:
-                </label>
-                <input
-                  type="text"
-                  placeholder="Gatvė"
-                  className="form-control"
-                  name="street"
-                  onChange={this.handleChange}
-                  noValidate
-                />
-                {errors.street.length > 0 && (
-                  <span className="error">{errors.street}</span>
-                )}
-              </div>
-  
-              <div className="form-group mb-3 col-6">
-                <label htmlFor="houseNumber" className="control-label">
-                  Namo Numeris*:
-                </label>
-                <input
-                  type="text"
-                  placeholder="Namo numeris"
-                  className="form-control"
-                  name="houseNumber"
-                  onChange={this.handleChange}
-                  noValidate
-                />
-                {errors.houseNumber.length > 0 && (
-                  <span className="error">{errors.houseNumber}</span>
-                )}
-              </div>
-              <div className="form-group mb-3 col-6">
-                <label htmlFor="flatNumber" className="control-label">
-                  Butas:
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  placeholder="Butas"
-                  className="form-control"
-                  name="flatNumber"
-                  onChange={this.handleChange}
-                  // noValidate
-                />
-                {/* {errors.flatNumber.length > 0 && (
-                  <span className="error">{errors.flatNumber}</span>
-                )} */}
-              </div>
-              <div className="form-group mb-3 col-6">
-                <label htmlFor="numberOfKids" className="control-label">
-                  Kiek turite vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo programas?*:
-                </label>
-                <input
-                  type="number"
-                  min="1"
-                  placeholder="Skaičius"
-                  className="form-control"
-                  name="numberOfKids"
-                  onChange={this.handleChange}
-                  noValidate
+                  pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
                   onInvalid={(e) => {
-                    e.target.setCustomValidity('Įveskite vaikų skaičių.');
+                    e.target.setCustomValidity(
+                      'Įveskite mokymosi įstaigos pavadinimą.'
+                    );
                   }}
                   onInput={(e) => e.target.setCustomValidity('')}
                   required
                 />
-                {errors.numberOfKids.length > 0 && (
-                  <span className="error">{errors.numberOfKids}</span>
-                )}
               </div>
-  
-              <div className="ml-4 form-check mb-3 col-12">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  name="studying"
-                  checked={this.state.studying}
-                  onChange={this.handleChange}
-                />
-                <label htmlFor="studying" className="form-check-label">
-                  Mokausi bendrojo lavinimo mokykloje
-                </label>
-              </div>
-  
-              {this.state.studying ? (
-                <div className="form-group mb-3 col-6">
-                  <label htmlFor="studyingInstitution" className="control-label">
-                    Mokymosi įstaigos pavadinimas*:
+            ) : null}
+            <div className=" ml-4 form-check form-group mb-3 col-10">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                name="hasDisability"
+                id="hasDisability"
+                checked={this.state.hasDisability}
+                onChange={this.handleChange}
+                noValidate
+              />
+              <label htmlFor="hasDisability" className="form-check-label">
+                Turiu mažesnį nei 40% darbingumo lygį
+              </label>
+            </div>
+
+            <div className=" ml-4 form-check form-group mb-3 col-12">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={this.state.declaredResidenceSameAsLiving}
+                name="declaredResidenceSameAsLiving"
+                id="declaredResidenceSameAsLiving"
+                onChange={this.handleChange}
+              />
+              <label
+                htmlFor="declaredResidenceSameAsLiving"
+                className="form-check-label"
+              >
+                Jei deklaruota gyvenamoji vieta sutampa, pažymėkite.
+              </label>
+            </div>
+            {this.state.declaredResidenceSameAsLiving ? null : (
+              <div className="form-row">
+                <div className="form-group mb-3 col-12">
+                  <label htmlFor="declaredCity" className="control-label">
+                    Deklaruotas Miestas*:
                   </label>
                   <input
                     type="text"
-                    placeholder="Mokymosi įstaiga"
+                    placeholder="Deklaruotas Miestas"
                     className="form-control"
-                    name="studyingInstitution"
+                    name="declaredCity"
                     onChange={this.handleChange}
-                    // noValidate
-                    pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
+                    pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ -]+"
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
-                        'Įveskite mokymosi įstaigos pavadinimą.'
+                        'Įveskite deklaruotą miestą tinkamu formatu.'
                       );
                     }}
                     onInput={(e) => e.target.setCustomValidity('')}
                     required
                   />
-                  {/* {errors.studyingInstitution.length > 0 && (
-                    <span className="error">{errors.studyingInstitution}</span>
-                  )} */}
                 </div>
-              ) : null}
-              <div className=" ml-4 form-check form-group mb-3 col-10">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  name="hasDisability"
-                  id="hasDisability"
-                  checked={this.state.hasDisability}
-                  onChange={this.handleChange}
-                  noValidate
-                />
-                <label htmlFor="hasDisability" className="form-check-label">
-                  Turiu mažesnį nei 40% darbingumo lygį
-                </label>
-              </div>
-  
-              <div className=" ml-4 form-check form-group mb-3 col-12">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={this.state.declaredResidenceSameAsLiving}
-                  name="declaredResidenceSameAsLiving"
-                  id="declaredResidenceSameAsLiving"
-                  onChange={this.handleChange}
-                />
-                <label
-                  htmlFor="declaredResidenceSameAsLiving"
-                  className="form-check-label"
-                >
-                  Jei deklaruota gyvenamoji vieta sutampa, pažymėkite.
-                </label>
-              </div>
-              {this.state.declaredResidenceSameAsLiving ? null : (
-                <div className="form-row">
-                  <div className="form-group mb-3 col-12">
-                    <label htmlFor="declaredCity" className="control-label">
-                      Deklaruotas Miestas*:
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Deklaruotas Miestas"
-                      className="form-control"
-                      name="declaredCity"
-                      onChange={this.handleChange}
-                      // noValidate
-                      pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ -]+"
-                      onInvalid={(e) => {
-                        e.target.setCustomValidity(
-                          'Įveskite deklaruotą miestą tinkamu formatu.'
-                        );
-                      }}
-                      onInput={(e) => e.target.setCustomValidity('')}
-                      required
-                    />
-                  </div>
-                  <div className="form-group mb-3 col-12">
-                    <label htmlFor="declaredStreet" className="control-label">
-                      Deklaruota Gatvė*:
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Deklaruota Gatvė"
-                      className="form-control"
-                      name="declaredStreet"
-                      onChange={this.handleChange}
-                      // noValidate
-                      // pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
-                      // pattern ="^\[a-zA-z]+[0-9 . -  ]*"
-                      pattern="^[a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+[- a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 . -  ]*"
-                      onInvalid={(e) => {
-                        e.target.setCustomValidity(
-                          'Įveskite deklaruotą gatvę tinkamu formatu.'
-                        );
-                      }}
-                      onInput={(e) => e.target.setCustomValidity('')}
-                      required
-                    />
-                  </div>
-  
-                  <div className="form-group mb-3 col-12">
-                    <label
-                      htmlFor="declaredHouseNumber"
-                      className="control-label"
-                    >
-                      Deklaruotas Namo Numeris*:
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Deklaruotas Namo Numeris"
-                      className="form-control"
-                      name="declaredHouseNumber"
-                      onChange={this.handleChange}
-                      // noValidate
-                      // pattern="[0-9][a-zA-Z0-9- - ]*?{1,7}"
-  
-                      pattern="^[1-9]+[ a-zA-Z 0-9 ]*"
-                      onInvalid={(e) => {
-                        e.target.setCustomValidity(
-                          'Įveskite deklaruotą namo numerį tinkamu formatu, pvz.: 1A'
-                        );
-                      }}
-                      onInput={(e) => e.target.setCustomValidity('')}
-                      required
-                    />
-                  </div>
-                  <div className="form-group mb-3 col-12">
-                    <label htmlFor="declaredFlatNumber" className="control-label">
-                      Deklaruotas Butas:
-                    </label>
-                    <input
-                      type="number"
-                      min="1"
-                      placeholder="Deklaruotas Butas"
-                      className="form-control"
-                      name="declaredFlatNumber"
-                      onChange={this.handleChange}
-                    />
-                  </div>
+                <div className="form-group mb-3 col-12">
+                  <label htmlFor="declaredStreet" className="control-label">
+                    Deklaruota Gatvė*:
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Deklaruota Gatvė"
+                    className="form-control"
+                    name="declaredStreet"
+                    onChange={this.handleChange}
+                    pattern="^[a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+[- a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 . -  ]*"
+                    onInvalid={(e) => {
+                      e.target.setCustomValidity(
+                        'Įveskite deklaruotą gatvę tinkamu formatu.'
+                      );
+                    }}
+                    onInput={(e) => e.target.setCustomValidity('')}
+                    required
+                  />
                 </div>
-              )}
-              <div className="form-group mb-3 col-6"> * - privalomi laukai</div>
-              <div>
-                <button
-                  type="submit"
-                  className="btn btn-lg mt-5
-                  "
-                  // onSubmit={this.handleSubmit}
-                >
-                  Tęsti
-                </button>
+
+                <div className="form-group mb-3 col-12">
+                  <label
+                    htmlFor="declaredHouseNumber"
+                    className="control-label"
+                  >
+                    Deklaruotas Namo Numeris*:
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Deklaruotas Namo Numeris"
+                    className="form-control"
+                    name="declaredHouseNumber"
+                    onChange={this.handleChange}
+                    pattern="^[1-9]+[ a-zA-Z 0-9 ]*"
+                    onInvalid={(e) => {
+                      e.target.setCustomValidity(
+                        'Įveskite deklaruotą namo numerį tinkamu formatu, pvz.: 1A'
+                      );
+                    }}
+                    onInput={(e) => e.target.setCustomValidity('')}
+                    required
+                  />
+                </div>
+                <div className="form-group mb-3 col-12">
+                  <label htmlFor="declaredFlatNumber" className="control-label">
+                    Deklaruotas Butas:
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    placeholder="Deklaruotas Butas"
+                    className="form-control"
+                    name="declaredFlatNumber"
+                    onChange={this.handleChange}
+                  />
+                </div>
               </div>
-            </form>
-          </div>
-        );
-      }
-      // </div>
-      //     );
+            )}
+            <div className="form-group mb-3 col-6"> * - privalomi laukai</div>
+            <div>
+              <button type="submit" className="btn btn-lg mt-5 ">
+                Tęsti
+              </button>
+            </div>
+          </form>
+        </div>
+      );
     }
   }
-  
+}

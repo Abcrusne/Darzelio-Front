@@ -13,51 +13,31 @@ export default class UserLogsList extends Component {
       totalPages: 0,
       totalLogs: 0,
       searchEmail: '',
-      //   sortDate: [],
+
       sortByDate: 'datedesc',
     };
   }
 
   componentDidMount = () => {
-    //console.log('component did mount');
     this.retrieveUsersLogsList();
   };
 
   retrieveUsersLogsList = () => {
     const { pageNumber, searchEmail, sortByDate } = this.state;
-    //console.log('retrieveUsersLogsList');
-    //console.log(
-    //   'pagenumber: ' +
-    //     pageNumber +
-    //     ' searchEmail: ' +
-    //     searchEmail +
-    //     ' sort: ' +
-    //     sortByDate
-    // );
+
     LogsService.getAll(pageNumber, searchEmail, sortByDate)
       .then((res) => {
-        //console.log(res.data);
         this.setState({
           logs: res.data.logs,
           totalPages: res.data.totalPages,
           totalLogs: res.data.totalLogs,
         });
-        //console.log('userLogsList' + this.state.logs);
-        //    LogsService.sortByDate(sort)
-        //    .then((res)=>{
-        //        this.setState({
-        //         logs: res.data.logs,
-        //         totalPages: res.data.totalPages,
-        //         totalLogs: res.data.totalLogs,
-        //        })
-        //    })
       })
       .catch((error) => {
         console.log(error);
       });
   };
   onChange = (event) => {
-    //console.log(event.target.value);
     const searchEmail = event.target.value;
     this.setState(
       {
@@ -128,8 +108,11 @@ export default class UserLogsList extends Component {
               <th scope="col">Vartotojas</th>
               <th scope="col">Rolė</th>
               <th scope="col">Veiksmas</th>
-              <th scope="col" onClick={this.handleSortByDate} className="dateTime">
-                {/* onClick={()=> (this.setState({sortByDate:"dateasc"}))} */}
+              <th
+                scope="col"
+                onClick={this.handleSortByDate}
+                className="dateTime"
+              >
                 Data ir laikas
               </th>
             </tr>
@@ -148,7 +131,9 @@ export default class UserLogsList extends Component {
                 );
               })
             ) : (
-              <tr><td>...</td></tr>
+              <tr>
+                <td>...</td>
+              </tr>
             )}
           </tbody>
         </table>

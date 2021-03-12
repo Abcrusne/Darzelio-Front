@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import style from '../../Style/style.css';
 
 const Pagination = ({ kindergartensPerPage, totalKindergartens, paginate }) => {
   const pageNumbers = [];

@@ -4,7 +4,6 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import UserService from '../../Configuration/UserService';
 
-
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
 
 export default class UpdateParentRegistrationFormContainer extends Component {
@@ -52,42 +51,6 @@ export default class UpdateParentRegistrationFormContainer extends Component {
     };
   }
 
-  // getUserId = () =>
-  //   axios.get(`${API}/api/users/loggeduserid`).catch((err) => null);
-
-  //  getParentDetails = () => axios.get(`${API}/api/users/${this.state.userId}/parentdetails`).catch(err => null);
-
-  // async componentDidMount() {
-  //   try {
-  //     const [user, parent] = await axios.all([
-  //       this.getUserId(),
-  //       this.getParentDetails(),
-  //     ]);
-  //     this.setState({
-  //       userId: user.data,
-  //       parentDetails: parent.data,
-  //     });
-  //     console.log('userId:' + this.state.userId);
-  //     console.log('parentDetails:' + this.state.parentDetails.firstname);
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // }
-
-  // componentDidMount() {
-
-  //   axios
-  //     .get(`${API}/api/users/loggeduserid`)
-  //     .then((res) => {
-  //       UserService.setId(res.data);
-  //       this.setState({
-  //         userId: res.data,
-  //       });
-  //       console.log('user id: ' + this.state.userId);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
-
   componentDidMount() {
     axios
       .get(`${API}/api/users/getparentdetails`)
@@ -113,36 +76,27 @@ export default class UpdateParentRegistrationFormContainer extends Component {
           declaredStreet: res.data.declaredStreet,
           declaredHouseNumber: res.data.declaredHouseNumber,
           declaredFlatNumber: res.data.declaredFlatNumber,
-          // userId: res.data.userId,
         });
-        //console.log('parent id ' + this.state.id);
+
         return axios.get(`${API}/api/users/loggeduserid`);
       })
       .then((res) => {
         this.setState({
           userId: res.data,
         });
-        //console.log('user id: ' + this.state.userId);
       })
       .catch((err) => console.log(err));
   }
 
   handleChange = (event) => {
-    //event.preventDefault();
-    //console.log(event.target.checked);
-
     const validEmailRegex = RegExp(
       /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
     );
     const { name, value } = event.target;
-
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
-    // let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 -/./,/]+$/;
     let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,.\- ]*$/;
-
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
-
     let validPhone = /^[+][3][7][0][6|5]+[0-9]+$/;
     let validPersonalCode = /^[3|4|5|6]+[0-9]+$/;
     let numbers = /^[0-9]+$/;
@@ -201,12 +155,6 @@ export default class UpdateParentRegistrationFormContainer extends Component {
             ? 'Įrašykite namo numerį'
             : '';
         break;
-
-      // case 'flatNumber':
-      //   errors.flatNumber = !value.match(numbers)
-      //     ? 'Įrašykite buto numerį, pvz: 2'
-      //     : '';
-      //   break;
       case 'numberOfKids':
         errors.numberOfKids =
           !value.match(numbers) || value.length < 0
@@ -218,7 +166,6 @@ export default class UpdateParentRegistrationFormContainer extends Component {
         break;
     }
     if (event.target.type === 'checkbox') {
-      // console.log(event.target.checked);
       this.setState({ [event.target.name]: event.target.checked });
     } else
       this.setState(
@@ -230,7 +177,6 @@ export default class UpdateParentRegistrationFormContainer extends Component {
           // console.log(errors);
         }
       );
-    // console.log(this.state);
   };
 
   handleSubmit = (event) => {
@@ -269,21 +215,10 @@ export default class UpdateParentRegistrationFormContainer extends Component {
           declaredStreet: this.state.declaredStreet,
           declaredHouseNumber: this.state.declaredHouseNumber,
           declaredFlatNumber: this.state.declaredFlatNumber,
-
-          // userId: this.state.userId,
         })
         .then((response) => {
-          //console.log(response);
-          // if (currentRole === '[PARENT]') {
-
-            alert('Tėvo/Globėjo duomenys atnaujinti sėkmingai');
-            this.props.history.push('/tevai');
-          // }
-          // else      if (currentRole === '[ADMIN]') {
-          //   alert('Tėvo/Globėjo duomenys atnaujinti sėkmingai');
-          //   this.props.history.push(`/admin/duomenys/${this.state.userId}`);
-          // }
-         
+          alert('Tėvo/Globėjo duomenys atnaujinti sėkmingai');
+          this.props.history.push('/tevai');
         })
 
         .catch((error) => {
@@ -336,14 +271,12 @@ export default class UpdateParentRegistrationFormContainer extends Component {
           console.log(error.response);
         });
     } else {
-     // console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );
     }
   };
   render() {
-    // console.log('this.state length: ' + this.state.length);
     const { errors } = this.state;
     if (this.state.id > 0) {
       return (
@@ -352,11 +285,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
             <div className="mb-4">
               <h3>Anaujinkite savo tėvo/globėjo duomenis</h3>
             </div>
-            <form
-              onSubmit={this.handleSubmit}
-              // noValidate
-              className="form-row "
-            >
+            <form onSubmit={this.handleSubmit} className="form-row ">
               <div className=" form-group mb-3 col-6">
                 <label htmlFor="firstname" className="control-label">
                   Vardas*:
@@ -506,15 +435,12 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                   name="flatNumber"
                   onChange={this.handleChange}
                   value={this.state.flatNumber}
-                  // noValidate
                 />
-                {/* {errors.flatNumber.length > 0 && (
-                  <span className="error">{errors.flatNumber}</span>
-                )} */}
               </div>
               <div className="form-group mb-3 col-8">
                 <label htmlFor="numberOfKids" className="control-label">
-                Kiek turite vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo programas?*:
+                  Kiek turite vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo
+                  programas?*:
                 </label>
                 <input
                   type="number"
@@ -560,7 +486,6 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                     name="studyingInstitution"
                     onChange={this.handleChange}
                     value={this.state.studyingInstitution}
-                    // noValidate
                     pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
                     onInvalid={(e) => {
                       e.target.setCustomValidity(
@@ -618,7 +543,6 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                       name="declaredCity"
                       onChange={this.handleChange}
                       value={this.state.declaredCity}
-                      // noValidate
                       pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ - ]+"
                       onInvalid={(e) => {
                         e.target.setCustomValidity(
@@ -640,8 +564,6 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                       name="declaredStreet"
                       onChange={this.handleChange}
                       value={this.state.declaredStreet}
-                      // noValidate
-                      // pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
                       pattern="^[a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+[- a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 . -  ]*"
                       onInvalid={(e) => {
                         e.target.setCustomValidity(
@@ -666,7 +588,6 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                       className="form-control"
                       name="declaredHouseNumber"
                       onChange={this.handleChange}
-                      // noValidate
                       value={this.state.declaredHouseNumber}
                       pattern="^[1-9]+[ a-zA-Z 0-9 ]*"
                       onInvalid={(e) => {
@@ -693,7 +614,6 @@ export default class UpdateParentRegistrationFormContainer extends Component {
                       name="declaredFlatNumber"
                       onChange={this.handleChange}
                       value={this.state.declaredFlatNumber}
-                      // noValidate
                     />
                   </div>
                 </div>

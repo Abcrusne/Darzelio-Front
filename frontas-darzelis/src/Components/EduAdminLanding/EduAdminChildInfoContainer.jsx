@@ -51,7 +51,6 @@ export default class EduAdminChildInfoContainer extends Component {
   }
 
   componentDidMount() {
-    //console.log('component did mount ');
     axios
       .get(
         `${API}/api/kindergartens/admission/registrations/${this.props.match.params.id}`
@@ -84,7 +83,7 @@ export default class EduAdminChildInfoContainer extends Component {
             res.data.secondParentStudyingInstitution,
           secondParentDisabled: res.data.secondParentDisabled,
         });
-        //console.log('child id: ' + this.state.childId);
+
         return axios.get(
           `${API}/api/kindergartens/register/${this.state.childId}`
         );
@@ -104,7 +103,6 @@ export default class EduAdminChildInfoContainer extends Component {
         });
       })
       .catch((err) => console.log(err));
-    // console.log();
   }
 
   render() {
@@ -127,7 +125,7 @@ export default class EduAdminChildInfoContainer extends Component {
           childLastname={this.state.childLastname}
           childAddress={this.state.childAddress}
           childAdopted={this.state.childAdopted}
-          childBirthdate ={this.state.childBirthdate}
+          childBirthdate={this.state.childBirthdate}
           childRating={this.state.childRating}
           kindergartenName={this.state.kindergartenName}
           secondParent={this.state.secondParent}

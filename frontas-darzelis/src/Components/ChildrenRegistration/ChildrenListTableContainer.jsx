@@ -16,14 +16,12 @@ export default class ChildrenListTableContainer extends Component {
   }
 
   componentDidMount() {
-    //console.log('component did mount');
     axios
       .get(`${API}/api/users/loggeduserid`)
       .then((response) => {
         this.setState({
           id: response.data,
         });
-        //console.log('user id: ' + this.state.id);
         return axios.get(`${API}/api/users/getloggeduserchildren`);
       })
       .then((response) => {
@@ -32,23 +30,7 @@ export default class ChildrenListTableContainer extends Component {
         });
       })
       .catch((error) => console.log(error));
-    // console.log('children: ' + this.state.children);
   }
-  // deleteChild = (event) => {
-  //   //event.preventDefault();
-  //   axios
-  //     .delete(
-  //       `${API}/api/users/${this.state.id}/parentdetails/children/${event.target.value}`
-  //     )
-  //     .then(() => {
-  //       axios
-  //         .get(`${API}/api/users/${this.state.id}/parentdetails/children`)
-  //         .then((response) => this.setState({ children: response.data }));
-  //     })
-  //     .catch((err) => console.log(err.data));
-  //   console.log('deleteChildren');
-  // };
-
   render() {
     return (
       <div className="mt-5">
@@ -68,19 +50,13 @@ export default class ChildrenListTableContainer extends Component {
                   <th scope="col">Peržiūrėti/Atnaujinti prašymą į darželį </th>
                 </tr>
               </thead>
-              {/* {this.state.children.length > 0 &&  ( */}
 
               <tbody>
-                <ChildrenListTablePresentation
-                  children={this.state.children}
-                  //deleteChild={this.state.deleteChild}
-                />
+                <ChildrenListTablePresentation children={this.state.children} />
               </tbody>
-              {/* )}  */}
             </table>
           </div>
         ) : (
-          // <p> Dar nepateikėte jokių duomenų apie savo vaikus</p>
           <Loading />
         )}
       </div>

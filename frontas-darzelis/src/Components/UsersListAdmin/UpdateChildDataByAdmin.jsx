@@ -79,7 +79,6 @@ export default class UpdateChildDataByAdmin extends Component {
   }
 
   componentDidMount() {
-    //console.log('component did mount');
     axios
       .get(
         `${API}/api/users/${this.props.match.params.id}/parentdetails/children/${this.props.match.params.type}`
@@ -123,13 +122,10 @@ export default class UpdateChildDataByAdmin extends Component {
             res.data.secondParentDeclaredFlatNumber,
           adopted: res.data.adopted,
         });
-        //console.log('vaiko id: ' + this.state.id);
-        //console.log('parent user id: ' + this.props.match.params.id);
       })
       .catch((err) => console.log(err.data));
   }
   deleteChild = (event) => {
-    //event.preventDefault();
     axios
       .delete(
         `${API}/api/users/${this.state.parentId}/parentdetails/children/${this.state.id}`
@@ -145,24 +141,17 @@ export default class UpdateChildDataByAdmin extends Component {
   };
 
   handleChangeDate = (date) => {
-    //this.dd = moment(date).format("YYYY-MM-DD");
-    //  date = moment(date).format("YYYY-MM-DD");
     this.setState({
       birthdate: date,
     });
   };
   handleChange = (event) => {
-    // event.preventDefault();
-    //console.log(event.target.checked);
-
     const validEmailRegex = RegExp(
       /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
     );
-
     const { name, value } = event.target;
     let errors = this.state.errors;
     let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/;
-    //let lettersAndNumber = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ 0-9 ,/./-]+$/;
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
     let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,.\- ]*$/;
     let date = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
@@ -288,13 +277,11 @@ export default class UpdateChildDataByAdmin extends Component {
         break;
     }
     if (event.target.type === 'checkbox') {
-      //console.log(event.target.checked);
       this.setState({ [event.target.name]: event.target.checked });
     } else
       this.setState({ errors, [event.target.name]: event.target.value }, () => {
         // console.log(errors);
       });
-    //console.log(this.state);
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -350,7 +337,6 @@ export default class UpdateChildDataByAdmin extends Component {
           }
         )
         .then((response) => {
-         // console.log(response);
           alert('Vaiko duomenys atnaujinti sėkmingai');
           this.props.history.push(
             `/admin/duomenys/vaikai/${this.state.parentId}`
@@ -412,7 +398,6 @@ export default class UpdateChildDataByAdmin extends Component {
           //console.log(error.response);
         });
     } else {
-      //console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );
@@ -472,21 +457,10 @@ export default class UpdateChildDataByAdmin extends Component {
                 <input
                   type="text"
                   className="form-control"
-                  //  dateFormat="yyyy-MM-dd"
                   name="birthdate"
                   value={this.state.birthdate}
                   onChange={this.handleChange}
                 />
-                {/* <DatePicker
-                  className="form-control  "
-                  dateFormat="yyyy-MM-dd"
-                  locale="lt"
-                  name="birthdate"
-                  maxDate={new Date()}
-                  selected={this.state.birthdate}
-                  onChange={this.handleChangeDate}
-                 // value={this.state.birthdate}
-                /> */}
               </div>
             </div>
 
@@ -613,7 +587,6 @@ export default class UpdateChildDataByAdmin extends Component {
             </div>
             {this.state.secondParent === true ? (
               <div className="form-row">
-                {/* <div><b>Pridėję antrąjį tėvą/globėją, vėliau jo duomenis galėsite redaguoti, bet pašalinti galima nebus.</b></div> */}
                 <div className="form-group mb-3 col-6 mt-3">
                   <label
                     htmlFor="secondParentFirstname"
@@ -728,7 +701,6 @@ export default class UpdateChildDataByAdmin extends Component {
                       name="secondParentPersonalCode"
                       onChange={this.handleChange}
                       noValidate
-                      //value={this.state.secondParentPersonalCode}
                     />
                     {errors.secondParentPersonalCode.length > 0 && (
                       <span className="error">
@@ -860,7 +832,6 @@ export default class UpdateChildDataByAdmin extends Component {
                       name="secondParentNumberOfKids"
                       onChange={this.handleChange}
                       noValidate
-                      // value={this.state.secondParentNumberOfKids}
                       onInvalid={(e) => {
                         e.target.setCustomValidity('Įveskite vaikų skaičių.');
                       }}
@@ -907,7 +878,6 @@ export default class UpdateChildDataByAdmin extends Component {
                       name="secondParentStudyingInstitution"
                       onChange={this.handleChange}
                       value={this.state.secondParentStudyingInstitution}
-                      // noValidate
                       pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
                       onInvalid={(e) => {
                         e.target.setCustomValidity(
@@ -975,7 +945,6 @@ export default class UpdateChildDataByAdmin extends Component {
                         name="secondParentDeclaredCity"
                         onChange={this.handleChange}
                         value={this.state.secondParentDeclaredCity}
-                        //  noValidate
                         pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ -]+"
                         onInvalid={(e) => {
                           e.target.setCustomValidity(
@@ -985,11 +954,6 @@ export default class UpdateChildDataByAdmin extends Component {
                         onInput={(e) => e.target.setCustomValidity('')}
                         required
                       />
-                      {/* {errors.secondParentDeclaredCity.length > 0 && (
-                                <span className="error">
-                                  {errors.secondParentDeclaredCity}
-                                </span>
-                              )} */}
                     </div>
                     <div className="form-group mb-3 col-6 mt-3">
                       <label
@@ -1005,8 +969,6 @@ export default class UpdateChildDataByAdmin extends Component {
                         name="secondParentDeclaredStreet"
                         onChange={this.handleChange}
                         value={this.state.secondParentDeclaredStreet}
-                        // noValidate
-                        // pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ . - 0-9-]+"
                         pattern="^[a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ ]+[- a-zA-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 . -  ]*"
                         onInvalid={(e) => {
                           e.target.setCustomValidity(
@@ -1037,15 +999,6 @@ export default class UpdateChildDataByAdmin extends Component {
                         name="secondParentDeclaredHouseNumber"
                         onChange={this.handleChange}
                         value={this.state.secondParentDeclaredHouseNumber}
-                        // noValidate
-
-                        // pattern="[a-zA-Z-z - 0-9-]+"
-                        // onInvalid={(e) => {
-                        //   e.target.setCustomValidity(
-                        //     'Įveskite deklaruotą namo numerį tinkamu formatu.'
-                        //   );
-                        // }}
-                        // onInput={(e) => e.target.setCustomValidity('')}
                         pattern="^[1-9]+[ a-zA-Z 0-9 ]*"
                         onInvalid={(e) => {
                           e.target.setCustomValidity(
@@ -1096,7 +1049,6 @@ export default class UpdateChildDataByAdmin extends Component {
 
           <div className="col text-center delete">
             <button
-              //onClick={this.deleteChild}
               id="deleteChildData"
               className="btn mt-3"
               data-toggle="modal"
