@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Pagination } from '@material-ui/lab';
-import { Link } from 'react-router-dom';
 import LogsService from '../Utilities/LogsService';
 import '../../Style/UsersLandings.css';
 import '../../Style/style.css';
@@ -11,7 +10,7 @@ export default class UserLogsList extends Component {
     this.state = {
       logs: [],
       pageNumber: 1,
-      totalPages: '',
+      totalPages: 0,
       totalLogs: '',
       searchEmail: '',
       //   sortDate: [],
@@ -107,7 +106,7 @@ export default class UserLogsList extends Component {
     return (
       <div className="m-5">
         <div className="mb-4">
-          <h4> Vartotojų žurnalas</h4>
+          <h4> Vartotojų įvykių žurnalas</h4>
         </div>
         <div className="col-md-8">
           <div className="input-group">
@@ -149,7 +148,7 @@ export default class UserLogsList extends Component {
                 );
               })
             ) : (
-              <tr>...</tr>
+              <tr><td>...</td></tr>
             )}
           </tbody>
         </table>

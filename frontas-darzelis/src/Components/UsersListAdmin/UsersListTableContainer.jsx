@@ -6,6 +6,7 @@ import UsersListTablePresentation from './UsersListTablePresentation';
 import Loading from '../Loading/Loading';
 import ModalComponent from '../Modal/ModalComponent';
 import '../../Style/UsersLandings.css';
+import { Pagination } from '@material-ui/lab';
 
 export default class UsersListTableContainer extends Component {
   constructor() {
@@ -18,11 +19,13 @@ export default class UsersListTableContainer extends Component {
 
   componentDidMount = () => {
     //console.log('component did mount');
+    let isMounted = true;
     axios
       .get(API + '/api/users')
       .then((response) => this.setState({ users: response.data }))
 
       .catch((error) => console.log(error));
+    isMounted = false;
     // console.log('users: ' + this.state.users);
   };
   handleSearch = (event) => {
@@ -105,7 +108,7 @@ export default class UsersListTableContainer extends Component {
                     : 'nenurodyta';
 
                 return (
-                  <tbody>
+                  <tbody key={id}>
                     <tr key={id}>
                       <th scope="row">{index + 1}</th>
                       <td>{firstname}</td>
@@ -164,8 +167,21 @@ export default class UsersListTableContainer extends Component {
 
             // /> */}
 
-     <p>Loading...</p>
+            <tbody>
+              <tr>
+                <td>Loading...</td>
+              </tr>
+            </tbody>
           )}
+          {/* <Pagination
+           className="my-3"
+           count={this.state.users.length}
+           page = {10}
+           siblingCount={1}
+           boundaryCount={1}
+           variant="outlined"
+           shape="rounded"
+          /> */}
         </table>
       </div>
     );
