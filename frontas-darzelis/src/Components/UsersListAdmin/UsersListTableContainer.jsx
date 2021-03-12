@@ -131,7 +131,12 @@ export default class UsersListTableContainer extends Component {
                           Atnaujinti duomenis
                         </Link>
                       </td>
-                      <td>{markedForDeletionLt}</td>
+                      {role === 'ADMIN' ? (
+                        <div></div>
+                      ) : (
+                        <td>{markedForDeletionLt}</td>
+                      )}
+
                       {role === 'ADMIN' ? (
                         <td></td>
                       ) : (
