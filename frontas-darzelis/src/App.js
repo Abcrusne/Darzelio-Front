@@ -277,6 +277,12 @@ function App() {
             component={SysAdminLanding}
             role={'ADMIN'}
           />
+              <PrivateRoute
+            path="/admin/archyvai"
+            exact
+            component={SysAdminLanding}
+            role={'ADMIN'}
+          />
           <Route path="*" component={NoMatch} />
           <Route component={NoMatch} />
         </Switch>

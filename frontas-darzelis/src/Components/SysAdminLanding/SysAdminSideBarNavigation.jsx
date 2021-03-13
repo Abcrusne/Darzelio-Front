@@ -37,6 +37,12 @@ export const SysAdminSideBarNavigation = () => {
           </Link>
         </li>
         <li className="nav-item">
+          <Link to="/admin/archyvai" className="nav-link active">
+            <i className="fas fa-list-ol"></i>
+           Vartotojų archyvai
+          </Link>
+        </li>
+        <li className="nav-item">
           <Link to="/admin/eiliutvarkymas" className="nav-link active">
             <i className="fas fa-list-ol"></i>
             Eilių tvarkymas

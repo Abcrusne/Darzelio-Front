@@ -1,10 +1,6 @@
 import React from 'react';
 
-const ModalDeleteUserData = ({
-  deleteData,
-}) => {
-  //console.log('modal child id: ' + childId);
-
+const ModalDeleteUserData = ({ deleteData }) => {
   return (
     <div
       className="modal fade"
@@ -19,7 +15,7 @@ const ModalDeleteUserData = ({
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="staticBackdropLabel">
-            Ar tikrai norite ištrinti paskyrą ir duomenis?
+              Ar tikrai norite ištrinti šią paskyrą?
             </h5>
             <button
               type="button"
@@ -30,7 +26,11 @@ const ModalDeleteUserData = ({
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div className="modal-body"> Ištrynus paskyrą jos atkurti nebebus galimybės ir iškarto būsite atjungtas iš sistemos.</div>
+          <div className="modal-body">
+            {' '}
+            Ištrynus paskyrą jos atkurti nebebus galimybės ir iškarto būsite
+            atjungtas iš sistemos.
+          </div>
           <div className="modal-footer">
             <button
               onClick={deleteData}
@@ -38,7 +38,6 @@ const ModalDeleteUserData = ({
               data-toggle="modal"
               className="btn btn-danger"
               data-dismiss="modal"
-            //   value={childId}
             >
               Taip
             </button>

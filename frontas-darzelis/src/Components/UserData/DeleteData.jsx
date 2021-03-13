@@ -12,16 +12,7 @@ export default class DeleteData extends Component {
     };
   }
 
-  //    headers = {
-  //     'Authorization': 'Bearer paperboy'
-  //   }
-  //  data = {
-  //     eraseData: true
-  //   }
   DeleteData = () => {
-    //   var kkk = {
-    //     "eraseData": true
-    // }
     axios
       .delete(`${API}/api/users/delete`, {
      params: {
@@ -35,28 +26,36 @@ export default class DeleteData extends Component {
       .catch((err) => console.log(err));
     console.log('delete');
   };
+  handleChange =(event)=> {
+  
+      this.setState({ [event.target.name]: event.target.checked });
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault(); 
+  }
 
   render() {
     return (
       <div className="container mt-5">
-        <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
+        <div className="col-lg-8 m-auto shadow p-3 mb-5 bg-white rounded">
+        <h4 className="mb-5"> Paskyros ištrinimas</h4>
           <div className="mb-4">
-            <h4>Paskyros ištrinimas</h4>
             <div>
-              <button className="btn"
+              <button className="btn ml-2"
               //  onClick={this.DeleteData}
               data-toggle="modal"
               data-target={`#staticBackdrop`}
-          
               >
-                Ištrinti paskyrą ir mano duomenis
+                Ištrinti mano paskyrą 
               </button>
               <ModalDeleteUserData
               deleteData={this.DeleteData}
               />
             </div>
-
-            <div className="form-check form-group mb-3 col-10">
+            <form className=" p-3 mt-2 mb-3 " onSubmit={this.handleSubmit}>
+              
+            <div className="form-check form-group mb-3 col-12">
               <input
                 type="checkbox"
                 className="form-check-input"
@@ -71,6 +70,8 @@ export default class DeleteData extends Component {
                 iš sistemos
               </label>
             </div>
+            <button type="submit" className="btn"> Pateikti</button>
+            </form>
           </div>
         </div>
       </div>

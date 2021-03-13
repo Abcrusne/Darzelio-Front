@@ -27,6 +27,7 @@ import ChildrenRegistrationByAdmin from '../UsersListAdmin/ChildrenRegistrationB
 import ChildRegistrationToKindergartenByAdmin from '../UsersListAdmin/ChildRegistrationToKindergartenByAdmin';
 import ParentRegistrationByAdmin from '../UsersListAdmin/ParentRegistrationByAdmin';
 import UserLogsList from '../Logs/UserLogsList';
+import ArchiveListByAdmin from '../Archive/ArchiveListByAdmin';
 
 export const AdminRoutes = () => {
   return (
@@ -167,6 +168,12 @@ export const AdminRoutes = () => {
           path="/admin/logs"
           exact
           component={UserLogsList}
+          role={'ADMIN'}
+        />
+           <PrivateRoute
+          path="/admin/archyvai"
+          exact
+          component={ArchiveListByAdmin}
           role={'ADMIN'}
         />
         <PrivateRoute
