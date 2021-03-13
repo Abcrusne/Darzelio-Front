@@ -16,10 +16,10 @@ const NextPage = () => {
   };
 
   return (
-    <div className="m-5 d-block">
+    <div className="">
       <button
         type="submit"
-        className="btn btn-success btn-lg btn-block next"
+        className="btn  next"
         onClick={addAnotherChild}
       >
         Pridėti kitą vaiką
@@ -27,7 +27,7 @@ const NextPage = () => {
 
       <button
         type="submit"
-        className="btn btn-success btn-lg btn-block next"
+        className="btn  next"
         onClick={registerToKindergarten}
       >
         Tęsti

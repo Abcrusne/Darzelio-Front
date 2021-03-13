@@ -26,6 +26,7 @@ import HorizontalChart from '../Statistics/HorizontalChart';
 import ConditionsPage from '../Conditions/ConditionsPage';
 import AdmissionRules from '../Conditions/AdmissionRules';
 import Guide from '../Guide/ParentsGuide';
+import DeleteData from '../UserData/DeleteData';
 
 const ParentRoutes = () => {
   return (
@@ -148,6 +149,12 @@ const ParentRoutes = () => {
         path="/tevai/instrukcija"
         exact
         component={Guide}
+        role={'PARENT'}
+      />
+         <PrivateRoute
+        path="/tevai/duomenys/istrinti"
+        exact
+        component={DeleteData}
         role={'PARENT'}
       />
       <PrivateRoute
