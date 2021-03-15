@@ -134,7 +134,7 @@ export default class KindergartenRegistrationContainer extends Component {
       <div className="container mt-5">
         <div className="col-lg-5 m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
-            <h3>Užregistruoti naują darželį</h3>
+            <h3>Pridėti naują darželį</h3>
           </div>
           <form onSubmit={this.handleSubmit} noValidate className="form-group ">
             <div className="mb-3">

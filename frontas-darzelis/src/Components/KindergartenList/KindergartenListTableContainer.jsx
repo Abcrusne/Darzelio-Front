@@ -80,6 +80,9 @@ export default class KindergartenListTableContainer extends Component {
               onChange={this.handleSearch}
             />
           </div>
+          <div className="mb-4">
+          <h4> Darželių sąrašas</h4>
+        </div>
           <table className="table">
             <thead>
               <tr>
@@ -168,6 +171,9 @@ export default class KindergartenListTableContainer extends Component {
               onChange={this.handleSearch}
             />
           </div>
+          <div className="mb-4">
+          <h4> Darželių sąrašas</h4>
+        </div>
           <table className="table">
             <thead>
               <tr>

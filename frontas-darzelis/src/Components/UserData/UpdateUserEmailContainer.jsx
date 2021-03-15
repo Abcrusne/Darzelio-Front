@@ -13,7 +13,7 @@ export default class UpdateUserEmailContainer extends Component {
       email: '',
       role: '',
       password: '',
-      markedForDeletion: '',
+ 
 
       errors: {
         email: '',
@@ -38,7 +38,7 @@ export default class UpdateUserEmailContainer extends Component {
           email: res.data.email,
           role: res.data.role,
           password: res.data.password,
-          markedForDeletion: res.data.markedForDeletion,
+         
         })
       )
       .catch((err) => console.log(err));
@@ -50,7 +50,6 @@ export default class UpdateUserEmailContainer extends Component {
     );
     const { name, value } = event.target;
     let errors = this.state.errors;
-    let letters = /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ]+$/;
     switch (name) {
       case 'email':
         errors.email = validEmailRegex.test(value)
@@ -95,7 +94,7 @@ export default class UpdateUserEmailContainer extends Component {
             email: this.state.email,
             role: this.state.role,
             password: this.state.password,
-            markedForDeletion: this.state.markedForDeletion,
+           
           }
         )
         .then((response) => {

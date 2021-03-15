@@ -35,6 +35,9 @@ export default class ArchiveListByAdmin extends Component {
     });
     return (
       <div className="container mt-5">
+         <div className="mb-4">
+          <h4> Ištrintų tėvų/globėjų paskyrų archyvai</h4>
+        </div>
         <div className="mb-4">
           <input
             className="form-control mt-3 col-4"

@@ -64,6 +64,9 @@ export default class UsersListTableContainer extends Component {
             onChange={this.handleSearch}
           />
         </div>
+        <div className="mb-4">
+          <h4> Vartotojų sąrašas</h4>
+        </div>
         <table className="table">
           <thead>
             <tr>
@@ -74,8 +77,8 @@ export default class UsersListTableContainer extends Component {
               <th scope="col">Rolė</th>
 
               <th scope="col">Atnaujinti vartotojo duomenis</th>
-              <th scope="col"> Prašymas ištrinti anketą</th>
-              <th scope="col">Ištrinti vartotoją</th>
+              {/* <th scope="col"> Prašymas ištrinti anketą</th> */}
+              <th scope="col">Ištrinti vartotoją ir jo duomenis</th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -83,7 +86,7 @@ export default class UsersListTableContainer extends Component {
           {this.state.users.length > 0 ? (
             filteredUsers.map(
               (
-                { id, firstname, lastname, email, role, markedForDeletion },
+                { id, firstname, lastname, email, role },
                 index
               ) => {
                 const roleLt =
@@ -95,12 +98,12 @@ export default class UsersListTableContainer extends Component {
                     ? 'Sistemos administratorius'
                     : 'Nenurodyta';
 
-                const markedForDeletionLt =
-                  markedForDeletion === true
-                    ? 'Ištrinti'
-                    : markedForDeletion === false
-                    ? '-'
-                    : 'nenurodyta';
+                // const markedForDeletionLt =
+                //   markedForDeletion === true
+                //     ? 'Ištrinti'
+                //     : markedForDeletion === false
+                //     ? '-'
+                //     : 'nenurodyta';
 
                 return (
                   <tbody key={id}>
@@ -131,11 +134,11 @@ export default class UsersListTableContainer extends Component {
                           Atnaujinti duomenis
                         </Link>
                       </td>
-                      {role === 'ADMIN' ? (
+                      {/* {role === 'ADMIN' ? (
                         <div></div>
                       ) : (
                         <td>{markedForDeletionLt}</td>
-                      )}
+                      )} */}
 
                       {role === 'ADMIN' ? (
                         <td></td>
