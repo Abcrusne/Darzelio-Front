@@ -60,7 +60,7 @@ export default class UserLogsList extends Component {
   };
   handleSortByDate = (event) => {
     event.preventDefault();
-    {
+    
       this.state.sortByDate === 'datedesc'
         ? this.setState(
             {
@@ -78,7 +78,7 @@ export default class UserLogsList extends Component {
               this.retrieveUsersLogsList();
             }
           );
-    }
+    
   };
 
   render() {
@@ -94,7 +94,6 @@ export default class UserLogsList extends Component {
               type="text"
               className="form-control"
               placeholder="Ieškoti pagal vartotojo el.paštą"
-              type="text"
               name="searchEmail"
               value={this.state.searchEmail}
               onChange={this.onChange}

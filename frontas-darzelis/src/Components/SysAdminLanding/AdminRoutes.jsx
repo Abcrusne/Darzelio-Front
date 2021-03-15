@@ -28,6 +28,7 @@ import ParentRegistrationByAdmin from '../UsersListAdmin/ParentRegistrationByAdm
 import UserLogsList from '../Logs/UserLogsList';
 import ArchiveListByAdmin from '../Archive/ArchiveListByAdmin';
 import ListOfRegistrations from '../MainRegistration/ListOfRegistrations';
+import AdminGuide from '../Guide/AdminGuide';
 
 export const AdminRoutes = () => {
   return (
@@ -180,6 +181,12 @@ export const AdminRoutes = () => {
           path="/admin/vaikai"
           exact
           component={ListOfRegistrations}
+          role={'ADMIN'}
+        />
+        <PrivateRoute
+          path="/admin/instrukcija"
+          exact
+          component={AdminGuide}
           role={'ADMIN'}
         />
         <PrivateRoute

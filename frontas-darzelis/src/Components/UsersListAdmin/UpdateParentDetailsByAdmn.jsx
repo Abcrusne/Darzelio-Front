@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
-import UserService from '../../Configuration/UserService';
+
 export default class UpdateParentDetailsByAdmn extends Component {
   constructor(props) {
     super(props);

@@ -33,6 +33,7 @@ const UserData = () => {
         <h5>
           <a
             href={`${API}/api/users/userdata/download`}
+            rel="noopener noreferrer"
             target="_blank"
             className="nav-link"
           >
@@ -76,6 +77,7 @@ const UserData = () => {
         <h5>
           <a
             href={`${API}/api/users/userdata/download`}
+            rel="noopener noreferrer"
             target="_blank"
             className="nav-link"
           >

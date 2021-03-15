@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
-import UserService from '../../Configuration/UserService';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import lt from 'date-fns/locale/lt';
-import moment from 'moment';
-import { NavLink } from 'react-router-dom';
+
 
 registerLocale('lt', lt);
 
