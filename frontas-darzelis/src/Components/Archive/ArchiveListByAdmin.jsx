@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import '../../Style/UsersLandings.css';
 
 export default class ArchiveListByAdmin extends Component {
@@ -35,8 +34,11 @@ export default class ArchiveListByAdmin extends Component {
     });
     return (
       <div className="container mt-5">
-         <div className="mb-4">
-          <h4> Ištrintų tėvų/globėjų paskyrų archyvai</h4>
+        <div className="mb-4">
+          <h4>
+            {' '}
+            Ištrintų tėvų/globėjų ir švietimo specialistų paskyrų archyvai
+          </h4>
         </div>
         <div className="mb-4">
           <input
@@ -68,13 +70,14 @@ export default class ArchiveListByAdmin extends Component {
                         <td>{email}</td>
                         <td> {deletionDate}</td>
                         <td> {filename}</td>
-                        <td> 
-                        <a
-                              href={`${API}/api/users/archive/${id}/download`}
-                              target="_blank"
-                            >
+                        <td>
+                          <a
+                            href={`${API}/api/users/archive/${id}/download`}
+                            target="_blank"
+                          >
                             Atsisųsti
-                            </a></td>
+                          </a>
+                        </td>
                       </tr>
                     </tbody>
                   );

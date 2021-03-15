@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import '../../Style/style.css';
-
 import '../../Style/UsersLandings.css';
 
 const NextPage = () => {
@@ -16,22 +15,24 @@ const NextPage = () => {
   };
 
   return (
-    <div className="">
-      <button
-        type="submit"
-        className="btn  next"
-        onClick={addAnotherChild}
-      >
-        Pridėti kitą vaiką
-      </button>
+    <div className="container mt-5">
+      <div className="">
+        {' '}
+        <button type="submit" className="btn next" onClick={addAnotherChild}>
+          Pridėti kitą vaiką
+        </button>
+      </div>
 
-      <button
-        type="submit"
-        className="btn  next"
-        onClick={registerToKindergarten}
-      >
-        Tęsti
-      </button>
+      <div className="">
+        {' '}
+        <button
+          type="submit"
+          className="btn next"
+          onClick={registerToKindergarten}
+        >
+          Tęsti
+        </button>
+      </div>
     </div>
   );
 };

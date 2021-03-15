@@ -9,7 +9,6 @@ export default class ChildRegistrationToKindergartenByAdmin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //   children: [],
       childId: '',
       firstname: '',
       lastname: '',

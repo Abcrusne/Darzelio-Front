@@ -12,7 +12,7 @@ export default class RegistrationFormContainer extends Component {
       email: '',
       role: '',
       password: '',
-      // markedForDeletion: false,
+    
       errors: {
         firstname: '',
         lastname: '',
@@ -72,7 +72,7 @@ export default class RegistrationFormContainer extends Component {
       lastname: this.state.lastname,
       role: this.state.role,
       password: this.state.firstname,
-      // markedForDeletion: this.state.markedForDeletion,
+     
     };
     const validateForm = (errors) => {
       let valid = true;

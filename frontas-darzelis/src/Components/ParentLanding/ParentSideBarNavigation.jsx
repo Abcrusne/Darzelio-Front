@@ -17,12 +17,6 @@ const ParentSideBarNavigation = () => {
           </Link>
           <hr />
         </li>
-        {/* <li className="nav-item">
-                    <Link to="/tevai/registracija/redaguoti" className="nav-link active" id="parentForm">
-                        <i className="fas fa-file-contract"></i>
-                        Tėvo (globėjo) anketa
-                    </Link>
-                </li> */}
         <li className="nav-item">
           <Link
             to="/tevai/registracija/redaguoti"
@@ -59,12 +53,6 @@ const ParentSideBarNavigation = () => {
             Peržiūrėti/Redaguoti vaikų duomenis ir prašymus
           </Link>
         </li>
-        {/*<li className="nav-item">*/}
-        {/*    <Link to="/dashboard/prasymai" className="nav-link active">*/}
-        {/*        <i className="fas fa-envelope"></i>*/}
-        {/*        Valdyti prašymus*/}
-        {/*    </Link>*/}
-        {/*</li>*/}
         <li className="nav-item">
           <Link to="/tevai/ikelti" className="nav-link active" id="uploadPdf">
             <i className="fas fa-file-contract"></i>
@@ -83,27 +71,27 @@ const ParentSideBarNavigation = () => {
           <hr />
         </li>
         <li className="nav-item">
-          <Link to="/tevai/tvarka" className="nav-link active">
-            <i className="fas fa-info"></i>
-            Vaikų priėmimo tvarka
-          </Link>
-        </li>
-        <li className="nav-item">
           <Link to="/tevai/statistika" className="nav-link active">
             <i className="fas fa-info"></i>
             Statistika
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/tevai/salygos" className="nav-link active">
+          <Link to="/tevai/tvarka" className="nav-link active">
             <i className="fas fa-info"></i>
-            Sąlygos
+            Vaikų priėmimo tvarka
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/tevai/instrukcija" className="nav-link active">
             <i className="fas fa-info"></i>
             Naudojimosi instrukcijos
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/tevai/salygos" className="nav-link active">
+            <i className="fas fa-info"></i>
+            Sąlygos
           </Link>
         </li>
       </ul>

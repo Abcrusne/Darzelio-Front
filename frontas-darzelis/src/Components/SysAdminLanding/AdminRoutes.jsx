@@ -18,7 +18,6 @@ import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer
 import UpdateUserEmailContainer from '../UserData/UpdateUserEmailContainer';
 import HorizontalChart from '../Statistics/HorizontalChart';
 import UserInformation from '../UsersListAdmin/UserInformation';
-import UpdateParentRegistrationFormContainer from '../ParentRegistration/UpdateParentRegistrationFormContainer';
 import UpdateParentDetailsByAdmn from '../UsersListAdmin/UpdateParentDetailsByAdmn';
 import ChildrenTable from '../UsersListAdmin/ChildrenTableByAdmin';
 import UpdateChildDataByAdmin from '../UsersListAdmin/UpdateChildDataByAdmin';
@@ -28,6 +27,7 @@ import ChildRegistrationToKindergartenByAdmin from '../UsersListAdmin/ChildRegis
 import ParentRegistrationByAdmin from '../UsersListAdmin/ParentRegistrationByAdmin';
 import UserLogsList from '../Logs/UserLogsList';
 import ArchiveListByAdmin from '../Archive/ArchiveListByAdmin';
+import ListOfRegistrations from '../MainRegistration/ListOfRegistrations';
 
 export const AdminRoutes = () => {
   return (
@@ -120,60 +120,66 @@ export const AdminRoutes = () => {
           component={UserInformation}
           role={'ADMIN'}
         />
-      
+
         <PrivateRoute
           path="/admin/duomenys/tevo/:id"
           exact
           component={UpdateParentDetailsByAdmn}
           role={'ADMIN'}
         />
-           <PrivateRoute
+        <PrivateRoute
           path="/admin/duomenys/vaikai/:id"
           exact
           component={ChildrenTable}
           role={'ADMIN'}
         />
-        
+
         <PrivateRoute
           path="/admin/:id/vaikai/:type"
           exact
           component={UpdateChildDataByAdmin}
           role={'ADMIN'}
         />
-           <PrivateRoute
+        <PrivateRoute
           path="/admin/:id/vaikai/registracijos/:type"
           exact
           component={UpdateChildApplicationByAdmin}
           role={'ADMIN'}
         />
-          <PrivateRoute
+        <PrivateRoute
           path="/admin/vaiko-registracija/:id"
           exact
           component={ChildrenRegistrationByAdmin}
           role={'ADMIN'}
         />
-         <PrivateRoute
+        <PrivateRoute
           path="/admin/:id/registracija-i-darzeli/:type"
           exact
           component={ChildRegistrationToKindergartenByAdmin}
           role={'ADMIN'}
         />
-           <PrivateRoute
+        <PrivateRoute
           path="/admin/tevo-registracija/:id"
           exact
           component={ParentRegistrationByAdmin}
           role={'ADMIN'}
         />
-           <PrivateRoute
+        <PrivateRoute
           path="/admin/logs"
           exact
           component={UserLogsList}
           role={'ADMIN'}
         />
-           <PrivateRoute
+        <PrivateRoute
           path="/admin/archyvai"
           exact
           component={ArchiveListByAdmin}
+          role={'ADMIN'}
+        />
+        <PrivateRoute
+          path="/admin/vaikai"
+          exact
+          component={ListOfRegistrations}
           role={'ADMIN'}
         />
         <PrivateRoute

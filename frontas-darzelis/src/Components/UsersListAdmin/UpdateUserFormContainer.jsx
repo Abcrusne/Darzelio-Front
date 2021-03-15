@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
-// import { Link } from 'react-router-dom';
 
 import '../../Style/style.css';
 
@@ -204,26 +203,30 @@ export default class UpdateUserFormContainer extends Component {
                 <span className="error">{errors.email}</span>
               )}
             </div>
-            <div className="mb-3">
-              <label htmlFor="role" className="control-label">
-                Parinkite rolę*:
-              </label>
-              <select
-                type="role"
-                className="form-control"
-                name="role"
-                onChange={this.handleChange}
-                noValidate
-                value={this.state.role}
-              >
-                <option value=""></option>
-                <option value="PARENT">Tėvas/globėjas</option>
-                <option value="EDU">Švietimo specialistas</option>
-              </select>
-              {errors.role.length > 0 && (
-                <span className="error">{errors.role}</span>
-              )}
-            </div>
+            {this.state.role === 'ADMIN' ? (
+              <div></div>
+            ) : (
+              <div className="mb-3">
+                <label htmlFor="role" className="control-label">
+                  Parinkite rolę*:
+                </label>
+                <select
+                  type="role"
+                  className="form-control"
+                  name="role"
+                  onChange={this.handleChange}
+                  noValidate
+                  value={this.state.role}
+                >
+                  <option value=""></option>
+                  <option value="PARENT">Tėvas/globėjas</option>
+                  <option value="EDU">Švietimo specialistas</option>
+                </select>
+                {errors.role.length > 0 && (
+                  <span className="error">{errors.role}</span>
+                )}
+              </div>
+            )}
 
             <div> * - privalomi laukai</div>
 

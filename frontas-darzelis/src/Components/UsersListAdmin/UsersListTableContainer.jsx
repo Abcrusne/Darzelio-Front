@@ -77,7 +77,7 @@ export default class UsersListTableContainer extends Component {
               <th scope="col">Rolė</th>
 
               <th scope="col">Atnaujinti vartotojo duomenis</th>
-              {/* <th scope="col"> Prašymas ištrinti anketą</th> */}
+
               <th scope="col">Ištrinti vartotoją ir jo duomenis</th>
               <th scope="col"></th>
             </tr>
@@ -85,10 +85,7 @@ export default class UsersListTableContainer extends Component {
 
           {this.state.users.length > 0 ? (
             filteredUsers.map(
-              (
-                { id, firstname, lastname, email, role },
-                index
-              ) => {
+              ({ id, firstname, lastname, email, role }, index) => {
                 const roleLt =
                   role === 'PARENT'
                     ? 'Tėvas/Globėjas'
@@ -97,13 +94,6 @@ export default class UsersListTableContainer extends Component {
                     : role === 'ADMIN'
                     ? 'Sistemos administratorius'
                     : 'Nenurodyta';
-
-                // const markedForDeletionLt =
-                //   markedForDeletion === true
-                //     ? 'Ištrinti'
-                //     : markedForDeletion === false
-                //     ? '-'
-                //     : 'nenurodyta';
 
                 return (
                   <tbody key={id}>
@@ -126,19 +116,18 @@ export default class UsersListTableContainer extends Component {
 
                       <td>{roleLt}</td>
 
-                      <td>
-                        <Link
-                          className="text-decoration-none mr-3"
-                          to={`/admin/vartotojai/${id}`}
-                        >
-                          Atnaujinti duomenis
-                        </Link>
-                      </td>
-                      {/* {role === 'ADMIN' ? (
-                        <div></div>
+                      {role === 'ADMIN' ? (
+                        <div> </div>
                       ) : (
-                        <td>{markedForDeletionLt}</td>
-                      )} */}
+                        <td>
+                          <Link
+                            className="text-decoration-none mr-3"
+                            to={`/admin/vartotojai/${id}`}
+                          >
+                            Atnaujinti duomenis
+                          </Link>
+                        </td>
+                      )}
 
                       {role === 'ADMIN' ? (
                         <td></td>

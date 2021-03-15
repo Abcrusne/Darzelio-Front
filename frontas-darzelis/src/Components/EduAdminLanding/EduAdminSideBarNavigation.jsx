@@ -28,14 +28,6 @@ const EduAdminSideBarNavigation = () => {
           </Link>
         </li>
         <li className="nav-item">
-          {/*<Link*/}
-          {/*    to="/admin/edu/registracijos"*/}
-          {/*    className="nav-link active"*/}
-          {/*    id="childForm"*/}
-          {/*>*/}
-          {/*    <i class="fas fa-list-ol"></i>*/}
-          {/*    Registracijų sąrašas*/}
-          {/*</Link>*/}
         </li>
         <li className="nav-item">
           <Link

@@ -1,5 +1,5 @@
 import React from 'react';
-import {withRouter} from "react-router";
+import { withRouter } from 'react-router';
 import NavigationForAllPages from '../Utilities/NavigationForAllPages';
 import { AdminRoutes } from './AdminRoutes';
 
@@ -16,7 +16,7 @@ const SysAdminLanding = () => {
           <SysAdminSideBarNavigation />
         </aside>
         <main id="content" className="col-lg-10 col-md-8 col-sm-12">
-         <AdminRoutes/>
+          <AdminRoutes />
         </main>
         {/* <footer className="footer pt-3">
                         
@@ -25,4 +25,4 @@ const SysAdminLanding = () => {
     </div>
   );
 };
-export default  withRouter(SysAdminLanding);
+export default withRouter(SysAdminLanding);
