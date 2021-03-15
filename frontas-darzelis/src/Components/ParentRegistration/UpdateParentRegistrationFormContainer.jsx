@@ -56,7 +56,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
       .get(`${API}/api/users/getparentdetails`)
       .then((res) => {
         this.setState({
-          //userId: res.data.userId,
+         
           id: res.data.id,
           email: res.data.email,
           firstname: res.data.firstname,

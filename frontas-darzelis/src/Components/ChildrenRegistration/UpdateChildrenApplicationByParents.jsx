@@ -254,9 +254,8 @@ export default class UpdateChildrenApplicationByParents extends Component {
               </form>
               <div className="deleteApplication ">
                 <button
-                  className=" btn  deleteApplication"
+                  className="  btn mt-3"
                   id="deleteChildApplication"
-                  className="btn mt-3"
                   data-toggle="modal"
                   data-target={`#staticBackdrop${this.state.childId}`}
                   value={this.state.childId}

@@ -75,8 +75,29 @@ export default class HorizontalChart extends Component {
               borderColor: 'rgba(15,15,15)',
               hoverBorderColor: true,
               hoverBackgroundColor: true,
+              // barThickness: 12,
+              // maxBarThickness: 24,
             },
           ],
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+             scaleShowValues: true,
+            scales: {
+              xAxes: [
+                {
+                  ticks: {
+                    display:true,
+                     autoSkip: false,
+                    autoSkipPadding: 1,
+                    source: "data"
+                  },
+                 
+                },
+              ],
+            },
+          },
+   
         },
       });
     });
@@ -181,10 +202,7 @@ export default class HorizontalChart extends Component {
         </div>
         <div>
           {Object.keys(this.state.chartData).length ? (
-            <HorizontalBar data={this.state.chartData}
-            // width={100}
-            // height={50} 
-            />
+            <Bar data={this.state.chartData}  />
           ) : (
             <Loading />
           )}

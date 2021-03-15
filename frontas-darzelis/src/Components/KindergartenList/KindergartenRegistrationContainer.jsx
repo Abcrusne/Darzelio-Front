@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
-import LogoutPresentation from '../Utilities/LogoutPresentation';
-import NavigationForAllPages from '../Utilities/NavigationForAllPages';
+
 
 export default class KindergartenRegistrationContainer extends Component {
   constructor(props) {

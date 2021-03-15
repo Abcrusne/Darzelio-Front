@@ -1,7 +1,5 @@
 import React from 'react';
-
 import { useHistory } from 'react-router';
-//import UserService from '../../Configuration/UserService';
 
 const LogoutPresentation = () => {
   const history = useHistory();
@@ -9,7 +7,6 @@ const LogoutPresentation = () => {
   const logout = (e) => {
     e.preventDefault();
     localStorage.clear();
-    // cookies.remove("user");
     history.push('/');
   };
 

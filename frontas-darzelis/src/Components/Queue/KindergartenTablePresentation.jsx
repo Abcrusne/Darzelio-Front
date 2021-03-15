@@ -46,15 +46,13 @@ const KindergartenTable = ({ kindergartens }) => {
       className="table "
       striped
       bordered
-      // hover
       small
       data={data}
       entriesLabel="Rodyti puslapyje"
       searchLabel="Paieška"
       paginationLabel={['Atgal', 'Kitas']}
       infoLabel={['Rodyti nuo', 'iki', 'rezultatų', '']}
-      // messageLabel=""
-      // emptytable="ii"
+     
     />
   );
 };

@@ -13,15 +13,6 @@ function IdleTimerContainer() {
     history.push('/login');
   };
 
-  // const logOut = () => {
-  //     clearTimeout(sessionTimeoutRef.current)
-  //     console.log('User has been logged out')
-  // }
-  // const stayActive = () => {
-  //     clearTimeout(sessionTimeoutRef.current)
-  //     console.log('User is active')
-  // }
-
   return (
     <div>
       <IdleTimer

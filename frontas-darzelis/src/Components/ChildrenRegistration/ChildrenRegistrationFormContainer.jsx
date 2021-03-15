@@ -6,7 +6,6 @@ import UserService from '../../Configuration/UserService';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import lt from 'date-fns/locale/lt';
-import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 registerLocale('lt', lt);
 
@@ -15,31 +14,8 @@ axios.defaults.withCredentials = true; // leidžia dalintis cookies
 export default class ChildrenRegistrationFormContainer extends Component {
   constructor(props) {
     super(props);
-
-    //current date for checking is birthdate not from the future
-    var today = new Date();
-    var eighteenYearsAgo = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
-    var yyyy = today.getFullYear();
-    var minYear = today.getFullYear() - 18;
-    if (dd < 10) {
-      dd = '0' + dd;
-    }
-    if (mm < 10) {
-      mm = '0' + mm;
-    }
-
-    today = yyyy + '-' + mm + '-' + dd;
-    eighteenYearsAgo = minYear + '-' + mm + '-' + dd;
-
-    var data = new Date();
-    data = moment(data).format('YYYY-MM-DD');
-
     this.state = {
       birthdate: new Date(),
-      currentDate: today,
-      eighteenYearsAgoDate: eighteenYearsAgo,
       //parent id ar jau egzistuoja toks tevas
       parentId: '',
       //vaiko id
@@ -146,7 +122,6 @@ export default class ChildrenRegistrationFormContainer extends Component {
     let houseNumberValidation = /^[1-9][a-zA-Z 0-9 ]*$/;
     let streetValidation = /^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ][ a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ0-9 ,.\- ]*$/;
     let date = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
-
     let validPersonalCode = /^[5|6]+[0-9]+$/;
     let validParentPersonalCode = /^[3|4|5|6]+[0-9]+$/;
     let validPhone = /^[+][3][7][0][6|5]+[0-9]+$/;
@@ -386,7 +361,6 @@ export default class ChildrenRegistrationFormContainer extends Component {
           console.log(error.response);
         });
     } else {
-      // console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );
@@ -868,7 +842,6 @@ export default class ChildrenRegistrationFormContainer extends Component {
                           className="form-control"
                           name="secondParentDeclaredCity"
                           onChange={this.handleChange}
-                          //  noValidate
                           pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ -]+"
                           onInvalid={(e) => {
                             e.target.setCustomValidity(

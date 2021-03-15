@@ -8,7 +8,6 @@ export default class KindergartenContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // id: '',
       kindergartens: [],
     };
   }

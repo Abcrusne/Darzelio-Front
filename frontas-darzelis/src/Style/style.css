@@ -126,17 +126,7 @@
 .loading {
   margin-left: 2em;
 }
-/* .next {
-  margin-left: 30em;
-} */
-/* input[type="file"]
-{
-  display: none;
-} */
-/* .fileUpload input.upload 
-{
-    display: inline-block;
-} */
+
 .upload {
   text-decoration: underline;
   cursor: pointer;
@@ -179,9 +169,11 @@
 }
 .next {
   /* margin-left: 10rem; */
-  margin-right: 30em;
-  margin-top: 5em;
+  margin-left: 28%;
+  margin-top: 1em;
+  width: 30em;
 }
+
 .btnData {
   width: 30em;
   margin-left: 7em;
@@ -197,4 +189,11 @@
   color: #282f47;
   border-radius: 5px;
   border: 1px solid #282f47;
+}
+.child{
+  width: 200px;
+  /* margin-left:1em */
+}
+.formChild{
+margin-left: 0.35em;
 }

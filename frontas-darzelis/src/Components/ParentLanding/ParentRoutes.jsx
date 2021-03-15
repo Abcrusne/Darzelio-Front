@@ -1,11 +1,10 @@
 import React from 'react';
 import { Switch } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
 
 //our imports
 import PrivateRoute from '../../Configuration/PrivateRoute';
 import ParentLandingDashboard from './ParentLandingDashboard';
-import ParentUserdata from './ParentUserdata';
+
 import ParentRegistrationFormContainer from '../ParentRegistration/ParentRegistrationFormContainer';
 import ChildrenRegistrationFormContainer from '../ChildrenRegistration/ChildrenRegistrationFormContainer';
 import MainRegistrationContainer from '../MainRegistration/MainRegistrationContainer';
@@ -37,12 +36,6 @@ const ParentRoutes = () => {
         component={ParentLandingDashboard}
         role={'PARENT'}
       />
-      {/* <PrivateRoute
-        path="/tevai/naudotojo-duomenys"
-        exact
-        component={ParentUserdata}
-        role={'PARENT'}
-      /> */}
       <PrivateRoute
         path="/tevai/naudotojo-duomenys"
         exact
@@ -139,19 +132,19 @@ const ParentRoutes = () => {
         component={ConditionsPage}
         role={'PARENT'}
       />
-        <PrivateRoute
+      <PrivateRoute
         path="/tevai/tvarka"
         exact
         component={AdmissionRules}
         role={'PARENT'}
       />
-         <PrivateRoute
+      <PrivateRoute
         path="/tevai/instrukcija"
         exact
         component={Guide}
         role={'PARENT'}
       />
-         <PrivateRoute
+      <PrivateRoute
         path="/tevai/duomenys/istrinti"
         exact
         component={DeleteData}

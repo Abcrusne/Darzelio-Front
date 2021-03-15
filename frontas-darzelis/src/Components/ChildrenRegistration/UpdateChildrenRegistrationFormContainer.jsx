@@ -412,11 +412,10 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
 
     return (
       <div>
-        <div className=" container  m-auto shadow p-3 mb-5 bg-white rounded">
+        <div className=" container m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
             <h3>Atnaujinkite savo vaiko duomenis</h3>
           </div>
-
           <form onSubmit={this.handleSubmit} className="form-row ">
             <div className="form-group mb-3 col-6">
               <label htmlFor="firstname" className="control-label">
@@ -947,7 +946,6 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                         name="secondParentDeclaredCity"
                         onChange={this.handleChange}
                         value={this.state.secondParentDeclaredCity}
-                        //  noValidate
                         pattern="[a-zA-Z-ząčęėįšųūžĄČĘĖĮŠŲŪŽ -]+"
                         onInvalid={(e) => {
                           e.target.setCustomValidity(
@@ -1036,24 +1034,21 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
               <div></div>
             )}
 
-            <div className="mt-3 form-group mb-3 col-6">
+            <div className="mt-3 form-group mb-3 col-12">
               {' '}
               * - privalomi laukai
             </div>
-            <div className="">
-              <button
-                type="submit"
-                className="btn btn-success  btn-lg btn-block mt-5"
-              >
+            <div className="child mb-1 mt-5 formChild">
+              <button type="submit" className="child btn ">
                 Atnaujinti
               </button>
             </div>
           </form>
 
-          <div className="col text-center delete">
+          <div className="child">
             <button
               id="deleteChildData"
-              className="btn mt-3"
+              className="child btn mt-1"
               data-toggle="modal"
               data-target={`#staticBackdrop${this.state.id}`}
               value={this.state.id}

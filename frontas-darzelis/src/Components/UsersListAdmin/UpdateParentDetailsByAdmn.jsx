@@ -73,7 +73,6 @@ export default class UpdateParentDetailsByAdmn extends Component {
           declaredStreet: res.data.declaredStreet,
           declaredHouseNumber: res.data.declaredHouseNumber,
           declaredFlatNumber: res.data.declaredFlatNumber,
-          // userId: res.data.userId,
         });
       })
       .catch((err) => console.log(err));

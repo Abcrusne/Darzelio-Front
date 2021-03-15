@@ -263,10 +263,7 @@ export default class ChildrenRegistrationByAdmin extends Component {
       street: this.state.street,
       houseNumber: this.state.houseNumber,
       flatNumber: this.state.flatNumber,
-      // userId: this.state.userId,
-
       secondParentId: this.state.secondParentId,
-
       secondParent: this.state.secondParent,
       secondParentFirstname: this.state.secondParentFirstname,
       secondParentLastname: this.state.secondParentLastname,
@@ -368,7 +365,6 @@ export default class ChildrenRegistrationByAdmin extends Component {
           }
         });
     } else {
-      //console.error('Invalid Form');
       alert(
         'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai. '
       );

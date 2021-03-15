@@ -20,7 +20,7 @@ export default class EduAdminUpdateChildApplicationContainer extends Component {
       childLastname: '',
 
       kindergartens: [],
-      //   kindergarten_name: '',
+    
     };
   }
 

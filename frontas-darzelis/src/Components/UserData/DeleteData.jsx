@@ -54,7 +54,7 @@ export default class DeleteData extends Component {
     return (
       <div className="container mt-5">
         <div className="col-lg-8 m-auto shadow p-3 mb-5 bg-white rounded">
-          <h4 className="mb-5"> Paskyros ištrinimas</h4>
+          <h4 className="mb-5"> Paskyros ištrynimas</h4>
           <div className="mb-4">
             <div>
               <button

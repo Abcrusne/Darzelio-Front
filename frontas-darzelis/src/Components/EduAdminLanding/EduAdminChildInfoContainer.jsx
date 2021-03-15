@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import EduAdminChildInfoPresentation from './EduAdminChildInfoPresentation';
@@ -91,9 +90,6 @@ export default class EduAdminChildInfoContainer extends Component {
       .then((res) => {
         this.setState({
           id: res.data.id,
-          // accepted_kindergarten: res.data.accepted_kindergarten,
-          // addmission_id: res.data.admission_id,
-          // childId: res.data.childId,
           firstPriority: res.data.firstPriority,
           secondPriority: res.data.secondPriority,
           thirdPriority: res.data.thirdPriority,
