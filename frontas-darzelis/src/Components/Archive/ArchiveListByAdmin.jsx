@@ -73,6 +73,7 @@ export default class ArchiveListByAdmin extends Component {
                         <td>
                           <a
                             href={`${API}/api/users/archive/${id}/download`}
+                            rel="noopener noreferrer"
                             target="_blank"
                           >
                             Atsisųsti

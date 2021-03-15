@@ -56,6 +56,12 @@ export const SysAdminSideBarNavigation = () => {
             Statistika
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/admin/instrukcija" className="nav-link active">
+            <i className="fas fa-info"></i>
+            Naudojimosi instrukcija
+          </Link>
+        </li>
       </ul>
     </nav>
   );

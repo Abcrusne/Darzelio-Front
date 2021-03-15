@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { KindergartensListTablePresentation } from './KindergartensListTablePresentation';
 import ModalComponentKindergarten from '../Modal/ModalComponentKindergarten';
 import '../../Style/UsersLandings.css';
 import '../../Style/style.css';
@@ -81,8 +80,8 @@ export default class KindergartenListTableContainer extends Component {
             />
           </div>
           <div className="mb-4">
-          <h4> Darželių sąrašas</h4>
-        </div>
+            <h4> Darželių sąrašas</h4>
+          </div>
           <table className="table">
             <thead>
               <tr>
@@ -172,8 +171,8 @@ export default class KindergartenListTableContainer extends Component {
             />
           </div>
           <div className="mb-4">
-          <h4> Darželių sąrašas</h4>
-        </div>
+            <h4> Darželių sąrašas</h4>
+          </div>
           <table className="table">
             <thead>
               <tr>

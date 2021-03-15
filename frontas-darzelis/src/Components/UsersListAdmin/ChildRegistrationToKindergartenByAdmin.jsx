@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { withRouter } from 'react-router';
-//our imports
 import { API } from '../../Configuration/AppConfig';
 import '../../Style/UsersLandings.css';
 

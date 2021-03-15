@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '../../Style/UsersLandings.css';
-import Loading from '../Loading/Loading';
+
 
 const ChildrenTablePresentation = ({ children, parentId }) => {
   const sortedChildren = [...children];

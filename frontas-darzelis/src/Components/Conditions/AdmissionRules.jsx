@@ -39,7 +39,7 @@ export default class AdmissionRules extends Component {
           <b>1.4. informacinės sistemos naudotojas </b>– tėvai (globėjai),
           turintys teisę naudotis informacine sistema miesto savivaldybės
           (toliau – Savivaldybė) interneto svetainėje{' '}
-          <a href="http://akademijait.vtmc.lt:8181/bean-app/" target="_blank">
+          <a href="http://akademijait.vtmc.lt:8181/bean-app/" rel="noopener noreferrer" target="_blank">
             {' '}
             http://akademijait.vtmc.lt:8181/bean-app/
           </a>{' '}
@@ -54,7 +54,7 @@ export default class AdmissionRules extends Component {
         </h5>
         <p>
           1. Tėvai (globėjai) prašymus pildo elektroniniu būdu IS prisijungę{' '}
-          <a href="http://akademijait.vtmc.lt:8181/bean-app/" target="_blank">
+          <a href="http://akademijait.vtmc.lt:8181/bean-app/"rel="noopener noreferrer" target="_blank">
             {' '}
             http://akademijait.vtmc.lt:8181/bean-app/
           </a>{' '}
@@ -81,13 +81,13 @@ export default class AdmissionRules extends Component {
           prašymas priimti vaiką ar pakeisti įstaigą panaikina ankstesnį.
           <br /> 5. Teikiant prašymą elektroniniu būdu IS:
           <br /> 5.1. užpildoma elektroninė prašymo forma, prisijungus{' '}
-          <a href="http://akademijait.vtmc.lt:8181/bean-app/" target="_blank">
+          <a href="http://akademijait.vtmc.lt:8181/bean-app/" rel="noopener noreferrer" target="_blank">
             {' '}
             http://akademijait.vtmc.lt:8181/bean-app/
           </a>{' '}
           (būtina užpildyti privalomas skiltis, abiejų tėvų duomenis). Už
           duomenų teisingumą atsako tėvai (globėjai); 6. Tėvai (globėjai) IS{' '}
-          <a href="http://akademijait.vtmc.lt:8181/bean-app/" target="_blank">
+          <a href="http://akademijait.vtmc.lt:8181/bean-app/" rel="noopener noreferrer" target="_blank">
             {' '}
             http://akademijait.vtmc.lt:8181/bean-app/
           </a>{' '}
@@ -147,7 +147,7 @@ export default class AdmissionRules extends Component {
           14. Tėvams (globėjams) apie skirtą vietą įstaigoje pranešama
           elektroniniu laišku. Registravusiam prašymą asmeniui prisijungus prie
           IS{' '}
-          <a href="http://akademijait.vtmc.lt:8181/bean-app/" target="_blank">
+          <a href="http://akademijait.vtmc.lt:8181/bean-app/" rel="noopener noreferrer" target="_blank">
             {' '}
             http://akademijait.vtmc.lt:8181/bean-app/
           </a>{' '}

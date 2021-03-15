@@ -12,9 +12,9 @@ import KindergartenListTableContainer from './Components/KindergartenList/Kinder
 import KindergartenRegistrationContainer from './Components/KindergartenList/KindergartenRegistrationContainer';
 import UpdateKindergartenFormContainer from './Components/KindergartenList/UpdateKindergartenFormContainer';
 import RegistrationToSystem from './Components/RegistrationToSystem/RegistrationToSystem';
-import PasswordReminder from "./Components/Login/ResetPassword/PasswordReminder";
-import AddNewPassword from "./Components/Login/ResetPassword/AddNewPassword";
-import IdleTimerContainer from "./Configuration/IdleTimer";
+import PasswordReminder from './Components/Login/ResetPassword/PasswordReminder';
+import AddNewPassword from './Components/Login/ResetPassword/AddNewPassword';
+import IdleTimerContainer from './Configuration/IdleTimer';
 
 function App() {
   return (
@@ -25,8 +25,12 @@ function App() {
           <Route exact path="/" component={LandingPage} />
           <Route path="/login" component={LandingPage} />
           <Route path="/registracija" component={RegistrationToSystem} />
-          <Route exact path="/atstatytiSlaptazodi" component={PasswordReminder} />
-          <Route exact path="/keistislaptazodi" component={AddNewPassword}/>
+          <Route
+            exact
+            path="/atstatytiSlaptazodi"
+            component={PasswordReminder}
+          />
+          <Route exact path="/keistislaptazodi" component={AddNewPassword} />
           <PrivateRoute
             exact
             path="/tevai"
@@ -277,13 +281,19 @@ function App() {
             component={SysAdminLanding}
             role={'ADMIN'}
           />
-              <PrivateRoute
+          <PrivateRoute
             path="/admin/archyvai"
             exact
             component={SysAdminLanding}
             role={'ADMIN'}
           />
-             {/* <PrivateRoute
+          <PrivateRoute
+            path="/admin/instrukcija"
+            exact
+            component={SysAdminLanding}
+            role={'ADMIN'}
+          />
+          {/* <PrivateRoute
               path="/admin/vaikai"
               exact
               component={SysAdminLanding}

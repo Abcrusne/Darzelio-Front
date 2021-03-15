@@ -68,6 +68,7 @@ export default class ChildrenPdfTable extends Component {
                           <td>
                             <a
                               href={`${API}/api/users/pdf/${id}/download`}
+                              rel="noopener noreferrer"
                               target="_blank"
                             >
                               Atsisiųsti vaiko pažymą

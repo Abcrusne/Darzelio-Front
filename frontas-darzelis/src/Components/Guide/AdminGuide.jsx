@@ -1,8 +1,8 @@
 import React from 'react';
-import pdf from '../Guide/Tevai.pdf';
+import pdf from '../Guide/SysAdmin.pdf';
 import '../../Style/style.css';
 
-const Guide = () => {
+const AdminGuide = () => {
   return (
     <div>
       <iframe
@@ -14,4 +14,4 @@ const Guide = () => {
     </div>
   );
 };
-export default Guide;
+export default AdminGuide;
