@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ModalDeleteUserData = ({ deleteData }) => {
+const ModalEverything = ({ deleteEverything, userId}) => {
   return (
     <div
       className="modal fade"
-      id={`staticBackdrop`}
+      id={`staticBackdrop${userId}`}
       data-backdrop="static"
       data-keyboard="false"
       tabIndex="-1"
@@ -15,7 +15,7 @@ const ModalDeleteUserData = ({ deleteData }) => {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="staticBackdropLabel">
-              Ar tikrai norite ištrinti šią paskyrą?
+              Ar tikrai norite ištrinti šią paskyrą ir duomenis?
             </h5>
             <button
               type="button"
@@ -33,11 +33,12 @@ const ModalDeleteUserData = ({ deleteData }) => {
           </div>
           <div className="modal-footer">
             <button
-              onClick={deleteData}
+              onClick={deleteEverything}
               type="button"
               data-toggle="modal"
-              className=" yes btn "
+              className="yes btn"
               data-dismiss="modal"
+              value={userId}
             >
               Taip
             </button>
@@ -55,4 +56,4 @@ const ModalDeleteUserData = ({ deleteData }) => {
   );
 };
 
-export default ModalDeleteUserData;
+export default ModalEverything;

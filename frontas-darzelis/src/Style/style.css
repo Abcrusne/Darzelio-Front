@@ -182,3 +182,19 @@
   margin-right: 30em;
   margin-top: 5em;
 }
+.btnData {
+  width: 30em;
+  margin-left: 7em;
+}
+.yes.btn {
+  background-color: #af4e4e;
+  border-radius: 5px;
+  border: 1px solid #282f47;
+}
+.yes.btn:hover {
+  /* background-color: #fbf9f8; */
+  background-color: #af4e4e;
+  color: #282f47;
+  border-radius: 5px;
+  border: 1px solid #282f47;
+}
