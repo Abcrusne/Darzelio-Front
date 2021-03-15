@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import ModalComponentKindergarten from '../Modal/ModalComponentKindergarten';
 import '../../Style/UsersLandings.css';
 import '../../Style/style.css';
+const ModalComponentKindergarten = React.lazy(() =>
+  import('../Modal/ModalComponentKindergarten')
+);
+
 
 export default class KindergartenListTableContainer extends Component {
   constructor() {

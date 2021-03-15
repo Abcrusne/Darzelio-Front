@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
-import EduAdminChildInfoPresentation from './EduAdminChildInfoPresentation';
+const EduAdminChildInfoPresentation  = React.lazy(() =>
+import('./EduAdminChildInfoPresentation'))
 
 export default class EduAdminChildInfoContainer extends Component {
   constructor(props) {

@@ -1,9 +1,12 @@
-import React from 'react';
+import React , { lazy } from 'react';
 import { Link } from 'react-router-dom';
 import UserService from '../../Configuration/UserService';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import ModalComponentKindergarten from '../Modal/ModalComponentKindergarten';
-import '../../Style/UsersLandings.css'
+import '../../Style/UsersLandings.css';
+const ModalComponentKindergarten = React.lazy(() =>
+  import('../Modal/ModalComponentKindergarten')
+);
+
 
 export const KindergartensListTablePresentation = ({
   kindergartens,
@@ -67,12 +70,8 @@ export const KindergartensListTablePresentation = ({
             <td> {spotsInFirstAgeGroup}</td>
             <td>{spotsInSecondAgeGroup}</td>
 
-
             <td>
-              <Link
-                className="btn btn-link-1"
-                to={`/admin/darzeliai/${id}`}
-              >
+              <Link className="btn btn-link-1" to={`/admin/darzeliai/${id}`}>
                 Atnaujinti duomenis
               </Link>
             </td>
@@ -98,5 +97,4 @@ export const KindergartensListTablePresentation = ({
       }
     );
   }
-
 };

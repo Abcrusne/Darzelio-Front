@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
-import ChildrenListTablePresentation from './ChildrenListTablePresentation';
 import '../../Style/UsersLandings.css';
 import Loading from '../Loading/Loading';
+const ChildrenListTablePresentation = React.lazy(() =>
+  import('./ChildrenListTablePresentation')
+);
 
 export default class ChildrenListTableContainer extends Component {
   constructor() {
