@@ -1,15 +1,15 @@
-import React, { lazy } from 'react';
+import React from 'react';
 import '../../Style/style.css';
 import pdf from '../Guide/Tevai.pdf';
 
-const Guide = () => {
+const PublicGuide = () => {
   return (
     <div>
       {pdf ? (
         <iframe
           src={pdf}
           title="Naudojimosi instrukcija"
-          style={{ marginRight: 0, marginLeft: 170, height: 800, width: 1200 }}
+          style={{ marginRight: 350, marginLeft: 350, height: 950, width: 1200 }}
           allowFullScreen
         ></iframe>
       ) : (
@@ -18,4 +18,4 @@ const Guide = () => {
     </div>
   );
 };
-export default Guide;
+export default PublicGuide;

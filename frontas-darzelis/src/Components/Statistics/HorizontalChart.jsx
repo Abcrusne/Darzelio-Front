@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
-import { Bar } from 'react-chartjs-2';
+import { Bar, HorizontalBar } from 'react-chartjs-2';
+import * as chartjs from 'chart.js';
+import 'chartjs-plugin-zoom';
 import axios from 'axios';
 import Loading from '../Loading/Loading';
+import '../../Style/style.css';
 
 export default class HorizontalChart extends Component {
   constructor() {
@@ -82,22 +85,20 @@ export default class HorizontalChart extends Component {
           options: {
             responsive: true,
             maintainAspectRatio: false,
-             scaleShowValues: true,
+            scaleShowValues: true,
             scales: {
-              xAxes: [
+              yAxes: [
                 {
                   ticks: {
-                    display:true,
-                     autoSkip: false,
+                    display: true,
+                    autoSkip: false,
                     autoSkipPadding: 1,
-                    source: "data"
+                    source: 'data',
                   },
-                 
                 },
               ],
             },
           },
-   
         },
       });
     });
@@ -201,11 +202,47 @@ export default class HorizontalChart extends Component {
           </div>
         </div>
         <div>
-          {Object.keys(this.state.chartData).length ? (
-            <Bar data={this.state.chartData}  />
-          ) : (
-            <Loading />
-          )}
+          <div className="chart">
+            {Object.keys(this.state.chartData).length ? (
+              <HorizontalBar
+                data={this.state.chartData}
+                width="1900"
+                height="1800"
+                options={{
+                  maintainAspectRatio: false,
+                  responsive: true,
+                  scaleShowValues: true,
+                  yAxes: [
+                    {
+                      ticks: {
+                        display: true,
+                        autoSkip: false,
+                        autoSkipPadding: 1,
+                        source: 'data',
+                      },
+                    },
+                  ],
+                  plugins: {
+                    zoom: {
+                      pan: {
+                        enabled: true,
+                        mode: 'xy',
+                      },
+
+                      // zoom: {
+                      //   enabled: true,
+                      //   mode: 'xy',
+                      // },
+                    },
+                  },
+
+                
+                }}
+              />
+            ) : (
+              <Loading />
+            )}
+          </div>
         </div>
       </div>
     );

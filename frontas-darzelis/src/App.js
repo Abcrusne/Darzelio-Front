@@ -10,6 +10,7 @@ import KindergartenListTableContainer from './Components/KindergartenList/Kinder
 import PasswordReminder from './Components/Login/ResetPassword/PasswordReminder';
 import AddNewPassword from './Components/Login/ResetPassword/AddNewPassword';
 import IdleTimerContainer from './Configuration/IdleTimer';
+import PublicGuide from './Components/Guide/PublicGuide';
 const NoMatch = lazy(() => import('./Components/NoMatch/NoMatchPresentation'));
 const KindergartenRegistrationContainer = lazy(() =>
   import('./Components/KindergartenList/KindergartenRegistrationContainer')
@@ -31,6 +32,7 @@ function App() {
             <Route exact path="/" component={LandingPage} />
             <Route path="/login" component={LandingPage} />
             <Route path="/registracija" component={RegistrationToSystem} />
+            <Route path="/instrukcija" component={PublicGuide} />
             <Route
               exact
               path="/atstatytiSlaptazodi"
