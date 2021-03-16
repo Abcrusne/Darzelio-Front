@@ -3,7 +3,8 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
 import ModalDeleteUserData from '../Modal/ModalDeleteUserData';
-import ModalEverything from '../Modal/ModalEverything';
+import  DeleteAllData  from './DeleteAllData';
+// import ModalEverything from '../Modal/ModalEverything';
 
 export default class DeleteData extends Component {
   constructor(props) {
@@ -21,8 +22,8 @@ export default class DeleteData extends Component {
           userId: res.data,
         });
       })
-    // .catch((err) => console.log(err));
-    .catch((err) =>  {});
+      // .catch((err) => console.log(err));
+      .catch((err) => {});
   };
   DeleteData = () => {
     axios
@@ -36,21 +37,9 @@ export default class DeleteData extends Component {
         localStorage.clear();
         this.props.history.push('/login');
       })
-  // .catch((err) => console.log(err));
-  .catch((err) =>  {});
-    // console.log('delete');
-  };
-  //galima ir su eraseData true bet del ID modalui siuo budu padariau
-  deleteEverything = () => {
-    axios
-      .delete(`${API}/api/users/${this.state.userId}`)
-      .then((res) => {
-        alert('Jūsų paskyra ir duomenys ištrinti visam laikui!');
-        localStorage.clear();
-        this.props.history.push('/login');
-      })
       // .catch((err) => console.log(err));
-      .catch((err) =>  {});
+      .catch((err) => {});
+    // console.log('delete');
   };
 
   render() {
@@ -70,21 +59,8 @@ export default class DeleteData extends Component {
               </button>
               <ModalDeleteUserData deleteData={this.DeleteData} />
             </div>
-
-            <div>
-            <button className="btnData btn btn-light " 
-               data-toggle="modal"
-               data-target={`#staticBackdrop${this.state.userId}`}
-               value={this.state.userId}
-          
-            >
-              Ištrinti mano paskyrą ir duomenis
-            </button>
-            <ModalEverything 
-            deleteEverything={this.deleteEverything}
-            userId={this.state.userId}
-            />
-            </div>
+            <DeleteAllData  />
+   
           </div>
         </div>
       </div>
