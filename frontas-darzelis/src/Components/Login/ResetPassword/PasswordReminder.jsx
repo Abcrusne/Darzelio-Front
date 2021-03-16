@@ -20,13 +20,13 @@ const [email, setEmail] = useState();
                     {
                         headers: { 'Content-type': 'application/x-www-form-urlencoded' },
                     });
-            console.log(response.data);
+            // console.log(response.data);
             if (response.data === 'Nuoroda slaptažodžio keitimui išsiųsta į nurodytą el. paštą'){
                 alert('Jums išsiųstas el. laiškas su nuoroda slaptažodžiui atkurti.')
                 history.push('/login');
             }
         } catch (error) {
-            console.log(error.response.data);
+            // console.log(error.response.data);
             if (error.response.data === 'Įvestas pašto adresas nerastas sistemoje') {
                 alert('Tokio el. pašto adreso sistemoje nėra.')
             }

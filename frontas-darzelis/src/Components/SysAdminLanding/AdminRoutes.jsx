@@ -21,10 +21,10 @@ import UpdateParentDetailsByAdmn from '../UsersListAdmin/UpdateParentDetailsByAd
 import ChildrenTable from '../UsersListAdmin/ChildrenTableByAdmin';
 import UpdateChildDataByAdmin from '../UsersListAdmin/UpdateChildDataByAdmin';
 import UpdateChildApplicationByAdmin from '../UsersListAdmin/UpdateChildApplicationByAdmin';
-
 import ChildRegistrationToKindergartenByAdmin from '../UsersListAdmin/ChildRegistrationToKindergartenByAdmin';
 import ParentRegistrationByAdmin from '../UsersListAdmin/ParentRegistrationByAdmin';
 import ListOfRegistrations from '../MainRegistration/ListOfRegistrations';
+import EduAdminChildInfoContainer from '../EduAdminLanding/EduAdminChildInfoContainer';
 
 const ChildrenRegistrationByAdmin = React.lazy(() =>
   import('../UsersListAdmin/ChildrenRegistrationByAdmin')
@@ -192,6 +192,12 @@ export const AdminRoutes = () => {
           path="/admin/instrukcija"
           exact
           component={AdminGuide}
+          role={'ADMIN'}
+        />
+          <PrivateRoute
+          path="/admin/vaikai"
+          exact
+          component={EduAdminChildInfoContainer}
           role={'ADMIN'}
         />
         <PrivateRoute

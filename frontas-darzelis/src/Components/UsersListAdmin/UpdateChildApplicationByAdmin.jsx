@@ -3,7 +3,7 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const ModalComponentChildren = React.lazy(() =>
+const ModalComponentChildren = lazy(() =>
   import('../Modal/ModalComponentChildren')
 );
 
@@ -64,7 +64,8 @@ export default class UpdateChildApplicationByAdmin extends Component {
           childRating: res.data.childRating,
         });
       })
-      .catch((err) => console.log(err));
+     // .catch((err) => console.log(err));
+     .catch((err) =>  {});
   }
   deleteApplication = (event) => {
     axios
@@ -75,7 +76,8 @@ export default class UpdateChildApplicationByAdmin extends Component {
           `/admin/duomenys/vaikai/${this.state.parentId}`
         );
       })
-      .catch((err) => console.log(err.data));
+ // .catch((err) => console.log(err));
+ .catch((err) =>  {});
   };
   handleChange = (event) => {
     event.preventDefault();
@@ -103,7 +105,7 @@ export default class UpdateChildApplicationByAdmin extends Component {
         );
       })
       .catch((error) => {
-        console.log(error.data);
+        // console.log(error.data);
       });
   };
   render() {
@@ -114,7 +116,7 @@ export default class UpdateChildApplicationByAdmin extends Component {
             <div className=" container  m-auto shadow p-3 mb-5 bg-white rounded">
               <form className=" p-3 mt-5 " onSubmit={this.handleSubmit}>
                 <div className="mb-3">
-                  <h4>Atnaujinkite vaiko registracijos į darželį formą</h4>
+                  <h4>Atnaujinti vaiko registracijos į darželį formą</h4>
                 </div>
                 <h5>
                   {' '}
@@ -261,7 +263,7 @@ export default class UpdateChildApplicationByAdmin extends Component {
               </form>
               <div className="deleteApplication ">
                 <button
-                  className=" btn  deleteApplication btn mt-3"
+                 className="  btn mt-3"
                   id="deleteChildApplication"
                   data-toggle="modal"
                   data-target={`#staticBackdrop${this.state.childId}`}

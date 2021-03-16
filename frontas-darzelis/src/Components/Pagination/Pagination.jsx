@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Pagination = ({ kindergartensPerPage, totalKindergartens, paginate }) => {
   const pageNumbers = [];
-  //   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   for (
     let i = 1;
@@ -17,14 +16,7 @@ const Pagination = ({ kindergartensPerPage, totalKindergartens, paginate }) => {
       <ul className="pagination">
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
-            {/* //disabled={buttonDisabled}> */}
-            <a
-              onClick={
-                () => paginate(number)
-                //  && setButtonDisabled(true)
-              }
-              className="page-link"
-            >
+            <a onClick={() => paginate(number)} className="page-link">
               {number}
             </a>
           </li>

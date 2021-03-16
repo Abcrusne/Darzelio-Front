@@ -105,12 +105,7 @@ function App() {
               component={EduAdminLanding}
               role={'EDU'}
             />
-            {/*<Route */}
-            {/*path="/admin/edu/naudotojo-duomenys"*/}
-            {/*exact*/}
-            {/*component={EduAdminLanding}*/}
-            {/*role={'EDU'}*/}
-            {/*/>*/}
+     
             <PrivateRoute
               path="/admin/edu/vaikai"
               exact
@@ -162,13 +157,11 @@ function App() {
             <PrivateRoute
               exact
               path="/admin/vartotojai"
-              // component={UsersListTableContainer}
               component={SysAdminLanding}
               role={'ADMIN'}
             />
             <PrivateRoute
               path="/admin/vartotojai/:id"
-              //component={UpdateUserFormContainer}
               component={SysAdminLanding}
               role={'ADMIN'}
             />
@@ -180,52 +173,44 @@ function App() {
             <PrivateRoute
               exact
               path="/admin/registracija"
-              // component={RegistrationFormContainer}
               component={SysAdminLanding}
               role={'ADMIN'}
             />
             <PrivateRoute
               exact
               path="/admin/sekminga"
-              // component={RegistrationSuccessPresentation}
               component={SysAdminLanding}
               role={'ADMIN'}
             />
             <PrivateRoute
               exact
               path="/admin/darzelioregistracija"
-              // component={KindergartenRegistrationContainer}
               component={SysAdminLanding}
               role={'ADMIN'}
             />
             <PrivateRoute
               exact
               path="/admin/darzeliai"
-              // component={KindergartenListTableContainer}
               component={SysAdminLanding}
               role={'ADMIN'}
             />
             <PrivateRoute
               path="/admin/darzeliai/:id"
-              // component={UpdateKindergartenFormContainer}
               component={SysAdminLanding}
               role={'ADMIN'}
             />
             <PrivateRoute
               path="/admin/naudotojo-duomenys"
-              // component={UpdateKindergartenFormContainer}
               component={SysAdminLanding}
               role={'ADMIN'}
             />{' '}
             <PrivateRoute
               path="/admin/naudotojo-duomenys/redaguoti"
-              // component={UpdateKindergartenFormContainer}
               component={SysAdminLanding}
               role={'ADMIN'}
             />{' '}
             <PrivateRoute
               path="/admin/naudotojo-duomenys/redaguoti/slaptazodi"
-              // component={UpdateKindergartenFormContainer}
               component={SysAdminLanding}
               role={'ADMIN'}
             />
@@ -301,12 +286,12 @@ function App() {
               component={SysAdminLanding}
               role={'ADMIN'}
             />
-            {/* <PrivateRoute
+            <PrivateRoute
               path="/admin/vaikai"
               exact
               component={SysAdminLanding}
               role={'ADMIN'}
-          /> */}
+            />
             <Route path="*" component={NoMatch} />
             <Route component={NoMatch} />
           </Switch>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {lazy} from 'react';
 import { Switch } from 'react-router';
 
 //our imports
@@ -8,9 +8,8 @@ import ParentLandingDashboard from './ParentLandingDashboard';
 import ParentRegistrationFormContainer from '../ParentRegistration/ParentRegistrationFormContainer';
 import ChildrenRegistrationFormContainer from '../ChildrenRegistration/ChildrenRegistrationFormContainer';
 import MainRegistrationContainer from '../MainRegistration/MainRegistrationContainer';
-import NotFoundPage from '../Utilities/NotFoundPage';
+
 import UpdateParentRegistrationFormContainer from '../ParentRegistration/UpdateParentRegistrationFormContainer';
-import NextPage from '../ChildrenRegistration/NextPage';
 
 import UpdateUserDataFormContainer from '../UserData/UpdateUserDataFormContainer';
 import UserData from '../UserData/UserData';
@@ -18,14 +17,17 @@ import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer
 import UploadPdfContainer from '../UploadPDF/UploadPdfContainer';
 import ChildrenListTableContainer from '../ChildrenRegistration/ChildrenListTableContainer';
 import UpdateChildrenRegistrationFormContainer from '../ChildrenRegistration/UpdateChildrenRegistrationFormContainer';
-import UpdateChildrenApplicationByParents from '../ChildrenRegistration/UpdateChildrenApplicationByParents';
-import ChildrenPdfTable from '../UploadPDF/ChildrenPdfTable';
-import UpdateUserEmailContainer from '../UserData/UpdateUserEmailContainer';
-import HorizontalChart from '../Statistics/HorizontalChart';
-import ConditionsPage from '../Conditions/ConditionsPage';
-import AdmissionRules from '../Conditions/AdmissionRules';
-import Guide from '../Guide/ParentsGuide';
-import DeleteData from '../UserData/DeleteData';
+
+const UpdateChildrenApplicationByParents = lazy(() => import ( '../ChildrenRegistration/UpdateChildrenApplicationByParents'));
+const NotFoundPage  = lazy(() => import ('../Utilities/NotFoundPage'));
+const NextPage  = lazy(() => import ( '../ChildrenRegistration/NextPage'));
+const ChildrenPdfTable  = lazy(() => import ( '../UploadPDF/ChildrenPdfTable'));
+const UpdateUserEmailContainer  = lazy(() => import ( '../UserData/UpdateUserEmailContainer'));
+const HorizontalChart  = lazy(() => import ( '../Statistics/HorizontalChart'));
+const ConditionsPage  = lazy(() => import ('../Conditions/ConditionsPage'));
+const AdmissionRules  = lazy(() => import ( '../Conditions/AdmissionRules'));
+const Guide  = lazy(() => import ('../Guide/ParentsGuide'));
+const DeleteData  = lazy(() => import ('../UserData/DeleteData'));
 
 const ParentRoutes = () => {
   return (

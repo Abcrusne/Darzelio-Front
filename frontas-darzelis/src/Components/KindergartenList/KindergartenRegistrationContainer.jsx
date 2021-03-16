@@ -3,7 +3,6 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../Style/style.css';
 
-
 export default class KindergartenRegistrationContainer extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +31,7 @@ export default class KindergartenRegistrationContainer extends Component {
           role: res.data,
         })
       )
-      .catch((error) => console.log(error));
+      .catch((error) => {});
   }
   handleChange = (event) => {
     event.preventDefault();
@@ -118,8 +117,6 @@ export default class KindergartenRegistrationContainer extends Component {
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-
-          console.log(error);
         });
     } else {
       alert(

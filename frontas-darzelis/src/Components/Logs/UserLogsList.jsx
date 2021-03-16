@@ -32,9 +32,8 @@ export default class UserLogsList extends Component {
           totalLogs: res.data.totalLogs,
         });
       })
-      .catch((error) => {
-        console.log(error);
-      });
+    // .catch((err) => console.log(err));
+    .catch((err) =>  {});
   };
   onChange = (event) => {
     const searchEmail = event.target.value;

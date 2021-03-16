@@ -6,7 +6,7 @@ import "../../Style/UsersLandings.css"
 import EduAdminSideBarNavigation from "./EduAdminSideBarNavigation";
 import EduAdminRoutes from "./EduAdminRoutes";
 import EduAdminlandingFooter from "./EduAdminLandingFooter";
-// import '../../Style/ParentLanding.css';
+
 
 const EduAdminLanding = (props) => {
 

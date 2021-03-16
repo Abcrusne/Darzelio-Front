@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
-import UserService from '../../Configuration/UserService';
 
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
 
@@ -85,7 +84,8 @@ export default class UpdateParentRegistrationFormContainer extends Component {
           userId: res.data,
         });
       })
-      .catch((err) => console.log(err));
+   // .catch((err) => console.log(err));
+   .catch((err) =>  {});
   }
 
   handleChange = (event) => {
@@ -174,19 +174,19 @@ export default class UpdateParentRegistrationFormContainer extends Component {
           [name]: value,
         },
         () => {
-          // console.log(errors);
+          ;
         }
       );
   };
 
   handleSubmit = (event) => {
-    const currentRole = UserService.getRole();
+    // const currentRole = UserService.getRole();
     event.preventDefault();
 
     const validateForm = (errors) => {
       let valid = true;
       Object.values(errors).forEach(
-        // if we have an error string set valid to false
+      
         (val) => val.length > 0 && (valid = false)
       );
       return valid;
@@ -268,7 +268,7 @@ export default class UpdateParentRegistrationFormContainer extends Component {
               'Atnaujinti duomenų nepavyko! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          console.log(error.response);
+         
         });
     } else {
       alert(

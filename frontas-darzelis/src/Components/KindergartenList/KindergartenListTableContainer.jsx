@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../../Style/UsersLandings.css';
 import '../../Style/style.css';
-const ModalComponentKindergarten = React.lazy(() =>
+const ModalComponentKindergarten = lazy(() =>
   import('../Modal/ModalComponentKindergarten')
 );
 
@@ -31,7 +31,8 @@ export default class KindergartenListTableContainer extends Component {
           role: res.data,
         });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {});
+    // console.log(error));
   }
   handleSearch = (event) => {
     event.preventDefault();
@@ -52,7 +53,8 @@ export default class KindergartenListTableContainer extends Component {
           .get(`${API}/api/kindergartens`)
           .then((response) => this.setState({ kindergartens: response.data }));
       })
-      .catch((err) => console.log(err));
+      .catch((error) => {});
+    // console.log(error));
   };
 
   render() {
@@ -177,7 +179,7 @@ export default class KindergartenListTableContainer extends Component {
               onChange={this.handleSearch}
             />
           </div>
-        
+
           <table className="table mt-4">
             <thead>
               <tr>

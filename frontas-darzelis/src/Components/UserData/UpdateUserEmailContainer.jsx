@@ -41,7 +41,8 @@ export default class UpdateUserEmailContainer extends Component {
          
         })
       )
-      .catch((err) => console.log(err));
+   // .catch((err) => console.log(err));
+   .catch((err) =>  {});
   }
 
   handleChange = (event) => {
@@ -123,7 +124,7 @@ export default class UpdateUserEmailContainer extends Component {
               'Nepavyko pakeisti! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          console.log(error);
+          // console.log(error);
         });
     } else {
       alert(

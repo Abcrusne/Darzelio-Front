@@ -41,7 +41,8 @@ export default class UpdateUserDataFormContainer extends Component {
           password: res.data.password,
         })
       )
-      .catch((err) => console.log(err));
+   // .catch((err) => console.log(err));
+   .catch((err) =>  {});
   }
 
   handleChange = (event) => {
@@ -83,7 +84,7 @@ export default class UpdateUserDataFormContainer extends Component {
           [name]: value,
         },
         () => {
-          // console.log(errors);
+       
         }
       );
   };
@@ -134,7 +135,7 @@ export default class UpdateUserDataFormContainer extends Component {
               'Nepavyko pakeisti! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          console.log(error);
+          // console.log(error);
         });
     } else {
       alert(

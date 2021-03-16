@@ -24,11 +24,6 @@ class LogsService {
     );
   }
 
-  //ieskoti pagal email
-//   findByEmail(pageNumber, email) {
-//     return http.get(
-//       ` /api/users/logs?page=${pageNumber}&sortby=&email=${email}`
-//     );
-//   }
+
 }
 export default new LogsService();

@@ -3,7 +3,7 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../../Style/UsersLandings.css';
-const ModalComponent = React.lazy(() => import( '../Modal/ModalComponent'));
+const ModalComponent = lazy(() => import( '../Modal/ModalComponent'));
 
 export default class UsersListTableContainer extends Component {
   constructor() {
@@ -21,8 +21,9 @@ export default class UsersListTableContainer extends Component {
       .get(API + '/api/users')
       .then((response) => this.setState({ users: response.data }))
 
-      .catch((error) => console.log(error));
-    isMounted = false;
+    // .catch((err) => console.log(err));
+    .catch((err) =>  {});
+    return () => {isMounted = false};
   };
   handleSearch = (event) => {
     event.preventDefault();
@@ -42,7 +43,8 @@ export default class UsersListTableContainer extends Component {
           .get(`${API}/api/users`)
           .then((response) => this.setState({ users: response.data }));
       })
-      .catch((err) => console.log(err));
+     // .catch((err) => console.log(err));
+     .catch((err) =>  {});
   };
 
   render() {
@@ -76,9 +78,7 @@ export default class UsersListTableContainer extends Component {
               <th scope="col">Pavardė</th>
               <th scope="col">El.paštas</th>
               <th scope="col">Rolė</th>
-
               <th scope="col">Atnaujinti vartotojo duomenis</th>
-
               <th scope="col">Ištrinti vartotoją ir jo duomenis</th>
               <th scope="col"></th>
             </tr>
@@ -118,7 +118,7 @@ export default class UsersListTableContainer extends Component {
                       <td>{roleLt}</td>
 
                       {role === 'ADMIN' ? (
-                        <div> </div>
+                        <td> </td>
                       ) : (
                         <td>
                           <Link

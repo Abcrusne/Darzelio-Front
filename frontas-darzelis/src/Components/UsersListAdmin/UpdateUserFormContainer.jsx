@@ -36,7 +36,8 @@ export default class UpdateUserFormContainer extends Component {
           password: res.data.password,
         })
       )
-      .catch((err) => console.log(err));
+    // .catch((err) => console.log(err));
+    .catch((err) =>  {});
   }
   resetPassword = (event) => {
     event.preventDefault();
@@ -55,7 +56,7 @@ export default class UpdateUserFormContainer extends Component {
         );
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 
@@ -137,7 +138,7 @@ export default class UpdateUserFormContainer extends Component {
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          console.log(error);
+          // console.log(error);
         });
     } else {
       alert(

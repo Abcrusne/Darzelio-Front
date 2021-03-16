@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React from 'react';
 import '../../Style/style.css';
 import pdf from '../Guide/Tevai.pdf';
 

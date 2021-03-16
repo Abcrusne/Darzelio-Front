@@ -98,7 +98,8 @@ export default class ChildrenRegistrationByAdmin extends Component {
           flatNumber: res.data.flatNumber,
         });
       })
-      .catch((err) => console.log(err));
+   // .catch((err) => console.log(err));
+   .catch((err) =>  {});
   }
   handleChangeDate = (date) => {
     this.setState({

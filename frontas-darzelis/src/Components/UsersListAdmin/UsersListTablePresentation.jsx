@@ -2,7 +2,7 @@ import React,  { lazy } from 'react';
 import { Link } from 'react-router-dom';
 
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-const ModalComponent = React.lazy(() => import('../Modal/ModalComponent'));
+const ModalComponent = lazy(() => import('../Modal/ModalComponent'));
 
 const UsersListTablePresentation = ({ users, deleteUser, searchTerm }) => {
   return users

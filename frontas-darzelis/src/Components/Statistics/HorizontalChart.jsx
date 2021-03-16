@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
-import { Bar, HorizontalBar } from 'react-chartjs-2';
-import * as chartjs from 'chart.js';
+import { HorizontalBar } from 'react-chartjs-2';
 import 'chartjs-plugin-zoom';
 import axios from 'axios';
 import Loading from '../Loading/Loading';
@@ -43,7 +42,8 @@ export default class HorizontalChart extends Component {
             res.data.spotsInSecondAgeGroups,
         });
       })
-      .catch((err) => console.log(err));
+      // .catch((err) => console.log(err));
+      .catch((err) => {});
   }
   getChartData() {
     axios.get(`${API}/api/users/statistics`).then((res) => {
@@ -206,8 +206,8 @@ export default class HorizontalChart extends Component {
             {Object.keys(this.state.chartData).length ? (
               <HorizontalBar
                 data={this.state.chartData}
-                width="1900"
-                height="1800"
+                width={1900}
+                height={1800}
                 options={{
                   maintainAspectRatio: false,
                   responsive: true,
@@ -235,8 +235,6 @@ export default class HorizontalChart extends Component {
                       // },
                     },
                   },
-
-                
                 }}
               />
             ) : (

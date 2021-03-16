@@ -54,7 +54,9 @@ export default class EduAdminUpdateChildApplicationContainer extends Component {
           childLastname: res.data.childLastname,
         });
       })
-      .catch((err) => console.log(err));
+      .catch((error) => 
+      {})
+      // console.log(error));
   }
 
   handleChange = (event) => {
@@ -81,7 +83,7 @@ export default class EduAdminUpdateChildApplicationContainer extends Component {
         this.props.history.push(`/admin/edu/vaikai/${this.state.childId}`);
       })
       .catch((error) => {
-        console.log(error.data);
+        // console.log(error);
       });
   };
   render() {

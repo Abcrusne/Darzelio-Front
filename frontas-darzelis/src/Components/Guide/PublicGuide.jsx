@@ -9,7 +9,12 @@ const PublicGuide = () => {
         <iframe
           src={pdf}
           title="Naudojimosi instrukcija"
-          style={{ marginRight: 350, marginLeft: 350, height: 950, width: 1200 }}
+          style={{
+            marginRight: 350,
+            marginLeft: 350,
+            height: 950,
+            width: 1200,
+          }}
           allowFullScreen
         ></iframe>
       ) : (

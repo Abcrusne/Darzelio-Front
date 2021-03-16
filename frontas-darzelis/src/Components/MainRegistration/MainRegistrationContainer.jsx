@@ -31,7 +31,7 @@ class MainRegistrationContainer extends Component {
             });
             return data;
         } catch (error) {
-            console.log(error.message);
+            // console.log(error.message);
         }
     };
 
@@ -42,15 +42,15 @@ class MainRegistrationContainer extends Component {
             );
             return data;
         } catch (error) {
-            console.log(error.message);
+            // console.log(error.message);
         }
     };
 
     async componentDidMount() {
         const kindergartensData = await this.getKindergartens();
         const childrenData = await this.getChildren();
-        console.log(kindergartensData);
-        console.log(childrenData);
+        // console.log(kindergartensData);
+        // console.log(childrenData);
         let kindergartens = kindergartensData.map((kindergarten) => ({
             name: kindergarten.name,
             id: kindergarten.id,
@@ -96,12 +96,12 @@ class MainRegistrationContainer extends Component {
                 .post(`${API}/api/kindergartens/register`, dataLoad
                 )
                 .then(response => {
-                    console.log(response.data)
+                    // console.log(response.data)
                     alert('Registracija sėkminga!');
                     this.props.history.push('/tevai');
                 })
                 .catch((error) => {
-                    console.log(error.response.data)
+                    // console.log(error.response.data)
                     if (error.response.data === "vaikas nerastas sistemoje") {
                         alert(
                             'Tokio vaiko nėra, pasitikrinkite ar teisingi duomenys!'

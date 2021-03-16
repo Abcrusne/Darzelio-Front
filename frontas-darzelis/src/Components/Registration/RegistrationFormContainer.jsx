@@ -60,7 +60,7 @@ export default class RegistrationFormContainer extends Component {
     }
 
     this.setState({ errors, [name]: value }, () => {
-      // console.log(errors);
+     
     });
   };
   handleSubmit = (event) => {
@@ -77,7 +77,7 @@ export default class RegistrationFormContainer extends Component {
     const validateForm = (errors) => {
       let valid = true;
       Object.values(errors).forEach(
-        // if we have an error string set valid to false
+      
         (val) => val.length > 0 && (valid = false)
       );
       return valid;
@@ -102,7 +102,7 @@ export default class RegistrationFormContainer extends Component {
             );
           }
 
-          console.log(error);
+       
         });
     } else {
       alert(

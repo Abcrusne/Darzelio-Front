@@ -61,7 +61,9 @@ export default class UpdateChildrenApplicationByParents extends Component {
           childRating: res.data.childRating,
         });
       })
-      .catch((err) => console.log(err));
+      .catch((error) => 
+      {})
+      // console.log(error));
   }
   deleteApplication = (event) => {
     axios
@@ -70,7 +72,9 @@ export default class UpdateChildrenApplicationByParents extends Component {
         alert('Prašymas buvo ištrintas');
         this.props.history.push('/tevai/vaikai');
       })
-      .catch((err) => console.log(err.data));
+      .catch((error) => 
+      {})
+      // console.log(error));
   };
 
   handleChange = (event) => {
@@ -97,7 +101,7 @@ export default class UpdateChildrenApplicationByParents extends Component {
         this.props.history.push(`/tevai/vaikai`);
       })
       .catch((error) => {
-        console.log(error.data);
+        // console.log(error.data);
       });
   };
   render() {

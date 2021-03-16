@@ -25,7 +25,7 @@ export default class UploadPdfContainer extends Component {
       );
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   async componentDidMount() {
@@ -82,7 +82,7 @@ export default class UploadPdfContainer extends Component {
           );
         }
 
-        console.log(error.data);
+        //console.log(error.data);
       });
   };
 

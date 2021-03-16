@@ -3,7 +3,7 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import '../../Style/UsersLandings.css';
-const ChildrenTablePresentation = React.lazy(() =>
+const ChildrenTablePresentation = lazy(() =>
   import('./ChildrenTablePresentationByAdmin')
 );
 
@@ -17,7 +17,8 @@ export default class ChildrenTable extends Component {
       parentDetailsId: '',
     };
   }
-  componentDidMount() {
+  componentDidMount=()=> {
+    let isMounted = true;
     axios
       .get(
         `${API}/api/users/${this.props.match.params.id}/parentdetails/children`
@@ -36,7 +37,9 @@ export default class ChildrenTable extends Component {
           parentDetailsId: res.data.id,
         });
       })
-      .catch((err) => console.log(err));
+  // .catch((err) => console.log(err));
+  .catch((err) =>  {});
+  return () => {isMounted = false};
   }
   render() {
     return (

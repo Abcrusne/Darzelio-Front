@@ -6,7 +6,7 @@ export const ModalForChildQueueDeleteButton = ({
   lastname,
   onClick,
 }) => {
-  console.log('modal child id: ' + childId);
+  // console.log('modal child id: ' + childId);
 
   return (
     <div
