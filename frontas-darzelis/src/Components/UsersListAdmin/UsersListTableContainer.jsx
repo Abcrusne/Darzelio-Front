@@ -93,7 +93,7 @@ export default class UsersListTableContainer extends Component {
     // let filteredUsers = this.state.users.filter((user) => {
     //   return user.email.toLowerCase().indexOf(this.state.searchTerm) !== -1;
     // });
-    let rowNumber = 20 * this.state.pageNumber - 19;
+    let rowNumber = 30 * this.state.pageNumber - 29;
     return (
       <div className="container mt-5">
         <Link to={`/admin/registracija`} className="btn btn-primary mb-5">
