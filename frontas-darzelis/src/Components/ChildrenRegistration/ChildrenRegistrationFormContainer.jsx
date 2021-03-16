@@ -105,7 +105,10 @@ export default class ChildrenRegistrationFormContainer extends Component {
         });
       })
       .catch((error) => 
-      {})
+      { if (error.response.status === 403) {
+        alert(
+          'Jūs neturite prieigos teisių į šitą puslapį. jei manote, kad tai klaida - prisijunkite iš naujo'
+        );}})
       // console.log(error));
   }
 

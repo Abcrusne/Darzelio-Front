@@ -17,7 +17,12 @@ export default class ArchiveListByAdmin extends Component {
     axios
       .get(API + '/api/users/archive')
       .then((response) => this.setState({ archives: response.data }))
-      // .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 403) {
+          alert(
+            'Jūs neturite prieigos teisių į šitą puslapį. jei manote, kad tai klaida - prisijunkite iš naujo'
+          );}
+      });
     return () => {isMounted = false};
   };
 

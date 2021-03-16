@@ -53,7 +53,12 @@ export default class KindergartenListTableContainer extends Component {
           .get(`${API}/api/kindergartens`)
           .then((response) => this.setState({ kindergartens: response.data }));
       })
-      .catch((error) => {});
+      .catch((error) => {
+        if (error.response.status === 403) {
+          alert(
+            'Jūs neturite prieigos teisių į šitą puslapį. jei manote, kad tai klaida - prisijunkite iš naujo'
+          );}
+      });
     // console.log(error));
   };
 

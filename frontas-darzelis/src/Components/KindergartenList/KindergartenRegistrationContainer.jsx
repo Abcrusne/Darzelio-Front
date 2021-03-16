@@ -31,7 +31,12 @@ export default class KindergartenRegistrationContainer extends Component {
           role: res.data,
         })
       )
-      .catch((error) => {});
+      .catch((error) => {
+        if (error.response.status === 403) {
+          alert(
+            'Jūs neturite prieigos teisių į šitą puslapį. jei manote, kad tai klaida - prisijunkite iš naujo'
+          );}
+      });
   }
   handleChange = (event) => {
     event.preventDefault();
