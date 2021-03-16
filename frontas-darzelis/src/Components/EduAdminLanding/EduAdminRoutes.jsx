@@ -1,12 +1,10 @@
-import React from 'react';
-import { Route, Switch } from 'react-router';
+import React, {lazy} from 'react';
+import { Switch } from 'react-router';
 
 //our imports
-
 import PrivateRoute from '../../Configuration/PrivateRoute';
 import NotFoundPage from '../Utilities/NotFoundPage';
 import EduAdminDashboard from './EduAdminDashboard';
-//import ListOfChildren from '../ChildrenRegistration/ListOfChildren';
 import ListOfRegistrations from '../MainRegistration/ListOfRegistrations';
 import KindergartenListTableContainer from '../KindergartenList/KindergartenListTableContainer';
 import KindergartenRegistrationContainer from '../KindergartenList/KindergartenRegistrationContainer';
@@ -16,12 +14,12 @@ import UserData from '../UserData/UserData';
 import UpdateUserPasswordContainer from '../UserData/UpdateUserPasswordContainer';
 import KindergartenTableContainer from '../Queue/KindergartenTableContainer';
 import EduAdminChildInfoContainer from './EduAdminChildInfoContainer';
-//import EduAdminUpdateChildApplicationContainer from './EduAdminUpdateChildApplicationContainer';
 import RegisteredChildrenQueueList from '../ChildrenRegistrationQue/RegisteredChildrenQueueList';
-import UpdateUserEmailContainer from '../UserData/UpdateUserEmailContainer';
-import HorizontalChart from '../Statistics/HorizontalChart';
-import EduGuide from '../Guide/EduGuide';
-import DeleteData from '../UserData/DeleteData';
+
+const UpdateUserEmailContainer = lazy(() => import ( '../UserData/UpdateUserEmailContainer'));
+const HorizontalChart = lazy(() => import ('../Statistics/HorizontalChart'));
+const EduGuide = lazy(() => import ( '../Guide/EduGuide'));
+const DeleteData = lazy(() => import ( '../UserData/DeleteData'));
 
 const EduAdminRoutes = () => {
   return (

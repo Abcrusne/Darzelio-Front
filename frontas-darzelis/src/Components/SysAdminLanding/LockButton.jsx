@@ -14,10 +14,11 @@ export const LockButton = () => {
         axios
             .get(`${API}/api/kindergartens/admission/status`,)
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 setIsLocked(response.data.locked)
             })
-            .catch(error => console.log(error))
+          // .catch((err) => console.log(err));
+      .catch((err) =>  {});
     }
 
     const handleLockClick = () => {
@@ -27,7 +28,8 @@ export const LockButton = () => {
                 fetchData();
                 alert('Eilė į darželius užrakinta.')
             })
-            .catch(error => console.log(error))
+        // .catch((err) => console.log(err));
+      .catch((err) =>  {});
     }
     const handleUnlockClick = () => {
         axios
@@ -36,7 +38,8 @@ export const LockButton = () => {
                 fetchData();
                 alert('Eilė į darželius atrakinta.')
             })
-            .catch(error => console.log(error))
+           // .catch((err) => console.log(err));
+      .catch((err) =>  {});
     }
     return (
         <div>

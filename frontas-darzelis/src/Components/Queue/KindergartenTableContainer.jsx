@@ -3,7 +3,7 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import Loading from '../Loading/Loading';
 
-const KindergartenTablePresentation = React.lazy(() =>
+const KindergartenTablePresentation = lazy(() =>
   import('./KindergartenTablePresentation')
 );
 export default class KindergartenContainer extends Component {
@@ -23,7 +23,8 @@ export default class KindergartenContainer extends Component {
           kindergartens: res.data,
         });
       })
-      .catch((err) => console.log(err));
+    // .catch((err) => console.log(err));
+    .catch((err) =>  {});
   }
 
   render() {

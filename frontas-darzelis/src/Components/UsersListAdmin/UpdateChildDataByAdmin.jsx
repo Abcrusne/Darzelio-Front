@@ -4,7 +4,9 @@ import axios from 'axios';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '../../Style/style.css';
 
-const ModalComponentChildren = React.lazy(() => import( '../Modal/ModalComponentChildren'));
+const ModalComponentChildren = lazy(() =>
+  import('../Modal/ModalComponentChildren')
+);
 
 export default class UpdateChildDataByAdmin extends Component {
   constructor(props) {
@@ -124,7 +126,8 @@ export default class UpdateChildDataByAdmin extends Component {
           adopted: res.data.adopted,
         });
       })
-      .catch((err) => console.log(err.data));
+      // .catch((err) => console.log(err));
+      .catch((err) => {});
   }
   deleteChild = (event) => {
     axios
@@ -137,7 +140,8 @@ export default class UpdateChildDataByAdmin extends Component {
           `/admin/duomenys/vaikai/${this.state.parentId}`
         );
       })
-      .catch((err) => console.log(err.data));
+      // .catch((err) => console.log(err));
+      .catch((err) => {});
     //console.log('deleteChildren');
   };
 
@@ -410,9 +414,9 @@ export default class UpdateChildDataByAdmin extends Component {
 
     return (
       <div>
-        <div className=" container  m-auto shadow p-3 mb-5 bg-white rounded">
+        <div className=" container m-auto shadow p-3 mb-5 bg-white rounded">
           <div className="mb-4">
-            <h3>Atnaujinkite savo vaiko duomenis</h3>
+            <h3>Atnaujinti vaiko duomenis</h3>
           </div>
 
           <form onSubmit={this.handleSubmit} className="form-row ">
@@ -1034,24 +1038,21 @@ export default class UpdateChildDataByAdmin extends Component {
               <div></div>
             )}
 
-            <div className="mt-3 form-group mb-3 col-6">
+            <div className="mt-3 form-group mb-3 col-12">
               {' '}
               * - privalomi laukai
             </div>
-            <div className="">
-              <button
-                type="submit"
-                className="btn btn-success  btn-lg btn-block mt-5"
-              >
+            <div className="child mb-1 mt-5 formChild">
+              <button type="submit" className="child btn ">
                 Atnaujinti
               </button>
             </div>
           </form>
 
-          <div className="col text-center delete">
+          <div className="child">
             <button
               id="deleteChildData"
-              className="btn mt-3"
+              className="child btn mt-1"
               data-toggle="modal"
               data-target={`#staticBackdrop${this.state.id}`}
               value={this.state.id}

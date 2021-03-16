@@ -69,7 +69,8 @@ export default class ParentRegistrationFormContainer extends Component {
           id: res.data,
         });
       })
-      .catch((err) => console.log(err));
+     // .catch((err) => console.log(err));
+     .catch((err) =>  {});
   }
 
   handleChange = (event) => {
@@ -161,7 +162,7 @@ export default class ParentRegistrationFormContainer extends Component {
           [name]: value,
         },
         () => {
-          // console.log(errors);
+        
         }
       );
   };
@@ -229,7 +230,7 @@ export default class ParentRegistrationFormContainer extends Component {
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          console.log(error.response);
+    
         });
     } else {
       alert(

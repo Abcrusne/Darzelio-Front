@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { Component, lazy } from 'react';
 import { API } from '../../Configuration/AppConfig';
-const ModalComponentPdf = React.lazy(() =>
+const ModalComponentPdf = lazy(() =>
   import('../Modal/ModalComponentPdf')
 );
 
@@ -27,7 +27,8 @@ export default class ChildrenPdfTable extends Component {
         alert('Pažyma ištrinta');
         window.location.reload();
       })
-      .catch((err) => console.log(err));
+    // .catch((err) => console.log(err));
+    .catch((err) =>  {});
   };
 
   render() {

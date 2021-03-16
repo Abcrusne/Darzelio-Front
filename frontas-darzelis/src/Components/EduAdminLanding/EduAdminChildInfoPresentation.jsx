@@ -202,14 +202,6 @@ const EduAdminChildInfoPresentation = ({
               <td>{thirdPriority}</td>
               <td>{fourthPriority}</td>
               <td>{fifthPriority}</td>
-              {/* <td>
-                <Link
-                  className="text-decoration-none mr-3"
-                  to={`/admin/edu/vaikai/${childId}/redaguoti`}
-                >
-                  Redaguoti prašymą į darželį
-                </Link>
-              </td> */}
             </tr>
           </tbody>
         </table>

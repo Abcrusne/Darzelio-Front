@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import { API } from '../../../Configuration/AppConfig';
 import axios from 'axios';
 import '../../../Style/style.css';
-import {Link} from "@material-ui/core";
-//import UserService from '../../Configuration/UserService';
+
 
 axios.defaults.withCredentials = true; // leidžia dalintis cookies
 
@@ -29,8 +28,8 @@ export default class AddNewPassword extends Component {
          this.setState({
              token: token,
          })
-         console.log(token);
-         console.log("token " + this.state.token);
+        //  console.log(token);
+        //  console.log("token " + this.state.token);
     }
 
     handleChange = (event) => {
@@ -57,7 +56,7 @@ export default class AddNewPassword extends Component {
                 break;
         }
         this.setState({ errors, [name]: value }, () => {
-            // console.log(errors);
+        
         });
     };
 
@@ -75,18 +74,18 @@ export default class AddNewPassword extends Component {
                 confirmNewPassword: this.state.confirmNewPassword,
                 token: this.state.token
             }
-            console.log(payload);
+            // console.log(payload);
             axios
                 .post(
                     `${API}/api/users/resetpasswordchange`, payload
                 )
                 .then((response) => {
-                    console.log(response);
+                 
                     alert('Slaptažodis pakeistas sėkmingai!');
                         this.props.history.push('/login');
                 })
                 .catch((error) => {
-                    console.log(error.request.data);
+                 
                     if (error.request.status === 400) {
                         alert('Slaptažodžio pakeisti nepavyko, bandykite iš naujo');
                     } else if (
@@ -96,7 +95,7 @@ export default class AddNewPassword extends Component {
                     } else if (error.request.data === 'Įvesti slaptažodžiai nesutapo. Patikrinkite ar teisingai patvirtinote naują slaptažodį') {
                         alert(error);
                     }
-                    console.log(error.request.status);
+                    // console.log(error.request.status);
                 });
         } else {
             console.error('Invalid Form');

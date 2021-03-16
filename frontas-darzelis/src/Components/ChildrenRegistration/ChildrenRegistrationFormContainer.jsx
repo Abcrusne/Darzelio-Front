@@ -104,7 +104,9 @@ export default class ChildrenRegistrationFormContainer extends Component {
           userId: res.data,
         });
       })
-      .catch((err) => console.log(err));
+      .catch((error) => 
+      {})
+      // console.log(error));
   }
 
   handleChangeDate = (date) => {
@@ -242,7 +244,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
       this.setState({ [event.target.name]: event.target.checked });
     } else
       this.setState({ errors, [event.target.name]: event.target.value }, () => {
-        // console.log(errors);
+     
       });
   };
 
@@ -289,7 +291,6 @@ export default class ChildrenRegistrationFormContainer extends Component {
     const validateForm = (errors) => {
       let valid = true;
       Object.values(errors).forEach(
-        // if we have an error string set valid to false
         (val) => val.length > 0 && (valid = false)
       );
       return valid;
@@ -358,7 +359,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
               'Registracija nesėkminga! Pasitikrinkite ar pažymėjote bei užpildėte laukus teisingai!'
             );
           }
-          console.log(error.response);
+          // console.log(error.response);
         });
     } else {
       alert(

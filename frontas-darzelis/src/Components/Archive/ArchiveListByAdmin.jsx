@@ -17,8 +17,8 @@ export default class ArchiveListByAdmin extends Component {
     axios
       .get(API + '/api/users/archive')
       .then((response) => this.setState({ archives: response.data }))
-      .catch((error) => console.log(error));
-    isMounted = false;
+      // .catch((error) => console.log(error));
+    return () => {isMounted = false};
   };
 
   handleSearch = (event) => {

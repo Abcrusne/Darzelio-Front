@@ -34,7 +34,8 @@ export default class UpdateUserPasswordContainer extends Component {
           role: res.data,
         });
       })
-      .catch((err) => console.log(err));
+      // .catch((err) => console.log(err));
+      .catch((err) => {});
   }
 
   handleChange = (event) => {
@@ -98,7 +99,6 @@ export default class UpdateUserPasswordContainer extends Component {
           }
         })
         .catch((error) => {
-          console.log(error.data);
           if (error.response.data === 'Neteisingai įvestas senas slaptažodis') {
             alert(error.response.data);
           } else if (
@@ -108,7 +108,7 @@ export default class UpdateUserPasswordContainer extends Component {
           } else if (error.response.status === 400) {
             alert('Nepavyko pakeisti slaptažodžio!');
           }
-          console.log(error.data);
+          // console.log(error.data);
         });
     } else {
       alert('Nepavyko pakeisti slaptažodžio! ');

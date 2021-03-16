@@ -99,7 +99,9 @@ export default class EduAdminChildInfoContainer extends Component {
           rating: res.data.rating,
         });
       })
-      .catch((err) => console.log(err));
+      .catch((error) => 
+      {})
+      // console.log(error));
   }
 
   render() {

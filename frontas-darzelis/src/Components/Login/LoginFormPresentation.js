@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import { API } from '../../Configuration/AppConfig';
 
 const LoginFormPresentation = (
   { email, password, onPasswdChange, onEmailChange, onSubmit },

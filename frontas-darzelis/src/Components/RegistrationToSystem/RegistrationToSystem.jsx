@@ -52,7 +52,7 @@ export default class RegistrationToSystem extends Component {
     }
 
     this.setState({ errors, [name]: value }, () => {
-      // console.log(errors);
+   
     });
   };
 
@@ -94,7 +94,7 @@ export default class RegistrationToSystem extends Component {
             );
           }
 
-          console.log(error);
+      
         });
     } else {
       alert(

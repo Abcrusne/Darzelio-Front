@@ -38,7 +38,9 @@ export default class UpdateKindergartenFormContainer extends Component {
           role: res.data,
         });
       })
-      .catch((err) => console.log(err));
+      // .catch((err) => console.log(err));
+      .catch((err) =>  {});
+     
   }
   handleChange = (event) => {
     event.preventDefault();
@@ -127,7 +129,7 @@ export default class UpdateKindergartenFormContainer extends Component {
             );
           }
 
-          console.log(error);
+       
         });
     } else {
       alert(

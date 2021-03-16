@@ -21,7 +21,8 @@ export default class DeleteData extends Component {
           userId: res.data,
         });
       })
-      .catch((err) => console.log(err));
+    // .catch((err) => console.log(err));
+    .catch((err) =>  {});
   };
   DeleteData = () => {
     axios
@@ -35,8 +36,9 @@ export default class DeleteData extends Component {
         localStorage.clear();
         this.props.history.push('/login');
       })
-      .catch((err) => console.log(err));
-    console.log('delete');
+  // .catch((err) => console.log(err));
+  .catch((err) =>  {});
+    // console.log('delete');
   };
   //galima ir su eraseData true bet del ID modalui siuo budu padariau
   deleteEverything = () => {
@@ -47,7 +49,8 @@ export default class DeleteData extends Component {
         localStorage.clear();
         this.props.history.push('/login');
       })
-      .catch((err) => console.log(err));
+      // .catch((err) => console.log(err));
+      .catch((err) =>  {});
   };
 
   render() {
@@ -73,7 +76,7 @@ export default class DeleteData extends Component {
                data-toggle="modal"
                data-target={`#staticBackdrop${this.state.userId}`}
                value={this.state.userId}
-            // onClick={this.deleteEverything}
+          
             >
               Ištrinti mano paskyrą ir duomenis
             </button>

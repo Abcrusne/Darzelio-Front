@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Pagination } from '@material-ui/lab';
 import { Link } from 'react-router-dom';
-
 //out imports
 import { ModalForChildQueueDeleteButton } from '../Modal/ModalForChildQueueDeleteButton';
 import DataService from '../Utilities/DataService';
@@ -26,23 +25,19 @@ export default class RegisteredChildrenQueueList extends Component {
   }
 
   componentDidMount = () => {
-    console.log('component did mount');
     this.retrieveChildrenQueueList();
   };
 
   retrieveChildrenQueueList = () => {
     const { pageNumber, searchLastname, sort } = this.state;
-    console.log('retrieveChildrenQueue');
-    console.log(pageNumber + '' + searchLastname + '' + sort);
+
     DataService.getAll(pageNumber, sort, searchLastname)
       .then((response) => {
         const { registrations, totalPages } = response.data;
-        console.log(response.data);
         this.setState({
           childrenQueueList: registrations,
           count: totalPages,
         });
-        console.log(this.state.childrenQueueList);
       })
       .catch((error) => {
         if (error.status === 401) {
@@ -52,12 +47,10 @@ export default class RegisteredChildrenQueueList extends Component {
         } else {
           alert('Duomenų nerasta');
         }
-        console.log(error);
       });
   };
 
   onChange = (event) => {
-    console.log(event.target.value);
     const searchLastname = event.target.value;
 
     this.setState(
@@ -72,7 +65,7 @@ export default class RegisteredChildrenQueueList extends Component {
 
   deleteChild = (event) => {
     event.preventDefault();
-    console.log('delete');
+
     const childId = event.target.value;
     DataService.delete(childId)
       .then(() => this.retrieveChildrenQueueList())
@@ -86,7 +79,6 @@ export default class RegisteredChildrenQueueList extends Component {
             'Pašalinti vaiko iš eilės galimybės nėra, eilė jau patvirtinta.'
           );
         }
-        console.log(error);
       });
   };
 
@@ -115,8 +107,6 @@ export default class RegisteredChildrenQueueList extends Component {
   };
 
   handleLastnameSort = (event) => {
-    console.log('sort Lastname');
-
     this.setState(
       {
         sort: 'lastname',
@@ -129,10 +119,9 @@ export default class RegisteredChildrenQueueList extends Component {
 
   handleConfirmClick = (event) => {
     event.preventDefault();
-    console.log('eiles patvirtinimas');
+
     DataService.confirm()
       .then((response) => {
-        console.log(response.data);
         alert('Eilė patvirtinta sėkmingai');
       })
       .then(() => this.retrieveChildrenQueueList())
@@ -145,7 +134,7 @@ export default class RegisteredChildrenQueueList extends Component {
 
   render() {
     let rowNumber = 15 * this.state.currentPage - 14;
-    console.log('render');
+
     const { searchLastName, childrenQueueList, pageNumber, count } = this.state;
 
     return (
@@ -211,13 +200,21 @@ export default class RegisteredChildrenQueueList extends Component {
                   return (
                     <tr key={childId}>
                       <th scope="row">{rowNumber++}</th>
-                      {/*<th scope="row">{index + 1}</th>*/}
                       <td>{firstname}</td>
-                      <td>
-                        <Link to={`/admin/edu/vaikai/${childId}`}>
-                          {lastname}{' '}
-                        </Link>
-                      </td>
+                      {userService.getRole() === '[EDU]' ? (
+                        <td>
+                          <Link to={`/admin/edu/vaikai/${childId}`}>
+                            {lastname}{' '}
+                          </Link>
+                        </td>
+                      ) : (
+                        <td>
+                          <Link to={`/admin/vaikai/${childId}`}>
+                            {lastname}{' '}
+                          </Link>
+                        </td>
+                      )}
+
                       <td>{personalCode}</td>
                       <td>{rating}</td>
                       {accepted ? (
@@ -253,7 +250,7 @@ export default class RegisteredChildrenQueueList extends Component {
                 }
               )
             ) : (
-              <tr>...</tr>
+              <tr><td>...</td></tr>
             )}
           </tbody>
         </table>

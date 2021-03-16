@@ -136,7 +136,9 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
           adopted: res.data.adopted,
         });
       })
-      .catch((err) => console.log(err.data));
+      .catch((error) => 
+      {})
+      // console.log(error));
   }
 
   deleteChild = (event) => {
@@ -148,8 +150,11 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
         alert('Vaikas buvo ištrintas');
         this.props.history.push('/tevai/vaikai');
       })
-      .catch((err) => console.log(err.data));
-  };
+      // .catch((err) => console.log(err.data));
+      .catch((error) => 
+      {})
+      // console.log(error));
+    };
 
   handleChangeDate = (date) => {
     this.setState({

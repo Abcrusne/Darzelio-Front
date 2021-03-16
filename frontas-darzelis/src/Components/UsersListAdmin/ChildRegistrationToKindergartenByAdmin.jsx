@@ -26,7 +26,7 @@ export default class ChildRegistrationToKindergartenByAdmin extends Component {
       });
       return data;
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
   };
 
@@ -37,7 +37,7 @@ export default class ChildRegistrationToKindergartenByAdmin extends Component {
       );
       return data;
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
   };
 
@@ -93,7 +93,7 @@ export default class ChildRegistrationToKindergartenByAdmin extends Component {
           );
         })
         .catch((error) => {
-          console.log(error.response.data);
+          // console.log(error.response.data);
           if (error.response.data === 'vaikas nerastas sistemoje') {
             alert('Tokio vaiko nėra, pasitikrinkite ar teisingi duomenys!');
           } else if (

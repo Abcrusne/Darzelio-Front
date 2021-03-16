@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
-import {Link, NavLink} from "react-router-dom";
 import axios from "axios";
 import {withRouter} from "react-router";
-
 import {API} from "../../Configuration/AppConfig";
 import ParentPasswordChangeModal from "../Modal/ParentPasswordChangeModal"
-// import "../../Style/UsersLandings.css"
 import "../../Style/ParentLandingDashboard.css"
 
 class ParentLandingDashboard extends Component {
@@ -19,11 +16,11 @@ class ParentLandingDashboard extends Component {
     }
 
     componentDidMount = () => {
-        console.log("component did mount")
+      
         axios
             .get(`${API}/api/users/status`)
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
                 this.setState({
                     parentDetailsFilled: response.data.detailsFilled,
                     childRegistered: response.data.childRegistered,
@@ -31,10 +28,10 @@ class ParentLandingDashboard extends Component {
                     passwordChanged: response.data.passwordChanged,
                     admissionActive: response.data.admissionActive
                 })
-                console.log(this.state.children)
+              
             })
             .catch((error) => {
-                console.log(error)
+                // console.log(error)
             })
     }
 
@@ -60,15 +57,7 @@ class ParentLandingDashboard extends Component {
                         modalState={modalState}
                         onClick={this.handleShow}/>
                     )
-                    // (
-                    //     <div className="alert alert-warning alert-dismissible fade show shadow rounded mb-5"
-                    //          role="alert">
-                    //         <strong>Dėmesio!</strong> Jūsų slaptažodis nesaugus, rekomenduojame
-                    //         <a href={`/bean-app/tevai/duomenys/redaguoti/slaptazodi`} className="alert-link"> pasikeisti. </a>
-                    //         {/*<button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close">*/}
-                    //         {/*</button>*/}
-                    //     </div>
-                    // )
+             
                 }
 
                 {admissionActive ? (''
@@ -107,7 +96,7 @@ class ParentLandingDashboard extends Component {
                         {/*Child cards + arrows*/}
                         {childRegistered ? (
                                 children.map(child =>
-                                    // <div className="col-10">
+                                    
                                     <div
                                         className="row equal mb-3 pb-3 pt-3 shadow-sm border-0 rounded d-flex align-content-stretch">
 

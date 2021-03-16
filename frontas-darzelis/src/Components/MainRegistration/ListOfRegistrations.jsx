@@ -28,7 +28,7 @@ class ListOfRegistrations extends Component {
         axios
             .post(`${API}/api/kindergartens/startadmission`)
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 alert('Sukurta nauja registracijų į darželius eilė, kurios pradžia ' + response.data)
             })
             .catch(error => alert('Negalima atidaryti naujos registracijų eilės, kol yra aktyvi registracija! Pirma sustabdykite aktyvią eilę, tuomet atidarykite naują.'))

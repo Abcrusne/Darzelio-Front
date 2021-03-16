@@ -75,7 +75,8 @@ export default class UpdateParentDetailsByAdmn extends Component {
           declaredFlatNumber: res.data.declaredFlatNumber,
         });
       })
-      .catch((err) => console.log(err));
+    // .catch((err) => console.log(err));
+    .catch((err) =>  {});
   }
 
   handleChange = (event) => {
@@ -206,7 +207,7 @@ export default class UpdateParentDetailsByAdmn extends Component {
           declaredFlatNumber: this.state.declaredFlatNumber,
         })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
 
           alert('Tėvo/Globėjo duomenys atnaujinti sėkmingai');
           this.props.history.push(`/admin/duomenys/${this.state.userId}`);
@@ -274,7 +275,7 @@ export default class UpdateParentDetailsByAdmn extends Component {
         <div>
           <div className="container mt-5 shadow p-3 mb-5 bg-white rounded">
             <div className="mb-4">
-              <h3>Anaujinkite savo tėvo/globėjo duomenis</h3>
+              <h3>Anaujinti tėvo/globėjo duomenis</h3>
             </div>
             <form onSubmit={this.handleSubmit} className="form-row ">
               <div className=" form-group mb-3 col-6">
