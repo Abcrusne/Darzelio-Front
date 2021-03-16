@@ -4,7 +4,7 @@ const ModalEverything = ({ deleteEverything, userId}) => {
   return (
     <div
       className="modal fade"
-      id={`staticBackdrop${userId}`}
+      id={`staticBackdropp`}
       data-backdrop="static"
       data-keyboard="false"
       tabIndex="-1"
@@ -36,9 +36,9 @@ const ModalEverything = ({ deleteEverything, userId}) => {
               onClick={deleteEverything}
               type="button"
               data-toggle="modal"
-              className="yes btn"
+              className=" yes btn "
               data-dismiss="modal"
-              value={userId}
+              // value={userId}
             >
               Taip
             </button>
