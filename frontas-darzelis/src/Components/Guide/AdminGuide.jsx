@@ -9,7 +9,7 @@ const AdminGuide = () => {
         src={pdf}
         title="Naudojimosi instrukcija"
         style={{ marginRight: 0, marginLeft: 170, height: 800, width: 1200 }}
-        allowfullscreen
+        allowFullScreen
       ></iframe>
     </div>
   );

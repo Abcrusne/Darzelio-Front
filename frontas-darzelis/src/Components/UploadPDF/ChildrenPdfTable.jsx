@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { Component, lazy } from 'react';
 import { API } from '../../Configuration/AppConfig';
-const ModalComponentPdf = React.lazy(() => import('../Modal/ModalComponentPdf'));
-
+const ModalComponentPdf = React.lazy(() =>
+  import('../Modal/ModalComponentPdf')
+);
 
 export default class ChildrenPdfTable extends Component {
   constructor() {

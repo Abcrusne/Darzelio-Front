@@ -55,6 +55,9 @@ export default class UsersListTableContainer extends Component {
           Pridėti naują vartotoją
         </Link>
         <div className="mb-4">
+          <h4> Vartotojų sąrašas</h4>
+        </div>
+        <div className="mb-4">
           <input
             className="form-control mt-3 col-4"
             placeholder="Paieška pagal el.paštą"
@@ -64,9 +67,7 @@ export default class UsersListTableContainer extends Component {
             onChange={this.handleSearch}
           />
         </div>
-        <div className="mb-4">
-          <h4> Vartotojų sąrašas</h4>
-        </div>
+        
         <table className="table">
           <thead>
             <tr>

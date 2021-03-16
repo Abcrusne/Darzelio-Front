@@ -84,23 +84,23 @@ export default class UserLogsList extends Component {
   render() {
     let rowNumber = 20 * this.state.pageNumber - 19;
     return (
-      <div className="m-5">
+      <div className="container mt-5">
         <div className="mb-4">
           <h4> Vartotojų įvykių žurnalas</h4>
         </div>
-        <div className="col-md-8">
-          <div className="input-group">
+        <div className="mb-4">
+         
             <input
               type="text"
-              className="form-control"
+              className="form-control mt-3 col-4"
               placeholder="Ieškoti pagal vartotojo el.paštą"
               name="searchEmail"
               value={this.state.searchEmail}
               onChange={this.onChange}
             />
-          </div>
+      
         </div>
-        <table className="table mt-3">
+        <table className="table mt-4">
           <thead>
             <tr>
               <th scope="col">#</th>

@@ -24,16 +24,10 @@ export const SysAdminSideBarNavigation = () => {
             Darželių sąrašas
           </Link>
         </li>
-        {/* <li className="nav-item">
-          <Link to="/admin/vaikai" className="nav-link active">
-            <i className="fas fa-list-ol"></i>
-           Vaikų registracijų sąrašas
-          </Link>
-        </li> */}
         <li className="nav-item">
           <Link to="/admin/logs" className="nav-link active">
             <i className="fas fa-list-ol"></i>
-            Vartotojų žurnalas
+            Vartotojų įvykių žurnalas
           </Link>
         </li>
         <li className="nav-item">

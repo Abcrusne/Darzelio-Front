@@ -8,7 +8,6 @@ const ModalComponentKindergarten = React.lazy(() =>
   import('../Modal/ModalComponentKindergarten')
 );
 
-
 export default class KindergartenListTableContainer extends Component {
   constructor() {
     super();
@@ -48,6 +47,7 @@ export default class KindergartenListTableContainer extends Component {
     axios
       .delete(`${API}/api/kindergartens/${event.target.value}`)
       .then(() => {
+        alert('Ištrinta!');
         axios
           .get(`${API}/api/kindergartens`)
           .then((response) => this.setState({ kindergartens: response.data }));
@@ -73,6 +73,9 @@ export default class KindergartenListTableContainer extends Component {
             Pridėti naują darželį
           </Link>
           <div className="mb-4">
+            <h4> Darželių sąrašas</h4>
+          </div>
+          <div className="mb-4">
             <input
               className="form-control mt-3 col-4"
               placeholder="Paieška pagal darželio pavadinimą"
@@ -82,10 +85,8 @@ export default class KindergartenListTableContainer extends Component {
               onChange={this.handleSearch}
             />
           </div>
-          <div className="mb-4">
-            <h4> Darželių sąrašas</h4>
-          </div>
-          <table className="table">
+
+          <table className="table mt-4">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -164,6 +165,9 @@ export default class KindergartenListTableContainer extends Component {
             Pridėti naują darželį
           </Link>
           <div className="mb-4">
+            <h4> Darželių sąrašas</h4>
+          </div>
+          <div className="mb-4">
             <input
               className="form-control mt-3 col-4"
               placeholder="Paieška pagal darželio pavadinimą"
@@ -173,10 +177,8 @@ export default class KindergartenListTableContainer extends Component {
               onChange={this.handleSearch}
             />
           </div>
-          <div className="mb-4">
-            <h4> Darželių sąrašas</h4>
-          </div>
-          <table className="table">
+        
+          <table className="table mt-4">
             <thead>
               <tr>
                 <th scope="col">#</th>

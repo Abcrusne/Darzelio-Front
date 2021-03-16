@@ -49,7 +49,7 @@ export default class ArchiveListByAdmin extends Component {
             value={this.state.searchTerm}
             onChange={this.handleSearch}
           />
-          <table className="table">
+          <table className="table mt-4">
             <thead>
               <tr>
                 <th scope="col">#</th>

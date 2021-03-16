@@ -83,17 +83,18 @@ const ParentSideBarNavigation = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/tevai/instrukcija" className="nav-link active">
-            <i className="fas fa-info"></i>
-            Naudojimosi instrukcijos
-          </Link>
-        </li>
-        <li className="nav-item">
           <Link to="/tevai/salygos" className="nav-link active">
             <i className="fas fa-info"></i>
             Sąlygos
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/tevai/instrukcija" className="nav-link active">
+            <i className="fas fa-info"></i>
+            Naudojimosi instrukcijos
+          </Link>
+        </li>
+     
       </ul>
     </nav>
   );
