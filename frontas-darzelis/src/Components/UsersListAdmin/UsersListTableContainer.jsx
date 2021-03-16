@@ -3,54 +3,97 @@ import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../../Style/UsersLandings.css';
-const ModalComponent = lazy(() => import( '../Modal/ModalComponent'));
+import UsersListService from '../Utilities/UsersListService';
+import { Pagination } from '@material-ui/lab';
+const ModalComponent = lazy(() => import('../Modal/ModalComponent'));
 
 export default class UsersListTableContainer extends Component {
   constructor() {
     super();
     this.state = {
       users: [],
-      searchTerm: '',
-      pageNumber: 0,
+      pageNumber: 1,
+      totalPages: 0,
+      totalUsers: 0,
+      searchEmail: '',
     };
   }
 
   componentDidMount = () => {
-    let isMounted = true;
-    axios
-      .get(API + '/api/users')
-      .then((response) => this.setState({ users: response.data }))
-
-    // .catch((err) => console.log(err));
-    .catch((err) =>  {});
-    return () => {isMounted = false};
+    this.retrieveUsersList();
   };
-  handleSearch = (event) => {
-    event.preventDefault();
-    const searchTerm = event.target.value;
-
-    this.setState({
-      searchTerm: searchTerm,
-    });
+  retrieveUsersList = () => {
+    const { pageNumber, searchEmail } = this.state;
+    UsersListService.getAll(pageNumber, searchEmail)
+    .then((res)=> {
+      this.setState({
+        users:res.data.users,
+        totalPages:res.data.totalPages,
+        totalUsers: res.data.totalUsers,
+      })
+    })
+        .catch((err) => console.log(err));
+        // .catch((err) =>  {});
   };
+  onChange = (event) => {
+    const searchEmail = event.target.value;
+    this.setState(
+      {
+        searchEmail: searchEmail,
+      },
+      () => {
+        this.retrieveUsersList();
+      }
+    );
+  };
+  handlePageChange = (event, value) => {
+    this.setState(
+      {
+        pageNumber: value,
+      },
+      () => {
+        this.retrieveUsersList();
+      }
+    );
+  };
+  // componentDidMount = () => {
+  //   let isMounted = true;
+  //   axios
+  //     .get(API + '/api/users')
+  //     .then((response) => this.setState({ users: response.data }))
+
+  //   // .catch((err) => console.log(err));
+  //   .catch((err) =>  {});
+  //   return () => {isMounted = false};
+  // };
+  // handleSearch = (event) => {
+  //   event.preventDefault();
+  //   const searchTerm = event.target.value;
+
+  //   this.setState({
+  //     searchTerm: searchTerm,
+  //   });
+  // };
 
   deleteUser = (event) => {
     event.preventDefault();
     axios
       .delete(`${API}/api/users/${event.target.value}`)
       .then(() => {
-        axios
-          .get(`${API}/api/users`)
-          .then((response) => this.setState({ users: response.data }));
+        this.retrieveUsersList();
+        // axios
+        //   .get(`${API}/api/users`)
+        //   .then((response) => this.setState({ users: response.data }));
       })
-     // .catch((err) => console.log(err));
-     .catch((err) =>  {});
+      // .catch((err) => console.log(err));
+      .catch((err) => {});
   };
 
   render() {
-    let filteredUsers = this.state.users.filter((user) => {
-      return user.email.toLowerCase().indexOf(this.state.searchTerm) !== -1;
-    });
+    // let filteredUsers = this.state.users.filter((user) => {
+    //   return user.email.toLowerCase().indexOf(this.state.searchTerm) !== -1;
+    // });
+    let rowNumber = 20 * this.state.pageNumber - 19;
     return (
       <div className="container mt-5">
         <Link to={`/admin/registracija`} className="btn btn-primary mb-5">
@@ -65,11 +108,11 @@ export default class UsersListTableContainer extends Component {
             placeholder="Paieška pagal el.paštą"
             type="text"
             name="searchTerm"
-            value={this.state.searchTerm}
-            onChange={this.handleSearch}
+            value={this.state.searchEmail}
+            onChange={this.onChange}
           />
         </div>
-        
+
         <table className="table">
           <thead>
             <tr>
@@ -84,9 +127,9 @@ export default class UsersListTableContainer extends Component {
             </tr>
           </thead>
 
-          {this.state.users.length > 0 ? (
-            filteredUsers.map(
-              ({ id, firstname, lastname, email, role }, index) => {
+          {this.state.users && this.state.users.length ? (
+            this.state.users.map(
+              ({ id, firstname, lastname, email, role }) => {
                 const roleLt =
                   role === 'PARENT'
                     ? 'Tėvas/Globėjas'
@@ -99,7 +142,7 @@ export default class UsersListTableContainer extends Component {
                 return (
                   <tbody key={id}>
                     <tr key={id}>
-                      <th scope="row">{index + 1}</th>
+                    <th scope="row">{rowNumber++}</th>
                       <td>{firstname}</td>
                       <td> {lastname}</td>
                       {role === 'PARENT' ? (
@@ -165,6 +208,16 @@ export default class UsersListTableContainer extends Component {
             </tbody>
           )}
         </table>
+        <Pagination
+          className="my-3"
+          count={this.state.totalPages}
+          page={this.state.pageNumber}
+          siblingCount={1}
+          boundaryCount={1}
+          variant="outlined"
+          shape="rounded"
+          onChange={this.handlePageChange}
+        />
       </div>
     );
   }
