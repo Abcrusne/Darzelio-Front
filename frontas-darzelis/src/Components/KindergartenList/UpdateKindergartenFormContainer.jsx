@@ -39,7 +39,12 @@ export default class UpdateKindergartenFormContainer extends Component {
         });
       })
       // .catch((err) => console.log(err));
-      .catch((err) =>  {});
+      .catch((err) =>  {
+        if (err.response.status === 403) {
+          alert(
+            'Jūs neturite prieigos teisių į šitą puslapį. jei manote, kad tai klaida - prisijunkite iš naujo'
+          );}
+      });
      
   }
   handleChange = (event) => {
