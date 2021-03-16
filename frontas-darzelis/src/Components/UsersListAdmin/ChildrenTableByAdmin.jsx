@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import '../../Style/UsersLandings.css';
-import ChildrenTablePresentation from './ChildrenTablePresentationByAdmin';
+const ChildrenTablePresentation = React.lazy(() =>
+  import('./ChildrenTablePresentationByAdmin')
+);
 
 export default class ChildrenTable extends Component {
   constructor() {

@@ -1,6 +1,6 @@
-import React from 'react';
-import pdf from '../Guide/SysAdmin.pdf';
+import React , { lazy } from 'react';
 import '../../Style/style.css';
+import pdf from '../Guide/SysAdmin.pdf'
 
 const AdminGuide = () => {
   return (

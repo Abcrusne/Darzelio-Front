@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import ModalComponentChildren from '../Modal/ModalComponentChildren';
+
+const ModalComponentChildren = React.lazy(() =>
+  import('../Modal/ModalComponentChildren')
+);
 
 export default class UpdateChildApplicationByAdmin extends Component {
   constructor(props) {
@@ -260,7 +263,6 @@ export default class UpdateChildApplicationByAdmin extends Component {
                 <button
                   className=" btn  deleteApplication btn mt-3"
                   id="deleteChildApplication"
-             
                   data-toggle="modal"
                   data-target={`#staticBackdrop${this.state.childId}`}
                   value={this.state.childId}

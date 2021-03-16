@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
-import KindergartenTablePresentation from './KindergartenTablePresentation';
 import Loading from '../Loading/Loading';
 
+const KindergartenTablePresentation = React.lazy(() =>
+  import('./KindergartenTablePresentation')
+);
 export default class KindergartenContainer extends Component {
   constructor(props) {
     super(props);

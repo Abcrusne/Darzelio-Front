@@ -8,7 +8,6 @@ import RegistrationFormContainer from '../Registration/RegistrationFormContainer
 import RegistrationSuccessPresentation from '../Registration/RegistrationSuccessPresentation';
 import UpdateUserFormContainer from '../UsersListAdmin/UpdateUserFormContainer';
 import UsersListTableContainer from '../UsersListAdmin/UsersListTableContainer';
-import SysAdminLanding from './SysAdminLanding';
 import NotFoundPage from '../Utilities/NotFoundPage';
 import { SysAdminDashboard } from './SysAdminDashboard';
 import { ManageQueuesToKindergartens } from './ManageQueuesToKindergartens';
@@ -22,13 +21,19 @@ import UpdateParentDetailsByAdmn from '../UsersListAdmin/UpdateParentDetailsByAd
 import ChildrenTable from '../UsersListAdmin/ChildrenTableByAdmin';
 import UpdateChildDataByAdmin from '../UsersListAdmin/UpdateChildDataByAdmin';
 import UpdateChildApplicationByAdmin from '../UsersListAdmin/UpdateChildApplicationByAdmin';
-import ChildrenRegistrationByAdmin from '../UsersListAdmin/ChildrenRegistrationByAdmin';
+
 import ChildRegistrationToKindergartenByAdmin from '../UsersListAdmin/ChildRegistrationToKindergartenByAdmin';
 import ParentRegistrationByAdmin from '../UsersListAdmin/ParentRegistrationByAdmin';
-import UserLogsList from '../Logs/UserLogsList';
-import ArchiveListByAdmin from '../Archive/ArchiveListByAdmin';
 import ListOfRegistrations from '../MainRegistration/ListOfRegistrations';
-import AdminGuide from '../Guide/AdminGuide';
+
+const ChildrenRegistrationByAdmin = React.lazy(() =>
+  import('../UsersListAdmin/ChildrenRegistrationByAdmin')
+);
+const UserLogsList = React.lazy(() => import('../Logs/UserLogsList'));
+const ArchiveListByAdmin = React.lazy(() =>
+  import('../Archive/ArchiveListByAdmin')
+);
+const AdminGuide = React.lazy(() => import('../Guide/AdminGuide'));
 
 export const AdminRoutes = () => {
   return (

@@ -1,6 +1,7 @@
-import React from 'react';
-import pdf from '../Guide/Edu.pdf';
+import React , { lazy } from 'react';
 import '../../Style/style.css';
+
+import pdf from '../Guide/Edu.pdf'
 
 const EduGuide = () => {
   return (

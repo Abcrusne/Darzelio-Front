@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
-import ModalComponentChildren from '../Modal/ModalComponentChildren';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '../../Style/style.css';
+
+const ModalComponentChildren = React.lazy(() => import( '../Modal/ModalComponentChildren'));
 
 export default class UpdateChildDataByAdmin extends Component {
   constructor(props) {

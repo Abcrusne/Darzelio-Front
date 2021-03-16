@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import ModalComponent from '../Modal/ModalComponent';
 import '../../Style/UsersLandings.css';
+const ModalComponent = React.lazy(() => import( '../Modal/ModalComponent'));
 
 export default class UsersListTableContainer extends Component {
   constructor() {

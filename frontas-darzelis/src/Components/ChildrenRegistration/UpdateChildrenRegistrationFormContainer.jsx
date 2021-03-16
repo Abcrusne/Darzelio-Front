@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { API } from '../../Configuration/AppConfig';
 import axios from 'axios';
-import ModalComponentChildren from '../Modal/ModalComponentChildren';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '../../Style/style.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { registerLocale } from 'react-datepicker';
 import lt from 'date-fns/locale/lt';
+const ModalComponentChildren = React.lazy(() =>
+  import('../Modal/ModalComponentChildren')
+);
 
 registerLocale('lt', lt);
 

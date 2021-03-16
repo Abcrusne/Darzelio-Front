@@ -1,7 +1,8 @@
-import React from 'react';
+import React,  { lazy } from 'react';
 import { Link } from 'react-router-dom';
-import ModalComponent from '../Modal/ModalComponent';
+
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+const ModalComponent = React.lazy(() => import('../Modal/ModalComponent'));
 
 const UsersListTablePresentation = ({ users, deleteUser, searchTerm }) => {
   return users
@@ -12,8 +13,8 @@ const UsersListTablePresentation = ({ users, deleteUser, searchTerm }) => {
             ? 'Tėvas/Globėjas'
             : role === 'EDU'
             ? 'Švietimo specialistas'
-            : role ==="ADMIN"
-            ? "Sistemos administratorius"
+            : role === 'ADMIN'
+            ? 'Sistemos administratorius'
             : 'Nenurodyta';
 
         const markedForDeletionLt =
@@ -58,8 +59,8 @@ const UsersListTablePresentation = ({ users, deleteUser, searchTerm }) => {
             ? 'Tėvas/Globėjas'
             : role === 'EDU'
             ? 'Švietimo specialistas'
-            : role ==="ADMIN"
-            ? "Sistemos administratorius"
+            : role === 'ADMIN'
+            ? 'Sistemos administratorius'
             : 'Nenurodyta';
 
         const markedForDeletionLt =
