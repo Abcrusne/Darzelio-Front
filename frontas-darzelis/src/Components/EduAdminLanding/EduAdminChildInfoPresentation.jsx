@@ -121,7 +121,7 @@ const EduAdminChildInfoPresentation = ({
       </p>
       <p>
         {' '}
-        <b>Tėvas/Globėjas mokosi bendrojo lavimo įstaigoje:</b> {mokosi}
+        <b>Tėvas/Globėjas mokosi bendrojo lavinimo įstaigoje:</b> {mokosi}
       </p>
       {mainParentStudying ? (
         <p>
