@@ -201,3 +201,10 @@ margin-left: 0.35em;
   max-width: 2000px;
   max-height: 1900px;
 } */
+.download {
+  /* margin-left: 10rem; */
+  margin-left: 32%;
+  margin-top: 1em;
+  width: 30em;
+  color:#282f47
+}

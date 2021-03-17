@@ -25,15 +25,15 @@ export default class UsersListTableContainer extends Component {
   retrieveUsersList = () => {
     const { pageNumber, searchEmail } = this.state;
     UsersListService.getAll(pageNumber, searchEmail)
-    .then((res)=> {
-      this.setState({
-        users:res.data.users,
-        totalPages:res.data.totalPages,
-        totalUsers: res.data.totalUsers,
+      .then((res) => {
+        this.setState({
+          users: res.data.users,
+          totalPages: res.data.totalPages,
+          totalUsers: res.data.totalUsers,
+        });
       })
-    })
-        .catch((err) => console.log(err));
-        // .catch((err) =>  {});
+      .catch((err) => console.log(err));
+    // .catch((err) =>  {});
   };
   onChange = (event) => {
     const searchEmail = event.target.value;
@@ -56,24 +56,6 @@ export default class UsersListTableContainer extends Component {
       }
     );
   };
-  // componentDidMount = () => {
-  //   let isMounted = true;
-  //   axios
-  //     .get(API + '/api/users')
-  //     .then((response) => this.setState({ users: response.data }))
-
-  //   // .catch((err) => console.log(err));
-  //   .catch((err) =>  {});
-  //   return () => {isMounted = false};
-  // };
-  // handleSearch = (event) => {
-  //   event.preventDefault();
-  //   const searchTerm = event.target.value;
-
-  //   this.setState({
-  //     searchTerm: searchTerm,
-  //   });
-  // };
 
   deleteUser = (event) => {
     event.preventDefault();
@@ -81,18 +63,12 @@ export default class UsersListTableContainer extends Component {
       .delete(`${API}/api/users/${event.target.value}`)
       .then(() => {
         this.retrieveUsersList();
-        // axios
-        //   .get(`${API}/api/users`)
-        //   .then((response) => this.setState({ users: response.data }));
       })
       // .catch((err) => console.log(err));
       .catch((err) => {});
   };
 
   render() {
-    // let filteredUsers = this.state.users.filter((user) => {
-    //   return user.email.toLowerCase().indexOf(this.state.searchTerm) !== -1;
-    // });
     let rowNumber = 30 * this.state.pageNumber - 29;
     return (
       <div className="container mt-5">
@@ -128,78 +104,77 @@ export default class UsersListTableContainer extends Component {
           </thead>
 
           {this.state.users && this.state.users.length ? (
-            this.state.users.map(
-              ({ id, firstname, lastname, email, role }) => {
-                const roleLt =
-                  role === 'PARENT'
-                    ? 'Tėvas/Globėjas'
-                    : role === 'EDU'
-                    ? 'Švietimo specialistas'
-                    : role === 'ADMIN'
-                    ? 'Sistemos administratorius'
-                    : 'Nenurodyta';
+            this.state.users.map(({ id, firstname, lastname, email, role }) => {
+              const roleLt =
+                role === 'PARENT'
+                  ? 'Tėvas/Globėjas'
+                  : role === 'EDU'
+                  ? 'Švietimo specialistas'
+                  : role === 'ADMIN'
+                  ? 'Sistemos administratorius'
+                  : 'Nenurodyta';
 
-                return (
-                  <tbody key={id}>
-                    <tr key={id}>
+              return (
+                <tbody key={id}>
+                  <tr key={id}>
                     <th scope="row">{rowNumber++}</th>
-                      <td>{firstname}</td>
-                      <td> {lastname}</td>
-                      {role === 'PARENT' ? (
-                        <td>
-                          <Link
-                            className="text-decoration-none mr-3"
-                            to={`/admin/duomenys/${id}`}
-                          >
-                            {email}
-                          </Link>
-                        </td>
-                      ) : (
-                        <td>{email}</td>
-                      )}
-
-                      <td>{roleLt}</td>
-
-                      {role === 'ADMIN' ? (
-                        <td> </td>
-                      ) : (
-                        <td>
-                          <Link
-                            className="text-decoration-none mr-3"
-                            to={`/admin/vartotojai/${id}`}
-                          >
-                            Atnaujinti duomenis
-                          </Link>
-                        </td>
-                      )}
-
-                      {role === 'ADMIN' ? (
-                        <td></td>
-                      ) : (
-                        <td>
-                          <button
-                            className=" btn btn-light"
-                            data-toggle="modal"
-                            data-target={`#staticBackdrop${id}`}
-                            value={id}
-                          >
-                            Ištrinti
-                          </button>
-                        </td>
-                      )}
-
+                    <td>{firstname}</td>
+                    {role === 'PARENT' ? (
                       <td>
-                        <ModalComponent
-                          userId={id}
-                          email={email}
-                          deleteUser={this.deleteUser}
-                        />
+                        {' '}
+                        <Link
+                          className="text-decoration-none mr-3"
+                          to={`/admin/duomenys/${id}`}
+                        >
+                          {lastname}{' '}
+                        </Link>
                       </td>
-                    </tr>
-                  </tbody>
-                );
-              }
-            )
+                    ) : (
+                      <td>{lastname}</td>
+                    )}
+
+                    <td> {email}</td>
+                    <td>{roleLt}</td>
+
+                    {role === 'ADMIN' ? (
+                      <td> </td>
+                    ) : (
+                      <td>
+                        <Link
+                          className="text-decoration-none mr-3"
+                          to={`/admin/vartotojai/${id}`}
+                        >
+                          Atnaujinti duomenis
+                        </Link>
+                      </td>
+                    )}
+
+                    {role === 'ADMIN' ? (
+                      <td></td>
+                    ) : (
+                      <td>
+                        <button
+                          className=" btn btn-light"
+                          data-toggle="modal"
+                          data-target={`#staticBackdrop${id}`}
+                          value={id}
+                        >
+                          Ištrinti
+                        </button>
+                      </td>
+                    )}
+
+                    <td>
+                      <ModalComponent
+                        userId={id}
+                        email={email}
+                        deleteUser={this.deleteUser}
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              );
+            })
           ) : (
             <tbody>
               <tr>
