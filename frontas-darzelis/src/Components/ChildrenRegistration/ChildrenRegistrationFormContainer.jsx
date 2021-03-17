@@ -639,7 +639,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                     </label>
                     <input
                       type="text"
-                      placeholder="asmens kodas"
+                      placeholder="Asmens kodas"
                       className="form-control"
                       name="secondParentPersonalCode"
                       onChange={this.handleChange}
@@ -842,7 +842,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         </label>
                         <input
                           type="text"
-                          placeholder="deklaruotas miestas"
+                          placeholder="Deklaruotas miestas"
                           className="form-control"
                           name="secondParentDeclaredCity"
                           onChange={this.handleChange}
@@ -865,7 +865,7 @@ export default class ChildrenRegistrationFormContainer extends Component {
                         </label>
                         <input
                           type="text"
-                          placeholder="deklaruota gatvė"
+                          placeholder="Deklaruota gatvė"
                           className="form-control"
                           name="secondParentDeclaredStreet"
                           onChange={this.handleChange}
