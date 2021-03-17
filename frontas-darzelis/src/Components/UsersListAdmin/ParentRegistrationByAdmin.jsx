@@ -306,7 +306,7 @@ export default class ParentRegistrationByAdmin extends Component {
             </div>
             <div className="form-group mb-3 col-6">
               <label htmlFor="personalCode" className="control-label">
-                Asmens Kodas*:
+                Asmens kodas*:
               </label>
               <input
                 type="text"
@@ -355,7 +355,7 @@ export default class ParentRegistrationByAdmin extends Component {
 
             <div className="form-group mb-3 col-6">
               <label htmlFor="houseNumber" className="control-label">
-                Namo Numeris*:
+                Namo numeris*:
               </label>
               <input
                 type="text"
@@ -476,11 +476,11 @@ export default class ParentRegistrationByAdmin extends Component {
               <div className="form-row">
                 <div className="form-group mb-3 col-12">
                   <label htmlFor="declaredCity" className="control-label">
-                    Deklaruotas Miestas*:
+                    Deklaruotas miestas*:
                   </label>
                   <input
                     type="text"
-                    placeholder="Deklaruotas Miestas"
+                    placeholder="Deklaruotas miestas"
                     className="form-control"
                     name="declaredCity"
                     onChange={this.handleChange}
@@ -496,11 +496,11 @@ export default class ParentRegistrationByAdmin extends Component {
                 </div>
                 <div className="form-group mb-3 col-12">
                   <label htmlFor="declaredStreet" className="control-label">
-                    Deklaruota Gatvė*:
+                    Deklaruota gatvė*:
                   </label>
                   <input
                     type="text"
-                    placeholder="Deklaruota Gatvė"
+                    placeholder="Deklaruota gatvė"
                     className="form-control"
                     name="declaredStreet"
                     onChange={this.handleChange}
@@ -520,11 +520,11 @@ export default class ParentRegistrationByAdmin extends Component {
                     htmlFor="declaredHouseNumber"
                     className="control-label"
                   >
-                    Deklaruotas Namo Numeris*:
+                    Deklaruotas namo numeris*:
                   </label>
                   <input
                     type="text"
-                    placeholder="Deklaruotas Namo Numeris"
+                    placeholder="Deklaruotas namo numeris"
                     className="form-control"
                     name="declaredHouseNumber"
                     onChange={this.handleChange}
@@ -540,12 +540,12 @@ export default class ParentRegistrationByAdmin extends Component {
                 </div>
                 <div className="form-group mb-3 col-12">
                   <label htmlFor="declaredFlatNumber" className="control-label">
-                    Deklaruotas Butas:
+                    Deklaruotas butas:
                   </label>
                   <input
                     type="number"
                     min="1"
-                    placeholder="Deklaruotas Butas"
+                    placeholder="Deklaruotas butas"
                     className="form-control"
                     name="declaredFlatNumber"
                     onChange={this.handleChange}

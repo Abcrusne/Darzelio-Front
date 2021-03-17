@@ -433,7 +433,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
               </label>
               <input
                 type="text"
-                placeholder="Vaiko Vardas"
+                placeholder="Vaiko vardas"
                 className="form-control"
                 name="firstname"
                 onChange={this.handleChange}
@@ -450,7 +450,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
               </label>
               <input
                 type="text"
-                placeholder="Vaiko Pavardė"
+                placeholder="Vaiko pavardė"
                 className="form-control"
                 name="lastname"
                 onChange={this.handleChange}
@@ -951,7 +951,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                       </label>
                       <input
                         type="text"
-                        placeholder="Deklaruotas Miestas"
+                        placeholder="Deklaruotas miestas"
                         className="form-control"
                         name="secondParentDeclaredCity"
                         onChange={this.handleChange}
@@ -975,7 +975,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                       </label>
                       <input
                         type="text"
-                        placeholder="Deklaruota Gatvė"
+                        placeholder="Deklaruota gatvė"
                         className="form-control"
                         name="secondParentDeclaredStreet"
                         onChange={this.handleChange}
@@ -1005,7 +1005,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                       </label>
                       <input
                         type="text"
-                        placeholder="Deklaruotas Namo Numeris"
+                        placeholder="Deklaruotas namo numeris"
                         className="form-control"
                         name="secondParentDeclaredHouseNumber"
                         onChange={this.handleChange}
@@ -1030,7 +1030,7 @@ export default class UpdateChildrenRegistrationFormContainer extends Component {
                       <input
                         type="number"
                         min="1"
-                        placeholder="Deklaruotas Butas"
+                        placeholder="Deklaruotas butas"
                         className="form-control"
                         name="secondParentDeclaredFlatNumber"
                         onChange={this.handleChange}

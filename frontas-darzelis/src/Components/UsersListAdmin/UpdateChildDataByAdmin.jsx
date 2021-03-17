@@ -426,7 +426,7 @@ export default class UpdateChildDataByAdmin extends Component {
               </label>
               <input
                 type="text"
-                placeholder="Vaiko Vardas"
+                placeholder="Vaiko vardas"
                 className="form-control"
                 name="firstname"
                 onChange={this.handleChange}
@@ -443,7 +443,7 @@ export default class UpdateChildDataByAdmin extends Component {
               </label>
               <input
                 type="text"
-                placeholder="Vaiko Pavardė"
+                placeholder="Vaiko pavardė"
                 className="form-control"
                 name="lastname"
                 onChange={this.handleChange}
@@ -510,7 +510,7 @@ export default class UpdateChildDataByAdmin extends Component {
               </label>
               <input
                 type="text"
-                placeholder="gatvė"
+                placeholder="Gatvė"
                 className="form-control"
                 name="street"
                 onChange={this.handleChange}
@@ -528,7 +528,7 @@ export default class UpdateChildDataByAdmin extends Component {
               </label>
               <input
                 type="text"
-                placeholder="namo numeris"
+                placeholder="Namo numeris"
                 className="form-control"
                 name="houseNumber"
                 onChange={this.handleChange}
@@ -738,7 +738,7 @@ export default class UpdateChildDataByAdmin extends Component {
                   </label>
                   <input
                     type="text"
-                    placeholder="gatvė"
+                    placeholder="Gatvė"
                     className="form-control"
                     name="secondParentStreet"
                     onChange={this.handleChange}
@@ -759,7 +759,7 @@ export default class UpdateChildDataByAdmin extends Component {
                   </label>
                   <input
                     type="text"
-                    placeholder="namo numeris"
+                    placeholder="Namo numeris"
                     className="form-control"
                     name="secondParentHouseNumber"
                     onChange={this.handleChange}
@@ -945,7 +945,7 @@ export default class UpdateChildDataByAdmin extends Component {
                       </label>
                       <input
                         type="text"
-                        placeholder="deklaruotas Miestas"
+                        placeholder="Deklaruotas miestas"
                         className="form-control"
                         name="secondParentDeclaredCity"
                         onChange={this.handleChange}
@@ -969,7 +969,7 @@ export default class UpdateChildDataByAdmin extends Component {
                       </label>
                       <input
                         type="text"
-                        placeholder="deklaruota gatvė"
+                        placeholder="Deklaruota gatvė"
                         className="form-control"
                         name="secondParentDeclaredStreet"
                         onChange={this.handleChange}
@@ -999,7 +999,7 @@ export default class UpdateChildDataByAdmin extends Component {
                       </label>
                       <input
                         type="text"
-                        placeholder="deklaruotas namo numeris"
+                        placeholder="Deklaruotas namo numeris"
                         className="form-control"
                         name="secondParentDeclaredHouseNumber"
                         onChange={this.handleChange}
@@ -1024,7 +1024,7 @@ export default class UpdateChildDataByAdmin extends Component {
                       <input
                         type="number"
                         min="1"
-                        placeholder="deklaruotas butas"
+                        placeholder="Deklaruotas butas"
                         className="form-control"
                         name="secondParentDeclaredFlatNumber"
                         onChange={this.handleChange}
