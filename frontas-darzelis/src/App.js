@@ -239,7 +239,7 @@ function App() {
               role={'ADMIN'}
             />
             <PrivateRoute
-              path="/admin/:id/vaikai/:id"
+              path="/admin/vaikai/:id"
               exact
               component={SysAdminLanding}
               role={'ADMIN'}
