@@ -195,7 +195,7 @@ export const AdminRoutes = () => {
           role={'ADMIN'}
         />
           <PrivateRoute
-          path="/admin/vaikai"
+          path="/admin/vaikai/:id"
           exact
           component={EduAdminChildInfoContainer}
           role={'ADMIN'}
