@@ -133,7 +133,7 @@ export default class RegisteredChildrenQueueList extends Component {
   };
 
   render() {
-    let rowNumber = 15 * this.state.currentPage - 14;
+    let rowNumber = 15 * this.state.pageNumber - 14;
 
     const { searchLastName, childrenQueueList, pageNumber, count } = this.state;
 
