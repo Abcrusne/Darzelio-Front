@@ -287,7 +287,7 @@ export default class UpdateChildApplicationByAdmin extends Component {
             {' '}
             <p>
               {' '}
-              Prašymo redaguoti negalite. Jūsų vaikas priimtas į darželį:{' '}
+              Prašymo redaguoti negalite. Vaikas priimtas į darželį:{' '}
               <b>{this.state.kindergartenName}</b>, vaiko balas:{' '}
               <b>{this.state.childRating}</b>
             </p>
