@@ -75,7 +75,7 @@ const LoginFormPresentation = (
           rel="noopener noreferrer"
           target="_blank"
         >
-          Naudotojimosi instrukcija (tėvams/globėjams){' '}
+          Naudojimosi instrukcija (tėvams/globėjams){' '}
         </Link>
       </div>
     </div>
