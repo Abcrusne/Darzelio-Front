@@ -369,7 +369,7 @@ export default class ParentRegistrationByAdmin extends Component {
                 <span className="error">{errors.houseNumber}</span>
               )}
             </div>
-            <div className="form-group mb-3 col-6">
+            <div className="form-group mb-3 col-4">
               <label htmlFor="flatNumber" className="control-label">
                 Butas:
               </label>
@@ -382,7 +382,7 @@ export default class ParentRegistrationByAdmin extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <div className="form-group mb-3 col-6">
+            <div className="form-group mb-3 col-8">
               <label htmlFor="numberOfKids" className="control-label">
                 Kiek turite vaikų, kurie mokosi pagal bendrojo ugdymo lavinimo
                 programas?*:
